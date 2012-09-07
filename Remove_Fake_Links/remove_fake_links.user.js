@@ -1,20 +1,23 @@
 // ==UserScript==
-// @name           Remove fake links
-// @description    Remove tracking redirects like http://www.google.com/url?... and http://clck.yandex.ru/redir/...
-// @author         Infocatcher
-// @version        0.1.7 - 2012-04-08
-// @run-at         document-start
-// @namespace      dev/null
-// @include        http://www.google.*/search?*
-// @include        https://www.google.*/search?*
-// @include        http://www.google.*/#*q=*
-// @include        https://www.google.*/#*q=*
-// @include        http://groups.google.com/*
-// @include        https://groups.google.com/*
-// @include        http://yandex.*/yandsearch?*
-// @include        https://yandex.*/yandsearch?*
-// @include        http://market.yandex.ru/model.xml?*
-// @include        https://market.yandex.ru/model.xml?*
+// @name        Remove fake links
+// @description Remove tracking redirects like http://www.google.com/url?... and http://clck.yandex.ru/redir/...
+// @author      Infocatcher
+// @version     0.1.8 - 2012-09-07
+// @run-at      document-start
+// @namespace   dev/null
+// @include     http://www.google.*/search?*
+// @include     https://www.google.*/search?*
+// @include     http://www.google.*/webhp?*
+// @include     https://www.google.*/webhp?*
+// @include     http://www.google.*/#*q=*
+// @include     https://www.google.*/#*q=*
+// @include     http://groups.google.com/*
+// @include     https://groups.google.com/*
+// @include     http://yandex.*/yandsearch?*
+// @include     https://yandex.*/yandsearch?*
+// @include     http://market.yandex.ru/model.xml?*
+// @include     https://market.yandex.ru/model.xml?*
+// @grant       none
 // ==/UserScript==
 
 window.addEventListener("mousedown", function(e) {
