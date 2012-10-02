@@ -2,12 +2,18 @@
 // @name        Dirty.ru List of Best
 // @namespace   dev/null
 // @include     http://dirty.ru/comments/*
-// @version     0.1.3pre2
+// @version     0.1.3pre3 - 2012-10-02
+// @grant       GM_getValue
+// @grant       GM_setValue
 // ==/UserScript==
 
 (function() {
-var limit = 80;
-var highlight = 200;
+// You can change
+//   greasemonkey.scriptvals.dev/null/Dirty.ru List of Best.*
+// in about:config
+var limit     = getPref("limit",     80);
+var highlight = getPref("highlight", 200);
+var show      = getPref("show",      25);
 var best = [];
 Array.prototype.forEach.call(
 	document.getElementsByClassName("vote_result"),
@@ -77,7 +83,7 @@ div.innerHTML = '\
 	}\n\
 	#__userJs__bestList ul {\n\
 		line-height: 1.3em !important;\n\
-		max-height: 32.5em !important; /* 1.3*25 */\n\
+		max-height: ' + 1.3*show + 'em !important;\n\
 		min-width: 5em !important;\n\
 		overflow: auto !important;\n\
 	}\n\
@@ -134,6 +140,16 @@ function getLink(node) {
 function stopEvent(e) {
 	e.preventDefault();
 	e.stopPropagation();
+}
+function getPref(name, defaultVal) {
+	if(typeof GM_getValue != "function")
+		return defaultVal;
+	var v = GM_getValue(name, undefined);
+	if(v == undefined) {
+		GM_setValue(name, defaultVal);
+		return defaultVal;
+	}
+	return v;
 }
 function destroy() {
 	div.removeEventListener("click", clickHandler, true);
