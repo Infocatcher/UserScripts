@@ -1,10 +1,13 @@
 // ==UserScript==
 // @name           Direct Images
-// @version        0.4.25 - 2012-07-30
+// @version        0.4.26 - 2012-10-02
 // @description    Redirect from preview pages to images directly
 // @author         Infocatcher
 // @namespace      dev/null
 // @run-at         document-start
+// @grant          GM_getValue
+// @grant          GM_setValue
+// @grant          GM_log
 
 // Get image by id:
 // @include        http://img*.imagevenue.com/img.php?image=*
@@ -297,7 +300,7 @@ switch(host) {
 		var inps = node.getElementsByTagName("input");
 		for(var i = 0, len = inps.length; i < len; ++i) {
 			var h = inps[i].value;
-			if(/^http:\/\/(?:\w+\.)*imageshack\.us\/img[^?&#]*\.\w+$/i.test(h)) {
+			if(/^http:\/\/(?:\w+\.)*imageshack\.us\/(?:\w+\/)?img[^?&#]*\.\w+$/i.test(h)) {
 				_src = h;
 				break hostLoop;
 			}
