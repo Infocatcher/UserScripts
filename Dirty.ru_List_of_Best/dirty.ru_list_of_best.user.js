@@ -2,11 +2,12 @@
 // @name        Dirty.ru List of Best
 // @namespace   dev/null
 // @include     http://dirty.ru/comments/*
-// @version     0.1.3pre
+// @version     0.1.3pre2
 // ==/UserScript==
 
 (function() {
 var limit = 80;
+var highlight = 200;
 var best = [];
 Array.prototype.forEach.call(
 	document.getElementsByClassName("vote_result"),
@@ -44,7 +45,10 @@ Array.prototype.forEach.call(
 				break;
 			}
 		}
-		best.push('<li><a href="#' + id + '"' + title + '>' + n + '</a></li>');
+		var clss = "__userJs__bestListAnchor";
+		if(n >= highlight)
+			clss += " __userJs__bestListHL";
+		best.push('<li><a href="#' + id + '"' + title + ' class="' + clss + '"' + '>' + n + '</a></li>');
 	}
 );
 var div = document.createElement("div");
@@ -78,6 +82,13 @@ div.innerHTML = '\
 		overflow: auto !important;\n\
 	}\n\
 	#__userJs__bestList :visited { color: #999 !important; }\n\
+	.__userJs__bestListHL:before {\n\
+		content: " " !important;\n\
+		display: inline-block !important;\n\
+		background: url("/i/stars.gif") no-repeat center center !important;\n\
+		width: 11px !important;\n\
+		margin-right: 1px !important;\n\
+	}\n\
 	#__userJs__bestListClose {\n\
 		text-decoration: none !important;\n\
 		margin: 0 0.3em !important;\n\
@@ -98,6 +109,7 @@ function clickHandler(e) {
 	if(a.id == "__userJs__bestListClose") {
 		var block = a.parentNode;
 		block.parentNode.removeChild(block);
+		destroy();
 		stopEvent(e);
 	}
 	else if(/^#(\d+)$/.test(a.getAttribute("href"))) {
