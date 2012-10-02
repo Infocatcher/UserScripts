@@ -61,10 +61,16 @@ var div = document.createElement("div");
 div.id = "__userJs__bestList";
 div.innerHTML = '\
 <style type="text/css">\n\
-	.comment:target > .comment_inner { outline: 1px solid #c4cedb !important; }\n\
-	.comment:target > .comment_inner:hover { outline: 1px solid #afbecf !important; }\n\
-	.comment.__userJs__bestListTarget > .comment_inner { outline: 1px solid #e0e0e0 !important; }\n\
-	.comment.__userJs__bestListTarget > .comment_inner:hover { outline: 1px solid #d0d0d0 !important; }\n\
+	.comment:target > .comment_inner {\n\
+		outline: 1px dashed #c4cedb !important;\n\
+		outline-offset: -4px !important;\n\
+	}\n\
+	.comment:target > .comment_inner:hover { outline-color: #afbecf !important; }\n\
+	.comment.__userJs__bestListTarget > .comment_inner {\n\
+		outline: 1px solid #e0e0e0 !important;\n\
+		outline-offset: -4px !important;\n\
+	}\n\
+	.comment.__userJs__bestListTarget > .comment_inner:hover { outline-color: #d0d0d0 !important; }\n\
 	#__userJs__bestList {\n\
 		position: fixed !important;\n\
 		top: 2px !important;\n\
