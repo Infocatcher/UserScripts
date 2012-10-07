@@ -2,7 +2,7 @@
 // @name        Dirty.ru List of Best
 // @namespace   dev/null
 // @include     http://dirty.ru/comments/*
-// @version     0.1.3pre3 - 2012-10-02
+// @version     0.1.3pre4 - 2012-10-07
 // @grant       GM_getValue
 // @grant       GM_setValue
 // ==/UserScript==
@@ -66,6 +66,13 @@ div.innerHTML = '\
 		outline-offset: -4px !important;\n\
 	}\n\
 	.comment:target > .comment_inner:hover { outline-color: #afbecf !important; }\n\
+	.comment_shrinked:target .c_body {\n\
+		/* Hack for space before top outline */\n\
+		display: block !important;\n\
+		visibility: hidden !important;\n\
+		max-height: 8px !important;\n\
+		overflow: hidden !important;\n\
+	}\n\
 	.comment.__userJs__bestListTarget > .comment_inner {\n\
 		outline: 1px solid #e0e0e0 !important;\n\
 		outline-offset: -4px !important;\n\
