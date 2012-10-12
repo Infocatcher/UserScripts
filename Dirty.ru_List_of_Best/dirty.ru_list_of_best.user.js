@@ -2,7 +2,8 @@
 // @name        Dirty.ru List of Best
 // @namespace   dev/null
 // @include     http://dirty.ru/comments/*
-// @version     0.1.3pre4 - 2012-10-07
+// @include     http://www.dirty.ru/comments/*
+// @version     0.1.3pre4 - 2012-10-12
 // @grant       GM_getValue
 // @grant       GM_setValue
 // ==/UserScript==
