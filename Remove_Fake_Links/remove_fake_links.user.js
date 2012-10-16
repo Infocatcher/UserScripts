@@ -34,7 +34,7 @@ window.addEventListener("mousedown", function(e) {
 				break;
 			else if(/^https?:\/\/(?:\w+\.)?google\.[\w.]+\/.*=(https?:\/\/[^&?]*)/.test(a.href)) {
 				var h = RegExp.$1;
-				if(!/^https?:\/\/(?:\w+\.)?google\.[\w.]+\/search\?q=/.test(a.href))
+				if(!/^https?:\/\/(?:\w+\.)?google\.[\w.]+\/(search|imgres)\?/.test(a.href))
 					a.href = decodeURIComponent(h);
 			}
 			else if(/^https?:\/\/clck\.yandex\.\w+\/redir\/.*?\*(https?:\/\/.*)$/.test(a.href))
