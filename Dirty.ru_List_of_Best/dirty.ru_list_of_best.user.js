@@ -85,6 +85,10 @@ div.innerHTML = '\
 		right: 3px !important;\n\
 		z-index: 2147483647 !important;\n\
 		color: #999 !important;\n\
+		background: #fff !important;\n\
+		-moz-box-shadow:    0 0 4px 1px #fff !important;\n\
+		-webkit-box-shadow: 0 0 4px 1px #fff !important;\n\
+		box-shadow:         0 0 4px 1px #fff !important;\n\
 	}\n\
 	#__userJs__bestList, #__userJs__bestList ul, #__userJs__bestList li {\n\
 		list-style-type: none !important;\n\
@@ -98,7 +102,7 @@ div.innerHTML = '\
 	#__userJs__bestList ul {\n\
 		line-height: 1.3em !important;\n\
 		max-height: ' + 1.3*show + 'em !important;\n\
-		min-width: 5em !important;\n\
+		min-width: 5.2em !important;\n\
 		overflow: auto !important;\n\
 	}\n\
 	#__userJs__bestList :visited { color: #999 !important; }\n\
