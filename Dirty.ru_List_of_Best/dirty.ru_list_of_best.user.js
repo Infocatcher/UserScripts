@@ -3,7 +3,7 @@
 // @namespace   dev/null
 // @include     http://dirty.ru/comments/*
 // @include     http://www.dirty.ru/comments/*
-// @version     0.1.3pre4 - 2012-10-12
+// @version     0.1.3pre5 - 2012-11-04
 // @grant       GM_getValue
 // @grant       GM_setValue
 // ==/UserScript==
@@ -12,9 +12,10 @@
 // You can change
 //   greasemonkey.scriptvals.dev/null/Dirty.ru List of Best.*
 // in about:config
-var limit     = getPref("limit",     80);
-var highlight = getPref("highlight", 200);
-var show      = getPref("show",      25);
+var limit      = getPref("limit",      80);
+var highlight  = getPref("highlight",  150);
+var highlight2 = getPref("highlight2", 250);
+var show       = getPref("show",       25);
 var best = [];
 Array.prototype.forEach.call(
 	document.getElementsByClassName("vote_result"),
@@ -55,6 +56,8 @@ Array.prototype.forEach.call(
 		var clss = "__userJs__bestListAnchor";
 		if(n >= highlight)
 			clss += " __userJs__bestListHL";
+		if(n >= highlight2)
+			clss += " __userJs__bestListHL2";
 		best.push('<li><a href="#' + id + '"' + title + ' class="' + clss + '"' + '>' + n + '</a></li>');
 	}
 );
@@ -109,10 +112,11 @@ div.innerHTML = '\
 	.__userJs__bestListHL:before {\n\
 		content: " " !important;\n\
 		display: inline-block !important;\n\
-		background: url("/i/stars.gif") no-repeat center center !important;\n\
+		background: url("/i/wasstars.gif") no-repeat center center !important;\n\
 		width: 11px !important;\n\
 		margin-right: 1px !important;\n\
 	}\n\
+	.__userJs__bestListHL2:before { background-image: url("/i/stars.gif") !important; }\n\
 	#__userJs__bestListClose {\n\
 		text-decoration: none !important;\n\
 		margin: 0 0.3em !important;\n\
