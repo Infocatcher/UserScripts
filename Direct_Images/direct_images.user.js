@@ -85,6 +85,7 @@
 // @include        http://imm.io/*
 // @include        http://narodpix.net/?v=*
 // @include        http://www.narodpix.net/?v=*
+// @include        http://www.imagebam.com/image/*
 
 // Other:
 // @include        http://img*.imageshack.us/*
@@ -140,7 +141,7 @@ var host = location.hostname
 	.split(".")
 	.slice(-2)
 	.join("."); // a.example.com => example.com
-var _iid, _img, _src;
+var _iid, _img, _src, _clearDoc;
 function $(id) {
 	return document.getElementById(id);
 }
@@ -155,6 +156,35 @@ function $i(mask) {
 			return src;
 	}
 	return null;
+}
+function clearDoc(src) {
+	while(document.hasChildNodes())
+		document.removeChild(document.lastChild);
+	var ns = "http://www.w3.org/1999/xhtml";
+	var html = document.createElementNS(ns, "html");
+	var head = document.createElementNS(ns, "body");
+	var body = document.createElementNS(ns, "body");
+	var title = document.createElementNS(ns, "title");
+	var style = document.createElementNS(ns, "style");
+	var img = document.createElementNS(ns, "img");
+
+	var imgName = src.match(/[^\/]*$/)[0];
+	try {
+		imgName = decodeURIComponent(imgName);
+	}
+	catch(e) {
+	}
+	title.appendChild(document.createTextNode(imgName + " - Direct Images"));
+	style.type = "text/css";
+	style.appendChild(document.createTextNode("html, body { margin: 0; padding: 0; }"));
+	img.src = img.alt = src;
+
+	head.appendChild(title);
+	head.appendChild(style);
+	body.appendChild(img);
+	html.appendChild(head);
+	html.appendChild(body);
+	document.appendChild(html);
 }
 hostLoop:
 switch(host) {
@@ -292,6 +322,10 @@ switch(host) {
 	break;
 	case "narodpix.net":
 		_src = $i(/^http:\/\/(?:\w+\.)?narodpix\.net\/img\/[^?&#]+\.\w+$/);
+	break;
+	case "imagebam.com":
+		_src = $i(/^http:\/\/(?:\w+\.)?imagebam\.com\/download\/[^?&#]+\.\w+$/);
+		_clearDoc = true;
 	break;
 
 	// Other:
@@ -527,7 +561,9 @@ if(_img && _img.src && _img.offsetWidth && _img.offsetHeight) //~ todo: fails so
 	_src = _img.src;
 if(_src && _src != loc) {
 	GM_log("Redirect (" + (event ? event.type : "delay") + "):\n" + loc + "\n=> " + _src);
-	if(allowBack)
+	if(_clearDoc)
+		clearDoc(_src);
+	else if(allowBack)
 		location.href = _src;
 	else
 		location.replace(_src);
