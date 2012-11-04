@@ -541,11 +541,12 @@ else if(document.readyState == "loading") {
 		window.addEventListener("load", di, false);
 	}
 	if(++di._count < 5*60*1000/10)
-		setTimeout(di, 10);
+		di._timer = setTimeout(di, 10);
 }
 else if(event && event.type == "load")
 	destroy();
 function destroy() {
+	di._timer && clearTimeout(di._timer);
 	window.removeEventListener("DOMContentLoaded", di, false);
 	window.removeEventListener("load", di, false);
 }
