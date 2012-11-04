@@ -129,7 +129,7 @@
 (function di(event) {
 var allowBack = false; // default value
 // You can change greasemonkey.scriptvals.dev/null/Direct Images.allowBack in about:config
-if("GM_getValue" in this) {
+if(typeof GM_getValue == "function") {
 	var _allowBack = GM_getValue("allowBack", undefined);
 	if(_allowBack == undefined)
 		GM_setValue("allowBack", allowBack);
@@ -671,7 +671,7 @@ if(_img && _img.src && _img.offsetWidth && _img.offsetHeight) //~ todo: fails so
 if(_src && _src != loc) {
 	GM_log("Redirect (" + (event ? event.type : "delay") + "):\n" + loc + "\n=> " + _src);
 	if(_clearDoc)
-		clearDoc(_src);
+		clearDoc(_src); // "allowBack" aren't supported...
 	else if(allowBack)
 		location.href = _src;
 	else
