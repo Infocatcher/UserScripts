@@ -164,13 +164,11 @@ function clearDoc(src) {
 	while(document.hasChildNodes())
 		document.removeChild(document.lastChild);
 	var ns = "http://www.w3.org/1999/xhtml";
-	var html = document.createElementNS(ns, "html");
-	var head = document.createElementNS(ns, "body");
-	var body = document.createElementNS(ns, "body");
-	var title = document.createElementNS(ns, "title");
-	var style = document.createElementNS(ns, "style");
-	var img = document.createElementNS(ns, "img");
 
+	var html = document.createElementNS(ns, "html");
+
+	var head = document.createElementNS(ns, "body");
+	var title = document.createElementNS(ns, "title");
 	var imgName = src.match(/[^\/]*$/)[0];
 	try {
 		imgName = decodeURIComponent(imgName);
@@ -178,13 +176,106 @@ function clearDoc(src) {
 	catch(e) {
 	}
 	title.appendChild(document.createTextNode(imgName + " - Direct Images"));
+	head.appendChild(title);
+	var link = document.createElementNS(ns, "link");
+	link.rel = "shortcut icon";
+	link.href = src;
+	head.appendChild(link);
+	var style = document.createElementNS(ns, "style");
 	style.type = "text/css";
 	style.appendChild(document.createTextNode("html, body { margin: 0; padding: 0; }"));
-	img.src = img.alt = src;
-
-	head.appendChild(title);
 	head.appendChild(style);
+
+	var meta = document.createElementNS(ns, "meta");
+	meta.name = "viewport";
+	meta.content = "width=device-width; height=device-height;";
+	head.appendChild(meta);
+
+	link = document.createElementNS(ns, "link");
+	link.rel = "stylesheet";
+	link.href = "resource://gre/res/TopLevelImageDocument.css";
+	head.appendChild(link);
+	link = document.createElementNS(ns, "link");
+	link.rel = "stylesheet";
+	link.href = "chrome://global/skin/TopLevelImageDocument.css";
+	head.appendChild(link);
+	link = document.createElementNS(ns, "link");
+	link.rel = "stylesheet";
+	link.href = "chrome://global/skin/media/TopLevelImageDocument.css"; // Firefox 19.0a1
+	head.appendChild(link);
+
+	var body = document.createElementNS(ns, "body");
+	var img = document.createElementNS(ns, "img");
+	img.addEventListener("load", function initResizer(e) {
+		img.removeEventListener(e.type, initResizer, false);
+		var originalSize = false;
+		var iw = img.width;
+		var ih = img.height;
+		var size = iw + " × " + ih;
+		function fitSize(check) {
+			var ww = window.innerWidth;
+			var wh = window.innerHeight;
+			var canFit = iw > ww || ih > wh;
+			if(check)
+				return canFit;
+			if(canFit) {
+				var persent = Math.min(ww/iw, wh/ih);
+				img.style.width = iw*persent + "px";
+				img.style.height = ih*persent + "px";
+				persent = Math.floor(persent*100); // Inherit Firefox built-in resizer behavior...
+				document.title = imgName + " (" + size + ", " + persent + "%)" + " - Direct Images";
+			}
+			else {
+				origSize();
+			}
+			setCursor(canFit);
+			return canFit;
+		}
+		function origSize() {
+			img.style.width = img.style.height = null;
+			document.title = imgName + " (" + size + ")" + " - Direct Images";
+		}
+		function setCursor(canFit) {
+			if(canFit == undefined)
+				canFit = fitSize(true);
+			img.style.cursor = canFit
+				? originalSize
+					? "-moz-zoom-out"
+					: "-moz-zoom-in"
+				: "";
+		}
+		function toggleFitSize(e) {
+			if(e.button != 0)
+				return;
+			if(!fitSize(true)) { // Nothing to toggle
+				setCursor(false);
+				return;
+			}
+			originalSize = !originalSize;
+			if(originalSize)
+				origSize();
+			else
+				fitSize();
+			setCursor(true);
+		}
+		function onResize(e) {
+			if(!originalSize)
+				fitSize();
+			setCursor();
+		}
+		img.addEventListener("click", toggleFitSize, false);
+		window.addEventListener("resize", onResize, false);
+		window.addEventListener("unload", function destroy(e) {
+			window.removeEventListener(e.type, destroy, false);
+			img.removeEventListener("click", toggleFitSize, false);
+			window.removeEventListener("resize", onResize, false);
+		}, false);
+		if(!originalSize)
+			fitSize();
+	}, false);
+	img.src = img.alt = src;
 	body.appendChild(img);
+
 	html.appendChild(head);
 	html.appendChild(body);
 	document.appendChild(html);
