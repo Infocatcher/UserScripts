@@ -181,7 +181,11 @@ function clearDoc(src) {
 	head.appendChild(link);
 	var style = document.createElementNS(ns, "style");
 	style.type = "text/css";
-	style.appendChild(document.createTextNode("html, body { margin: 0; padding: 0; }"));
+	style.appendChild(document.createTextNode("\
+		html, body { margin: 0; padding: 0; }\n\
+		.zoomIn { cursor: -moz-zoom-in; cursor: -webkit-zoom-in; cursor: zoom-in; }\n\
+		.zoomOut { cursor: -moz-zoom-out; cursor: -webkit-zoom-out; cursor: zoom-out; }"
+	));
 	head.appendChild(style);
 
 	var meta = document.createElementNS(ns, "meta");
@@ -234,10 +238,10 @@ function clearDoc(src) {
 		function setCursor(canFit) {
 			if(canFit == undefined)
 				canFit = fitSize(true);
-			img.style.cursor = canFit
+			img.className = canFit
 				? originalSize
-					? "-moz-zoom-out"
-					: "-moz-zoom-in"
+					? "zoomOut"
+					: "zoomIn"
 				: "";
 		}
 		function toggleFitSize(e) {
