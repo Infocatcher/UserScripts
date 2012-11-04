@@ -161,8 +161,6 @@ function $i(mask, node) {
 	return null;
 }
 function clearDoc(src) {
-	while(document.hasChildNodes())
-		document.removeChild(document.lastChild);
 	var ns = "http://www.w3.org/1999/xhtml";
 
 	var html = document.createElementNS(ns, "html");
@@ -195,12 +193,10 @@ function clearDoc(src) {
 	link.rel = "stylesheet";
 	link.href = "resource://gre/res/TopLevelImageDocument.css";
 	head.appendChild(link);
-	link = document.createElementNS(ns, "link");
-	link.rel = "stylesheet";
+	link = link.cloneNode(true);
 	link.href = "chrome://global/skin/TopLevelImageDocument.css";
 	head.appendChild(link);
-	link = document.createElementNS(ns, "link");
-	link.rel = "stylesheet";
+	link = link.cloneNode(true);
 	link.href = "chrome://global/skin/media/TopLevelImageDocument.css"; // Firefox 19.0a1
 	head.appendChild(link);
 
@@ -278,6 +274,9 @@ function clearDoc(src) {
 
 	html.appendChild(head);
 	html.appendChild(body);
+
+	while(document.hasChildNodes())
+		document.removeChild(document.lastChild);
 	document.appendChild(html);
 }
 hostLoop:
