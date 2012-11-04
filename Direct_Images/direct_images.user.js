@@ -526,7 +526,7 @@ if(_iid)
 if(_img && _img.src && _img.offsetWidth && _img.offsetHeight) //~ todo: fails sometimes on DOMContentLoaded
 	_src = _img.src;
 if(_src && _src != loc) {
-	GM_log("Redirect: " + loc + " => " + _src);
+	GM_log("Redirect (" + (event ? event.type : "delay") + "):\n" + loc + "\n=> " + _src);
 	if(allowBack)
 		location.href = _src;
 	else
@@ -536,7 +536,7 @@ if(_src && _src != loc) {
 else if(document.readyState == "loading") {
 	if(!("_count" in di)) {
 		di._count = 0;
-		// With disabled scripts setTimeout doesn't works
+		// With disabled scripts setTimeout doesn't work
 		window.addEventListener("DOMContentLoaded", di, false);
 		window.addEventListener("load", di, false);
 	}
