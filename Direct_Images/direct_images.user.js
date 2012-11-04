@@ -17,7 +17,6 @@
 // @include        http://download.su/photo/*
 // @include        http://*imageup.ru/img*/*.html
 // @include        http://*pixshock.net/*.html
-// @include        http://imageshost.ru/links/*
 // @include        http://*image-share.com/image.php?*
 // @include        http://*image-share.com/*.html
 // @include        http://*10pix.ru/view/*
@@ -123,6 +122,8 @@
 // @include        http://*.goodfon.ru/download.*?id=*
 // @include        http://*.badfon.ru/download.*?id=*
 // @include        http://*image-upload.net/*.html
+// @include        http://imageshost.ru/links/*
+// @include        http://imageshost.ru/photo/*.html
 // ==/UserScript==
 
 (function di(event) {
@@ -148,8 +149,10 @@ function $(id) {
 function $t(tag) {
 	return document.getElementsByTagName(tag);
 }
-function $i(mask) {
-	var imgs = document.images;
+function $i(mask, node) {
+	var imgs = node
+		? node.getElementsByTagName("img")
+		: document.images;
 	for(var i = 0, len = imgs.length; i < len; ++i) {
 		var src = imgs[i].src;
 		if(src && mask.test(src))
@@ -195,7 +198,6 @@ switch(host) {
 	case "download.su":      _iid = "thepic";        break;
 	case "imageup.ru":       _iid = "image";         break;
 	case "pixshock.net":     _iid = "mi";            break;
-	case "imageshost.ru":    _iid = "image";         break;
 	case "image-share.com":  _iid = "image";         break;
 	case "10pix.ru":         _iid = "image";         break;
 	case "funkyimg.com":     _iid = "image";         break;
@@ -554,6 +556,19 @@ switch(host) {
 		var inp = document.getElementById("codedirect");
 		if(inp)
 			_src = inp.value;
+	break;
+	case "imageshost.ru":
+		//_img = $("image");
+		//if(_img)
+		//	break;
+		var content = $("content");
+		if(!content)
+			break;
+		var ps = content.getElementsByTagName("p");
+		for(var i = 0, l = ps.length; i < l; ++i)
+			if(ps[i].textContent == "Другие изображения из данного альбома")
+				break hostLoop;
+		_src = $i(/^http:\/\/(?:\w+\.)?imageshost\.ru\/img\/[^?&#]+\.\w+$/, content);
 }
 if(_iid)
 	_img = $(_iid);
