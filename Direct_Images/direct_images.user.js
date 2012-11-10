@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name           Direct Images
-// @version        0.5.0 - 2012-11-04
+// @version        0.5.1 - 2012-11-10
 // @description    Redirect from preview pages to images directly
 // @author         Infocatcher
 // @namespace      dev/null
@@ -157,6 +157,17 @@ function $i(mask, node) {
 		var src = imgs[i].src;
 		if(src && mask.test(src))
 			return src;
+	}
+	return null;
+}
+function $inp(mask, node) {
+	if(!node)
+		node = document;
+	var inps = node.getElementsByTagName("input");
+	for(var i = 0, len = inps.length; i < len; ++i) {
+		var val = inps[i].value;
+		if(mask.test(val))
+			return val;
 	}
 	return null;
 }
@@ -426,15 +437,7 @@ switch(host) {
 
 	// Other:
 	case "imageshack.us":
-		var node = $("ImageCodes") || $("ibl_fs_direct") || document;
-		var inps = node.getElementsByTagName("input");
-		for(var i = 0, len = inps.length; i < len; ++i) {
-			var h = inps[i].value;
-			if(/^http:\/\/(?:\w+\.)*imageshack\.us\/(?:\w+\/)?img[^?&#]*\.\w+$/i.test(h)) {
-				_src = h;
-				break hostLoop;
-			}
-		}
+		_src = $inp(/^http:\/\/(?:\w+\.)*imageshack\.us\/(?:\w+\/)?img[^?&#]*\.\w+$/i);
 	break;
 	case "savepic.ru":
 	case "savepic.org":
@@ -466,15 +469,9 @@ switch(host) {
 			_src = loc.replace(/(?:\/\d{2,4})?\/?$/, "/orig/");
 	break;
 	case "xtupload.com":
-		var inps = $t("input");
-		var mask = /^\[url=[^\[\]]+\]\[img\](http:\/\/(?:www\.)?xtupload.com\/\w+\/image-[^\[\]]+)\[\/img\]\[\/url\]/;
-		for(var i = 0, len = inps.length; i < len; ++i) {
-			var inp = inps[i];
-			if(inp.type == "text" && mask.test(inp.value)) {
-				_src = RegExp.$1;
-				break;
-			}
-		}
+		var src = $inp(/^\[url=[^\[\]]+\]\[img\](http:\/\/(?:www\.)?xtupload.com\/\w+\/image-[^\[\]]+)\[\/img\]\[\/url\]/);
+		if(src)
+			_src = RegExp.$1;
 	break;
 	case "picatom.com":
 		_img = document.getElementsByName("fred")[0];
@@ -541,14 +538,7 @@ switch(host) {
 			_src = link.href;
 	break;
 	case "imageban.ru":
-		var inps = $t("input");
-		for(var i = 0, len = inps.length; i < len; ++i) {
-			var src = inps[i].value;
-			if(/^http:\/\/(?:\w+\.)*imageban\.ru\/out\//.test(src)) {
-				_src = src;
-				break;
-			}
-		}
+		_src = $inp(/^http:\/\/(?:\w+\.)*imageban\.ru\/out\//);
 	break;
 	case "habreffect.ru":
 		var node = $("image");
