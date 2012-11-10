@@ -2,7 +2,7 @@
 // @name        Remove fake links
 // @description Remove tracking redirects like http://www.google.com/url?... and http://clck.yandex.ru/redir/...
 // @author      Infocatcher
-// @version     0.1.9 - 2012-10-16
+// @version     0.2.0pre - 2012-11-11
 // @run-at      document-start
 // @namespace   dev/null
 // @include     http://www.google.*/search?*
@@ -24,35 +24,72 @@
 // @grant       none
 // ==/UserScript==
 
-window.addEventListener("mousedown", function(e) {
-	var exclude;
-	// Uncomment following to leave "Warning - visiting this web site may harm your computer!"
-	//exclude = /^https?:\/\/(?:www\.)google\.[\w.]+\/interstitial\?url=http\S+$/;
-	for(var a = e.target; a && a.localName; a = a.parentNode) {
-		if(a.localName.toLowerCase() == "a" && a.href) {
-			if(a.hasAttribute("onmousedown")) {
-				a.setAttribute("__deleted__onmousedown", a.getAttribute("onmousedown"));
-				a.removeAttribute("onmousedown");
-			}
-			if(a.hasAttribute("onclick")) {
-				var onclick = a.getAttribute("onclick");
-				if(/(^|\W)location\.replace\(/.test(onclick)) {
-					a.setAttribute("__deleted__onclick", onclick);
-					a.removeAttribute("onclick");
-				}
-			}
-			if(exclude && exclude.test(a.href))
-				break;
-			else if(/^https?:\/\/(?:\w+\.)?google\.[\w.]+\/.*=(https?:\/\/[^&?]*)/.test(a.href)) {
-				var h = RegExp.$1;
-				if(!/^https?:\/\/(?:\w+\.)?google\.[\w.]+\/(search|imgres)\?/.test(a.href))
-					a.href = decodeURIComponent(h);
-			}
-			else if(/^https?:\/\/clck\.yandex\.\w+\/redir\/.*?\*(https?:\/\/.*)$/.test(a.href))
-				a.href = RegExp.$1;
-			else if(/^https?:\/\/r\.mail\.yandex\.net\/url(s)?\/[^\/]+\/([^&?]+)$/.test(a.href))
-				a.href = "http" + RegExp.$1 + "://" + decodeURIComponent(RegExp.$2);
-			break;
+(function() {
+
+var exclude;
+// Uncomment following to leave "Warning - visiting this web site may harm your computer!"
+//exclude = /^https?:\/\/(?:www\.)google\.[\w.]+\/interstitial\?url=http\S+$/;
+
+// You can comment two following lines to increase performance
+window.addEventListener("mouseover", clearLink, true);
+window.addEventListener("focus", clearLink, true);
+window.addEventListener("mousedown", clearLink, true);
+window.addEventListener("unload", function destroy(e) {
+	window.removeEventListener("mouseover", clearLink, true);
+	window.removeEventListener("focus", clearLink, true);
+	window.removeEventListener("mousedown", clearLink, true);
+}, false);
+
+function clearLink(e) {
+	var a = getLink(e);
+	if(!a)
+		return;
+
+	if(a.hasAttribute("onmousedown")) {
+		a.setAttribute("__deleted__onmousedown", a.getAttribute("onmousedown"));
+		a.removeAttribute("onmousedown");
+	}
+	if(a.hasAttribute("onclick")) {
+		var onclick = a.getAttribute("onclick");
+		if(/(^|\W)location\.replace\(/.test(onclick)) {
+			a.setAttribute("__deleted__onclick", onclick);
+			a.removeAttribute("onclick");
 		}
 	}
-}, true);
+	var h = a.href;
+	if(exclude && exclude.test(h))
+		return;
+	if(/^https?:\/\/(?:\w+\.)?google\.[\w.]+\/.*=(https?:\/\/[^&?]*)/.test(h)) {
+		var _h = RegExp.$1;
+		if(!/^https?:\/\/(?:\w+\.)?google\.[\w.]+\/(search|imgres)\?/.test(h))
+			a.href = decodeURIComponent(_h);
+	}
+	else if(/^https?:\/\/clck\.yandex\.\w+\/redir\/.*?\*(https?:\/\/.*)$/.test(h))
+		a.href = RegExp.$1;
+	else if(/^https?:\/\/r\.mail\.yandex\.net\/url(s)?\/[^\/]+\/([^&?]+)$/.test(h))
+		a.href = "http" + RegExp.$1 + "://" + decodeURIComponent(RegExp.$2);
+	if(a.href != h) {
+		// Force update link in status bar
+		if(e.type == "focus") {
+			a.ownerDocument.documentElement.focus();
+			setTimeout(function() {
+				a.focus();
+			}, 0);
+		}
+		else if(e.type == "mouseover") {
+			var s = a.style;
+			s.visibility = "hidden";
+			setTimeout(function() {
+				s.visibility = "";
+			}, 0);
+		}
+	}
+}
+function getLink(e) {
+	for(var a = e.target; a && a.localName; a = a.parentNode)
+		if(a.localName.toLowerCase() == "a")
+			return a.href && a;
+	return null;
+}
+
+})();
