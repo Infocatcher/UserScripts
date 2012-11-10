@@ -19,6 +19,8 @@
 // @include     https://yandex.*/yandsearch?*
 // @include     http://market.yandex.ru/model.xml?*
 // @include     https://market.yandex.ru/model.xml?*
+// @include     http://mail.yandex.ru/*
+// @include     https://mail.yandex.ru/*
 // @grant       none
 // ==/UserScript==
 
@@ -48,6 +50,8 @@ window.addEventListener("mousedown", function(e) {
 			}
 			else if(/^https?:\/\/clck\.yandex\.\w+\/redir\/.*?\*(https?:\/\/.*)$/.test(a.href))
 				a.href = RegExp.$1;
+			else if(/^https?:\/\/r\.mail\.yandex\.net\/url(s)?\/[^\/]+\/([^&?]+)$/.test(a.href))
+				a.href = "http" + RegExp.$1 + "://" + decodeURIComponent(RegExp.$2);
 			break;
 		}
 	}
