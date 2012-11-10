@@ -35,6 +35,7 @@ window.addEventListener("mouseover", clearLink, true);
 window.addEventListener("focus", clearLink, true);
 window.addEventListener("mousedown", clearLink, true);
 window.addEventListener("unload", function destroy(e) {
+	window.removeEventListener(e.type, destroy, false);
 	window.removeEventListener("mouseover", clearLink, true);
 	window.removeEventListener("focus", clearLink, true);
 	window.removeEventListener("mousedown", clearLink, true);
