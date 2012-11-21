@@ -1,11 +1,12 @@
 // ==UserScript==
 // @name           Dirty.ru Title
-// @version        0.3.2 - 2012-07-19
+// @version        0.3.3 - 2012-11-21
 // @author         Infocatcher
 // @namespace      dev/null
 // @run-at         document-start
 // @include        http://dirty.ru/comments/*
 // @include        http://www.dirty.ru/comments/*
+// @include        http://d3.ru/comments/*
 // ==/UserScript==
 
 (function reTitle(e) {
