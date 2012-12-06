@@ -3,7 +3,8 @@
 // @namespace   dev/null
 // @include     http://dirty.ru/comments/*
 // @include     http://www.dirty.ru/comments/*
-// @version     0.1.3pre5 - 2012-11-04
+// @include     http://d3.ru/comments/*
+// @version     0.1.3pre6 - 2012-12-06
 // @grant       GM_getValue
 // @grant       GM_setValue
 // ==/UserScript==
@@ -12,10 +13,15 @@
 // You can change
 //   greasemonkey.scriptvals.dev/null/Dirty.ru List of Best.*
 // in about:config
-var limit      = getPref("limit",      80);
-var highlight  = getPref("highlight",  150);
-var highlight2 = getPref("highlight2", 250);
-var show       = getPref("show",       25);
+var prefsVersion = 1;
+var v = getPref("prefsVersion", 0);
+var forceDefault = v == 0;
+var limit      = getPref("limit",      20, forceDefault);
+var highlight  = getPref("highlight",  40, forceDefault);
+var highlight2 = getPref("highlight2", 65, forceDefault);
+var show       = getPref("show",       25, forceDefault);
+if(v != prefsVersion)
+	setPref("prefsVersion", prefsVersion);
 var best = [];
 Array.prototype.forEach.call(
 	document.getElementsByClassName("vote_result"),
@@ -25,7 +31,7 @@ Array.prototype.forEach.call(
 		var n = e.textContent.trim();
 		if(n < limit)
 			return;
-		var id = /\Wid:'(\d+)'/.test(e.getAttribute("onclick")) && RegExp.$1;
+		var id = /'(\d+)'/.test(e.getAttribute("onclick")) && RegExp.$1;
 		var title = "";
 		for(var node = e.parentNode; node; node = node.parentNode) {
 			if(/(?:^|\s)comment_inner(?:\s|$)/.test(node.className)) {
@@ -163,15 +169,21 @@ function stopEvent(e) {
 	e.preventDefault();
 	e.stopPropagation();
 }
-function getPref(name, defaultVal) {
+function getPref(name, defaultVal, forceDefault) {
 	if(typeof GM_getValue != "function")
 		return defaultVal;
-	var v = GM_getValue(name, undefined);
+	var v = forceDefault
+		? undefined
+		: GM_getValue(name, undefined);
 	if(v == undefined) {
 		GM_setValue(name, defaultVal);
 		return defaultVal;
 	}
 	return v;
+}
+function setPref(name, val) {
+	if(typeof GM_setValue == "function")
+		GM_setValue(name, val);
 }
 function destroy() {
 	div.removeEventListener("click", clickHandler, true);
