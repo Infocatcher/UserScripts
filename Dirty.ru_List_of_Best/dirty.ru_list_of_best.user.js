@@ -88,6 +88,7 @@ div.innerHTML = '\
 		outline-offset: -4px !important;\n\
 	}\n\
 	.comment.__userJs__bestListTarget > .comment_inner:hover { outline-color: #d0d0d0 !important; }\n\
+	.comment { margin-right: 45px !important; }\n\
 	#__userJs__bestList {\n\
 		position: fixed !important;\n\
 		top: 2px !important;\n\
@@ -98,7 +99,14 @@ div.innerHTML = '\
 		-moz-box-shadow:    0 0 4px 1px #fff !important;\n\
 		-webkit-box-shadow: 0 0 4px 1px #fff !important;\n\
 		box-shadow:         0 0 4px 1px #fff !important;\n\
+		opacity: 0.75 !important;\n\
+		-webkit-transition: opacity 0.2s ease-in-out;\n\
+		-moz-transition:    opacity 0.2s ease-in-out;\n\
+		-o-transition:      opacity 0.2s ease-in-out;\n\
+		-ms-transition:     opacity 0.2s ease-in-out;\n\
+		transition:         opacity 0.2s ease-in-out;\n\
 	}\n\
+	#__userJs__bestList:hover { opacity: 1 !important; }\n\
 	#__userJs__bestList, #__userJs__bestList ul, #__userJs__bestList li {\n\
 		list-style-type: none !important;\n\
 		margin: 0 !important;\n\
@@ -111,7 +119,7 @@ div.innerHTML = '\
 	#__userJs__bestList ul {\n\
 		line-height: 1.3em !important;\n\
 		max-height: ' + 1.3*show + 'em !important;\n\
-		min-width: 5.2em !important;\n\
+		min-width: 3.3em !important;\n\
 		overflow: auto !important;\n\
 	}\n\
 	#__userJs__bestList :visited { color: #999 !important; }\n\
