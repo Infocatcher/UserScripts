@@ -133,13 +133,14 @@ div.innerHTML = '\
 	.__userJs__bestListHL2:before { background-image: url("/i/stars.gif") !important; }\n\
 	#__userJs__bestListClose {\n\
 		text-decoration: none !important;\n\
-		margin: 0 0.3em !important;\n\
-		padding: 0 0.3em !important;\n\
+		font-size: 11px !important;\n\
+		margin-right: 2px !important;\n\
 	}\n\
 	#__userJs__bestListClose:hover { color: #900 !important; }\n\
 </style>\n\
-<ul>\n' + (best.join("\n") || 'Не найдено!') + '\n</ul>\n\
-<a id="__userJs__bestListClose" href="javascript://close" title="Закрыть"\>x</a>';
+<ul>\n'
++ (best.join("\n") || 'Не найдено!')
++ '\n</ul><a id="__userJs__bestListClose" href="javascript://toggle" title="Свернуть"\>&lt;&lt;</a>';
 document.body.appendChild(div);
 
 div.addEventListener("click", clickHandler, true);
@@ -149,9 +150,20 @@ function clickHandler(e) {
 		return;
 	var a = getLink(e.target);
 	if(a.id == "__userJs__bestListClose") {
-		var block = a.parentNode;
-		block.parentNode.removeChild(block);
-		destroy();
+		//var block = a.parentNode;
+		//block.parentNode.removeChild(block);
+		//destroy();
+		var block = a.previousSibling;
+		if(block.style.display == "none") {
+			block.style.display = "";
+			a.textContent = "<<";
+			a.title = "Свернуть";
+		}
+		else {
+			block.style.display = "none";
+			a.textContent = ">>";
+			a.title = "Развернуть";
+		}
 		stopEvent(e);
 	}
 	else if(/^#(\d+)$/.test(a.getAttribute("href"))) {
