@@ -4,6 +4,7 @@
 // @include     http://dirty.ru/comments/*
 // @include     http://www.dirty.ru/comments/*
 // @include     http://d3.ru/comments/*
+// @include     http://*.d3.ru/comments/*
 // @version     0.1.3pre6 - 2012-12-06
 // @grant       GM_getValue
 // @grant       GM_setValue
