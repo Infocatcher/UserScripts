@@ -1,1 +1,1 @@
-﻿[UserScripts](https://en.wikipedia.org/wiki/Userscript) for [Greasemonkey](https://addons.mozilla.org/firefox/addon/greasemonkey/) or [Scriptish](https://addons.mozilla.org/firefox/addon/scriptish/). Also may works in another browsers (not tested).
+﻿[UserScripts](https://en.wikipedia.org/wiki/Userscript) for [Greasemonkey](https://addons.mozilla.org/firefox/addon/greasemonkey/) or [Scriptish](https://addons.mozilla.org/firefox/addon/scriptish/). Also may works in other browsers (not tested).
