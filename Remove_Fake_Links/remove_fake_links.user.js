@@ -11,6 +11,8 @@
 // @include     https://www.google.*/webhp?*
 // @include     http://www.google.*/#*q=*
 // @include     https://www.google.*/#*q=*
+// @include     https://encrypted.google.com/search?*
+// @include     https://encrypted.google.com/#*q=*
 // @include     http://www.google.*/imgres?*
 // @include     https://www.google.*/imgres?*
 // @include     http://groups.google.com/*
