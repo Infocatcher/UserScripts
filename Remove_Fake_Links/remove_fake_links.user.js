@@ -81,9 +81,10 @@ function clearLink(e) {
 		}
 		else if(e.type == "mouseover") {
 			var s = a.style;
+			var v = s.visibility || "";
 			s.visibility = "hidden";
 			setTimeout(function() {
-				s.visibility = "";
+				s.visibility = v;
 			}, 0);
 		}
 	}
