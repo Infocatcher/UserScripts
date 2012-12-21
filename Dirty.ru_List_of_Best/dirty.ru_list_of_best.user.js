@@ -89,7 +89,7 @@ div.innerHTML = '\
 		outline-offset: -4px !important;\n\
 	}\n\
 	.comment.__userJs__bestListTarget > .comment_inner:hover { outline-color: #d0d0d0 !important; }\n\
-	.comment { margin-right: 45px !important; }\n\
+	.comment { margin-right: 55px !important; }\n\
 	#__userJs__bestList {\n\
 		position: fixed !important;\n\
 		top: 2px !important;\n\
@@ -120,7 +120,7 @@ div.innerHTML = '\
 	#__userJs__bestList ul {\n\
 		line-height: 1.3em !important;\n\
 		max-height: ' + 1.3*show + 'em !important;\n\
-		min-width: 3.3em !important;\n\
+		min-width: 4.5em !important;\n\
 		overflow: auto !important;\n\
 	}\n\
 	#__userJs__bestList :visited { color: #999 !important; }\n\
