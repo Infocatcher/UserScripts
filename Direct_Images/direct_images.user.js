@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name           Direct Images
-// @version        0.5.1 - 2012-11-10
+// @version        0.5.2 - 2012-12-22
 // @description    Redirect from preview pages to images directly
 // @author         Infocatcher
 // @namespace      dev/null
@@ -124,6 +124,7 @@
 // @include        http://*image-upload.net/*.html
 // @include        http://imageshost.ru/links/*
 // @include        http://imageshost.ru/photo/*.html
+// @include        http://screenshotuploader.com/s/*
 // ==/UserScript==
 
 (function di(event) {
@@ -653,6 +654,10 @@ switch(host) {
 			if(ps[i].textContent == "Другие изображения из данного альбома")
 				break hostLoop;
 		_src = $i(/^http:\/\/(?:\w+\.)?imageshost\.ru\/img\/[^?&#]+\.\w+$/, content);
+	break;
+	case "screenshotuploader.com":
+		var node = $("padd");
+		_img = node && node.getElementsByTagName("img")[0];
 }
 if(_iid)
 	_img = $(_iid);
