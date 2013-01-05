@@ -69,7 +69,7 @@ if(_url && _url != loc) {
 	if(typeof GM_setValue == "function") {
 		// For Close Download Tabs extension
 		// https://github.com/Infocatcher/Close_Download_Tabs
-		// This preference should be listed in extensions.closedownloadtabs.closeURI.pref.<full_pref_name>
+		// This preference should be listed in extensions.closeDownloadTabs.closeURI.pref.<full_pref_name>
 		// See https://github.com/Infocatcher/Close_Download_Tabs/blob/master/defaults/preferences/prefs.js
 		GM_setValue("closeURI", loc);
 		GM_deleteValue("closeURI"); // Don't save history :)
