@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name           Direct Images
-// @version        0.5.2 - 2012-12-22
+// @version        0.5.3 - 2013-01-27
 // @description    Redirect from preview pages to images directly
 // @author         Infocatcher
 // @namespace      dev/null
@@ -117,7 +117,10 @@
 // @include        http://forlazypeople.com/?v=*
 // @include        http://upit.biz/?v=*
 // @include        http://imgur.com/*
+// @exclude        http://imgur.com/
 // @exclude        http://imgur.com/a/*
+// @exclude        http://imgur.com/gallery/*
+// @exclude        http://imgur.com/user/*
 // @include        http://*pic2profit.com/*/
 // @include        http://*.goodfon.ru/download.*?id=*
 // @include        http://*.badfon.ru/download.*?id=*
@@ -149,6 +152,29 @@ function $(id) {
 }
 function $t(tag) {
 	return document.getElementsByTagName(tag);
+}
+function $c(className, node) {
+	if(!node)
+		node = document;
+	if(node.getElementsByClassName)
+		return node.getElementsByClassName(className);
+	var classNames = className.split(/\s+/);
+	var count = classNames.length;
+	var regs = [];
+	for(var i = 0; i < count; ++i)
+		regs.push(new RegExp("(^|\\s)" + classNames[i].replace(/[\\\/.^$+*?|()\[\]{}]/g, "\\$&") + "(\\s|$)"));
+	var out = [];
+	var nodes = node.getElementsByTagName("*");
+	main:
+	for(var i = 0, l = nodes.length; i < l; ++i) {
+		var n = nodes[i];
+		var c = n.className;
+		for(var j = 0; j < count; ++j)
+			if(!regs[j].test(c))
+				continue main;
+		out.push(n);
+	}
+	return out;
 }
 function $i(mask, node) {
 	var imgs = node
@@ -623,8 +649,11 @@ switch(host) {
 		var a = $("large-image");
 		if(a)
 			_src = a.href;
-		else
-			_src = $i(/^http:\/\/(?:\w+\.)*imgur\.com\/\w+\.\w+$/);
+		else {
+			var block = $("image") || $c("image textbox")[0];
+			if(block)
+				_src = $i(/^http:\/\/(?:\w+\.)*imgur\.com\/\w+\.\w+(\?\d+)?$/, block);
+		}
 	break;
 	case "pic2profit.com":
 		var inp = document.getElementsByName("bigimg")[0];
