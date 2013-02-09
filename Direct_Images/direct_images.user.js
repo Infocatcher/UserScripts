@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name           Direct Images
-// @version        0.5.3 - 2013-01-27
+// @version        0.5.4 - 2013-02-09
 // @description    Redirect from preview pages to images directly
 // @author         Infocatcher
 // @namespace      dev/null
@@ -128,6 +128,7 @@
 // @include        http://imageshost.ru/links/*
 // @include        http://imageshost.ru/photo/*.html
 // @include        http://screenshotuploader.com/s/*
+// @include        http://prntscr.com/*
 // ==/UserScript==
 
 (function di(event) {
@@ -687,6 +688,11 @@ switch(host) {
 	case "screenshotuploader.com":
 		var node = $("padd");
 		_img = node && node.getElementsByTagName("img")[0];
+	break;
+	case "prntscr.com":
+		var nodes = $c("image__pic");
+		if(nodes.length == 1 && nodes[0].nodeName.toLowerCase() == "img")
+			_img = nodes[0];
 }
 if(_iid)
 	_img = $(_iid);
