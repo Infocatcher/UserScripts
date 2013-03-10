@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name           Direct Images
-// @version        0.5.4 - 2013-02-09
+// @version        0.5.5 - 2013-03-11
 // @description    Redirect from preview pages to images directly
 // @author         Infocatcher
 // @namespace      dev/null
@@ -77,7 +77,6 @@
 // @include        http://*imagepost.ru/?v=*
 // @include        http://imgtheif.com/show-image.php?id=*
 // @include        http://imgtheif.com/image/*.html
-// @include        http://ifotki.info/*.html
 // @include        http://hostingkartinok.com/show-image.php?*
 // @include        http://lostpic.net/?view=*
 // @include        http://image.kz/*
@@ -129,6 +128,7 @@
 // @include        http://imageshost.ru/photo/*.html
 // @include        http://screenshotuploader.com/s/*
 // @include        http://prntscr.com/*
+// @include        http://ifotki.info/*.html
 // ==/UserScript==
 
 (function di(event) {
@@ -440,9 +440,6 @@ switch(host) {
 	case "imgtheif.com":
 		_src = $i(/^http:\/\/(?:www\.)?imgtheif\.com\/pictures\/[^?&#]+\.\w+$/);
 	break;
-	case "ifotki.info":
-		_src = $i(/^http:\/\/(?:\w+\.)?ifotki\.info\/([^?&#]+\/)?[0-9a-f]{32,}\.\w+$/);
-	break;
 	case "hostingkartinok.com":
 		_src = $i(/^http:\/\/(?:\w+\.)?hostingkartinok\.com\/[^#]+[0-9a-f]{32,}\.\w+$/);
 	break;
@@ -693,6 +690,14 @@ switch(host) {
 		var nodes = $c("image__pic");
 		if(nodes.length == 1 && nodes[0].nodeName.toLowerCase() == "img")
 			_img = nodes[0];
+	break;
+	case "ifotki.info":
+		_src = $i(/^http:\/\/(?:\w+\.)?ifotki\.info\/([^?&#]+\/)?[0-9a-f]{32,}\.\w+$/);
+		if(!_src) {
+			var src = $inp(/^\[url=http:\/\/ifotki\.info\/\]\[img\](.*?)\[\/img\]\[\/url\]$/);
+			if(src && !/html?$/.test(RegExp.$1))
+				_src = RegExp.$1;
+		}
 }
 if(_iid)
 	_img = $(_iid);
