@@ -153,8 +153,10 @@ var _iid, _img, _src, _clearDoc;
 function $(id) {
 	return document.getElementById(id);
 }
-function $t(tag) {
-	return document.getElementsByTagName(tag);
+function $t(tag, node) {
+	if(!node)
+		node = document;
+	return node.getElementsByTagName(tag);
 }
 function $c(className, node) {
 	if(!node)
@@ -202,11 +204,13 @@ function $inp(mask, node) {
 	return null;
 }
 function $u(node) {
-	if(!node || node.nodeName.toLowerCase() != "input")
-		return "";
-	var v = node.value;
-	if(/^https?:\/\/\S+$/.test(v) && !/html?$/.test(v))
-		return v;
+	if(node && node.nodeName.toLowerCase() == "input")
+		return $url(node.value);
+	return "";
+}
+function $url(s) {
+	if(/^https?:\/\/\S+$/.test(s) && !/html?$/.test(s))
+		return s;
 	return "";
 }
 function clearDoc(src) {
@@ -713,6 +717,18 @@ switch(host) {
 	break;
 	case "tinypic.com":
 		_src = $u($("direct-url"));
+		if(!_src) {
+			var block = $("flash-direct-url");
+			var embed = block && $t("embed", block)[0];
+			if(embed) {
+				var fv = embed.getAttribute("flashvars");
+				if(/=(http[^\s&]+)/.test(fv)) try {
+					_src = $url(decodeURIComponent(RegExp.$1));
+				}
+				catch(e) {
+				}
+			}
+		}
 }
 if(_iid)
 	_img = $(_iid);
