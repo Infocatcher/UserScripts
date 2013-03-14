@@ -59,6 +59,7 @@
 // @include        http://*.sendpic.ru/*.html
 // @include        http://*imget.ru/show/?img=*
 // @include        http://*.photobucket.com/*?action=view*
+// @include        http://*.photobucket.com/*.html
 // @include        http://fastpic.msk.ru/?v=*
 // @include        http://youpic.su/view.php?id=*
 // @include        http://jpegshare.net/*.html
@@ -392,6 +393,11 @@ switch(host) {
 			break;
 		if(/^(http:\/\/\w+\.photobucket\.com\/[^?&#]+).*[?&]current=([^?&#]+)/.test(loc))
 			_src = (RegExp.$1 + RegExp.$2).replace(/\/\/s/, "//i");
+		else {
+			var inp = $("linksModule_ccinput_1");
+			if(inp && /^https?:\/\/\S+$/.test(inp.value) && !/html?$/.test(inp.value))
+				_src = inp.value;
+		}
 	break;
 	case "msk.ru":
 		_src = loc.replace(/\?v=/, "images/");
