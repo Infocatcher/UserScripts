@@ -130,6 +130,7 @@
 // @include        http://ifotki.info/*.html
 // @include        http://*.photobucket.com/*?action=view*
 // @include        http://*.photobucket.com/*.html
+// @include        http://tinypic.com/view.php?pic=*
 // ==/UserScript==
 
 (function di(event) {
@@ -704,6 +705,11 @@ switch(host) {
 			if(inp && /^https?:\/\/\S+$/.test(inp.value) && !/html?$/.test(inp.value))
 				_src = inp.value;
 		}
+	break;
+	case "tinypic.com":
+		var inp = $("direct-url");
+		if(inp && /^https?:\/\/\S+$/.test(inp.value) && !/html?$/.test(inp.value))
+			_src = inp.value;
 }
 if(_iid)
 	_img = $(_iid);
