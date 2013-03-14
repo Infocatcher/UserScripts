@@ -201,6 +201,14 @@ function $inp(mask, node) {
 	}
 	return null;
 }
+function $u(node) {
+	if(!node || node.nodeName.toLowerCase() != "input")
+		return "";
+	var v = node.value;
+	if(/^https?:\/\/\S+$/.test(v) && !/html?$/.test(v))
+		return v;
+	return "";
+}
 function clearDoc(src) {
 	var ns = "http://www.w3.org/1999/xhtml";
 
@@ -700,16 +708,11 @@ switch(host) {
 			break;
 		if(/^(http:\/\/\w+\.photobucket\.com\/[^?&#]+).*[?&]current=([^?&#]+)/.test(loc))
 			_src = (RegExp.$1 + RegExp.$2).replace(/\/\/s/, "//i");
-		else {
-			var inp = $("linksModule_ccinput_1");
-			if(inp && /^https?:\/\/\S+$/.test(inp.value) && !/html?$/.test(inp.value))
-				_src = inp.value;
-		}
+		else
+			_src = $u($("linksModule_ccinput_1"));
 	break;
 	case "tinypic.com":
-		var inp = $("direct-url");
-		if(inp && /^https?:\/\/\S+$/.test(inp.value) && !/html?$/.test(inp.value))
-			_src = inp.value;
+		_src = $u($("direct-url"));
 }
 if(_iid)
 	_img = $(_iid);
