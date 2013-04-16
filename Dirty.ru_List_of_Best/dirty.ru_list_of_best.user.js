@@ -5,7 +5,7 @@
 // @include     http://www.dirty.ru/comments/*
 // @include     http://d3.ru/comments/*
 // @include     http://*.d3.ru/comments/*
-// @version     0.1.3pre6 - 2012-12-06
+// @version     0.1.3pre7 - 2013-04-16
 // @grant       GM_getValue
 // @grant       GM_setValue
 // ==/UserScript==
@@ -144,6 +144,9 @@ div.innerHTML = '\
 + '\n</ul><a id="__userJs__bestListClose" href="javascript://toggle" title="Свернуть"\>&lt;&lt;</a>';
 document.body.appendChild(div);
 
+var id = location.hash;
+id && ensurePostVisible(id.substr(1));
+
 div.addEventListener("click", clickHandler, true);
 window.addEventListener("unload", destroy, false);
 function clickHandler(e) {
@@ -169,14 +172,36 @@ function clickHandler(e) {
 	}
 	else if(/^#(\d+)$/.test(a.getAttribute("href"))) {
 		var id = RegExp.$1;
-		var anch = document.getElementById(id) || document.getElementsByName(id)[0];
+		var anch = getPostById(id);
 		if(anch && "scrollIntoView" in anch) {
+			ensurePostVisible(anch);
 			anch.scrollIntoView();
 			var trgClass = "__userJs__bestListTarget";
 			var trg = document.getElementsByClassName(trgClass);
 			trg.length && trg[0].classList.remove(trgClass);
 			anch.classList.add(trgClass);
 			stopEvent(e);
+		}
+	}
+}
+function getPostById(id) {
+	return document.getElementById(id) || document.getElementsByName(id)[0];
+}
+function ensurePostVisible(id) {
+	var post = typeof id == "string"
+		? getPostById(id)
+		: id;
+	if(!post)
+		return;
+	for(var box = post.parentNode; box; box = box.parentNode) {
+		var cn = box.className;
+		if(
+			/(^|\s)b-comments_collapsed(\s|$)/.test(cn)
+			&& !/(^|\s)b-comments_collapsed_expanded(\s|$)/.test(cn)
+		) {
+			var toggler = box.getElementsByClassName("b-comments_collapsed_toggle")[0];
+			if(toggler && toggler.click)
+				toggler.click();
 		}
 	}
 }
