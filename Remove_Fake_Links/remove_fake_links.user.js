@@ -2,7 +2,7 @@
 // @name        Remove fake links
 // @description Remove tracking redirects like http://www.google.com/url?... and http://clck.yandex.ru/redir/...
 // @author      Infocatcher
-// @version     0.2.0pre2 - 2013-01-17
+// @version     0.2.0pre3 - 2013-04-19
 // @run-at      document-start
 // @namespace   dev/null
 // @include     http://www.google.*/search?*
@@ -71,7 +71,10 @@ function clearLink(e) {
 	}
 	else if(/^https?:\/\/clck\.yandex\.\w+\/redir\/.*?\*(https?:\/\/.*)$/.test(h))
 		a.href = RegExp.$1;
-	else if(/^https?:\/\/r\.mail\.yandex\.net\/url(s)?\/[^\/]+\/([^&?]+)$/.test(h))
+	else if(
+		/^https?:\/\/r\.mail\.yandex\.net\/url(s)?\/[^\/]+\/([^?]+)$/.test(h)
+		|| /https?:\/\/news\.yandex\.ru\/yandsearch\?.*url(s)?=([^?]+)$/.test(h)
+	)
 		a.href = "http" + RegExp.$1 + "://" + decodeURIComponent(RegExp.$2);
 	if(a.href != h) {
 		// Force update link in status bar
