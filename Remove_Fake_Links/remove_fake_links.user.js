@@ -2,7 +2,7 @@
 // @name        Remove fake links
 // @description Remove tracking redirects like http://www.google.com/url?... and http://clck.yandex.ru/redir/...
 // @author      Infocatcher
-// @version     0.2.0pre3 - 2013-04-19
+// @version     0.2.0pre4 - 2013-04-19
 // @run-at      document-start
 // @namespace   dev/null
 // @include     http://www.google.*/search?*
@@ -30,6 +30,7 @@
 
 (function() {
 
+var isNoScript = false; // Set to true to work with disabled scripts
 var exclude;
 // Uncomment following to leave "Warning - visiting this web site may harm your computer!"
 //exclude = /^https?:\/\/(?:www\.)google\.[\w.]+\/interstitial\?url=http\S+$/;
@@ -44,6 +45,31 @@ window.addEventListener("unload", function destroy(e) {
 	window.removeEventListener("focus", clearLink, true);
 	window.removeEventListener("mousedown", clearLink, true);
 }, false);
+
+// Based on code from https://github.com/Infocatcher/Bookmarklets/blob/master/showAnchors.js
+var setTimeout = window.setTimeout;
+if(isNoScript) {
+	if("postMessage" in window) {
+		setTimeout = function fakeTimeout(callback) {
+			var key = "removeTrackingLinksFakeTimeout#" + Math.random().toFixed(16).substr(2);
+			window.addEventListener("message", function onMessage(e) {
+				if(e.data !== key)
+					return;
+				var origin = e.origin;
+				if(!origin || location.href.substr(0, origin.length) !== origin)
+					return;
+				window.removeEventListener("message", onMessage, false);
+				callback();
+			}, false);
+			window.postMessage(key, location.href);
+		}
+	}
+	else {
+		setTimeout = function(callback) {
+			callback();
+		};
+	}
+}
 
 function clearLink(e) {
 	var a = getLink(e);
