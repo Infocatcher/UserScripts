@@ -75,6 +75,7 @@ if(_url && _url != loc) {
 		GM_deleteValue("closeURI"); // Don't save history :)
 	}
 
+	window.stop();
 	if(allowBack)
 		location.href = _url;
 	else
