@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name           Direct Images
-// @version        0.5.6 - 2013-03-14
+// @version        0.5.7 - 2013-05-07
 // @description    Redirect from preview pages to images directly
 // @author         Infocatcher
 // @namespace      dev/null
@@ -84,6 +84,7 @@
 // @include        http://narodpix.net/?v=*
 // @include        http://www.narodpix.net/?v=*
 // @include        http://www.imagebam.com/image/*
+// @include        http://postimg.org/image/*
 
 // Other:
 // @include        http://img*.imageshack.us/*
@@ -470,6 +471,9 @@ switch(host) {
 	case "imagebam.com":
 		_src = $i(/^http:\/\/(?:\w+\.)?imagebam\.com\/download\/[^?&#]+\.\w+$/);
 		_clearDoc = true;
+	break;
+	case "postimg.org":
+		_src = $i(/^http:\/\/(?:\w+\.)?postimg\.org\/\w{4,}\/[^?&#]+\.\w+$/);
 	break;
 
 	// Other:
