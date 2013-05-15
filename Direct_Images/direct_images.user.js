@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name           Direct Images
-// @version        0.5.7 - 2013-05-07
+// @version        0.5.8 - 2013-05-15
 // @description    Redirect from preview pages to images directly
 // @author         Infocatcher
 // @namespace      dev/null
@@ -44,6 +44,7 @@
 // URL-based redirect:
 // @include        http://*radikal.ru/F/*.html*
 // @include        http://radikal-foto.ru/F/*.html*
+// @include        http://radical-foto.ru/F/*.html*
 // @include        http://smages.com/*.htm
 // @include        http://anub.ru/pic/*
 // @include        http://*onlinedisk.ru/image/*
@@ -373,6 +374,7 @@ switch(host) {
 	// URL-based redirect:
 	case "radikal.ru":
 	case "radikal-foto.ru":
+	case "radical-foto.ru":
 		if(/^http:\/\/(?:www\.)?radikal\.ru\/F\/(\w+\.radikal\.ru\/[\w\/\.]+)\.html#?$/.test(loc))
 			_src = "http://" + RegExp.$1;
 		else if(/[?&]u=(http[^?&#]+)/.test(loc))
