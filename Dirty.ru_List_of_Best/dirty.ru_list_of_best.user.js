@@ -65,7 +65,11 @@ Array.prototype.forEach.call(
 			clss += " __userJs__bestListHL";
 		if(n >= highlight2)
 			clss += " __userJs__bestListHL2";
-		best.push('<li><a href="#' + id + '"' + title + ' class="' + clss + '"' + '>' + n + '</a></li>');
+		best.push(
+			'<li id="__userJs__bestListPost' + id + '" class="__userJs__bestListItem">'
+			+ '<a href="#' + id + '"' + title + ' class="' + clss + '"' + '>'
+			+ n + '</a></li>'
+		);
 	}
 );
 var div = document.createElement("div");
@@ -90,6 +94,11 @@ div.innerHTML = '\
 	}\n\
 	.comment.__userJs__bestListTarget > .comment_inner:hover { outline-color: #d0d0d0 !important; }\n\
 	.comment { margin-right: 55px !important; }\n\
+	.__userJs__bestListItem.__userJs__bestListTarget > .__userJs__bestListAnchor:not(:focus) {\n\
+		outline: 1px solid !important;\n\
+		outline-offset: -1px !important;\n\
+	}\n\
+	.__userJs__bestListAnchor:focus { outline-offset: -1px !important; }\n\
 	#__userJs__bestList {\n\
 		position: fixed !important;\n\
 		top: 2px !important;\n\
@@ -145,7 +154,12 @@ div.innerHTML = '\
 document.body.appendChild(div);
 
 var id = location.hash;
-id && ensurePostVisible(id.substr(1));
+if(id) {
+	id = id.substr(1);
+	ensurePostVisible(id);
+	var listItem = document.getElementById("__userJs__bestListPost" + id);
+	listItem && listItem.classList.add("__userJs__bestListTarget");
+}
 
 div.addEventListener("click", clickHandler, true);
 window.addEventListener("unload", destroy, false);
@@ -177,9 +191,12 @@ function clickHandler(e) {
 			ensurePostVisible(anch);
 			anch.scrollIntoView();
 			var trgClass = "__userJs__bestListTarget";
-			var trg = document.getElementsByClassName(trgClass);
-			trg.length && trg[0].classList.remove(trgClass);
+			var trgs = document.getElementsByClassName(trgClass);
+			for(var i = trgs.length - 1; i >= 0; --i)
+				trgs[i].classList.remove(trgClass);
 			anch.classList.add(trgClass);
+			var listItem = document.getElementById("__userJs__bestListPost" + id);
+			listItem && listItem.classList.add(trgClass);
 			stopEvent(e);
 		}
 	}
