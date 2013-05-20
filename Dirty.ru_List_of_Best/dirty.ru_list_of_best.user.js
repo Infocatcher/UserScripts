@@ -167,6 +167,8 @@ function clickHandler(e) {
 	if(e.button != 0)
 		return;
 	var a = getLink(e.target);
+	if(!a)
+		return;
 	if(a.id == "__userJs__bestListClose") {
 		//var block = a.parentNode;
 		//block.parentNode.removeChild(block);
