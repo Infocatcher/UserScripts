@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name           Direct Images
-// @version        0.5.8 - 2013-05-15
+// @version        0.5.9 - 2013-05-23
 // @description    Redirect from preview pages to images directly
 // @author         Infocatcher
 // @namespace      dev/null
@@ -109,7 +109,9 @@
 // @include        http://rghost.ru/*
 // @include        http://rghost.net/*
 // @include        http://itmages.ru/image/*
+// @include        https://itmages.ru/image/*
 // @include        http://itmages.com/image/*
+// @include        https://itmages.com/image/*
 // @include        http://*floomby.ru/content/*
 // @include        http://www.kinopoisk.ru/picture/*/or/1/
 // @include        http://tenpic.ru/view.php?*
