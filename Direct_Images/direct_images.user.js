@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name           Direct Images
-// @version        0.5.9 - 2013-05-23
+// @version        0.5.10 - 2013-06-27
 // @description    Redirect from preview pages to images directly
 // @author         Infocatcher
 // @namespace      dev/null
@@ -42,12 +42,6 @@
 // @include        http://pictube.ru/?v=*
 
 // URL-based redirect:
-// @include        http://*radikal.ru/F/*.html*
-// @include        http://radikal-foto.ru/F/*.html*
-// @include        http://radical-foto.ru/F/*.html*
-// @include        http://*radikal.ru/fp/*
-// @include        http://radikal-foto.ru/fp/*
-// @include        http://radical-foto.ru/fp/*
 // @include        http://smages.com/*.htm
 // @include        http://anub.ru/pic/*
 // @include        http://*onlinedisk.ru/image/*
@@ -89,6 +83,12 @@
 // @include        http://www.narodpix.net/?v=*
 // @include        http://www.imagebam.com/image/*
 // @include        http://postimg.org/image/*
+// @include        http://*radikal.ru/F/*.html*
+// @include        http://radikal-foto.ru/F/*.html*
+// @include        http://radical-foto.ru/F/*.html*
+// @include        http://*radikal.ru/fp/*
+// @include        http://radikal-foto.ru/fp/*
+// @include        http://radical-foto.ru/fp/*
 
 // Other:
 // @include        http://img*.imageshack.us/*
@@ -377,16 +377,6 @@ switch(host) {
 	case "pictube.ru":       _iid = "full_image";    break;
 
 	// URL-based redirect:
-	case "radikal.ru":
-	case "radikal-foto.ru":
-	case "radical-foto.ru":
-		if(/^http:\/\/(?:www\.)?radikal\.ru\/F\/(\w+\.radikal\.ru\/[\w\/\.]+)\.html#?$/.test(loc))
-			_src = "http://" + RegExp.$1;
-		else if(/[?&]u=(http[^?&#]+)/.test(loc))
-			_src = decodeURIComponent(RegExp.$1);
-		else if(/^http:\/\/([\w-]+\.)+\w+\/fp\//.test(loc))
-			_src = $i(/^http:\/\/(\w+\.)*radikal\.ru\/[\w\/]+\.\w+$/);
-	break;
 	case "smages.com":
 		if(/^http:\/\/(?:www\.)?smages\.com\/(.*?)\.htm/i.test(loc))
 			_src = "http://smages.com/i/" + RegExp.$1;
@@ -483,6 +473,16 @@ switch(host) {
 	break;
 	case "postimg.org":
 		_src = $i(/^http:\/\/(?:\w+\.)?postimg\.org\/\w{4,}\/[^?&#]+\.\w+$/);
+	break;
+	case "radikal.ru":
+	case "radikal-foto.ru":
+	case "radical-foto.ru":
+		if(/^http:\/\/(?:www\.)?radikal\.ru\/F\/(\w+\.radikal\.ru\/[\w\/\.]+)\.html#?$/.test(loc))
+			_src = "http://" + RegExp.$1;
+		else if(/[?&]u=(http[^?&#]+)/.test(loc))
+			_src = decodeURIComponent(RegExp.$1);
+		else if(/^http:\/\/([\w-]+\.)+\w+\/fp\//.test(loc))
+			_src = $i(/^http:\/\/(\w+\.)*radikal\.ru\/[\w\/]+\.\w+$/);
 	break;
 
 	// Other:
