@@ -25,6 +25,7 @@
 // @include     https://market.yandex.ru/model.xml?*
 // @include     http://mail.yandex.ru/*
 // @include     https://mail.yandex.ru/*
+// @include     http://www.mts.ru/*
 // @grant       none
 // ==/UserScript==
 
@@ -102,6 +103,8 @@ function clearLink(e) {
 		|| /https?:\/\/news\.yandex\.ru\/yandsearch\?.*url(s)?=([^?]+)$/.test(h)
 	)
 		a.href = "http" + RegExp.$1 + "://" + decodeURIComponent(RegExp.$2);
+	else if(/^https?:\/\/ads\.adfox\.ru\/.*goLink\?.*@(http\S+)$/.test(h))
+		a.href = RegExp.$1;
 	if(a.href != h) {
 		// Force update link in status bar
 		if(e.type == "focus") {
