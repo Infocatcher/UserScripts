@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name           Direct Images
-// @version        0.5.11 - 2013-07-02
+// @version        0.5.12 - 2013-08-01
 // @description    Redirect from preview pages to images directly
 // @author         Infocatcher
 // @namespace      dev/null
@@ -41,6 +41,7 @@
 // @include        http://*overpic.net/viewer.php?file=*
 // @include        http://pictube.ru/?v=*
 // @include        http://owely.com/*
+// @include        http://uaimage.com/image/*
 
 // URL-based redirect:
 // @include        http://smages.com/*.htm
@@ -377,6 +378,7 @@ switch(host) {
 	case "overpic.net":      _iid = "main_img";      break;
 	case "pictube.ru":       _iid = "full_image";    break;
 	case "owely.com":        _iid = "issueImg";      break;
+	case "uaimage.com":      _iid = "im";            break;
 
 	// URL-based redirect:
 	case "smages.com":
