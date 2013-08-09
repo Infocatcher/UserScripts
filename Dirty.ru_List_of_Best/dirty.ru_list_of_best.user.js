@@ -94,6 +94,7 @@ div.innerHTML = '\
 	}\n\
 	.comment.__userJs__bestListTarget > .comment_inner:hover { outline-color: #d0d0d0 !important; }\n\
 	.comment { margin-right: 55px !important; }\n\
+	.__userJs__bestListItem { white-space: pre !important; }\n\
 	.__userJs__bestListItem.__userJs__bestListTarget > .__userJs__bestListAnchor:not(:focus) {\n\
 		outline: 1px solid !important;\n\
 		outline-offset: -1px !important;\n\
