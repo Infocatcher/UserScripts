@@ -5,7 +5,7 @@
 // @include     http://www.dirty.ru/comments/*
 // @include     http://d3.ru/comments/*
 // @include     http://*.d3.ru/comments/*
-// @version     0.1.3pre7 - 2013-04-16
+// @version     0.1.3 - 2013-08-09
 // @grant       GM_getValue
 // @grant       GM_setValue
 // ==/UserScript==
