@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name        Forum Code Highlighter
-// @version     0.1.4 - 2012-08-23
+// @version     0.1.4+ - 2013-08-09
 // @author      Infocatcher
 // @namespace   dev/null
 // @include     http://custombuttons.sourceforge.net/forum/viewtopic.php?*
@@ -12,6 +12,8 @@
 // @include     https://forum.mozilla-russia.org/post.php*
 // @include     http://forum.mozilla-russia.org/message_list.php?*
 // @include     https://forum.mozilla-russia.org/message_list.php?*
+// @include     http://forum.mozilla-russia.org/message_send.php?*
+// @include     https://forum.mozilla-russia.org/message_send.php?*
 // @include     http://forum.mozilla-russia.org/edit.php?*
 // @include     https://forum.mozilla-russia.org/edit.php?*
 // @include     http://akelpad.sourceforge.net/forum/viewtopic.php?*
