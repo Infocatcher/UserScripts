@@ -759,8 +759,11 @@ if(_img && _img.src && _img.offsetWidth && _img.offsetHeight) //~ todo: fails so
 	_src = _img.src;
 if(_src && _src != loc) {
 	GM_log("Redirect (" + (event ? event.type : "delay") + "):\n" + loc + "\n=> " + _src);
-	if(_clearDoc)
-		clearDoc(_src); // "allowBack" aren't supported...
+	if(_clearDoc) {
+		if(allowBack && "history" in window && "pushState" in history)
+			history.pushState("", document.title, loc);
+		clearDoc(_src);
+	}
 	else if(allowBack)
 		location.href = _src;
 	else
