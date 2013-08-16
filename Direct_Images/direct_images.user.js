@@ -733,8 +733,10 @@ switch(host) {
 			break;
 		if(/^(http:\/\/\w+\.photobucket\.com\/[^?&#]+).*[?&]current=([^?&#]+)/.test(loc))
 			_src = (RegExp.$1 + RegExp.$2).replace(/\/\/s/, "//i");
-		else
+		else {
 			_src = $u($("linksModule_ccinput_1"));
+			_clearDoc = true;
+		}
 	break;
 	case "tinypic.com":
 		_src = $u($("direct-url"));
