@@ -318,8 +318,18 @@ function clearDoc(src) {
 				return;
 			}
 			originalSize = !originalSize;
-			if(originalSize)
+			if(originalSize) {
+				// Zoom and scroll to clicked position
+				var ww = window.innerWidth;
+				var wh = window.innerHeight;
+				var dx = e.clientX/ww;
+				var dy = e.clientY/wh;
 				origSize();
+				window.scrollTo(
+					Math.max(0, dx*iw - ww/2),
+					Math.max(0, dy*ih - wh/2)
+				);
+			}
 			else
 				fitSize();
 			setCursor(true);
