@@ -269,8 +269,11 @@ function clearDoc(src) {
 
 	var body = document.createElementNS(ns, "body");
 	var img = document.createElementNS(ns, "img");
+	img.style.maxWidth = window.innerWidth + "px";
+	img.style.maxHeight = window.innerHeight + "px";
 	img.addEventListener("load", function initResizer(e) {
 		img.removeEventListener(e.type, initResizer, false);
+		img.style.maxWidth = img.style.maxHeight = null;
 		var originalSize = false;
 		var iw = img.width;
 		var ih = img.height;
