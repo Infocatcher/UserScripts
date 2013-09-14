@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name           Direct Images
-// @version        0.5.13 - 2013-08-16
+// @version        0.5.14 - 2013-09-15
 // @description    Redirect from preview pages to images directly
 // @author         Infocatcher
 // @namespace      dev/null
@@ -139,7 +139,7 @@
 // @include        http://prntscr.com/*
 // @include        http://ifotki.info/*.html
 // @include        http://*.photobucket.com/*?action=view*
-// @include        http://*.photobucket.com/*.html
+// @include        http://*.photobucket.com/*.html*
 // @include        http://tinypic.com/view.php?pic=*
 // ==/UserScript==
 
@@ -747,8 +747,18 @@ switch(host) {
 		if(/^(http:\/\/\w+\.photobucket\.com\/[^?&#]+).*[?&]current=([^?&#]+)/.test(loc))
 			_src = (RegExp.$1 + RegExp.$2).replace(/\/\/s/, "//i");
 		else {
-			_src = $u($("linksModule_ccinput_1"));
 			_clearDoc = true;
+			_src = $u($("linksModule_ccinput_1"));
+			if(!_src) {
+				var labels = document.getElementsByTagName("label");
+				for(var i = 0, l = labels.length; i < l; ++i) {
+					var label = labels[i];
+					if(/(?:^|\s)Direct(?:\s|$)/i.test(label.textContent)) {
+						_src = $u(label.parentNode.getElementsByTagName("input")[0]);
+						break;
+					}
+				}
+			}
 		}
 	break;
 	case "tinypic.com":
