@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name           Direct Images
-// @version        0.5.14 - 2013-09-15
+// @version        0.5.14.1 - 2013-09-15
 // @description    Redirect from preview pages to images directly
 // @author         Infocatcher
 // @namespace      dev/null
@@ -762,6 +762,7 @@ switch(host) {
 		}
 	break;
 	case "tinypic.com":
+		_clearDoc = true;
 		_src = $u($("direct-url"));
 		if(!_src) {
 			var block = $("flash-direct-url");
