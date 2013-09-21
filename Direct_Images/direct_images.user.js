@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name           Direct Images
-// @version        0.5.14.1 - 2013-09-15
+// @version        0.5.15 - 2013-09-22
 // @description    Redirect from preview pages to images directly
 // @author         Infocatcher
 // @namespace      dev/null
@@ -141,6 +141,7 @@
 // @include        http://*.photobucket.com/*?action=view*
 // @include        http://*.photobucket.com/*.html*
 // @include        http://tinypic.com/view.php?pic=*
+// @include        http://*fotohost.by/show/*
 // ==/UserScript==
 
 (function di(event) {
@@ -776,6 +777,11 @@ switch(host) {
 				}
 			}
 		}
+	break;
+	case "fotohost.by":
+		var imgs = $c("pic");
+		if(imgs.length == 1)
+			_img = imgs[0];
 }
 if(_iid)
 	_img = $(_iid);
