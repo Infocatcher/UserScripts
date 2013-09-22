@@ -2,7 +2,7 @@
 // @name        Remove fake links
 // @description Remove tracking redirects like http://www.google.com/url?... and http://clck.yandex.ru/redir/...
 // @author      Infocatcher
-// @version     0.2.0pre5 - 2013-07-20
+// @version     0.2.0pre6 - 2013-09-22
 // @run-at      document-start
 // @namespace   dev/null
 // @include     http://www.google.*/search?*
