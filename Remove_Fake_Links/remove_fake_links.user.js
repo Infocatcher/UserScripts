@@ -32,6 +32,7 @@
 
 (function() {
 
+var _debug = true; // Show debug messages in Web Console
 var isNoScript = window.getComputedStyle(document.createElement("noscript"), null).display != "none";
 var exclude;
 // Uncomment following to leave "Warning - visiting this web site may harm your computer!"
@@ -108,22 +109,23 @@ function clearLink(e) {
 		a.href = RegExp.$1;
 	else if(/^https?:\/\/4pda\.ru\/[^#]+=(http[^?&#\/]+)/.test(h))
 		a.href = decodeURIComponent(RegExp.$1);
-	if(a.href != h) {
-		// Force update link in status bar
-		if(e.type == "focus") {
-			a.ownerDocument.documentElement.focus();
-			setTimeout(function() {
-				a.focus();
-			}, 0);
-		}
-		else if(e.type == "mouseover") {
-			var s = a.style;
-			var v = s.visibility || "";
-			s.visibility = "hidden";
-			setTimeout(function() {
-				s.visibility = v;
-			}, 0);
-		}
+	if(a.href == h)
+		return;
+	_log("Override link:\n" + h + "\n=> " + a.href);
+	// Force update link in status bar
+	if(e.type == "focus") {
+		a.ownerDocument.documentElement.focus();
+		setTimeout(function() {
+			a.focus();
+		}, 0);
+	}
+	else if(e.type == "mouseover") {
+		var s = a.style;
+		var v = s.visibility || "";
+		s.visibility = "hidden";
+		setTimeout(function() {
+			s.visibility = v;
+		}, 0);
 	}
 }
 function getLink(e) {
@@ -131,6 +133,16 @@ function getLink(e) {
 		if(a.localName.toLowerCase() == "a")
 			return a.href && a;
 	return null;
+}
+
+function _log(s) {
+	_log = _debug && "console" in window && "log" in console
+		? function(s) {
+			console.log("[Remove fake links] " + s);
+		}
+		: function(s) {
+		};
+	return _log.apply(this, arguments);
 }
 
 })();
