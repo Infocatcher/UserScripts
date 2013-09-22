@@ -26,6 +26,7 @@
 // @include     http://mail.yandex.ru/*
 // @include     https://mail.yandex.ru/*
 // @include     http://www.mts.ru/*
+// @include     http://4pda.ru/*
 // @grant       none
 // ==/UserScript==
 
@@ -105,6 +106,8 @@ function clearLink(e) {
 		a.href = "http" + RegExp.$1 + "://" + decodeURIComponent(RegExp.$2);
 	else if(/^https?:\/\/ads\.adfox\.ru\/.*goLink\?.*@(http\S+)$/.test(h))
 		a.href = RegExp.$1;
+	else if(/^https?:\/\/4pda\.ru\/[^#]+=(http[^?&#\/]+)/.test(h))
+		a.href = decodeURIComponent(RegExp.$1);
 	if(a.href != h) {
 		// Force update link in status bar
 		if(e.type == "focus") {
