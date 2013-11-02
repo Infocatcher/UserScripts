@@ -72,15 +72,60 @@ Array.prototype.forEach.call(
 		);
 	}
 );
+var outlineColors = {
+	target: "#c4cedb",
+	targetHover: "#afbecf",
+	selected: "#e0e0e0",
+	selectedHover: "#d0d0d0"
+};
+(function checkColors() {
+	if(!window.getComputedStyle)
+		return;
+	var s = window.getComputedStyle(document.body, null);
+	var bg = s.backgroundColor;
+	if(!/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/.test(bg))
+		return;
+	var r = +RegExp.$1;
+	var g = +RegExp.$2;
+	var b = +RegExp.$3;
+	if(r > 240 && g > 240 && b > 240)
+		return;
+	for(var p in outlineColors) if(outlineColors.hasOwnProperty(p)) {
+		var oldColor = outlineColors[p];
+		var rgb = color(oldColor);
+		var rgb2 = {
+			r: Math.max(0, rgb.r - (255 - r)),
+			g: Math.max(0, rgb.g - (255 - g)),
+			b: Math.max(0, rgb.b - (255 - b))
+		};
+		outlineColors[p] = hex(rgb2.r, rgb2.g, rgb2.b);
+		//console.log("Old color for " + p + ": %c" + oldColor, "color: " + oldColor + "; background: " + bg);
+		//console.log("New color for " + p + ": %c" + outlineColors[p], "color: " + outlineColors[p] + "; background: " + bg);
+	}
+	function color(hex) {
+		var offset = hex.length == 4 ? 1 : 2;
+		return {
+			r: parseInt(hex.substr(1, offset), 16),
+			g: parseInt(hex.substr(1 + offset, offset), 16),
+			b: parseInt(hex.substr(1 + offset*2, offset), 16)
+		};
+	}
+	function hex(r, g, b) {
+		return "#" + pad(r.toString(16)) + pad(g.toString(16)) + pad(b.toString(16));
+	}
+	function pad(n) {
+		return n < 10 ? "0" + n : "" + n;
+	}
+})();
 var div = document.createElement("div");
 div.id = "__userJs__bestList";
 div.innerHTML = '\
 <style type="text/css">\n\
 	.comment:target > .comment_inner {\n\
-		outline: 1px dashed #c4cedb !important;\n\
+		outline: 1px dashed ' + outlineColors.target + ' !important;\n\
 		outline-offset: -4px !important;\n\
 	}\n\
-	.comment:target > .comment_inner:hover { outline-color: #afbecf !important; }\n\
+	.comment:target > .comment_inner:hover { outline-color: ' + outlineColors.targetHover + ' !important; }\n\
 	.comment_shrinked:target .c_body {\n\
 		/* Hack for space before top outline */\n\
 		display: block !important;\n\
@@ -89,10 +134,10 @@ div.innerHTML = '\
 		overflow: hidden !important;\n\
 	}\n\
 	.comment.__userJs__bestListTarget > .comment_inner {\n\
-		outline: 1px solid #e0e0e0 !important;\n\
+		outline: 1px solid ' + outlineColors.selected + ' !important;\n\
 		outline-offset: -4px !important;\n\
 	}\n\
-	.comment.__userJs__bestListTarget > .comment_inner:hover { outline-color: #d0d0d0 !important; }\n\
+	.comment.__userJs__bestListTarget > .comment_inner:hover { outline-color: ' + outlineColors.selectedHover + ' !important; }\n\
 	.comment { margin-right: 55px !important; }\n\
 	.__userJs__bestListItem { white-space: pre !important; }\n\
 	.__userJs__bestListItem.__userJs__bestListTarget > .__userJs__bestListAnchor:not(:focus) {\n\
