@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name           Direct Images
-// @version        0.5.15 - 2013-09-22
+// @version        0.5.16 - 2013-11-26
 // @description    Redirect from preview pages to images directly
 // @author         Infocatcher
 // @namespace      dev/null
@@ -91,6 +91,7 @@
 // @include        http://*radikal.ru/fp/*
 // @include        http://radikal-foto.ru/fp/*
 // @include        http://radical-foto.ru/fp/*
+// @include        http://firepic.org/?v=*
 
 // Other:
 // @include        http://img*.imageshack.us/*
@@ -501,6 +502,9 @@ switch(host) {
 			_src = decodeURIComponent(RegExp.$1);
 		else if(/^http:\/\/([\w-]+\.)+\w+\/fp\//.test(loc))
 			_src = $i(/^http:\/\/(\w+\.)*radikal\.ru\/[\w\/]+\.\w+$/);
+	break;
+	case "firepic.org":
+		_src = $i(/^https?:\/\/(?:\w+\.)*firepic\.org\/[^?&#]+images\/[^?&#]+\.\w+$/);
 	break;
 
 	// Other:
