@@ -1,0 +1,1 @@
+Show list with high rated comments on http://d3.ru/ (ex http://dirty.ru/)

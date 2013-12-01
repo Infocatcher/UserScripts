@@ -1,0 +1,1 @@
+Remove tracking redirects like `http://www.google.com/url?...` and `http://clck.yandex.ru/redir/...`
