@@ -124,11 +124,13 @@ function clearLink(e) {
 		}, 0);
 	}
 	else if(e.type == "mouseover") {
-		var s = a.style;
-		var v = s.visibility || "";
-		s.visibility = "hidden";
+		var orig = a.hasAttribute("style") && a.getAttribute("style");
+		a.style.visibility = "hidden";
 		setTimeout(function() {
-			s.visibility = v;
+			if(orig !== false)
+				a.setAttribute("style", orig);
+			else
+				a.removeAttribute("style");
 		}, 0);
 	}
 }
