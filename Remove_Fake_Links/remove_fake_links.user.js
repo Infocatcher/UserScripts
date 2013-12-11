@@ -27,6 +27,8 @@
 // @include     https://mail.yandex.ru/*
 // @include     http://www.mts.ru/*
 // @include     http://4pda.ru/*
+// @include     http://*.deviantart.com/*
+// @include     https://*.deviantart.com/*
 // @grant       none
 // ==/UserScript==
 
@@ -109,6 +111,8 @@ function clearLink(e) {
 		a.href = RegExp.$1;
 	else if(/^https?:\/\/4pda\.ru\/[^#]+=(http[^?&#\/]+)/.test(h))
 		a.href = decodeURIComponent(RegExp.$1);
+	else if(/^https?:\/\/(?:\w+\.)*deviantart\.com\/.*\/outgoing\?(\S+)$/.test(h))
+		a.href = RegExp.$1;
 	if(a.href == h)
 		return;
 	_log("Override link:\n" + h + "\n=> " + a.href);
