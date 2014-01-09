@@ -2,7 +2,7 @@
 // @name        Remove fake links
 // @description Remove tracking redirects like http://www.google.com/url?... and http://clck.yandex.ru/redir/...
 // @author      Infocatcher
-// @version     0.2.0pre7 - 2013-12-11
+// @version     0.2.0pre8 - 2014-01-10
 // @run-at      document-start
 // @namespace   dev/null
 // @include     http://www.google.*/search?*
@@ -19,6 +19,8 @@
 // @include     https://www.google.*/imgres?*
 // @include     http://groups.google.com/*
 // @include     https://groups.google.com/*
+// @include     http://docs.google.com/document/*
+// @include     https://docs.google.com/document/*
 // @include     http://yandex.*/yandsearch?*
 // @include     https://yandex.*/yandsearch?*
 // @include     http://market.yandex.ru/model.xml?*
@@ -95,9 +97,9 @@ function clearLink(e) {
 	var h = a.href;
 	if(exclude && exclude.test(h))
 		return;
-	if(/^https?:\/\/(?:\w+\.)?google\.[\w.]+\/.*=(https?:\/\/[^&?]*)/.test(h)) {
+	if(/^https?:\/\/(?:\w+\.)?google\.[\w.]+\/.*=(https?(?::|%3A)[^?&#]+)/.test(h)) {
 		var _h = RegExp.$1;
-		if(!/^https?:\/\/(?:\w+\.)?google\.[\w.]+\/(search|imgres)\?/.test(h))
+		if(!/^https?:\/\/(?:\w+\.)?google\.[\w.]+\/(?:search|imgres)\?/.test(h))
 			a.href = decodeURIComponent(_h);
 	}
 	else if(/^https?:\/\/clck\.yandex\.\w+\/redir\/.*?\*(https?:\/\/.*)$/.test(h))
