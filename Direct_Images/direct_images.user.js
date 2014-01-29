@@ -9,6 +9,8 @@
 // @grant          GM_setValue
 // @grant          GM_log
 
+// @include        about:blank?UserScripts/options/Direct_Images
+
 // Get image by id:
 // @include        http://img*.imagevenue.com/img.php?image=*
 // @include        http://ipicture.ru/Gallery/Viewfull/*.html
@@ -158,6 +160,33 @@ if(typeof GM_getValue == "function") {
 }
 
 var loc = location.href;
+if(
+	loc == "about:blank?UserScripts/options/Direct_Images"
+	&& typeof GM_getValue == "function"
+) {
+	document.title = "Direct Images Options";
+	var body = document.body || document.documentElement;
+	var label = document.createElementNS("http://www.w3.org/1999/xhtml", "label");
+	label.htmlFor = "allowBack";
+	var input = document.createElementNS("http://www.w3.org/1999/xhtml", "input");
+	input.id = "allowBack";
+	input.type = "checkbox";
+	input.checked = allowBack;
+	var handleClick = function() {
+		GM_setValue("allowBack", input.checked);
+	};
+	input.addEventListener("click", handleClick, false);
+	label.appendChild(input);
+	label.appendChild(document.createTextNode("Allow back (don't remove page from back/forward history)"));
+	body.appendChild(label);
+	window.addEventListener("unload", function destroy(e) {
+		window.removeEventListener("unload", destroy, false);
+		input.removeEventListener("click", handleClick, false);
+	}, false);
+	destroy();
+	return;
+}
+
 var host = location.hostname
 	.split(".")
 	.slice(-2)
