@@ -95,6 +95,7 @@
 // @include        http://radical-foto.ru/fp/*
 // @include        http://f-page.ru/fp/*
 // @include        http://f-page.ru/lfp/*
+// @include        http://f-lite.ru/lfp/*
 // @include        http://firepic.org/?v=*
 
 // Other:
@@ -528,6 +529,7 @@ switch(host) {
 	case "radikal-foto.ru":
 	case "radical-foto.ru":
 	case "f-page.ru":
+	case "f-lite.ru":
 		if(/^http:\/\/(?:www\.)?radikal\.ru\/F\/(\w+\.radikal\.ru\/[\w\/\.]+)\.html#?$/.test(loc))
 			_src = "http://" + RegExp.$1;
 		else if(/[?&]u=(http[^?&#]+)/.test(loc))
