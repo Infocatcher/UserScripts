@@ -102,6 +102,7 @@
 // @include        http://img*.imageshack.us/*
 // @include        http://imageshack.us/photo/*
 // @include        http://imageshack.us/f/*/
+// @include        http://imageshack.com/photo/*
 // @include        http://savepic.ru/*.htm
 // @include        http://savepic.org/*.htm
 // @include        http://savepic.net/*.htm
@@ -543,6 +544,7 @@ switch(host) {
 
 	// Other:
 	case "imageshack.us":
+	case "imageshack.com":
 		_src = $inp(/^http:\/\/(?:\w+\.)*imageshack\.us\/(?:\w+\/)?img[^?&#]*\.\w+$/i);
 	break;
 	case "savepic.ru":
