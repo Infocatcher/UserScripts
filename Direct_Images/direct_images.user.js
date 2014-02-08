@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name           Direct Images
-// @version        0.5.19 - 2014-02-04
+// @version        0.5.19.1 - 2014-02-08
 // @description    Redirect from preview pages to images directly
 // @author         Infocatcher
 // @namespace      dev/null
@@ -537,6 +537,7 @@ switch(host) {
 			_src = decodeURIComponent(RegExp.$1);
 		else if(/^http:\/\/([\w-]+\.)+\w+\/l?fp\//.test(loc))
 			_src = $i(/^http:\/\/(\w+\.)*radikal\.ru\/[\w\/]+\.\w+$/);
+		_clearDoc = true;
 	break;
 	case "firepic.org":
 		_src = $i(/^https?:\/\/(?:\w+\.)*firepic\.org\/[^?&#]+images\/[^?&#]+\.\w+$/);
