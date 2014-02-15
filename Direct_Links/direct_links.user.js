@@ -3,7 +3,7 @@
 // @namespace   dev/null
 // @description Redirect from download pages to files directly
 // @author      Infocatcher
-// @version     0.2.0pre2 - 2012-11-17
+// @version     0.2.0pre3 - 2014-02-15
 // @run-at      document-start
 // @include     http://sourceforge.net/projects/*/download
 // @include     http://sourceforge.net/projects/*/download?*
@@ -11,9 +11,6 @@
 // @include     http://systemexplorer.net/downloadp.php
 // @include     http://systemexplorer.net/download-archive/*/SystemExplorer*
 // @grant       GM_log
-// @grant       GM_getValue
-// @grant       GM_setValue
-// @grant       GM_deleteValue
 // ==/UserScript==
 
 (function dl(event) {
@@ -64,15 +61,11 @@ if(_aid)
 if(_a && _a.href && _a.offsetWidth && _a.offsetHeight) //~ todo: fails sometimes on DOMContentLoaded
 	_url = _a.href;
 if(_url && _url != loc) {
-	GM_log("Redirect (" + (event ? event.type : "delay") + "):\n" + loc + "\n=> " + _url);
-
-	if(typeof GM_setValue == "function") {
+	if(typeof GM_log == "function") {
+		GM_log("Redirect (" + (event ? event.type : "delay") + "):\n" + loc + "\n=> " + _url);
 		// For Close Download Tabs extension
 		// https://github.com/Infocatcher/Close_Download_Tabs
-		// This preference should be listed in extensions.closeDownloadTabs.closeURI.pref.<full_pref_name>
-		// See https://github.com/Infocatcher/Close_Download_Tabs/blob/master/defaults/preferences/prefs.js
-		GM_setValue("closeURI", loc);
-		GM_deleteValue("closeURI"); // Don't save history :)
+		GM_log("[Close Download Tabs] Mark URI as empty:\n" + loc);
 	}
 
 	window.stop();
