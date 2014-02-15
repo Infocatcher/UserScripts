@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name           Direct Images
-// @version        0.5.19.1 - 2014-02-08
+// @version        0.5.19.2 - 2014-02-15
 // @description    Redirect from preview pages to images directly
 // @author         Infocatcher
 // @namespace      dev/null
@@ -728,6 +728,8 @@ switch(host) {
 			_img = imgs[0];
 	break;
 	case "imgur.com":
+		if(/\w{4,},\w{4,}(?:#[^#]*)?$/.test(loc)) // After uploading of 2+ images
+			break;
 		var a = $("large-image");
 		if(a)
 			_src = a.href;
