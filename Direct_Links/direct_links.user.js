@@ -1,19 +1,21 @@
 // ==UserScript==
 // @name        Direct Links
-// @namespace   dev/null
+// @version     0.2.0pre4 - 2014-02-16
 // @description Redirect from download pages to files directly
 // @author      Infocatcher
-// @version     0.2.0pre3 - 2014-02-15
+// @namespace   dev/null
 // @run-at      document-start
+// @grant       GM_log
+// @grant       GM_getValue
+// @grant       GM_setValue
+
 // @include     about:blank?UserScripts/options/Direct_Links
+
 // @include     http://sourceforge.net/projects/*/download
 // @include     http://sourceforge.net/projects/*/download?*
 // @include     http://systemexplorer.net/downloadi.php
 // @include     http://systemexplorer.net/downloadp.php
 // @include     http://systemexplorer.net/download-archive/*/SystemExplorer*
-// @grant       GM_log
-// @grant       GM_getValue
-// @grant       GM_setValue
 // ==/UserScript==
 
 (function dl(event) {
