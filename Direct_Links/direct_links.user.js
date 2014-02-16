@@ -11,6 +11,8 @@
 // @include     http://systemexplorer.net/downloadp.php
 // @include     http://systemexplorer.net/download-archive/*/SystemExplorer*
 // @grant       GM_log
+// @grant       GM_getValue
+// @grant       GM_setValue
 // ==/UserScript==
 
 (function dl(event) {
