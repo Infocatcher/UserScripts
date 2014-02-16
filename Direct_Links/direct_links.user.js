@@ -5,6 +5,7 @@
 // @author      Infocatcher
 // @version     0.2.0pre3 - 2014-02-15
 // @run-at      document-start
+// @include     about:blank?UserScripts/options/Direct_Links
 // @include     http://sourceforge.net/projects/*/download
 // @include     http://sourceforge.net/projects/*/download?*
 // @include     http://systemexplorer.net/downloadi.php
@@ -22,6 +23,33 @@
 var allowBack = getPref("allowBack", false);
 
 var loc = location.href;
+if(
+	loc == "about:blank?UserScripts/options/Direct_Links"
+	&& typeof GM_setValue == "function"
+) {
+	document.title = "Direct Links Options";
+	var body = document.body || document.documentElement;
+	var label = document.createElementNS("http://www.w3.org/1999/xhtml", "label");
+	label.htmlFor = "allowBack";
+	var input = document.createElementNS("http://www.w3.org/1999/xhtml", "input");
+	input.id = "allowBack";
+	input.type = "checkbox";
+	input.checked = allowBack;
+	var handleClick = function() {
+		GM_setValue("allowBack", input.checked);
+	};
+	input.addEventListener("click", handleClick, false);
+	label.appendChild(input);
+	label.appendChild(document.createTextNode("Allow back (don't remove page from back/forward history)"));
+	body.appendChild(label);
+	window.addEventListener("unload", function destroy(e) {
+		window.removeEventListener("unload", destroy, false);
+		input.removeEventListener("click", handleClick, false);
+	}, false);
+	destroy();
+	return;
+}
+
 var host = location.hostname
 	.split(".")
 	.slice(-2)
