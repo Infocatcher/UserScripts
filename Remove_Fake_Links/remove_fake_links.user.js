@@ -31,6 +31,7 @@
 // @include     http://4pda.ru/*
 // @include     http://*.deviantart.com/*
 // @include     https://*.deviantart.com/*
+// @include     https://addons.mozilla.org/*
 // @grant       none
 // ==/UserScript==
 
@@ -94,6 +95,15 @@ function clearLink(e) {
 			a.removeAttribute("onclick");
 		}
 	}
+	var $ = window.$ // Greasemonkey
+		|| typeof unsafeWindow != "undefined" && unsafeWindow.$ // Scriptish
+		|| null;
+	if($) try { // See https://github.com/Infocatcher/UserScripts/issues/5
+		$(a).unbind("click");
+	}
+	catch(e) {
+		setTimeout(function() { throw e; }, 0);
+	}
 	var h = a.href;
 	if(exclude && exclude.test(h))
 		return;
@@ -115,6 +125,8 @@ function clearLink(e) {
 		a.href = decodeURIComponent(RegExp.$1);
 	else if(/^https?:\/\/(?:\w+\.)*deviantart\.com\/.*\/outgoing\?(\S+)$/.test(h))
 		a.href = RegExp.$1;
+	else if(/^https?:\/\/outgoing\.mozilla\.org\/.*\/(\w+(?::|%3A)\S+)$/.test(h))
+		a.href = decodeURIComponent(RegExp.$1);
 	if(a.href == h)
 		return;
 	_log("Override link:\n" + h + "\n=> " + a.href);
