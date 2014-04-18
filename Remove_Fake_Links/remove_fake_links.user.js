@@ -98,7 +98,10 @@ function clearLink(e) {
 	var h = a.href;
 	if( // See https://github.com/Infocatcher/UserScripts/issues/5
 		location.hostname == "addons.mozilla.org"
-		&& !/^\w+:\/+(?:[\w-]+\.)*mozilla\.(?:net|org)\//.test(h) // Only for external links
+		&& (
+			!/^\w+:\/+(?:[\w-]+\.)*mozilla\.(?:net|org)\//.test(h) // Only for external links
+			|| /^https?:\/\/forums\.mozilla\.org\//.test(h)
+		)
 	) {
 		var $ = window.$ // Greasemonkey
 			|| typeof unsafeWindow != "undefined" && unsafeWindow.$ // Scriptish
