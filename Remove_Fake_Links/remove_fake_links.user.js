@@ -95,16 +95,22 @@ function clearLink(e) {
 			a.removeAttribute("onclick");
 		}
 	}
-	var $ = window.$ // Greasemonkey
-		|| typeof unsafeWindow != "undefined" && unsafeWindow.$ // Scriptish
-		|| null;
-	if($) try { // See https://github.com/Infocatcher/UserScripts/issues/5
-		$(a).unbind("click");
-	}
-	catch(e) {
-		setTimeout(function() { throw e; }, 0);
-	}
 	var h = a.href;
+	if( // See https://github.com/Infocatcher/UserScripts/issues/5
+		location.hostname == "addons.mozilla.org"
+		&& !/^\w+:\/+(?:[\w-]+\.)*mozilla\.(?:net|org)\//.test(h) // Only for external links
+	) {
+		var $ = window.$ // Greasemonkey
+			|| typeof unsafeWindow != "undefined" && unsafeWindow.$ // Scriptish
+			|| null;
+		if($) try {
+			$(a).unbind("click");
+			_log("Remove jQuery handlers for \"click\" event");
+		}
+		catch(e) {
+			setTimeout(function() { throw e; }, 0);
+		}
+	}
 	if(exclude && exclude.test(h))
 		return;
 	if(/^https?:\/\/(?:\w+\.)?google\.[\w.]+\/.*=(https?(?::|%3A)[^?&#]+)/.test(h)) {
