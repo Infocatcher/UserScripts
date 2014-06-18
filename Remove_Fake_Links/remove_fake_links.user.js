@@ -32,6 +32,7 @@
 // @include     http://*.deviantart.com/*
 // @include     https://*.deviantart.com/*
 // @include     https://addons.mozilla.org/*
+// @include     https://www.facebook.com/*
 // @grant       none
 // ==/UserScript==
 
@@ -96,8 +97,9 @@ function clearLink(e) {
 		}
 	}
 	var h = a.href;
+	var host = location.hostname;
 	if( // See https://github.com/Infocatcher/UserScripts/issues/5
-		location.hostname == "addons.mozilla.org"
+		host == "addons.mozilla.org"
 		&& (
 			!/^\w+:\/+(?:[\w-]+\.)*mozilla\.(?:net|org)\//.test(h) // Only for external links
 			|| /^https?:\/\/forums\.mozilla\.org\//.test(h)
@@ -112,6 +114,17 @@ function clearLink(e) {
 		}
 		catch(e) {
 			setTimeout(function() { throw e; }, 0);
+		}
+	}
+	if(host == "www.facebook.com") { // See https://github.com/Infocatcher/UserScripts/issues/6
+		var click = a.getAttribute("onclick");
+		if(click && click.indexOf("=http") != -1) {
+			a.setAttribute("__deleted__onclick", click);
+			a.removeAttribute("onclick");
+			if(a.hasAttribute("onmouseover")) {
+				a.setAttribute("__deleted__onmouseover", a.getAttribute("onmouseover"));
+				a.removeAttribute("onmouseover");
+			}
 		}
 	}
 	if(exclude && exclude.test(h))
@@ -135,6 +148,8 @@ function clearLink(e) {
 	else if(/^https?:\/\/(?:\w+\.)*deviantart\.com\/.*\/outgoing\?(\S+)$/.test(h))
 		a.href = RegExp.$1;
 	else if(/^https?:\/\/outgoing\.mozilla\.org\/.*\/(\w+(?::|%3A)\S+)$/.test(h))
+		a.href = decode(RegExp.$1);
+	else if(/^https?:\/\/(?:\w+\.)*facebook\.com\/[^#]+=(http[^?&#\/]+)/.test(h))
 		a.href = decode(RegExp.$1);
 	if(a.href == h)
 		return;
