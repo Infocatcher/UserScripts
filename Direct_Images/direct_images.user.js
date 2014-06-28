@@ -99,6 +99,7 @@
 // @include        http://f-lite.ru/lfp/*
 // @include        http://firepic.org/?v=*
 // @include        http://you-logo.ru/show-image.php?*
+// @include        http://uploadimagex.com/view.php?*
 
 // Other:
 // @include        http://img*.imageshack.us/*
@@ -559,6 +560,9 @@ switch(host) {
 	break;
 	case "you-logo.ru":
 		_src = $i(/^https?:\/\/(?:\w+\.)*you-logo\.ru\/[^?&#]+\/[^?&#\/]{32,}\.\w+$/);
+	break;
+	case "uploadimagex.com":
+		_src = $i(/^https?:\/\/(?:\w+\.)*uploadimagex\.com\/uploads\/(?:[^?&#\/]+\/)*[^?&#\/]+\.\w+$/);
 	break;
 
 	// Other:
