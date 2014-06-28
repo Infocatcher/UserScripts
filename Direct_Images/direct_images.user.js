@@ -226,16 +226,22 @@ function $c(className, node) {
 	}
 	return out;
 }
-function $i(mask, node) {
+function $i(mask, node, exclude) {
 	var imgs = node
 		? node.getElementsByTagName("img")
 		: document.images;
 	for(var i = 0, len = imgs.length; i < len; ++i) {
 		var src = imgs[i].src;
-		if(src && mask.test(src))
+		if(
+			src && mask.test(src)
+			&& (!exclude || !exclude.test(src))
+		)
 			return src;
 	}
 	return null;
+}
+function $ie(mask, exclude, node) {
+	return $i(mask, node, exclude);
 }
 function $inp(mask, node) {
 	if(!node)
