@@ -541,8 +541,12 @@ switch(host) {
 			_src = "http://" + RegExp.$1;
 		else if(/[?&]u=(http[^?&#]+)/.test(loc))
 			_src = decodeURIComponent(RegExp.$1);
-		else if(/^http:\/\/([\w-]+\.)+\w+\/l?fp\//.test(loc))
-			_src = $i(/^http:\/\/(\w+\.)*radikal\.ru\/[\w\/]+\.\w+$/);
+		else if(/^http:\/\/([\w-]+\.)+\w+\/l?fp\//.test(loc)) {
+			_src = $ie(
+				/^https?:\/\/(\w+\.)*radikal\.ru\/[\w\/]+\.\w+$/,
+				/^https?:\/\/[^\/]+\/Content\/Images\//
+			);
+		}
 		_clearDoc = true;
 	break;
 	case "firepic.org":
