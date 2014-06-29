@@ -102,6 +102,7 @@
 // @include        http://firepic.org/?v=*
 // @include        http://you-logo.ru/show-image.php?*
 // @include        http://uploadimagex.com/view.php?*
+// @include        http://toroff.net/?v=*
 
 // Other:
 // @include        http://img*.imageshack.us/*
@@ -571,6 +572,9 @@ switch(host) {
 	break;
 	case "uploadimagex.com":
 		_src = $i(/^https?:\/\/(?:\w+\.)*uploadimagex\.com\/uploads\/(?:[^?&#\/]+\/)*[^?&#\/]+\.\w+$/);
+	break;
+	case "toroff.net":
+		_src = $i(/^https?:\/\/(?:\w+\.)*toroff\.net\/img\/(?:[^?&#\/]+\/)*[^?&#\/]{15,}\.\w+$/);
 	break;
 
 	// Other:
