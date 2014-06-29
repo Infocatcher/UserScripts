@@ -65,6 +65,7 @@
 // @include        http://youpic.su/view.php?id=*
 // @include        http://jpegshare.net/*.html
 // @include        http://imagelike.org/?v=*
+// @include        http://rupix.org/viewer.php?*
 
 // Get image by src:
 // @include        http://*imagepix.org/image/*.html
@@ -477,6 +478,9 @@ switch(host) {
 	break;
 	case "imagelike.org":
 		_src = loc.replace(/\/\?v=/, "/images/");
+	break;
+	case "rupix.org":
+		_src = loc.replace(/\/viewer\.php\?file=/, "/images/");
 	break;
 
 	// Get image by src:
