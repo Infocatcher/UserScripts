@@ -442,15 +442,15 @@ switch(host) {
 
 	// URL-based redirect:
 	case "smages.com":
-		if(/^http:\/\/(?:www\.)?smages\.com\/(.*?)\.htm/i.test(loc))
+		if(/^https?:\/\/(?:www\.)?smages\.com\/(.*?)\.htm/i.test(loc))
 			_src = "http://smages.com/i/" + RegExp.$1;
 	break;
 	case "anub.ru":
-		if(/^http:\/\/(?:www\.)?anub\.ru\/pic\/(.+)$/i.test(loc))
+		if(/^https?:\/\/(?:www\.)?anub\.ru\/pic\/(.+)$/i.test(loc))
 			_src = "http://anub.ru/uploads/" + RegExp.$1;
 	break;
 	case "onlinedisk.ru":
-		if(/^http:\/\/(?:www\.)?onlinedisk\.ru\/(?:image|view)\/(\d+)(?:\/.*)?$/i.test(loc))
+		if(/^https?:\/\/(?:www\.)?onlinedisk\.ru\/(?:image|view)\/(\d+)(?:\/.*)?$/i.test(loc))
 			_src = "http://onlinedisk.ru/get_image.php?id=" + RegExp.$1;
 	break;
 	case "fotoupload.ru": //~ todo: remove?
@@ -473,7 +473,7 @@ switch(host) {
 		_src = loc.replace(/\?v=/, "images/");
 	break;
 	case "youpic.su":
-		_src = loc.replace(/^(http:\/\/).*?\?id=/, "$1");
+		_src = loc.replace(/^(https?:\/\/).*?\?id=/, "$1");
 	break;
 	case "jpegshare.net":
 		_src = loc.replace(/jpegshare\.net\//, "$&images/").replace(/\.html$/, "");
@@ -490,73 +490,73 @@ switch(host) {
 
 	// Get image by src:
 	case "imagepix.org":
-		_src = $i(/^http:\/\/(?:www\.)?imagepix\.org\/full\/\w+\.\w+$/i);
+		_src = $i(/^https?:\/\/(?:www\.)?imagepix\.org\/full\/\w+\.\w+$/i);
 	break;
 	case "saveimg.ru":
-		_src = $i(/^http:\/\/(?:www\.)?saveimg\.ru\/pictures\/[\w\/-]+?\/[a-f0-9]{25,}\.[a-z]+$/);
+		_src = $i(/^https?:\/\/(?:www\.)?saveimg\.ru\/pictures\/[\w\/-]+?\/[a-f0-9]{25,}\.[a-z]+$/);
 	break;
 	case "mediapix.ru":
-		_src = $i(/^http:\/\/(?:www\.)?mediapix\.ru\/pics\/[a-f0-9]{25,}\.[a-z]+$/);
+		_src = $i(/^https?:\/\/(?:www\.)?mediapix\.ru\/pics\/[a-f0-9]{25,}\.[a-z]+$/);
 	break;
 	case "pixs.ru":
-		_src = $i(/^http:\/\/img\.pixs\.ru\/storage\//);
+		_src = $i(/^https?:\/\/img\.pixs\.ru\/storage\//);
 	break;
 	case "postimage.org":
-		_src = $i(/^http:\/\/\w+\.postimage.org\//);
+		_src = $i(/^https?:\/\/\w+\.postimage.org\//);
 	break;
 	case "uaimages.com":
-		_src = $i(/^http:\/\/(?:www\.)?uaimages\.com\/images\/\w+\.\w+$/);
+		_src = $i(/^https?:\/\/(?:www\.)?uaimages\.com\/images\/\w+\.\w+$/);
 	break;
 	case "7image.ru":
-		_src = $i(/^http:\/\/7image\.ru\/pics\/[^?&#]+\.\w+$/);
+		_src = $i(/^https?:\/\/7image\.ru\/pics\/[^?&#]+\.\w+$/);
 	break;
 	case "mepic.ru":
-		_src = $i(/^http:\/\/mepic\.ru\/up\/[^?&#]+\.\w+$/);
+		_src = $i(/^https?:\/\/mepic\.ru\/up\/[^?&#]+\.\w+$/);
 	break;
 	case "simplest-image-hosting.net":
-		_src = $i(/^http:\/\/\w+\.simplest-image-hosting\.net\/[^?&#]+\.\w+$/);
+		_src = $i(/^https?:\/\/\w+\.simplest-image-hosting\.net\/[^?&#]+\.\w+$/);
 	break;
 	case "pics.kz":
-		_src = $i(/^http:\/\/pics\.kz\/[^?&#]+\/[0-9a-f]{32,}\.\w+$/);
+		_src = $i(/^https?:\/\/pics\.kz\/[^?&#]+\/[0-9a-f]{32,}\.\w+$/);
 	break;
 	case "imagepost.ru":
-		_src = $i(/^http:\/\/(?:www\.)?imagepost\.ru\/images\/[^?&#]+\.\w+$/);
+		_src = $i(/^https?:\/\/(?:www\.)?imagepost\.ru\/images\/[^?&#]+\.\w+$/);
 	break;
 	case "imgtheif.com":
-		_src = $i(/^http:\/\/(?:www\.)?imgtheif\.com\/pictures\/[^?&#]+\.\w+$/);
+		_src = $i(/^https?:\/\/(?:www\.)?imgtheif\.com\/pictures\/[^?&#]+\.\w+$/);
 	break;
 	case "hostingkartinok.com":
-		_src = $i(/^http:\/\/(?:\w+\.)?hostingkartinok\.com\/[^#]+[0-9a-f]{32,}\.\w+$/);
+		_src = $i(/^https?:\/\/(?:\w+\.)?hostingkartinok\.com\/[^#]+[0-9a-f]{32,}\.\w+$/);
 	break;
 	case "lostpic.net":
-		_src = $i(/^http:\/\/(?:www\.)?lostpic\.net\/images\/[0-9a-f]{32,}\.\w+$/);
+		_src = $i(/^https?:\/\/(?:www\.)?lostpic\.net\/images\/[0-9a-f]{32,}\.\w+$/);
 	break;
 	case "image.kz":
-		_src = $i(/^http:\/\/(?:www\.)?image\.kz\/[^?&#]+\/[0-9a-f]{32,}\.\w+$/);
+		_src = $i(/^https?:\/\/(?:www\.)?image\.kz\/[^?&#]+\/[0-9a-f]{32,}\.\w+$/);
 	break;
 	case "imm.io":
-		_src = $i(/^http:\/\/(?:\w+\.)?imm\.io\/[^?&#]+\.\w+$/);
+		_src = $i(/^https?:\/\/(?:\w+\.)?imm\.io\/[^?&#]+\.\w+$/);
 	break;
 	case "narodpix.net":
-		_src = $i(/^http:\/\/(?:\w+\.)?narodpix\.net\/img\/[^?&#]+\.\w+$/);
+		_src = $i(/^https?:\/\/(?:\w+\.)?narodpix\.net\/img\/[^?&#]+\.\w+$/);
 	break;
 	case "imagebam.com":
-		_src = $i(/^http:\/\/(?:\w+\.)?imagebam\.com\/download\/[^?&#]+\.\w+$/);
+		_src = $i(/^https?:\/\/(?:\w+\.)?imagebam\.com\/download\/[^?&#]+\.\w+$/);
 		_clearDoc = true;
 	break;
 	case "postimg.org":
-		_src = $i(/^http:\/\/(?:\w+\.)?postimg\.org\/\w{4,}\/[^?&#]+\.\w+$/);
+		_src = $i(/^https?:\/\/(?:\w+\.)?postimg\.org\/\w{4,}\/[^?&#]+\.\w+$/);
 	break;
 	case "radikal.ru":
 	case "radikal-foto.ru":
 	case "radical-foto.ru":
 	case "f-page.ru":
 	case "f-lite.ru":
-		if(/^http:\/\/(?:www\.)?radikal\.ru\/F\/(\w+\.radikal\.ru\/[\w\/\.]+)\.html#?$/.test(loc))
+		if(/^https?:\/\/(?:www\.)?radikal\.ru\/F\/(\w+\.radikal\.ru\/[\w\/\.]+)\.html#?$/.test(loc))
 			_src = "http://" + RegExp.$1;
 		else if(/[?&]u=(http[^?&#]+)/.test(loc))
 			_src = decodeURIComponent(RegExp.$1);
-		else if(/^http:\/\/([\w-]+\.)+\w+\/l?fp\//.test(loc)) {
+		else if(/^https?:\/\/([\w-]+\.)+\w+\/l?fp\//.test(loc)) {
 			_src = $ie(
 				/^https?:\/\/(\w+\.)*radikal\.ru\/[\w\/]+\.\w+$/,
 				/^https?:\/\/[^\/]+\/Content\/Images\//
@@ -580,7 +580,7 @@ switch(host) {
 	// Other:
 	case "imageshack.us":
 	case "imageshack.com":
-		_src = $inp(/^http:\/\/(?:\w+\.)*imageshack\.us\/(?:\w+\/)?img[^?&#]*\.\w+$/i);
+		_src = $inp(/^https?:\/\/(?:\w+\.)*imageshack\.us\/(?:\w+\/)?img[^?&#]*\.\w+$/i);
 	break;
 	case "savepic.ru":
 	case "savepic.org":
@@ -597,8 +597,8 @@ switch(host) {
 			var h = img.parentNode.href;
 			var s = img.src;
 			if(
-				h && /^http:\/\/(?:www\.)?savepic\.\w+\/\d+m\.htm$/.test(h)
-				&& s && /^http:\/\/(?:www\.)?savepic\.\w+\/\d+\.[a-z0-9]{3,4}$/.test(s)
+				h && /^https?:\/\/(?:www\.)?savepic\.\w+\/\d+m\.htm$/.test(h)
+				&& s && /^https?:\/\/(?:www\.)?savepic\.\w+\/\d+\.[a-z0-9]{3,4}$/.test(s)
 			) {
 				_src = s;
 				break;
@@ -681,7 +681,7 @@ switch(host) {
 			_src = link.href;
 	break;
 	case "imageban.ru":
-		_src = $inp(/^http:\/\/(?:\w+\.)*imageban\.ru\/out\//);
+		_src = $inp(/^https?:\/\/(?:\w+\.)*imageban\.ru\/out\//);
 	break;
 	case "habreffect.ru":
 		var node = $("image");
@@ -696,7 +696,7 @@ switch(host) {
 		var inp = $("direct_link");
 		if(inp && inp.value) //~ old?
 			_src = inp.value;
-		else if(!$("hashes") && /^http:\/\/(rghost\.\w+\/\d+)\.view$/.test(loc))
+		else if(!$("hashes") && /^https?:\/\/(rghost\.\w+\/\d+)\.view$/.test(loc))
 			_src = "http://plasmon." + RegExp.$1 + ".image";
 
 	break;
@@ -712,7 +712,7 @@ switch(host) {
 			_src = loc.replace(/\/$/, "") + "/full/";
 			break;
 		}
-		_src = $i(/^http:\/\/\w+\.stratoserver\.net\/files\/share\/[^?&#]+\.\w+$/i);
+		_src = $i(/^https?:\/\/\w+\.stratoserver\.net\/files\/share\/[^?&#]+\.\w+$/i);
 	break;
 	case "kinopoisk.ru":
 		var links = $t("a");
@@ -729,17 +729,17 @@ switch(host) {
 	break;
 	case "tenpic.ru":
 		var ta = $t("textarea");
-		if(ta.length && /^http:\/\/tenpic\.ru\//.test(ta[0].value))
+		if(ta.length && /^https?:\/\/tenpic\.ru\//.test(ta[0].value))
 			_src = ta[0].value;
 	break;
 	case "imghost.in":
 		var links = $t("a");
 		for(var i = 0, len = links.length; i < len; ++i) {
 			var a = links[i];
-			if(!/^http:\/\/imghost\.in\/di-\d+\.\w+$/.test(a.href))
+			if(!/^https?:\/\/imghost\.in\/di-\d+\.\w+$/.test(a.href))
 				continue;
 			var imgs = a.getElementsByTagName("img");
-			if(imgs.length == 1 && /^http:\/\/imghost\.in\/dt-\d+\.\w+$/.test(imgs[0].src)) {
+			if(imgs.length == 1 && /^https?:\/\/imghost\.in\/dt-\d+\.\w+$/.test(imgs[0].src)) {
 				_src = a.href;
 				break;
 			}
@@ -770,7 +770,7 @@ switch(host) {
 		else {
 			var block = $("image") || $c("image textbox")[0];
 			if(block)
-				_src = $i(/^http:\/\/(?:\w+\.)*imgur\.com\/\w+\.\w+(\?\d+)?$/, block);
+				_src = $i(/^https?:\/\/(?:\w+\.)*imgur\.com\/\w+\.\w+(\?\d+)?$/, block);
 		}
 	break;
 	case "pic2profit.com":
@@ -800,7 +800,7 @@ switch(host) {
 		for(var i = 0, l = ps.length; i < l; ++i)
 			if(ps[i].textContent == "Другие изображения из данного альбома")
 				break hostLoop;
-		_src = $i(/^http:\/\/(?:\w+\.)?imageshost\.ru\/img\/[^?&#]+\.\w+$/, content);
+		_src = $i(/^https?:\/\/(?:\w+\.)?imageshost\.ru\/img\/[^?&#]+\.\w+$/, content);
 	break;
 	case "screenshotuploader.com":
 		var node = $("padd");
@@ -812,7 +812,7 @@ switch(host) {
 			_img = nodes[0];
 	break;
 	case "ifotki.info":
-		_src = $i(/^http:\/\/(?:\w+\.)?ifotki\.info\/([^?&#]+\/)?[0-9a-f]{32,}\.\w+$/);
+		_src = $i(/^https?:\/\/(?:\w+\.)?ifotki\.info\/([^?&#]+\/)?[0-9a-f]{32,}\.\w+$/);
 		if(!_src) {
 			var src = $inp(/^\[url=http:\/\/ifotki\.info\/\]\[img\](.*?)\[\/img\]\[\/url\]$/);
 			if(src && !/html?$/.test(RegExp.$1))
