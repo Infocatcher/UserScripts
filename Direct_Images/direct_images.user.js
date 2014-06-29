@@ -66,6 +66,7 @@
 // @include        http://jpegshare.net/*.html
 // @include        http://imagelike.org/?v=*
 // @include        http://rupix.org/viewer.php?*
+// @include        http://all-poster.ru/?v=*
 
 // Get image by src:
 // @include        http://*imagepix.org/image/*.html
@@ -481,6 +482,9 @@ switch(host) {
 	break;
 	case "rupix.org":
 		_src = loc.replace(/\/viewer\.php\?file=/, "/images/");
+	break;
+	case "all-poster.ru":
+		_src = loc.replace(/\/\?v=/, "/images/");
 	break;
 
 	// Get image by src:
