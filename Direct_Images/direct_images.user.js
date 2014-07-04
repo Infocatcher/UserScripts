@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name           Direct Images
-// @version        0.5.20.1 - 2014-06-30
+// @version        0.5.20.2 - 2014-07-04
 // @description    Redirect from preview pages to images directly
 // @author         Infocatcher
 // @namespace      dev/null
@@ -93,13 +93,12 @@
 // @include        http://*radikal.ru/F/*.html*
 // @include        http://radikal-foto.ru/F/*.html*
 // @include        http://radical-foto.ru/F/*.html*
-// @include        http://*radikal.ru/fp/*
-// @include        http://radikal-foto.ru/fp/*
-// @include        http://radical-foto.ru/fp/*
-// @include        http://f-page.ru/fp/*
-// @include        http://f-page.ru/lfp/*
-// @include        http://f-lite.ru/lfp/*
-// @include        http://f-picture.net/fp/*
+// @include        http://*radikal.ru/*fp/*
+// @include        http://radikal-foto.ru/*fp/*
+// @include        http://radical-foto.ru/*fp/*
+// @include        http://f-page.ru/*fp/*
+// @include        http://f-lite.ru/*fp/*
+// @include        http://f-picture.net/*fp/*
 // @include        http://firepic.org/?v=*
 // @include        http://you-logo.ru/show-image.php?*
 // @include        http://uploadimagex.com/view.php?*
