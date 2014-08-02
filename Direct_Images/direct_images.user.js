@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name           Direct Images
-// @version        0.5.20.3 - 2014-08-03
+// @version        0.5.20.4 - 2014-08-03
 // @description    Redirect from preview pages to images directly
 // @author         Infocatcher
 // @namespace      dev/null
@@ -26,7 +26,6 @@
 // @include        http://xmages.net/show.php*.html
 // @include        http://opicture.ru/gallery/view/*.html
 // @include        http://picamigo.com/show.php/*.html
-// @include        http://fastpic.ru/view/*.html*
 // @include        http://*.directupload.net/file/*.htm
 // @include        http://pikucha.ru/*
 // @include        http://keep4u.ru/full/*.html
@@ -155,6 +154,7 @@
 // @include        http://*.photobucket.com/*.html*
 // @include        http://tinypic.com/view.php?pic=*
 // @include        http://*fotohost.by/show/*
+// @include        http://fastpic.ru/view/*.html*
 // ==/UserScript==
 
 (function di(event) {
@@ -421,7 +421,6 @@ switch(host) {
 	case "xmages.net":       _iid = "img_obj";       break;
 	case "opicture.ru":      _iid = "newImg";        break;
 	case "picamigo.com":     _iid = "img_obj";       break;
-	case "fastpic.ru":       _iid = "image";         break;
 	case "directupload.net": _iid = "Bild";          break;
 	case "pikucha.ru":       _iid = "image";         break;
 	case "keep4u.ru":        _iid = "foto";          break;
@@ -860,6 +859,11 @@ switch(host) {
 		var imgs = $c("pic");
 		if(imgs.length == 1)
 			_img = imgs[0];
+	break;
+	case "fastpic.ru":
+		_iid = "image";
+		_clearDoc = true;
+
 }
 if(_iid)
 	_img = $(_iid);
