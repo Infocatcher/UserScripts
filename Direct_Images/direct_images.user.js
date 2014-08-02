@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name           Direct Images
-// @version        0.5.20.2 - 2014-07-04
+// @version        0.5.20.3 - 2014-08-03
 // @description    Redirect from preview pages to images directly
 // @author         Infocatcher
 // @namespace      dev/null
@@ -26,7 +26,7 @@
 // @include        http://xmages.net/show.php*.html
 // @include        http://opicture.ru/gallery/view/*.html
 // @include        http://picamigo.com/show.php/*.html
-// @include        http://fastpic.ru/view/*.html
+// @include        http://fastpic.ru/view/*.html*
 // @include        http://*.directupload.net/file/*.htm
 // @include        http://pikucha.ru/*
 // @include        http://keep4u.ru/full/*.html
