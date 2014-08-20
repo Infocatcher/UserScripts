@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name           Direct Images
-// @version        0.5.20.4 - 2014-08-03
+// @version        0.5.21 - 2014-08-20
 // @description    Redirect from preview pages to images directly
 // @author         Infocatcher
 // @namespace      dev/null
@@ -155,6 +155,7 @@
 // @include        http://tinypic.com/view.php?pic=*
 // @include        http://*fotohost.by/show/*
 // @include        http://fastpic.ru/view/*.html*
+// @include        http://joxi.ru/*
 // ==/UserScript==
 
 (function di(event) {
@@ -863,7 +864,11 @@ switch(host) {
 	case "fastpic.ru":
 		_iid = "image";
 		_clearDoc = true;
-
+	break;
+	case "joxi.ru":
+		var links = $c("js-tile-link-zoom");
+		if(links.length)
+			_src = links[0].href;
 }
 if(_iid)
 	_img = $(_iid);
