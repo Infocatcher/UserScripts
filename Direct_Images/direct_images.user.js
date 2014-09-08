@@ -245,7 +245,7 @@ function $i(mask, node, exclude) {
 		)
 			return src;
 	}
-	return null;
+	return "";
 }
 function $ie(mask, exclude, node) {
 	return $i(mask, node, exclude);
@@ -259,7 +259,7 @@ function $inp(mask, node) {
 		if(mask.test(val))
 			return val;
 	}
-	return null;
+	return "";
 }
 function $u(node) {
 	if(node && node.nodeName.toLowerCase() == "input")
