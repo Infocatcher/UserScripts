@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name           Direct Images
-// @version        0.5.21 - 2014-08-20
+// @version        0.5.22 - 2014-09-09
 // @description    Redirect from preview pages to images directly
 // @author         Infocatcher
 // @namespace      dev/null
@@ -102,6 +102,7 @@
 // @include        http://you-logo.ru/show-image.php?*
 // @include        http://uploadimagex.com/view.php?*
 // @include        http://toroff.net/?v=*
+// @include        http://clip2net.com/s/*
 
 // Other:
 // @include        http://img*.imageshack.us/*
@@ -576,6 +577,10 @@ switch(host) {
 	break;
 	case "toroff.net":
 		_src = $i(/^https?:\/\/(?:\w+\.)*toroff\.net\/img\/(?:[^?&#\/]+\/)*[^?&#\/]{15,}\.\w+$/);
+	break;
+	case "clip2net.com":
+		_src = $i(/^https?:\/\/(?:\w+\.)*clip2net\.com\/clip\/[^?&#]+\.\w+(?:\?nocache=\d+)?$/)
+			.replace(/\?nocache=\d+?$/, "");
 	break;
 
 	// Other:
