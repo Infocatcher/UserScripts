@@ -88,7 +88,6 @@
 // @include        http://narodpix.net/?v=*
 // @include        http://www.narodpix.net/?v=*
 // @include        http://www.imagebam.com/image/*
-// @include        http://postimg.org/image/*
 // @include        http://*radikal.ru/F/*.html*
 // @include        http://radikal-foto.ru/F/*.html*
 // @include        http://radical-foto.ru/F/*.html*
@@ -157,6 +156,7 @@
 // @include        http://*fotohost.by/show/*
 // @include        http://fastpic.ru/view/*.html*
 // @include        http://joxi.ru/*
+// @include        http://postimg.org/image/*
 // ==/UserScript==
 
 (function di(event) {
@@ -261,6 +261,17 @@ function $inp(mask, node) {
 			return val;
 	}
 	return "";
+}
+function $a(mask, node) {
+	if(!node)
+		node = document;
+	var links = node.getElementsByTagName("a");
+	for(var i = 0, len = links.length; i < len; ++i) {
+		var link = links[i];
+		if(mask.test(link.href))
+			return link;
+	}
+	return null;
 }
 function $u(node) {
 	if(node && node.nodeName.toLowerCase() == "input")
@@ -544,9 +555,6 @@ switch(host) {
 	case "imagebam.com":
 		_src = $i(/^https?:\/\/(?:\w+\.)?imagebam\.com\/download\/[^?&#]+\.\w+$/);
 		_clearDoc = true;
-	break;
-	case "postimg.org":
-		_src = $i(/^https?:\/\/(?:\w+\.)?postimg\.org\/\w{4,}\/[^?&#]+\.\w+$/);
 	break;
 	case "radikal.ru":
 	case "radikal-foto.ru":
@@ -874,6 +882,13 @@ switch(host) {
 		var links = $c("js-tile-link-zoom");
 		if(links.length)
 			_src = links[0].href;
+	break;
+	case "postimg.org":
+		var link = $a(/^https?:\/\/(?:\w+\.)?postimg\.org\/.*\/full\/$/);
+		if(link && link.href != loc)
+			location.href = link.href;
+		else
+			_src = $i(/^https?:\/\/(?:\w+\.)?postimg\.org\/\w{4,}\/[^?&#]+\.\w+$/);
 }
 if(_iid)
 	_img = $(_iid);
