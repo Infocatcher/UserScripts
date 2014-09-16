@@ -283,6 +283,12 @@ function $url(s) {
 		return s;
 	return "";
 }
+function redirect(url) {
+	if(allowBack)
+		location.href = url;
+	else
+		location.replace(url);
+}
 function clearDoc(src) {
 	var ns = "http://www.w3.org/1999/xhtml";
 
@@ -637,7 +643,7 @@ switch(host) {
 		if(loc.indexOf("/pelny/") != -1)
 			_iid = "photoDivImage";
 		else
-			location.href = loc.replace(/\/pokaz_obrazek\//i, "$&pelny/");
+			redirect(loc.replace(/\/pokaz_obrazek\//i, "$&pelny/"));
 	break;
 	case "yandex.ru":
 		var cont = $("sizes-list");
@@ -886,7 +892,7 @@ switch(host) {
 	case "postimg.org":
 		var link = $a(/^https?:\/\/(?:\w+\.)?postimg\.org\/.*\/full\/$/);
 		if(link && link.href != loc)
-			location.href = link.href;
+			redirect(link.href);
 		else
 			_src = $i(/^https?:\/\/(?:\w+\.)?postimg\.org\/\w{4,}\/[^?&#]+\.\w+$/);
 }
@@ -901,10 +907,9 @@ if(_src && _src != loc) {
 			history.pushState("", document.title, loc);
 		clearDoc(_src);
 	}
-	else if(allowBack)
-		location.href = _src;
-	else
-		location.replace(_src);
+	else {
+		redirect(_src);
+	}
 	destroy();
 }
 else if(document.readyState == "loading") {
