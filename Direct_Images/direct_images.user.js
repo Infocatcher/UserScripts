@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name           Direct Images
-// @version        0.5.25 - 2014-12-21
+// @version        0.5.25.1 - 2014-12-21
 // @description    Redirect from preview pages to images directly
 // @author         Infocatcher
 // @namespace      dev/null
@@ -144,8 +144,8 @@
 // @exclude        http://imgur.com/gallery/*
 // @exclude        http://imgur.com/user/*
 // @include        http://*pic2profit.com/*/
-// @include        http://*.goodfon.ru/download.*?id=*
-// @include        http://*.badfon.ru/download.*?id=*
+// @include        http://*.goodfon.ru/download*
+// @include        http://*.badfon.ru/download*
 // @include        http://*image-upload.net/*.html
 // @include        http://imageshost.ru/links/*
 // @include        http://imageshost.ru/photo/*.html
