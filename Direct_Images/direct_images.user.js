@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name           Direct Images
-// @version        0.5.24 - 2014-11-06
+// @version        0.5.25 - 2014-12-21
 // @description    Redirect from preview pages to images directly
 // @author         Infocatcher
 // @namespace      dev/null
@@ -67,6 +67,7 @@
 // @include        http://rupix.org/viewer.php?*
 // @include        http://all-poster.ru/?v=*
 // @include        http://picsee.net/*.html
+// @include        http://img.bigstream.ru/viewer.php?file=*
 
 // Get image by src:
 // @include        http://*imagepix.org/image/*.html
@@ -510,6 +511,9 @@ switch(host) {
 		_src = loc
 			.replace(/^https?:\/\/(?:\w+\.)*picsee\.net\//, "$&upload/")
 			.replace(/\.html$/, "");
+	break;
+	case "bigstream.ru":
+		_src = loc.replace(/\/viewer\.php\?file=/, "/i/");
 	break;
 
 	// Get image by src:
