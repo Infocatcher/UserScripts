@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name           Direct Images
-// @version        0.5.25.1 - 2014-12-21
+// @version        0.5.25.2 - 2014-12-23
 // @description    Redirect from preview pages to images directly
 // @author         Infocatcher
 // @namespace      dev/null
@@ -145,6 +145,7 @@
 // @exclude        http://imgur.com/user/*
 // @include        http://*pic2profit.com/*/
 // @include        http://*.goodfon.ru/download*
+// @include        http://*.goodfon.su/download*
 // @include        http://*.badfon.ru/download*
 // @include        http://*image-upload.net/*.html
 // @include        http://imageshost.ru/links/*
@@ -809,6 +810,7 @@ switch(host) {
 			_src = inp.value;
 	break;
 	case "goodfon.ru":
+	case "goodfon.su":
 	case "badfon.ru":
 		var a = $("im");
 		if(a)
