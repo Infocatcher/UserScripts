@@ -138,8 +138,10 @@ function clearLink(e) {
 		if(!/^https?:\/\/(?:\w+\.)?google\.[\w.]+\/(?:search|imgres)\?/.test(h))
 			a.href = decode(_h);
 	}
-	else if(/^https?:\/\/clck\.yandex\.\w+\/redir\/.*?\*(https?:\/\/.*)$/.test(h))
-		a.href = RegExp.$1;
+	else if(/^https?:\/\/clck\.yandex\.\w+\/redir\/.*?(?:\*|%3D)(http\S+)$/.test(h)) {
+		var _h = RegExp.$1;
+		a.href = /^https?%3A/.test(_h) ? decode(_h) : _h;
+	}
 	else if(
 		/^https?:\/\/r\.mail\.yandex\.net\/url(s)?\/[^\/]+\/([^?]+)$/.test(h)
 		|| /https?:\/\/news\.yandex\.ru\/yandsearch\?.*url(s)?=([^?]+)$/.test(h)
