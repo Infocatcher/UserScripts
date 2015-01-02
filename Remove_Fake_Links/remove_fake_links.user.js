@@ -96,6 +96,10 @@ function clearLink(e) {
 			a.removeAttribute("onclick");
 		}
 	}
+	if(a.hasAttribute("data-vdir-href")) { // mail.yandex.ru
+		a.setAttribute("__deleted__data-vdir-href", a.getAttribute("data-vdir-href"));
+		a.removeAttribute("data-vdir-href");
+	}
 	var h = a.href;
 	var host = location.hostname;
 	if( // See https://github.com/Infocatcher/UserScripts/issues/5
