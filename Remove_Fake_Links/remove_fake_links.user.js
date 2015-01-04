@@ -25,8 +25,8 @@
 // @include     https://yandex.*/yandsearch?*
 // @include     http://market.yandex.ru/model.xml?*
 // @include     https://market.yandex.ru/model.xml?*
-// @include     http://mail.yandex.ru/*
-// @include     https://mail.yandex.ru/*
+// @include     http://mail.yandex.*/*
+// @include     https://mail.yandex.*/*
 // @include     http://www.mts.ru/*
 // @include     http://4pda.ru/*
 // @include     http://*.deviantart.com/*
