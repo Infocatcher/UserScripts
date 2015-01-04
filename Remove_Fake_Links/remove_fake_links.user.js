@@ -85,19 +85,20 @@ function clearLink(e) {
 	if(!a)
 		return;
 
+	var deleted = "__deleted__";
 	if(a.hasAttribute("onmousedown")) {
-		a.setAttribute("__deleted__onmousedown", a.getAttribute("onmousedown"));
+		a.setAttribute(deleted + "onmousedown", a.getAttribute("onmousedown"));
 		a.removeAttribute("onmousedown");
 	}
 	if(a.hasAttribute("onclick")) {
 		var onclick = a.getAttribute("onclick");
 		if(/(^|\W)location\.replace\(/.test(onclick)) {
-			a.setAttribute("__deleted__onclick", onclick);
+			a.setAttribute(deleted + "onclick", onclick);
 			a.removeAttribute("onclick");
 		}
 	}
 	if(a.hasAttribute("data-vdir-href")) { // mail.yandex.ru
-		a.setAttribute("__deleted__data-vdir-href", a.getAttribute("data-vdir-href"));
+		a.setAttribute(deleted + "data-vdir-href", a.getAttribute("data-vdir-href"));
 		a.removeAttribute("data-vdir-href");
 	}
 	var h = a.href;
@@ -123,10 +124,10 @@ function clearLink(e) {
 	if(host == "www.facebook.com") { // See https://github.com/Infocatcher/UserScripts/issues/6
 		var click = a.getAttribute("onclick");
 		if(click && click.indexOf("=http") != -1) {
-			a.setAttribute("__deleted__onclick", click);
+			a.setAttribute(deleted + "onclick", click);
 			a.removeAttribute("onclick");
 			if(a.hasAttribute("onmouseover")) {
-				a.setAttribute("__deleted__onmouseover", a.getAttribute("onmouseover"));
+				a.setAttribute(deleted + "onmouseover", a.getAttribute("onmouseover"));
 				a.removeAttribute("onmouseover");
 			}
 		}
