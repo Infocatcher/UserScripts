@@ -11,6 +11,8 @@
 // @include     https://www.google.*/webhp?*
 // @include     http://www.google.*/#*q=*
 // @include     https://www.google.*/#*q=*
+// @include     http://www.google.*/?*
+// @include     https://www.google.*/?*
 // @include     http://www.google.*/
 // @include     https://www.google.*/
 // @include     https://encrypted.google.com/search?*
