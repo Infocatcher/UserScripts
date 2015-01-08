@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name           Direct Images
-// @version        0.5.26 - 2014-12-23
+// @version        0.5.27 - 2015-01-08
 // @description    Redirect from preview pages to images directly
 // @author         Infocatcher
 // @namespace      dev/null
@@ -43,6 +43,7 @@
 // @include        http://pictube.ru/?v=*
 // @include        http://owely.com/*
 // @include        http://uaimage.com/image/*
+// @include        http://vfl.ru/fotos/*.html*
 
 // URL-based redirect:
 // @include        http://smages.com/*.htm
@@ -461,6 +462,7 @@ switch(host) {
 	case "pictube.ru":       _iid = "full_image";    break;
 	case "owely.com":        _iid = "issueImg";      break;
 	case "uaimage.com":      _iid = "im";            break;
+	case "vfl.ru":           _iid = "img_foto";      break;
 
 	// URL-based redirect:
 	case "smages.com":
