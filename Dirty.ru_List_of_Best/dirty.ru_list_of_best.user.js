@@ -236,8 +236,16 @@ function clickHandler(e) {
 		var id = RegExp.$1;
 		var anch = getPostById(id);
 		if(anch && "scrollIntoView" in anch) {
-			ensurePostVisible(anch);
+			var expanded = ensurePostVisible(anch);
 			anch.scrollIntoView();
+			if(expanded) { // Dummy way to deal with expand animation
+				var stopTime = new Date().getTime() + 400;
+				var timer = setInterval(function() {
+					anch.scrollIntoView();
+					if(new Date().getTime() > stopTime)
+						clearInterval(timer);
+				}, 25);
+			}
 			var trgClass = "__userJs__bestListTarget";
 			var trgs = document.getElementsByClassName(trgClass);
 			for(var i = trgs.length - 1; i >= 0; --i)
@@ -253,11 +261,12 @@ function getPostById(id) {
 	return document.getElementById(id) || document.getElementsByName(id)[0];
 }
 function ensurePostVisible(id) {
+	var expanded = false;
 	var post = typeof id == "string"
 		? getPostById(id)
 		: id;
 	if(!post)
-		return;
+		return expanded;
 	for(var box = post.parentNode; box; box = box.parentNode) {
 		var cn = box.className;
 		if(
@@ -265,10 +274,13 @@ function ensurePostVisible(id) {
 			&& !/(^|\s)b-comments_collapsed_expanded(\s|$)/.test(cn)
 		) {
 			var toggler = box.getElementsByClassName("b-comments_collapsed_toggle")[0];
-			if(toggler && toggler.click)
+			if(toggler && toggler.click) {
 				toggler.click();
+				expanded = true;
+			}
 		}
 	}
+	return expanded;
 }
 function getLink(node) {
 	for(; node; node = node.parentNode)
