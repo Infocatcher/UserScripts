@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name           Direct Images
-// @version        0.5.27 - 2015-01-08
+// @version        0.5.28 - 2015-01-16
 // @description    Redirect from preview pages to images directly
 // @author         Infocatcher
 // @namespace      dev/null
@@ -44,6 +44,7 @@
 // @include        http://owely.com/*
 // @include        http://uaimage.com/image/*
 // @include        http://vfl.ru/fotos/*.html*
+// @include        https://geekpics.net/view/*
 
 // URL-based redirect:
 // @include        http://smages.com/*.htm
@@ -463,6 +464,7 @@ switch(host) {
 	case "owely.com":        _iid = "issueImg";      break;
 	case "uaimage.com":      _iid = "im";            break;
 	case "vfl.ru":           _iid = "img_foto";      break;
+	case "geekpics.net":     _iid = "full_image";    break;
 
 	// URL-based redirect:
 	case "smages.com":
