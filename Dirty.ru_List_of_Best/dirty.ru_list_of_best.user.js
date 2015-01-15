@@ -1,11 +1,12 @@
 // ==UserScript==
 // @name        Dirty.ru List of Best
+// @version     0.1.3 - 2013-08-09
 // @namespace   dev/null
 // @include     http://dirty.ru/comments/*
 // @include     http://www.dirty.ru/comments/*
 // @include     http://d3.ru/comments/*
 // @include     http://*.d3.ru/comments/*
-// @version     0.1.3 - 2013-08-09
+// @include     about:blank?UserScripts/options/Dirty.ru_List_of_Best
 // @grant       GM_getValue
 // @grant       GM_setValue
 // ==/UserScript==
@@ -14,6 +15,55 @@
 // You can change
 //   greasemonkey.scriptvals.dev/null/Dirty.ru List of Best.*
 // in about:config
+
+if(
+	location.href == "about:blank?UserScripts/options/Dirty.ru_List_of_Best"
+	&& typeof GM_getValue == "function"
+) {
+	document.title = "Dirty.ru List of Best - Options";
+	var body = document.body || document.documentElement;
+	var numPref = function(text, pref) {
+		var row = document.createElementNS("http://www.w3.org/1999/xhtml", "div");
+		var input = document.createElementNS("http://www.w3.org/1999/xhtml", "input");
+		input.type = "number";
+		//input.setAttribute("size", "4");
+		input.style.width = "4.5em";
+		input.value = input._savedPref = getPref(pref, 0);
+		input._prefName = pref;
+		input.addEventListener("keydown", saveItem, false);
+		input.addEventListener("click", saveItem, false);
+		row.appendChild(document.createTextNode(text));
+		row.appendChild(input);
+		body.appendChild(row);
+	};
+	var saveItem = function(e) {
+		var input = e.currentTarget;
+		setTimeout(function() {
+			var val = input.value;
+			if(input._savedPref != val) {
+				input._savedPref = val;
+				GM_setValue(input._prefName, val);
+			}
+		}, 0);
+	};
+	numPref("Rating threshold: ", "limit");
+	numPref("Highlight threshold #1: ", "highlight");
+	numPref("Highlight threshold #2: ", "highlight2");
+	numPref("Height: ", "show");
+
+	window.addEventListener("unload", function destroy(e) {
+		window.removeEventListener("unload", destroy, false);
+		Array.prototype.forEach.call(
+			document.getElementsByTagName("input"),
+			function(input) {
+				input.removeEventListener("keydown", saveItem, false);
+				input.removeEventListener("click", saveItem, false);
+			}
+		);
+	}, false);
+	return;
+}
+
 var prefsVersion = 1;
 var v = getPref("prefsVersion", 0);
 var forceDefault = v == 0;
@@ -23,6 +73,7 @@ var highlight2 = getPref("highlight2", 65, forceDefault);
 var show       = getPref("show",       25, forceDefault);
 if(v != prefsVersion)
 	setPref("prefsVersion", prefsVersion);
+
 var best = [];
 Array.prototype.forEach.call(
 	document.getElementsByClassName("vote_result"),
