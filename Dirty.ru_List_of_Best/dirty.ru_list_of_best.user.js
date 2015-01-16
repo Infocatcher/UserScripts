@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name        Dirty.ru List of Best
-// @version     0.1.3 - 2013-08-09
+// @version     0.1.4pre - 2015-01-16
 // @namespace   dev/null
 // @include     https://d3.ru/comments/*
 // @include     https://*.d3.ru/comments/*
