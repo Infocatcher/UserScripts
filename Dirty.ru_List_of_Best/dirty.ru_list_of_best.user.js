@@ -2,8 +2,8 @@
 // @name        Dirty.ru List of Best
 // @version     0.1.3 - 2013-08-09
 // @namespace   dev/null
-// @include     http://dirty.ru/comments/*
-// @include     http://www.dirty.ru/comments/*
+// @include     https://d3.ru/comments/*
+// @include     https://*.d3.ru/comments/*
 // @include     http://d3.ru/comments/*
 // @include     http://*.d3.ru/comments/*
 // @include     about:blank?UserScripts/options/Dirty.ru_List_of_Best
