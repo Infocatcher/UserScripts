@@ -42,7 +42,7 @@ if(
 			var val = input.value;
 			if(input._savedPref != val) {
 				input._savedPref = val;
-				GM_setValue(input._prefName, val);
+				GM_setValue(input._prefName, +val);
 			}
 		}, 0);
 	};
