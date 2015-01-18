@@ -103,6 +103,10 @@ function clearLink(e) {
 		a.setAttribute(deleted + "data-vdir-href", a.getAttribute("data-vdir-href"));
 		a.removeAttribute("data-vdir-href");
 	}
+	if(a.hasAttribute("data-orig-href")) { // mail.yandex.ru
+		a.setAttribute(deleted + "data-orig-href", a.getAttribute("data-orig-href"));
+		a.removeAttribute("data-orig-href");
+	}
 	var h = a.href;
 	var host = location.hostname;
 	if( // See https://github.com/Infocatcher/UserScripts/issues/5
