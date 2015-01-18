@@ -45,6 +45,7 @@ var isNoScript = window.getComputedStyle(document.createElement("noscript"), nul
 var exclude;
 // Uncomment following to leave "Warning - visiting this web site may harm your computer!"
 //exclude = /^https?:\/\/(?:www\.)google\.[\w.]+\/interstitial\?url=http\S+$/;
+var deleted = "__deleted__"; // Prefix to rename attributes
 
 // You can comment two following lines to increase performance
 window.addEventListener("mouseover", clearLink, true);
@@ -87,26 +88,12 @@ function clearLink(e) {
 	if(!a)
 		return;
 
-	var deleted = "__deleted__";
-	if(a.hasAttribute("onmousedown")) {
-		a.setAttribute(deleted + "onmousedown", a.getAttribute("onmousedown"));
-		a.removeAttribute("onmousedown");
-	}
-	if(a.hasAttribute("onclick")) {
-		var onclick = a.getAttribute("onclick");
-		if(/(^|\W)location\.replace\(/.test(onclick)) {
-			a.setAttribute(deleted + "onclick", onclick);
-			a.removeAttribute("onclick");
-		}
-	}
-	if(a.hasAttribute("data-vdir-href")) { // mail.yandex.ru
-		a.setAttribute(deleted + "data-vdir-href", a.getAttribute("data-vdir-href"));
-		a.removeAttribute("data-vdir-href");
-	}
-	if(a.hasAttribute("data-orig-href")) { // mail.yandex.ru
-		a.setAttribute(deleted + "data-orig-href", a.getAttribute("data-orig-href"));
-		a.removeAttribute("data-orig-href");
-	}
+	if(/(^|\W)location\.replace\(/.test(a.getAttribute("onclick")))
+		renameAttr(a, "onclick");
+	renameAttr(a, "onmousedown");
+	renameAttr(a, "data-vdir-href"); // mail.yandex.ru
+	renameAttr(a, "data-orig-href"); // mail.yandex.ru
+
 	var h = a.href;
 	var host = location.hostname;
 	if( // See https://github.com/Infocatcher/UserScripts/issues/5
@@ -128,14 +115,9 @@ function clearLink(e) {
 		}
 	}
 	if(host == "www.facebook.com") { // See https://github.com/Infocatcher/UserScripts/issues/6
-		var click = a.getAttribute("onclick");
-		if(click && click.indexOf("=http") != -1) {
-			a.setAttribute(deleted + "onclick", click);
-			a.removeAttribute("onclick");
-			if(a.hasAttribute("onmouseover")) {
-				a.setAttribute(deleted + "onmouseover", a.getAttribute("onmouseover"));
-				a.removeAttribute("onmouseover");
-			}
+		if((a.getAttribute("onclick") || "").indexOf("=http") != -1) {
+			renameAttr(a, "onclick");
+			renameAttr(a, "onmouseover");
 		}
 	}
 	if(exclude && exclude.test(h))
@@ -199,6 +181,12 @@ function decode(s) {
 		setTimeout(function() { throw e; }, 0);
 	}
 	return s;
+}
+function renameAttr(node, attr) {
+	if(node.hasAttribute(attr)) {
+		node.setAttribute(deleted + attr, node.getAttribute(attr));
+		node.removeAttribute(attr);
+	}
 }
 
 function _log(s) {
