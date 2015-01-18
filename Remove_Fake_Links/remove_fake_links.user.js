@@ -88,8 +88,7 @@ function clearLink(e) {
 	if(!a)
 		return;
 
-	if(/(^|\W)location\.replace\(/.test(a.getAttribute("onclick")))
-		renameAttr(a, "onclick");
+	renameAttr(a, "onclick", /(^|\W)location\.replace\(/);
 	renameAttr(a, "onmousedown");
 	renameAttr(a, "data-vdir-href"); // mail.yandex.ru
 	renameAttr(a, "data-orig-href"); // mail.yandex.ru
@@ -114,12 +113,8 @@ function clearLink(e) {
 			setTimeout(function() { throw e; }, 0);
 		}
 	}
-	if(host == "www.facebook.com") { // See https://github.com/Infocatcher/UserScripts/issues/6
-		if((a.getAttribute("onclick") || "").indexOf("=http") != -1) {
-			renameAttr(a, "onclick");
-			renameAttr(a, "onmouseover");
-		}
-	}
+	if(host == "www.facebook.com") // See https://github.com/Infocatcher/UserScripts/issues/6
+		renameAttr(a, "onclick", "=http") && renameAttr(a, "onmouseover");
 	if(exclude && exclude.test(h))
 		return;
 	if(/^https?:\/\/(?:\w+\.)?google\.[\w.]+\/.*=(https?(?::|%3A)[^?&#]+)/.test(h)) {
@@ -182,11 +177,20 @@ function decode(s) {
 	}
 	return s;
 }
-function renameAttr(node, attr) {
-	if(node.hasAttribute(attr)) {
-		node.setAttribute(deleted + attr, node.getAttribute(attr));
-		node.removeAttribute(attr);
+function renameAttr(node, attr, check) {
+	if(!node.hasAttribute(attr))
+		return false;
+	var orig = node.getAttribute(attr);
+	var skip = false;
+	switch(typeof check) {
+		case "string": skip = orig.indexOf(check) == -1; break;
+		case "object": skip = !check.test(orig);
 	}
+	if(skip)
+		return false;
+	node.setAttribute(deleted + attr, orig);
+	node.removeAttribute(attr);
+	return true;
 }
 
 function _log(s) {
