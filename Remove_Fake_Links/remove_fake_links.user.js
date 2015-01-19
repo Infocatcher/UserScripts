@@ -51,11 +51,13 @@ var deleted = "__deleted__"; // Prefix to rename attributes
 window.addEventListener("mouseover", clearLink, true);
 window.addEventListener("focus", clearLink, true);
 window.addEventListener("mousedown", clearLink, true);
+window.addEventListener("keydown", handleKeyDown, true);
 window.addEventListener("unload", function destroy(e) {
 	window.removeEventListener(e.type, destroy, false);
 	window.removeEventListener("mouseover", clearLink, true);
 	window.removeEventListener("focus", clearLink, true);
 	window.removeEventListener("mousedown", clearLink, true);
+	window.removeEventListener("keydown", handleKeyDown, true);
 }, false);
 
 // Based on code from https://github.com/Infocatcher/Bookmarklets/blob/master/showAnchors.js
@@ -163,6 +165,10 @@ function clearLink(e) {
 				a.removeAttribute("style");
 		}, 0);
 	}
+}
+function handleKeyDown(e) {
+	if(e.keyCode == (e.DOM_VK_RETURN || 13))
+		clearLink(e);
 }
 function getLink(e) {
 	for(var a = e.target; a && a.localName; a = a.parentNode)
