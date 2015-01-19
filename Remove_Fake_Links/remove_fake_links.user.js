@@ -94,6 +94,7 @@ function clearLink(e) {
 	renameAttr(a, "data-orig-href"); // mail.yandex.ru
 
 	var h = a.href;
+	var nh = h;
 	var host = location.hostname;
 	if( // See https://github.com/Infocatcher/UserScripts/issues/5
 		host == "addons.mozilla.org"
@@ -120,30 +121,31 @@ function clearLink(e) {
 	if(/^https?:\/\/(?:\w+\.)?google\.[\w.]+\/.*=(https?(?::|%3A)[^?&#]+)/.test(h)) {
 		var _h = RegExp.$1;
 		if(!/^https?:\/\/(?:\w+\.)?google\.[\w.]+\/(?:search|imgres)\?/.test(h))
-			a.href = decode(_h);
+			nh = decode(_h);
 	}
 	else if(/^https?:\/\/clck\.yandex\.\w+\/redir\/.*?(?:\*|%3D)(http\S+)$/.test(h)) {
 		var _h = RegExp.$1;
-		a.href = /^https?%3A/.test(_h) ? decode(_h) : _h;
+		nh = /^https?%3A/.test(_h) ? decode(_h) : _h;
 	}
 	else if(
 		/^https?:\/\/r\.mail\.yandex\.net\/url(s)?\/[^\/]+\/([^?]+)$/.test(h)
 		|| /https?:\/\/news\.yandex\.ru\/yandsearch\?.*url(s)?=([^?]+)$/.test(h)
 	)
-		a.href = "http" + RegExp.$1 + "://" + decode(RegExp.$2);
+		nh = "http" + RegExp.$1 + "://" + decode(RegExp.$2);
 	else if(/^https?:\/\/ads\.adfox\.ru\/.*goLink\?.*@(http\S+)$/.test(h))
-		a.href = RegExp.$1;
+		nh = RegExp.$1;
 	else if(/^https?:\/\/4pda\.ru\/[^#]+=(http[^?&#\/]+)/.test(h))
-		a.href = decode(RegExp.$1);
+		nh = decode(RegExp.$1);
 	else if(/^https?:\/\/(?:\w+\.)*deviantart\.com\/.*\/outgoing\?(\S+)$/.test(h))
-		a.href = RegExp.$1;
+		nh = RegExp.$1;
 	else if(/^https?:\/\/outgoing\.mozilla\.org\/.*\/(\w+(?::|%3A)\S+)$/.test(h))
-		a.href = decode(RegExp.$1);
+		nh = decode(RegExp.$1);
 	else if(/^https?:\/\/(?:\w+\.)*facebook\.com\/[^#]+=(http[^?&#\/]+)/.test(h))
-		a.href = decode(RegExp.$1);
-	if(a.href == h)
+		nh = decode(RegExp.$1);
+	if(nh == h)
 		return;
-	_log("Override link:\n" + h + "\n=> " + a.href);
+	_log("Override link:\n" + h + "\n=> " + nh);
+	a.href = nh;
 	// Force update link in status bar
 	if(e.type == "focus") {
 		a.ownerDocument.documentElement.focus();
