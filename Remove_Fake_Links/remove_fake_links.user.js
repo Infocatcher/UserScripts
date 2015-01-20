@@ -45,17 +45,21 @@ var isNoScript = window.getComputedStyle(document.createElement("noscript"), nul
 var exclude;
 // Uncomment following to leave "Warning - visiting this web site may harm your computer!"
 //exclude = /^https?:\/\/(?:www\.)google\.[\w.]+\/interstitial\?url=http\S+$/;
+var removeOnTheFly = true;
 var deleted = "__deleted__"; // Prefix to rename attributes
 
-// You can comment two following lines to increase performance
-window.addEventListener("mouseover", clearLink, true);
-window.addEventListener("focus", clearLink, true);
+if(removeOnTheFly) {
+	window.addEventListener("mouseover", clearLink, true);
+	window.addEventListener("focus", clearLink, true);
+}
 window.addEventListener("mousedown", clearLink, true);
 window.addEventListener("keydown", handleKeyDown, true);
 window.addEventListener("unload", function destroy(e) {
 	window.removeEventListener(e.type, destroy, false);
-	window.removeEventListener("mouseover", clearLink, true);
-	window.removeEventListener("focus", clearLink, true);
+	if(removeOnTheFly) {
+		window.removeEventListener("mouseover", clearLink, true);
+		window.removeEventListener("focus", clearLink, true);
+	}
 	window.removeEventListener("mousedown", clearLink, true);
 	window.removeEventListener("keydown", handleKeyDown, true);
 }, false);
