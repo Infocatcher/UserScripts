@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name           Direct Images
-// @version        0.5.28 - 2015-01-16
+// @version        0.5.29 - 2015-01-29
 // @description    Redirect from preview pages to images directly
 // @author         Infocatcher
 // @namespace      dev/null
@@ -163,6 +163,7 @@
 // @include        http://fastpic.ru/view/*.html*
 // @include        http://joxi.ru/*
 // @include        http://postimg.org/image/*
+// @include        http://i-fotki.info/*.html
 // ==/UserScript==
 
 (function di(event) {
@@ -915,6 +916,10 @@ switch(host) {
 			redirect(link.href);
 		else
 			_src = $i(/^https?:\/\/(?:\w+\.)?postimg\.org\/\w{4,}\/[^?&#]+\.\w+$/);
+	break;
+	case "i-fotki.info":
+		if($inp(/^\[URL=[^\[\]]+\]\[IMG\](https?:\/\/(?:\w+\.)*ifotki\.info\/org\/[^?&#]+\.\w+)\[\/IMG\]\[\/URL\]$/i))
+			_src = RegExp.$1;
 }
 if(_iid)
 	_img = $(_iid);
