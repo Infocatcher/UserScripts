@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name           Direct Images
-// @version        0.5.29 - 2015-01-29
+// @version        0.5.29.1 - 2015-01-31
 // @description    Redirect from preview pages to images directly
 // @author         Infocatcher
 // @namespace      dev/null
@@ -103,6 +103,7 @@
 // @include        http://f-lite.ru/*fp/*
 // @include        http://f-picture.net/*fp/*
 // @include        http://firepic.org/?v=*
+// @include        http://www.firepic.org/?v=*
 // @include        http://you-logo.ru/show-image.php?*
 // @include        http://uploadimagex.com/view.php?*
 // @include        http://toroff.net/?v=*
@@ -601,7 +602,7 @@ switch(host) {
 		_clearDoc = true;
 	break;
 	case "firepic.org":
-		_src = $i(/^https?:\/\/(?:\w+\.)*firepic\.org\/[^?&#]+images\/[^?&#]+\.\w+$/);
+		_src = $i(/^https?:\/\/(?:\w+\.)*firepic\.org\/[^?&#]*images\/[^?&#]+\.\w+$/);
 	break;
 	case "you-logo.ru":
 		_src = $i(/^https?:\/\/(?:\w+\.)*you-logo\.ru\/[^?&#]+\/[^?&#\/]{32,}\.\w+$/);
