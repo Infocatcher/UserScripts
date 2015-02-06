@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name           Direct Images
-// @version        0.5.29.1 - 2015-01-31
+// @version        0.5.30 - 2015-02-06
 // @description    Redirect from preview pages to images directly
 // @author         Infocatcher
 // @namespace      dev/null
@@ -165,6 +165,7 @@
 // @include        http://joxi.ru/*
 // @include        http://postimg.org/image/*
 // @include        http://i-fotki.info/*.html
+// @include        http://4put.ru/*.php?*
 // ==/UserScript==
 
 (function di(event) {
@@ -921,6 +922,9 @@ switch(host) {
 	case "i-fotki.info":
 		if($inp(/^\[URL=[^\[\]]+\]\[IMG\](https?:\/\/(?:\w+\.)*ifotki\.info\/org\/[^?&#]+\.\w+)\[\/IMG\]\[\/URL\]$/i))
 			_src = RegExp.$1;
+	break;
+	case "4put.ru":
+		_src = $inp(/^https?:\/\/(?:\w+\.)*4put\.ru\/pictures\/max\/[^?&#]+\.\w+$/);
 }
 if(_iid)
 	_img = $(_iid);
