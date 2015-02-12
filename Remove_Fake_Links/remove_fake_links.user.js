@@ -42,9 +42,10 @@
 
 var _debug = true; // Show debug messages in Web Console
 var isNoScript = window.getComputedStyle(document.createElement("noscript"), null).display != "none";
-var exclude;
-// Uncomment following to leave "Warning - visiting this web site may harm your computer!"
-//exclude = /^https?:\/\/(?:www\.)google\.[\w.]+\/interstitial\?url=http\S+$/;
+var exclude = [
+	// "Warning - visiting this web site may harm your computer!"
+	// /^https?:\/\/(?:www\.)google\.[\w.]+\/interstitial\?url=http\S+$/
+];
 var removeOnTheFly = true;
 var deleted = "__deleted__"; // Prefix to rename attributes
 
@@ -122,7 +123,11 @@ function clearLink(e) {
 	}
 	if(host == "www.facebook.com") // See https://github.com/Infocatcher/UserScripts/issues/6
 		renameAttr(a, "onclick", "=http") && renameAttr(a, "onmouseover");
-	if(exclude && exclude.test(h))
+	if(
+		exclude.some(function(re) {
+			return re.test(h)
+		})
+	)
 		return;
 	if(/^https?:\/\/(?:\w+\.)?google\.[\w.]+\/.*=(https?(?::|%3A)[^?&#]+)/.test(h)) {
 		var _h = RegExp.$1;
