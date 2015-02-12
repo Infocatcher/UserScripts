@@ -45,7 +45,8 @@ var isNoScript = window.getComputedStyle(document.createElement("noscript"), nul
 var exclude = [
 	// "Warning - visiting this web site may harm your computer!"
 	// /^https?:\/\/(?:www\.)google\.[\w.]+\/interstitial\?url=http\S+$/,
-	/^https?:\/\/accounts\.google(?:\.\w+){1,2}\/ServiceLogin\?/
+	/^https?:\/\/accounts\.google(?:\.\w+){1,2}\/ServiceLogin\?/,
+	/^https?:\/\/translate\.google(?:\.\w+){1,2}\/translate\?/
 ];
 var removeOnTheFly = true;
 var deleted = "__deleted__"; // Prefix to rename attributes
