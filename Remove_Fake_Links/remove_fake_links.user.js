@@ -44,7 +44,8 @@ var _debug = true; // Show debug messages in Web Console
 var isNoScript = window.getComputedStyle(document.createElement("noscript"), null).display != "none";
 var exclude = [
 	// "Warning - visiting this web site may harm your computer!"
-	// /^https?:\/\/(?:www\.)google\.[\w.]+\/interstitial\?url=http\S+$/
+	// /^https?:\/\/(?:www\.)google\.[\w.]+\/interstitial\?url=http\S+$/,
+	/^https?:\/\/accounts\.google(?:\.\w+){1,2}\/ServiceLogin\?/
 ];
 var removeOnTheFly = true;
 var deleted = "__deleted__"; // Prefix to rename attributes
