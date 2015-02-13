@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name           Direct Images
-// @version        0.5.30 - 2015-02-06
+// @version        0.5.30.1 - 2015-02-13
 // @description    Redirect from preview pages to images directly
 // @author         Infocatcher
 // @namespace      dev/null
@@ -738,7 +738,7 @@ switch(host) {
 		var inp = $("direct_link");
 		if(inp && inp.value) //~ old?
 			_src = inp.value;
-		else if(!$("hashes") && /^https?:\/\/(rghost\.\w+\/\d+)\.view$/.test(loc))
+		else if(!$("hashes") && /^https?:\/\/(rghost\.\w+\/\w+)\.view$/.test(loc))
 			_src = "http://plasmon." + RegExp.$1 + ".image";
 
 	break;
