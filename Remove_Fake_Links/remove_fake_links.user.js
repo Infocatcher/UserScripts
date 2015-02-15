@@ -126,6 +126,21 @@ function clearLink(e) {
 	}
 	if(host == "www.facebook.com") // See https://github.com/Infocatcher/UserScripts/issues/6
 		renameAttr(a, "onclick", "=http") && renameAttr(a, "onmouseover");
+	if(host == "duckduckgo.com") {
+		var DDG = window.DDG
+			|| typeof unsafeWindow != "undefined" && unsafeWindow.DDG
+			|| null;
+		if(
+			DDG
+			&& "get_http_redirect" in DDG
+			&& ("" + DDG.get_http_redirect).indexOf("encodeURIComponent") != -1
+		) {
+			_log("Override DDG.get_http_redirect()");
+			DDG.get_http_redirect = function(a) {
+				return a.href;
+			};
+		}
+	}
 	if(
 		exclude.some(function(re) {
 			return re.test(h)
