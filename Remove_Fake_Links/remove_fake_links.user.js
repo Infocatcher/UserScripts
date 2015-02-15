@@ -29,6 +29,7 @@
 // @include     https://market.yandex.ru/model.xml?*
 // @include     http://mail.yandex.*/*
 // @include     https://mail.yandex.*/*
+// @include     https://duckduckgo.com/?*
 // @include     http://www.mts.ru/*
 // @include     http://4pda.ru/*
 // @include     http://*.deviantart.com/*
@@ -145,6 +146,8 @@ function clearLink(e) {
 		|| /https?:\/\/news\.yandex\.ru\/yandsearch\?.*url(s)?=([^?]+)$/.test(h)
 	)
 		nh = "http" + RegExp.$1 + "://" + decode(RegExp.$2);
+	else if(/^https?:\/\/duckduckgo\.com\/.*=(http\S+)/.test(h))
+		nh = decode(RegExp.$1);
 	else if(/^https?:\/\/ads\.adfox\.ru\/.*goLink\?.*@(http\S+)$/.test(h))
 		nh = RegExp.$1;
 	else if(/^https?:\/\/4pda\.ru\/[^#]+=(http[^?&#\/]+)/.test(h))
