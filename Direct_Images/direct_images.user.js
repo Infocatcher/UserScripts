@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name           Direct Images
-// @version        0.5.30.1 - 2015-02-13
+// @version        0.5.30.2 - 2015-04-07
 // @description    Redirect from preview pages to images directly
 // @author         Infocatcher
 // @namespace      dev/null
@@ -904,6 +904,11 @@ switch(host) {
 			_img = imgs[0];
 	break;
 	case "fastpic.ru":
+		var imgs = document.querySelectorAll && document.querySelectorAll("[id='image']");
+		if(imgs && imgs.length > 1) { // Really!
+			_img = imgs[imgs.length - 1];
+			break;
+		}
 		_iid = "image";
 		_clearDoc = true;
 	break;
