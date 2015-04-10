@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name           Direct Images
-// @version        0.5.30.2 - 2015-04-07
+// @version        0.5.31 - 2015-04-10
 // @description    Redirect from preview pages to images directly
 // @author         Infocatcher
 // @namespace      dev/null
@@ -166,6 +166,7 @@
 // @include        http://postimg.org/image/*
 // @include        http://i-fotki.info/*.html
 // @include        http://4put.ru/*.php?*
+// @include        http://fotkidepo.ru/?id=photo:*
 // ==/UserScript==
 
 (function di(event) {
@@ -930,6 +931,11 @@ switch(host) {
 	break;
 	case "4put.ru":
 		_src = $inp(/^https?:\/\/(?:\w+\.)*4put\.ru\/pictures\/max\/[^?&#]+\.\w+$/);
+	break;
+	case "fotkidepo.ru":
+		var link = $a(/^https?:\/\/(?:\w+\.)*fotkidepo\.ru\/photo\/[^?&#]+\.\w+$/);
+		if(link)
+			_src = link.href
 }
 if(_iid)
 	_img = $(_iid);
