@@ -29,6 +29,8 @@
 // @include     https://market.yandex.ru/model.xml?*
 // @include     http://mail.yandex.*/*
 // @include     https://mail.yandex.*/*
+// @include     http://news.yandex.*/*
+// @include     https://news.yandex.*/*
 // @include     https://duckduckgo.com/?*
 // @include     http://www.mts.ru/*
 // @include     http://4pda.ru/*
