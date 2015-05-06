@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name           Direct Images
-// @version        0.5.31 - 2015-04-10
+// @version        0.5.32 - 2015-05-06
 // @description    Redirect from preview pages to images directly
 // @author         Infocatcher
 // @namespace      dev/null
@@ -87,7 +87,6 @@
 // @include        http://imgtheif.com/show-image.php?id=*
 // @include        http://imgtheif.com/image/*.html
 // @include        http://hostingkartinok.com/show-image.php?*
-// @include        http://lostpic.net/?view=*
 // @include        http://image.kz/*
 // @include        http://imm.io/*
 // @include        http://narodpix.net/?v=*
@@ -167,6 +166,7 @@
 // @include        http://i-fotki.info/*.html
 // @include        http://4put.ru/*.php?*
 // @include        http://fotkidepo.ru/?id=photo:*
+// @include        http://lostpic.net/?*
 // ==/UserScript==
 
 (function di(event) {
@@ -569,9 +569,6 @@ switch(host) {
 	case "hostingkartinok.com":
 		_src = $i(/^https?:\/\/(?:\w+\.)?hostingkartinok\.com\/[^#]+[0-9a-f]{32,}\.\w+$/);
 	break;
-	case "lostpic.net":
-		_src = $i(/^https?:\/\/(?:www\.)?lostpic\.net\/images\/[0-9a-f]{32,}\.\w+$/);
-	break;
 	case "image.kz":
 		_src = $i(/^https?:\/\/(?:www\.)?image\.kz\/[^?&#]+\/[0-9a-f]{32,}\.\w+$/);
 	break;
@@ -936,6 +933,9 @@ switch(host) {
 		var link = $a(/^https?:\/\/(?:\w+\.)*fotkidepo\.ru\/photo\/[^?&#]+\.\w+$/);
 		if(link)
 			_src = link.href
+	break;
+	case "lostpic.net":
+		_src = $a(/^https?:\/\/(?:\w+\.)*lostpic\.net\/orig_images[^?&#]*\/[0-9a-f]{32,}\.\w+$/);
 }
 if(_iid)
 	_img = $(_iid);
