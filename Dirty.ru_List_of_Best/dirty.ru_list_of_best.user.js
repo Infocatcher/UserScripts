@@ -1,11 +1,11 @@
 // ==UserScript==
 // @name        Dirty.ru List of Best
-// @version     0.1.4pre - 2015-01-16
+// @version     0.1.4pre2 - 2015-05-07
 // @namespace   dev/null
-// @include     https://d3.ru/comments/*
-// @include     https://*.d3.ru/comments/*
-// @include     http://d3.ru/comments/*
-// @include     http://*.d3.ru/comments/*
+// @include     https://d3.ru/*
+// @include     https://*.d3.ru/*
+// @include     http://d3.ru/*
+// @include     http://*.d3.ru/*
 // @include     about:blank?UserScripts/options/Dirty.ru_List_of_Best
 // @grant       GM_getValue
 // @grant       GM_setValue
