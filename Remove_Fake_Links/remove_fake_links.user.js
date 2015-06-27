@@ -40,6 +40,8 @@
 // @include     https://*.deviantart.com/*
 // @include     https://addons.mozilla.org/*
 // @include     https://www.facebook.com/*
+// @include     http://steamcommunity.com/*
+// @include     https://steamcommunity.com/*
 // @grant       none
 // ==/UserScript==
 
@@ -178,6 +180,8 @@ function clearLink(e) {
 		nh = decode(RegExp.$1);
 	else if(/^https?:\/\/(?:\w+\.)*facebook\.com\/[^#]+=(http[^?&#\/]+)/.test(h))
 		nh = decode(RegExp.$1);
+	else if(/^https?:\/\/steamcommunity\.com\/linkfilter\/\?url=(\S+)$/.test(h))
+		nh = RegExp.$1;
 	if(nh == h)
 		return;
 	_log("Override link:\n" + h + "\n=> " + nh);
