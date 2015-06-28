@@ -42,6 +42,7 @@
 // @include     https://www.facebook.com/*
 // @include     http://steamcommunity.com/*
 // @include     https://steamcommunity.com/*
+// @include     http://store.steampowered.com/*
 // @grant       none
 // ==/UserScript==
 
