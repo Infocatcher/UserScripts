@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name        Dirty.ru List of Best
-// @version     0.1.4pre3 - 2015-05-07
+// @version     0.1.4pre4 - 2015-07-18
 // @namespace   dev/null
 // @include     https://*.d3.ru/*
 // @include     https://d3.ru/*/*
@@ -77,7 +77,7 @@ var best = [];
 Array.prototype.forEach.call(
 	document.getElementsByClassName("vote_result"),
 	function(e, i) {
-		if(i == 0) // Post votes
+		if((e.parentNode.id || "").indexOf("post_id") != -1) // Post votes
 			return;
 		var n = e.textContent.trim();
 		if(n < limit)
