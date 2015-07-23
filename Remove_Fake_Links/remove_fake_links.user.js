@@ -24,9 +24,13 @@
 // @include     http://docs.google.com/document/*
 // @include     https://docs.google.com/document/*
 // @include     http://yandex.*/yandsearch?*
+// @include     http://www.yandex.*/yandsearch?*
 // @include     https://yandex.*/yandsearch?*
+// @include     https://www.yandex.*/yandsearch?*
 // @include     http://yandex.*/search/*
+// @include     http://www.yandex.*/search/*
 // @include     https://yandex.*/search/*
+// @include     https://www.yandex.*/search/*
 // @include     http://market.yandex.ru/model.xml?*
 // @include     https://market.yandex.ru/model.xml?*
 // @include     http://mail.yandex.*/*
