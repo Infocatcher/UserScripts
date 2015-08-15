@@ -321,7 +321,10 @@ function clearDoc(src) {
 	var style = document.createElementNS(ns, "style");
 	style.type = "text/css";
 	style.appendChild(document.createTextNode("\
-		html, body { margin: 0; padding: 0; }\n\
+		html, html > body {\n\
+			margin: 0; padding: 0;\n\
+			width: auto !important; height: auto !important; /* for https://userstyles.org/styles/101141/ru-adlist-css-fixes */\n\
+		}\n\
 		.zoomIn { cursor: -moz-zoom-in; cursor: -webkit-zoom-in; cursor: zoom-in; }\n\
 		.zoomOut { cursor: -moz-zoom-out; cursor: -webkit-zoom-out; cursor: zoom-out; }"
 	));
