@@ -1,4 +1,4 @@
-// ==UserScript==
+﻿// ==UserScript==
 // @name        Dirty.ru List of Best
 // @version     0.1.4pre4 - 2015-07-18
 // @namespace   dev/null
@@ -8,6 +8,8 @@
 // @include     about:blank?UserScripts/options/Dirty.ru_List_of_Best
 // @grant       GM_getValue
 // @grant       GM_setValue
+// @grant       GM_registerMenuCommand
+// @grant       GM_openInTab
 // ==/UserScript==
 
 (function() {
@@ -61,6 +63,15 @@ if(
 		);
 	}, false);
 	return;
+}
+
+if(
+	typeof GM_registerMenuCommand == "function"
+	&& typeof GM_openInTab == "function"
+) {
+	GM_registerMenuCommand("Dirty.ru List of Best - Options", function() {
+		GM_openInTab("about:blank?UserScripts/options/Dirty.ru_List_of_Best", false);
+	});
 }
 
 var prefsVersion = 1;
