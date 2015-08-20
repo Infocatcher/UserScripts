@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name           Direct Images
-// @version        0.5.32 - 2015-05-06
+// @version        0.5.33 - 2015-08-20
 // @description    Redirect from preview pages to images directly
 // @author         Infocatcher
 // @namespace      dev/null
@@ -107,6 +107,7 @@
 // @include        http://uploadimagex.com/view.php?*
 // @include        http://toroff.net/?v=*
 // @include        http://clip2net.com/s/*
+// @include        http://screencast.com/*/*
 
 // Other:
 // @include        http://img*.imageshack.us/*
@@ -619,6 +620,9 @@ switch(host) {
 		_src = $i(/^https?:\/\/(?:\w+\.)*clip2net\.com\/clip\/[^?&#]+\.\w+(?:\?nocache=\d+)?$/)
 			.replace(/\?nocache=\d+?$/, "");
 	break;
+	case "screencast.com":
+		_src = $i(/^https?:\/\/content\.screencast\.com\/[^?&#]+\.\w+$/);
+	break;
 
 	// Other:
 	case "imageshack.us":
@@ -911,7 +915,6 @@ switch(host) {
 			break;
 		}
 		_iid = "image";
-		_clearDoc = true;
 	break;
 	case "joxi.ru":
 		var links = $c("js-tile-link-zoom");
