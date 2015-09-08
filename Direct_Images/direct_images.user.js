@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name           Direct Images
-// @version        0.5.33 - 2015-08-20
+// @version        0.5.33.1 - 2015-09-08
 // @description    Redirect from preview pages to images directly
 // @author         Infocatcher
 // @namespace      dev/null
@@ -744,8 +744,7 @@ switch(host) {
 		if(inp && inp.value) //~ old?
 			_src = inp.value;
 		else if(!$("hashes") && /^https?:\/\/(rghost\.\w+\/\w+)\.view$/.test(loc))
-			_src = "http://plasmon." + RegExp.$1 + ".image";
-
+			_src = $i(/^https?:\/\/(?:\w+\.)*rghost\.\w+\/[^?&#]+\/image\.\w+$/);
 	break;
 	case "itmages.ru":
 	case "itmages.com":
