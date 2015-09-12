@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name           Direct Images
-// @version        0.5.33.1 - 2015-09-08
+// @version        0.5.33.2 - 2015-09-13
 // @description    Redirect from preview pages to images directly
 // @author         Infocatcher
 // @namespace      dev/null
@@ -818,6 +818,12 @@ switch(host) {
 			if(block)
 				_src = $i(/^https?:\/\/(?:\w+\.)*imgur\.com\/\w+\.\w+(\?\d+)?$/, block);
 		}
+		if(
+			!_src
+			&& document.getElementsByTagName("video").length
+			&& /^(https?:\/\/imgur\.com\/)(?:[^?&#]+\/)?(\w+)$/.test(loc)
+		)
+			redirect(RegExp.$1 + RegExp.$2 + "?tags");
 	break;
 	case "pic2profit.com":
 		var inp = document.getElementsByName("bigimg")[0];
