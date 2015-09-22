@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name           Direct Images
-// @version        0.5.33.2 - 2015-09-13
+// @version        0.5.34 - 2015-09-22
 // @description    Redirect from preview pages to images directly
 // @author         Infocatcher
 // @namespace      dev/null
@@ -71,6 +71,7 @@
 // @include        http://picsee.net/*.html
 // @include        http://img.bigstream.ru/viewer.php?file=*
 // @include        http://pix.toile-libre.org/?img=*
+// @include        http://fast-picture.ru/images/*.html
 
 // Get image by src:
 // @include        http://*imagepix.org/image/*.html
@@ -531,6 +532,9 @@ switch(host) {
 	break;
 	case "toile-libre.org":
 		_src = loc.replace(/\/\?img=/, "/upload/original/");
+	break;
+	case "fast-picture.ru":
+		_src = loc.replace(/\.html?$/, "");
 	break;
 
 	// Get image by src:
