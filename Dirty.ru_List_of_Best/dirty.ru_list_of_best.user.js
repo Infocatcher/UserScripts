@@ -5,6 +5,9 @@
 // @include     https://*.d3.ru/*
 // @include     https://d3.ru/*/*
 // @exclude     https://d3.ru/pages/*
+// @include     https://*.dirty.ru/*
+// @include     https://dirty.ru/*/*
+// @exclude     https://dirty.ru/pages/*
 // @include     about:blank?UserScripts/options/Dirty.ru_List_of_Best
 // @grant       GM_getValue
 // @grant       GM_setValue
