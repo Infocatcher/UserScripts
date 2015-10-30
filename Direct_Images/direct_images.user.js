@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name           Direct Images
-// @version        0.5.34 - 2015-09-22
+// @version        0.5.34.1 - 2015-10-30
 // @description    Redirect from preview pages to images directly
 // @author         Infocatcher
 // @namespace      dev/null
@@ -747,7 +747,7 @@ switch(host) {
 		var inp = $("direct_link");
 		if(inp && inp.value) //~ old?
 			_src = inp.value;
-		else if(!$("hashes") && /^https?:\/\/(rghost\.\w+\/\w+)\.view$/.test(loc))
+		else if(!$("hashes") && /^https?:\/\/rghost\.\w+(?:\/\w+)+\.view$/.test(loc))
 			_src = $i(/^https?:\/\/(?:\w+\.)*rghost\.\w+\/[^?&#]+\/image\.\w+$/);
 	break;
 	case "itmages.ru":
