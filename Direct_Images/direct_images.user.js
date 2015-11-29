@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name           Direct Images
-// @version        0.5.35 - 2015-11-03
+// @version        0.5.35.1 - 2015-11-29
 // @description    Redirect from preview pages to images directly
 // @author         Infocatcher
 // @namespace      dev/null
@@ -925,6 +925,7 @@ switch(host) {
 			break;
 		}
 		_iid = "image";
+		_clearDoc = true;
 	break;
 	case "joxi.ru":
 		var links = $c("js-tile-link-zoom");
