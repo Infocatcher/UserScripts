@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name           Direct Images
-// @version        0.5.35.1 - 2015-11-29
+// @version        0.5.36 - 2015-12-01
 // @description    Redirect from preview pages to images directly
 // @author         Infocatcher
 // @namespace      dev/null
@@ -109,6 +109,7 @@
 // @include        http://toroff.net/?v=*
 // @include        http://clip2net.com/s/*
 // @include        http://screencast.com/*/*
+// @include        http://img.lastusja.ru/*
 
 // Other:
 // @include        http://img*.imageshack.us/*
@@ -627,6 +628,9 @@ switch(host) {
 	break;
 	case "screencast.com":
 		_src = $i(/^https?:\/\/content\.screencast\.com\/[^?&#]+\.\w+$/);
+	break;
+	case "lastusja.ru":
+		_src = $i(/^https?:\/\/(?:\w+\.)*lastusja\.ru\/images\/[^?&#]+\.\w+$/);
 	break;
 
 	// Other:
