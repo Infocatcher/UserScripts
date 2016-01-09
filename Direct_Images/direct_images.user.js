@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name           Direct Images
-// @version        0.5.36 - 2015-12-01
+// @version        0.5.37 - 2016-01-09
 // @description    Redirect from preview pages to images directly
 // @author         Infocatcher
 // @namespace      dev/null
@@ -72,6 +72,7 @@
 // @include        http://img.bigstream.ru/viewer.php?file=*
 // @include        http://pix.toile-libre.org/?img=*
 // @include        http://fast-picture.ru/images/*.html
+// @include        http://pasteboard.co/*
 
 // Get image by src:
 // @include        http://*imagepix.org/image/*.html
@@ -537,6 +538,9 @@ switch(host) {
 	break;
 	case "fast-picture.ru":
 		_src = loc.replace(/\.html?$/, "");
+	break;
+	case "pasteboard.co":
+		_src = loc.replace("http://pasteboard.co/", "https://cdn.pbrd.co/images/");
 	break;
 
 	// Get image by src:
