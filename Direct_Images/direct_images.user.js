@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name           Direct Images
-// @version        0.5.37 - 2016-01-09
+// @version        0.5.37.1 - 2016-01-11
 // @description    Redirect from preview pages to images directly
 // @author         Infocatcher
 // @namespace      dev/null
@@ -827,9 +827,14 @@ switch(host) {
 		if(a)
 			_src = a.href;
 		else {
-			var block = $("image") || $c("image textbox")[0];
-			if(block)
-				_src = $i(/^https?:\/\/(?:\w+\.)*imgur\.com\/\w+\.\w+(\?\d+)?$/, block);
+			var block = $("image")
+				|| $c("image textbox")[0]
+				|| $c("share-links")[0]
+				|| $c("post-image")[0];
+			if(block) {
+				var re = /^https?:\/\/(?:\w+\.)*imgur\.com\/\w+\.\w+(\?\d+)?$/;
+				_src = $inp(re, block) || $i(re, block);
+			}
 		}
 		if(
 			!_src
