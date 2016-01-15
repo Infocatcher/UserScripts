@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name           Direct Images
-// @version        0.5.37.1 - 2016-01-11
+// @version        0.5.37.2 - 2016-01-15
 // @description    Redirect from preview pages to images directly
 // @author         Infocatcher
 // @namespace      dev/null
@@ -145,11 +145,11 @@
 // @include        http://img*.binimage.org/*
 // @include        http://forlazypeople.com/?v=*
 // @include        http://upit.biz/?v=*
-// @include        http://imgur.com/*
-// @exclude        http://imgur.com/
-// @exclude        http://imgur.com/a/*
-// @exclude        http://imgur.com/gallery/*
-// @exclude        http://imgur.com/user/*
+// @match          *://imgur.com/*
+// @exclude        *://imgur.com/
+// @exclude        *://imgur.com/a/*
+// @exclude        *://imgur.com/gallery/*
+// @exclude        *://imgur.com/user/*
 // @include        http://*pic2profit.com/*/
 // @include        http://*.goodfon.ru/download*
 // @include        http://*.goodfon.su/download*
