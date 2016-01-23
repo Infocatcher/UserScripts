@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name           Direct Images
-// @version        0.5.37.2 - 2016-01-15
+// @version        0.5.38 - 2016-01-23
 // @description    Redirect from preview pages to images directly
 // @author         Infocatcher
 // @namespace      dev/null
@@ -172,6 +172,7 @@
 // @include        http://fotkidepo.ru/?id=photo:*
 // @include        http://lostpic.net/?*
 // @include        http://pic.lg.ua/*
+// @include        https://cardse.net/image/*
 // ==/UserScript==
 
 (function di(event) {
@@ -969,6 +970,9 @@ switch(host) {
 	break;
 	case "lg.ua":
 		_src = $a(/^https?:\/\/pic\.lg\.ua\/[^?&#]+\.\w+$/);
+	break;
+	case "cardse.net":
+		_src = $inp(/^https?:\/\/cardse\.net\/[^?&#]+\.\w+$/);
 }
 if(_iid)
 	_img = $(_iid);
