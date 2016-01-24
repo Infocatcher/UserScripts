@@ -128,7 +128,6 @@
 // @include        http://fotki.yandex.ru/users/*/view/*
 // @include        http://southwc.ru/*.htm
 // @include        http://imglink.ru/show-image.php?*
-// @include        http://*youpic.ru/view.php?*
 // @include        http://www.pict.com/view/*
 // @include        http://imageban.ru/show/*
 // @include        http://habreffect.ru/*
@@ -720,16 +719,6 @@ switch(host) {
 		for(var i = 0, len = links.length; i < len; ++i) {
 			var a = links[i];
 			if(a.title == "Нажмите на изображении для просмотра в полную величину") {
-				_src = a.href;
-				break;
-			}
-		}
-	break;
-	case "youpic.ru":
-		var links = $t("a");
-		for(var i = 0, len = links.length; i < len; ++i) {
-			var a = links[i];
-			if(a.title == "Увеличить до оригинального размера") {
 				_src = a.href;
 				break;
 			}
