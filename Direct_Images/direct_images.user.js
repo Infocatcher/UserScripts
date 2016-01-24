@@ -150,7 +150,6 @@
 // @exclude        *://imgur.com/a/*
 // @exclude        *://imgur.com/gallery/*
 // @exclude        *://imgur.com/user/*
-// @include        http://*pic2profit.com/*/
 // @include        http://*.goodfon.ru/download*
 // @include        http://*.goodfon.su/download*
 // @include        http://*.badfon.ru/download*
@@ -843,11 +842,6 @@ switch(host) {
 			&& /^(https?:\/\/imgur\.com\/)(?:[^?&#]+\/)?(\w+)$/.test(loc)
 		)
 			redirect(RegExp.$1 + RegExp.$2 + "?tags");
-	break;
-	case "pic2profit.com":
-		var inp = document.getElementsByName("bigimg")[0];
-		if(inp)
-			_src = inp.value;
 	break;
 	case "goodfon.ru":
 	case "goodfon.su":
