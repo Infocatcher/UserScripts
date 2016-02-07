@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name           Direct Images
-// @version        0.5.38 - 2016-01-23
+// @version        0.5.39 - 2016-02-07
 // @description    Redirect from preview pages to images directly
 // @author         Infocatcher
 // @namespace      dev/null
@@ -36,7 +36,6 @@
 // @include        http://*postimg.com/image/*
 // @include        http://www.bild.me/bild.php?file=*
 // @include        http://www.pictureshack.ru/view_*
-// @include        http://gyazo.com/*
 // @include        http://pixs.ru/showimage/*
 // @include        http://minus.com/*
 // @include        http://*overpic.net/viewer.php?file=*
@@ -111,6 +110,7 @@
 // @include        http://clip2net.com/s/*
 // @include        http://screencast.com/*/*
 // @include        http://img.lastusja.ru/*
+// @match          *://gyazo.com/*
 
 // Other:
 // @include        http://img*.imageshack.us/*
@@ -467,7 +467,6 @@ switch(host) {
 	case "postimg.com":      _iid = "image";         break;
 	case "bild.me":          _iid = "Bild";          break;
 	case "pictureshack.ru":  _iid = "image";         break;
-	case "gyazo.com":        _iid = "gyazo_img";     break;
 	case "pixs.ru":          _iid = "imgg";          break;
 	case "minus.com":        _iid = "current_image"; break;
 	case "overpic.net":      _iid = "main_img";      break;
@@ -634,6 +633,9 @@ switch(host) {
 	break;
 	case "lastusja.ru":
 		_src = $i(/^https?:\/\/(?:\w+\.)*lastusja\.ru\/images\/[^?&#]+\.\w+$/);
+	break;
+	case "gyazo.com":
+		_src = $i(/^https?:\/\/(?:\w+\.)*gyazo\.com\/[\da-f]{32,}\.\w+$/);
 	break;
 
 	// Other:
