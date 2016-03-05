@@ -515,7 +515,9 @@ switch(host) {
 		_src = loc.replace(/^(https?:\/\/).*?\?id=/, "$1");
 	break;
 	case "jpegshare.net":
-		_src = loc.replace(/jpegshare\.net\//, "$&images/").replace(/\.html$/, "");
+		_src = loc
+			.replace(/jpegshare\.net\//, "$&images/")
+			.replace(/\.html$/, "");
 	break;
 	case "imagelike.org":
 		_src = loc.replace("/?v=", "/images/");
