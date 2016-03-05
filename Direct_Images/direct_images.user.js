@@ -73,6 +73,7 @@
 // @include        http://fast-picture.ru/images/*.html
 // @include        http://pasteboard.co/*
 // @include        http://img-host.org.ua/?v=*
+// @include        http://images.gameru.net/image/*.html
 
 // Get image by src:
 // @include        http://*imagepix.org/image/*.html
@@ -544,6 +545,11 @@ switch(host) {
 	break;
 	case "img-host.org.ua":
 		_src = loc.replace("/?v=", "/images/");
+	break;
+	case "gameru.net":
+		_src = loc
+			.replace("/image/", "/image/direct/")
+			.replace(/\.html$/, "");
 	break;
 
 	// Get image by src:
