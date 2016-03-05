@@ -212,10 +212,11 @@ if(
 	return;
 }
 
-var host = location.hostname
-	.split(".")
-	.slice(-2)
-	.join("."); // a.example.com => example.com
+var host = (function() { // a.example.com => example.com
+	var tld = "msk.ru"; // Only currently used TLD, for better performance
+	var tldRe = new RegExp("[^.]+\\.(?:" + tld.replace(/\./g, "\\.") + "|[^.]+)$");
+	return location.hostname.match(tldRe)[0];
+})();
 var _iid, _img, _src, _clearDoc;
 function $(id) {
 	return document.getElementById(id);
@@ -505,7 +506,7 @@ switch(host) {
 	case "imget.ru":
 		_src = loc.replace(/\/show\/\?img=/, "");
 	break;
-	case "msk.ru":
+	case "fastpic.msk.ru":
 		_src = loc.replace(/\?v=/, "images/");
 	break;
 	case "youpic.su":
