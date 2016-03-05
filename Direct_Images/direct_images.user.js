@@ -498,17 +498,17 @@ switch(host) {
 	case "foto-screen.org":
 	case "foto-boom.org":
 	case "pixmaster.net":
-		_src = loc.replace(/viewer\.php\?file=/, "images/");
+		_src = loc.replace("/viewer.php?file=", "/images/");
 	break;
 	case "itrash.ru":
 	case "sendpic.ru":
 		_src = loc.replace(/\.html?$/, "");
 	break;
 	case "imget.ru":
-		_src = loc.replace(/\/show\/\?img=/, "");
+		_src = loc.replace("/show/?img=", "");
 	break;
 	case "fastpic.msk.ru":
-		_src = loc.replace(/\?v=/, "images/");
+		_src = loc.replace("/?v=", "/images/");
 	break;
 	case "youpic.su":
 		_src = loc.replace(/^(https?:\/\/).*?\?id=/, "$1");
@@ -517,13 +517,13 @@ switch(host) {
 		_src = loc.replace(/jpegshare\.net\//, "$&images/").replace(/\.html$/, "");
 	break;
 	case "imagelike.org":
-		_src = loc.replace(/\/\?v=/, "/images/");
+		_src = loc.replace("/?v=", "/images/");
 	break;
 	case "rupix.org":
-		_src = loc.replace(/\/viewer\.php\?file=/, "/images/");
+		_src = loc.replace("/viewer.php?file=", "/images/");
 	break;
 	case "all-poster.ru":
-		_src = loc.replace(/\/\?v=/, "/images/");
+		_src = loc.replace("/?v=", "/images/");
 	break;
 	case "picsee.net":
 		_src = loc
@@ -531,10 +531,10 @@ switch(host) {
 			.replace(/\.html$/, "");
 	break;
 	case "bigstream.ru":
-		_src = loc.replace(/\/viewer\.php\?file=/, "/i/");
+		_src = loc.replace("/viewer.php?file=", "/i/");
 	break;
 	case "toile-libre.org":
-		_src = loc.replace(/\/\?img=/, "/upload/original/");
+		_src = loc.replace("/?img=", "/upload/original/");
 	break;
 	case "fast-picture.ru":
 		_src = loc.replace(/\.html?$/, "");
