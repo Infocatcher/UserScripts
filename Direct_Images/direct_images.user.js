@@ -72,6 +72,7 @@
 // @include        http://pix.toile-libre.org/?img=*
 // @include        http://fast-picture.ru/images/*.html
 // @include        http://pasteboard.co/*
+// @include        http://img-host.org.ua/?v=*
 
 // Get image by src:
 // @include        http://*imagepix.org/image/*.html
@@ -213,7 +214,7 @@ if(
 }
 
 var host = (function() { // a.example.com => example.com
-	var tld = "msk.ru"; // Only currently used TLD, for better performance
+	var tld = "msk.ru|org.ua"; // Only currently used TLD, for better performance
 	var tldRe = new RegExp("[^.]+\\.(?:" + tld.replace(/\./g, "\\.") + "|[^.]+)$");
 	return location.hostname.match(tldRe)[0];
 })();
@@ -540,6 +541,9 @@ switch(host) {
 	break;
 	case "pasteboard.co":
 		_src = loc.replace("http://pasteboard.co/", "https://cdn.pbrd.co/images/");
+	break;
+	case "img-host.org.ua":
+		_src = loc.replace("/?v=", "/images/");
 	break;
 
 	// Get image by src:
