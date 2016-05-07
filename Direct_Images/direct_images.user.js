@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name           Direct Images
-// @version        0.6.0 - 2016-03-05
+// @version        0.6.0.1 - 2016-05-07
 // @description    Redirect from preview pages to images directly
 // @author         Infocatcher
 // @namespace      dev/null
@@ -135,6 +135,7 @@
 // @include        http://habreffect.ru/*
 // @include        http://rghost.ru/*
 // @include        http://rghost.net/*
+// @include        http://rgho.st/*
 // @include        http://itmages.ru/image/*
 // @include        https://itmages.ru/image/*
 // @include        http://itmages.com/image/*
@@ -757,11 +758,12 @@ switch(host) {
 	break;
 	case "rghost.ru":
 	case "rghost.net":
+	case "rgho.st":
 		var inp = $("direct_link");
 		if(inp && inp.value) //~ old?
 			_src = inp.value;
-		else if(!$("hashes") && /^https?:\/\/rghost\.\w+(?:\/\w+)+\.view$/.test(loc))
-			_src = $i(/^https?:\/\/(?:\w+\.)*rghost\.\w+\/[^?&#]+\/image\.\w+$/);
+		else if(!$("hashes") && /^https?:\/\/rgho(?:\.st|st\.\w+)(?:\/\w+)+\.view$/.test(loc))
+			_src = $i(/^https?:\/\/(?:\w+\.)*rgho(?:\.st|st\.\w+)\/[^?&#]+\/image\.\w+$/);
 	break;
 	case "itmages.ru":
 	case "itmages.com":
