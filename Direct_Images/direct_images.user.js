@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name           Direct Images
-// @version        0.6.0.1 - 2016-05-07
+// @version        0.6.1 - 2016-06-05
 // @description    Redirect from preview pages to images directly
 // @author         Infocatcher
 // @namespace      dev/null
@@ -113,6 +113,7 @@
 // @include        http://screencast.com/*/*
 // @include        http://img.lastusja.ru/*
 // @match          *://gyazo.com/*
+// @include        http://imgchilibum.ru/*.php?id=*
 
 // Other:
 // @include        http://img*.imageshack.us/*
@@ -650,6 +651,9 @@ switch(host) {
 	break;
 	case "gyazo.com":
 		_src = $i(/^https?:\/\/(?:\w+\.)*gyazo\.com\/[\da-f]{32,}\.\w+$/);
+	break;
+	case "imgchilibum.ru":
+		_src = $i(/^https?:\/\/imgchilibum\.ru\/[^?&#]+\/[\da-f]{32,}\.\w+$/);
 	break;
 
 	// Other:
