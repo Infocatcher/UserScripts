@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name           Direct Images
-// @version        0.6.1 - 2016-06-05
+// @version        0.6.2 - 2016-06-06
 // @description    Redirect from preview pages to images directly
 // @author         Infocatcher
 // @namespace      dev/null
@@ -175,6 +175,7 @@
 // @include        http://lostpic.net/?*
 // @include        http://pic.lg.ua/*
 // @include        https://cardse.net/image/*
+// @include        http://piccash.net/*/
 // ==/UserScript==
 
 (function di(event) {
@@ -977,6 +978,20 @@ switch(host) {
 	break;
 	case "cardse.net":
 		_src = $inp(/^https?:\/\/cardse\.net\/[^?&#]+\.\w+$/);
+	break;
+	case "piccash.net":
+		_src = $i(/^https?:\/\/piccash\.net\/[^?&#]+\/img_full\/\w+\.\w+$/);
+		if(_src)
+			break;
+		// Let's try URL-based redirect from thumbnail to original
+		// http://piccash.net/allimage/*/img_thumb/*-thumb.jpeg
+		// http://piccash.net/allimage/*/img_full/*.jpeg
+		var th = $i(/^https?:\/\/piccash\.net\/[^?&#]+\/img_thumb\/\w+-thumb\.\w+$/);
+		if(th) {
+			_src = th
+				.replace("/img_thumb/", "/img_full/")
+				.replace("-thumb.", ".");
+		}
 }
 if(_iid)
 	_img = $(_iid);
