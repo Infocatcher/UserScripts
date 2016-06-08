@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name           Direct Images
-// @version        0.6.2 - 2016-06-06
+// @version        0.6.3 - 2016-06-08
 // @description    Redirect from preview pages to images directly
 // @author         Infocatcher
 // @namespace      dev/null
@@ -176,6 +176,7 @@
 // @include        http://pic.lg.ua/*
 // @include        https://cardse.net/image/*
 // @include        http://piccash.net/*/
+// @include        http://pic4you.ru/*/
 // ==/UserScript==
 
 (function di(event) {
@@ -990,6 +991,19 @@ switch(host) {
 		if(th) {
 			_src = th
 				.replace("/img_thumb/", "/img_full/")
+				.replace("-thumb.", ".");
+		}
+	break;
+	case "pic4you.ru":
+		_src = $i(/^https?:\/\/(?:\w+\.)?pic4you\.ru\/[^?&#]+\/\d+\.\w+$/);
+		if(_src)
+			break;
+		// Let's try URL-based redirect from thumbnail to original
+		// http://s4.pic4you.ru/*/NNN-thumb.jpeg
+		// http://s4.pic4you.ru/*/NNN.jpeg
+		var th = $i(/^https?:\/\/(?:\w+\.)?pic4you\.ru\/[^?&#]+\/\d+-thumb\.\w+$/);
+		if(th) {
+			_src = th
 				.replace("-thumb.", ".");
 		}
 }
