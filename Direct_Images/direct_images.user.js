@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name           Direct Images
-// @version        0.6.3 - 2016-06-08
+// @version        0.6.4 - 2016-06-20
 // @description    Redirect from preview pages to images directly
 // @author         Infocatcher
 // @namespace      dev/null
@@ -74,6 +74,7 @@
 // @include        http://pasteboard.co/*
 // @include        http://img-host.org.ua/?v=*
 // @include        http://images.gameru.net/image/*.html
+// @match          *://imgdepo.com/show/*
 
 // Get image by src:
 // @include        http://*imagepix.org/image/*.html
@@ -556,6 +557,9 @@ switch(host) {
 		_src = loc
 			.replace("/image/", "/image/direct/")
 			.replace(/\.html$/, "");
+	break;
+	case "imgdepo.com":
+		_src = loc.replace("/show/", "/id/");
 	break;
 
 	// Get image by src:
