@@ -179,6 +179,7 @@
 // @include        http://piccash.net/*/
 // @include        http://pic4you.ru/*/
 // @include        http://image2you.ru/*/
+// @include        http://picforall.ru/*/
 // ==/UserScript==
 
 (function di(event) {
@@ -1018,6 +1019,19 @@ switch(host) {
 			btn.click();
 		else
 			_src = $i(/^https?:\/\/image2you\.ru\/allimages\/[^?&#]+\.\w+$/);
+	break;
+	case "picforall.ru":
+		_src = $i(/^https?:\/\/picforall\.ru\/allimage\/[^?&#]+\/\d+\.\w+$/);
+		if(_src)
+			break;
+		// Let's try URL-based redirect from thumbnail to original
+		// http://picforall.ru/allimage/*/NNN-thumb.jpeg
+		// http://picforall.ru/allimage/*/NNN.jpeg
+		var th = $i(/^https?:\/\/picforall\.ru\/allimage\/[^?&#]+\/\d+-thumb\.\w+$/);
+		if(th) {
+			_src = th
+				.replace("-thumb.", ".");
+		}
 }
 if(_iid)
 	_img = $(_iid);
