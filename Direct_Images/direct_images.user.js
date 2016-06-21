@@ -178,6 +178,7 @@
 // @include        https://cardse.net/image/*
 // @include        http://piccash.net/*/
 // @include        http://pic4you.ru/*/
+// @include        http://image2you.ru/*/
 // ==/UserScript==
 
 (function di(event) {
@@ -1010,6 +1011,13 @@ switch(host) {
 			_src = th
 				.replace("-thumb.", ".");
 		}
+	break;
+	case "image2you.ru":
+		var btn = $("_confirm");
+		if(btn)
+			btn.click();
+		else
+			_src = $i(/^https?:\/\/image2you\.ru\/allimages\/[^?&#]+\.\w+$/);
 }
 if(_iid)
 	_img = $(_iid);
