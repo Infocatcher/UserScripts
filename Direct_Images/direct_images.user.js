@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name           Direct Images
-// @version        0.6.4 - 2016-06-20
+// @version        0.6.5 - 2016-06-22
 // @description    Redirect from preview pages to images directly
 // @author         Infocatcher
 // @namespace      dev/null
@@ -142,7 +142,7 @@
 // @include        https://itmages.ru/image/*
 // @include        http://itmages.com/image/*
 // @include        https://itmages.com/image/*
-// @include        http://*floomby.ru/content/*
+// @include        http://*floomby.ru/*/*
 // @include        http://www.kinopoisk.ru/picture/*/or/1/
 // @include        http://tenpic.ru/view.php?*
 // @include        http://imghost.in/pt-*.html
@@ -789,7 +789,7 @@ switch(host) {
 			_src = loc.replace(/\/$/, "") + "/full/";
 			break;
 		}
-		_src = $i(/^https?:\/\/\w+\.stratoserver\.net\/files\/share\/[^?&#]+\.\w+$/i);
+		_src = $i(/^https?:\/\/(?:\w+\.)*floomby\.\w+\/files\/share\/[^?&#]+\.\w+$/);
 	break;
 	case "kinopoisk.ru":
 		var links = $t("a");
