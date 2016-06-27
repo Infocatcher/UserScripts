@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name           Direct Images
-// @version        0.6.5 - 2016-06-22
+// @version        0.6.6 - 2016-06-27
 // @description    Redirect from preview pages to images directly
 // @author         Infocatcher
 // @namespace      dev/null
@@ -169,7 +169,7 @@
 // @include        http://*fotohost.by/show/*
 // @include        http://fastpic.ru/view/*.html*
 // @include        http://joxi.ru/*
-// @include        http://postimg.org/image/*
+// @match          *://postimg.org/image/*
 // @include        http://i-fotki.info/*.html
 // @include        http://4put.ru/*.php?*
 // @include        http://fotkidepo.ru/?id=photo:*
@@ -959,11 +959,13 @@ switch(host) {
 			_src = links[0].href;
 	break;
 	case "postimg.org":
-		var link = $a(/^https?:\/\/(?:\w+\.)?postimg\.org\/.*\/full\/$/);
-		if(link && link.href != loc)
-			redirect(link.href);
+		var img = $("main-image");
+		if(!img)
+			break;
+		if(img.hasAttribute("data-full"))
+			_src = location.protocol + img.getAttribute("data-full").replace(/^https?:/, "");
 		else
-			_src = $i(/^https?:\/\/(?:\w+\.)?postimg\.org\/\w{4,}\/[^?&#]+\.\w+$/);
+			_img = img;
 	break;
 	case "i-fotki.info":
 		if($inp(/^\[URL=[^\[\]]+\]\[IMG\](https?:\/\/(?:\w+\.)*ifotki\.info\/org\/[^?&#]+\.\w+)\[\/IMG\]\[\/URL\]$/i))
