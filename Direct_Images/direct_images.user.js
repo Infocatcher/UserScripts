@@ -1,6 +1,6 @@
-// ==UserScript==
+﻿// ==UserScript==
 // @name           Direct Images
-// @version        0.6.6 - 2016-06-27
+// @version        0.6.6.1 - 2016-07-01
 // @description    Redirect from preview pages to images directly
 // @author         Infocatcher
 // @namespace      dev/null
@@ -630,7 +630,7 @@ switch(host) {
 		else if(/^https?:\/\/([\w-]+\.)+\w+\/l?fp\//.test(loc)) {
 			_src = $ie(
 				/^https?:\/\/(\w+\.)*radikal\.ru\/[\w\/]+\.\w+$/,
-				/^https?:\/\/[^\/]+\/Content\/Images\//
+				/^https?:\/\/[^\/]+\/content\/images\//i
 			);
 		}
 		_clearDoc = true;
