@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name        Forum Code Highlighter
-// @version     0.1.4+ - 2013-08-09
+// @version     0.1.4.1 - 2016-07-02
 // @author      Infocatcher
 // @namespace   dev/null
 // @include     http://custombuttons.sourceforge.net/forum/viewtopic.php?*
@@ -377,14 +377,20 @@ function initBox(box) {
 		var a = document.createElement("a");
 		a.href = tc;
 
-		var icon;
+		var icon, maxSize;
 		if(/^data:image\//.test(tc))
 			icon = tc;
 		else if(
 			/^custombutton:\/\//.test(tc)
 			&& /%3Cimage%3E%3C%21%5BCDATA%5B(data%3A\S+)%5D%5D%3E%3C\/image%3E/.test(tc)
-		)
-			try { icon = decodeURIComponent(RegExp.$1); } catch(e) {}
+		) {
+			try {
+				icon = decodeURIComponent(RegExp.$1);
+				maxSize = "32px";
+			}
+			catch(e) {
+			}
+		}
 		if(icon) {
 			var img = document.createElement("img");
 			img.src = icon;
@@ -392,6 +398,8 @@ function initBox(box) {
 			var s = img.style;
 			s.marginRight = "4px";
 			s.verticalAlign = "middle";
+			if(maxSize)
+				s.maxWidth = s.maxHeight = maxSize;
 			a.appendChild(img);
 		}
 
