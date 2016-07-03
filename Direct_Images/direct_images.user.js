@@ -180,6 +180,7 @@
 // @include        http://pic4you.ru/*/
 // @include        http://image2you.ru/*/
 // @include        http://picforall.ru/*/
+// @match          *://cl.ly/*
 // ==/UserScript==
 
 (function di(event) {
@@ -1034,6 +1035,11 @@ switch(host) {
 			_src = th
 				.replace("-thumb.", ".");
 		}
+	break;
+	case "cl.ly":
+		var metaImg = document.querySelector && document.querySelector('meta[property="og:image"][content^="http"]');
+		if(metaImg)
+			_src = metaImg.getAttribute("content");
 }
 if(_iid)
 	_img = $(_iid);
