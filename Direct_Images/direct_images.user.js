@@ -1,6 +1,6 @@
 ﻿// ==UserScript==
 // @name           Direct Images
-// @version        0.6.6.1 - 2016-07-01
+// @version        0.6.7 - 2016-07-03
 // @description    Redirect from preview pages to images directly
 // @author         Infocatcher
 // @namespace      dev/null
@@ -1038,8 +1038,11 @@ switch(host) {
 	break;
 	case "cl.ly":
 		var metaImg = document.querySelector && document.querySelector('meta[property="og:image"][content^="http"]');
-		if(metaImg)
+		if(metaImg) {
 			_src = metaImg.getAttribute("content");
+			if(location.protocol == "https:" && /^http:\/+/i.test(_src))
+				_src = "https://s3.amazonaws.com/" + RegExp.rightContext;
+		}
 }
 if(_iid)
 	_img = $(_iid);
