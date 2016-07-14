@@ -174,6 +174,7 @@
 // @include        http://4put.ru/*.php?*
 // @include        http://fotkidepo.ru/?id=photo:*
 // @include        http://lostpic.net/?*
+// @include        http://lostpic.net/image/*
 // @include        http://pic.lg.ua/*
 // @include        https://cardse.net/image/*
 // @include        http://piccash.net/*/
@@ -981,7 +982,8 @@ switch(host) {
 			_src = link.href
 	break;
 	case "lostpic.net":
-		_src = $a(/^https?:\/\/(?:\w+\.)*lostpic\.net\/orig_images[^?&#]*\/[0-9a-f]{32,}\.\w+$/);
+		_src = $a(/^https?:\/\/(?:\w+\.)*lostpic\.net\/orig_images[^?&#]*\/[0-9a-f]{32,}\.\w+$/)
+			|| $i(/^https?:\/\/(?:\w+\.)*lostpic\.net\/[^?&#]*\/[0-9a-f]{32,}\.\w+$/);
 	break;
 	case "lg.ua":
 		_src = $a(/^https?:\/\/pic\.lg\.ua\/[^?&#]+\.\w+$/);
