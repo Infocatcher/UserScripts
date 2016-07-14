@@ -44,6 +44,7 @@
 // @include        http://uaimage.com/image/*
 // @include        http://vfl.ru/fotos/*.html*
 // @include        https://geekpics.net/view/*
+// @include        http://prnt.sc/*
 
 // URL-based redirect:
 // @include        http://smages.com/*.htm
@@ -487,6 +488,7 @@ switch(host) {
 	case "uaimage.com":      _iid = "im";            break;
 	case "vfl.ru":           _iid = "img_foto";      break;
 	case "geekpics.net":     _iid = "full_image";    break;
+	case "prnt.sc":          _iid = "screenshot-image"; break;
 
 	// URL-based redirect:
 	case "smages.com":
