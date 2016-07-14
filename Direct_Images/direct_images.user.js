@@ -183,6 +183,7 @@
 // @include        http://image2you.ru/*/
 // @include        http://picforall.ru/*/
 // @match          *://cl.ly/*
+// @include        http://*.riotpixels.com/games/*/screenshots/*/
 // ==/UserScript==
 
 (function di(event) {
@@ -1047,6 +1048,9 @@ switch(host) {
 			if(location.protocol == "https:" && /^http:\/+/i.test(_src))
 				_src = "https://s3.amazonaws.com/" + RegExp.rightContext;
 		}
+	break;
+	case "riotpixels.com":
+		_src = $a(/^https?:\/\/(?:\w+\.)?riotpixels\.\w+\/data\/[^?&#]+\.\w+$/);
 }
 if(_iid)
 	_img = $(_iid);
