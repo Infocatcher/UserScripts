@@ -1,6 +1,6 @@
 ﻿// ==UserScript==
 // @name           Direct Images
-// @version        0.6.7 - 2016-07-03
+// @version        0.6.8 - 2016-07-16
 // @description    Redirect from preview pages to images directly
 // @author         Infocatcher
 // @namespace      dev/null
@@ -986,7 +986,8 @@ switch(host) {
 	break;
 	case "lostpic.net":
 		_src = $a(/^https?:\/\/(?:\w+\.)*lostpic\.net\/orig_images[^?&#]*\/[0-9a-f]{32,}\.\w+$/)
-			|| $i(/^https?:\/\/(?:\w+\.)*lostpic\.net\/[^?&#]*\/[0-9a-f]{32,}\.\w+$/);
+			|| ($i(/^https?:\/\/(?:\w+\.)*lostpic\.net\/[^?&#]*\/[0-9a-f]{32,}(?:\.md)?\.\w+$/) || "")
+				.replace(/\.md(\.\w+)$/, "$1")
 	break;
 	case "lg.ua":
 		_src = $a(/^https?:\/\/pic\.lg\.ua\/[^?&#]+\.\w+$/);
