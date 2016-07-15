@@ -174,6 +174,7 @@
 // @include        http://i-fotki.info/*.html
 // @include        http://4put.ru/*.php?*
 // @include        http://fotkidepo.ru/?id=photo:*
+// @include        http://ixbt.photo/?id=photo:*
 // @include        http://lostpic.net/?*
 // @include        http://lostpic.net/image/*
 // @include        http://pic.lg.ua/*
@@ -980,9 +981,8 @@ switch(host) {
 		_src = $inp(/^https?:\/\/(?:\w+\.)*4put\.ru\/pictures\/max\/[^?&#]+\.\w+$/);
 	break;
 	case "fotkidepo.ru":
-		var link = $a(/^https?:\/\/(?:\w+\.)*fotkidepo\.ru\/photo\/[^?&#]+\.\w+$/);
-		if(link)
-			_src = link.href
+	case "ixbt.photo":
+		_src = $a(/^https?:\/\/(?:\w+\.)*(?:fotkidepo\.ru|ixbt\.photo)\/photo\/[^?&#]+\.\w+$/);
 	break;
 	case "lostpic.net":
 		_src = $a(/^https?:\/\/(?:\w+\.)*lostpic\.net\/orig_images[^?&#]*\/[0-9a-f]{32,}\.\w+$/)
