@@ -461,38 +461,38 @@ function clearDoc(src) {
 hostLoop:
 switch(host) {
 	// Get image by id:
-	case "imagevenue.com":   _iid = "thepic";        break;
-	case "ipicture.ru":      _iid = "newImg";        break;
-	case "picamatic.com":    _iid = "pic";           break;
-	case "download.su":      _iid = "thepic";        break;
-	case "imageup.ru":       _iid = "image";         break;
-	case "pixshock.net":     _iid = "mi";            break;
-	case "image-share.com":  _iid = "image";         break;
-	case "10pix.ru":         _iid = "image";         break;
-	case "funkyimg.com":     _iid = "image";         break;
-	case "xmages.net":       _iid = "img_obj";       break;
-	case "opicture.ru":      _iid = "newImg";        break;
-	case "picamigo.com":     _iid = "img_obj";       break;
-	case "directupload.net": _iid = "Bild";          break;
-	case "pikucha.ru":       _iid = "image";         break;
-	case "keep4u.ru":        _iid = "foto";          break;
-	case "imagebanana.com":  _iid = "image";         break;
-	case "yfrog.com":        _iid = "main_image";    break;
-	case "radikal.ua":       _iid = "image";         break;
-	case "upyourpic.org":    _iid = "mainimage";     break;
-	case "postimg.com":      _iid = "image";         break;
-	case "bild.me":          _iid = "Bild";          break;
-	case "pictureshack.ru":  _iid = "image";         break;
-	case "pixs.ru":          _iid = "imgg";          break;
-	case "minus.com":        _iid = "current_image"; break;
-	case "overpic.net":      _iid = "main_img";      break;
-	case "pictube.ru":       _iid = "full_image";    break;
-	case "owely.com":        _iid = "issueImg";      break;
-	case "uaimage.com":      _iid = "im";            break;
-	case "vfl.ru":           _iid = "img_foto";      break;
-	case "geekpics.net":     _iid = "full_image";    break;
+	case "imagevenue.com":   _iid = "thepic";           break;
+	case "ipicture.ru":      _iid = "newImg";           break;
+	case "picamatic.com":    _iid = "pic";              break;
+	case "download.su":      _iid = "thepic";           break;
+	case "imageup.ru":       _iid = "image";            break;
+	case "pixshock.net":     _iid = "mi";               break;
+	case "image-share.com":  _iid = "image";            break;
+	case "10pix.ru":         _iid = "image";            break;
+	case "funkyimg.com":     _iid = "image";            break;
+	case "xmages.net":       _iid = "img_obj";          break;
+	case "opicture.ru":      _iid = "newImg";           break;
+	case "picamigo.com":     _iid = "img_obj";          break;
+	case "directupload.net": _iid = "Bild";             break;
+	case "pikucha.ru":       _iid = "image";            break;
+	case "keep4u.ru":        _iid = "foto";             break;
+	case "imagebanana.com":  _iid = "image";            break;
+	case "yfrog.com":        _iid = "main_image";       break;
+	case "radikal.ua":       _iid = "image";            break;
+	case "upyourpic.org":    _iid = "mainimage";        break;
+	case "postimg.com":      _iid = "image";            break;
+	case "bild.me":          _iid = "Bild";             break;
+	case "pictureshack.ru":  _iid = "image";            break;
+	case "pixs.ru":          _iid = "imgg";             break;
+	case "minus.com":        _iid = "current_image";    break;
+	case "overpic.net":      _iid = "main_img";         break;
+	case "pictube.ru":       _iid = "full_image";       break;
+	case "owely.com":        _iid = "issueImg";         break;
+	case "uaimage.com":      _iid = "im";               break;
+	case "vfl.ru":           _iid = "img_foto";         break;
+	case "geekpics.net":     _iid = "full_image";       break;
 	case "prnt.sc":          _iid = "screenshot-image"; break;
-	case "grab.by":          _iid = "thegrab";       break;
+	case "grab.by":          _iid = "thegrab";          break;
 
 	// URL-based redirect:
 	case "smages.com":
