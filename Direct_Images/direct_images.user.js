@@ -77,6 +77,7 @@
 // @include        http://img-host.org.ua/?v=*
 // @include        http://images.gameru.net/image/*.html
 // @match          *://imgdepo.com/show/*
+// @include        http://stick.kz/?v=*
 
 // Get image by src:
 // @include        http://*imagepix.org/image/*.html
@@ -570,6 +571,11 @@ switch(host) {
 	break;
 	case "imgdepo.com":
 		_src = loc.replace("/show/", "/id/");
+	break;
+	case "stick.kz":
+		// stick.kz/?v=2016-07-19_foo.jpg
+		// stick.kz/img/2016-07/19/foo.jpg
+		_src = loc.replace(/\/\?v=(\d{4}-\d\d)-(\d\d)_/, "/img/$1/$2/");
 	break;
 
 	// Get image by src:
