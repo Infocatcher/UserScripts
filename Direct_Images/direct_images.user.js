@@ -119,6 +119,7 @@
 // @include        http://img.lastusja.ru/*
 // @match          *://gyazo.com/*
 // @include        http://imgchilibum.ru/*.php?id=*
+// @include        http://imglink.ru/show-image.php?id=*
 
 // Other:
 // @include        http://img*.imageshack.us/*
@@ -135,7 +136,6 @@
 // @include        http://*fotosik.pl/pokaz_obrazek/*.html
 // @include        http://fotki.yandex.ru/users/*/view/*
 // @include        http://southwc.ru/*.htm
-// @include        http://imglink.ru/show-image.php?*
 // @include        http://www.pict.com/view/*
 // @include        http://imageban.ru/show/*
 // @include        http://habreffect.ru/*
@@ -681,6 +681,9 @@ switch(host) {
 	case "imgchilibum.ru":
 		_src = $i(/^https?:\/\/imgchilibum\.ru\/[^?&#]+\/[\da-f]{32,}\.\w+$/);
 	break;
+	case "imglink.ru":
+		_src = $i(/^https?:\/\/imglink\.ru\/pictures\/[^?&#]+\/[\da-f]{32,}\.\w+$/);
+	break;
 
 	// Other:
 	case "imageshack.us":
@@ -755,16 +758,6 @@ switch(host) {
 		for(var i = 0, len = links.length; i < len; ++i) {
 			var a = links[i];
 			if(a.getAttribute("rel") == "lightbox[roadtrip]") {
-				_src = a.href;
-				break;
-			}
-		}
-	break;
-	case "imglink.ru":
-		var links = $t("a");
-		for(var i = 0, len = links.length; i < len; ++i) {
-			var a = links[i];
-			if(a.title == "Нажмите на изображении для просмотра в полную величину") {
 				_src = a.href;
 				break;
 			}
