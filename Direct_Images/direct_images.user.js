@@ -78,6 +78,7 @@
 // @include        http://images.gameru.net/image/*.html
 // @match          *://imgdepo.com/show/*
 // @include        http://stick.kz/?v=*
+// @include        http://imagestun.com/hosting/?v=*
 
 // Get image by src:
 // @include        http://*imagepix.org/image/*.html
@@ -576,6 +577,9 @@ switch(host) {
 		// stick.kz/?v=2016-07-19_foo.jpg
 		// stick.kz/img/2016-07/19/foo.jpg
 		_src = loc.replace(/\/\?v=(\d{4}-\d\d)-(\d\d)_/, "/img/$1/$2/");
+	break;
+	case "imagestun.com":
+		_src = loc.replace("/?v=", "/kartinki/");
 	break;
 
 	// Get image by src:
