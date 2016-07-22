@@ -120,6 +120,7 @@
 // @match          *://gyazo.com/*
 // @include        http://imgchilibum.ru/*.php?id=*
 // @include        http://imglink.ru/show-image.php?id=*
+// @include        http://www.fotolink.su/v.php?id=*
 
 // Other:
 // @include        http://img*.imageshack.us/*
@@ -683,6 +684,10 @@ switch(host) {
 	break;
 	case "imglink.ru":
 		_src = $i(/^https?:\/\/imglink\.ru\/pictures\/[^?&#]+\/[\da-f]{32,}\.\w+$/);
+	break;
+	case "fotolink.su":
+		_src = $i(/^https?:\/\/(?:\w+\.)?fotolink\.su\/pic_b\/[^?&#]*[\da-f]{32,}\.\w+$/);
+		_clearDoc = true;
 	break;
 
 	// Other:
