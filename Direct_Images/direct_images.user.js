@@ -1070,8 +1070,12 @@ if(_img && _img.src && _img.offsetWidth && _img.offsetHeight) //~ todo: fails so
 if(_src && _src != loc) {
 	GM_log("Redirect (" + (event ? event.type : "delay") + "):\n" + loc + "\n=> " + _src);
 	if(_clearDoc) {
-		if(allowBack && "history" in window && "pushState" in history)
-			history.pushState("", document.title, loc);
+		if("history" in window && "pushState" in history) try {
+			history[allowBack ? "pushState" : "replaceState"]("", document.title, _src);
+		}
+		catch(e) { // SecurityError: The operation is insecure
+			setTimeout(function() { throw e; }, 0);
+		}
 		clearDoc(_src);
 	}
 	else {
