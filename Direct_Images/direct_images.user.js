@@ -1075,6 +1075,7 @@ if(_src && _src != loc) {
 		}
 		catch(e) { // SecurityError: The operation is insecure
 			setTimeout(function() { throw e; }, 0);
+			allowBack && history.pushState("", document.title, loc);
 		}
 		clearDoc(_src);
 	}
