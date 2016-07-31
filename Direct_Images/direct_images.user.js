@@ -1,6 +1,6 @@
 ﻿// ==UserScript==
 // @name           Direct Images
-// @version        0.6.10 - 2016-07-24
+// @version        0.6.10.1 - 2016-07-31
 // @description    Redirect from preview pages to images directly
 // @author         Infocatcher
 // @namespace      dev/null
@@ -44,7 +44,6 @@
 // @include        http://uaimage.com/image/*
 // @include        http://vfl.ru/fotos/*.html*
 // @include        https://geekpics.net/view/*
-// @include        http://prnt.sc/*
 // @include        http://grab.by/*
 
 // URL-based redirect:
@@ -189,6 +188,7 @@
 // @include        http://picforall.ru/*/
 // @match          *://cl.ly/*
 // @include        http://*.riotpixels.com/games/*/screenshots/*/
+// @include        http://prnt.sc/*
 // ==/UserScript==
 
 (function di(event) {
@@ -494,7 +494,6 @@ switch(host) {
 	case "uaimage.com":      _iid = "im";               break;
 	case "vfl.ru":           _iid = "img_foto";         break;
 	case "geekpics.net":     _iid = "full_image";       break;
-	case "prnt.sc":          _iid = "screenshot-image"; break;
 	case "grab.by":          _iid = "thegrab";          break;
 
 	// URL-based redirect:
@@ -1062,6 +1061,11 @@ switch(host) {
 	break;
 	case "riotpixels.com":
 		_src = $a(/^https?:\/\/(?:\w+\.)?riotpixels\.\w+\/data\/[^?&#]+\.\w+$/);
+	break;
+	case "prnt.sc":
+		var metaImg = document.querySelector && document.querySelector('meta[property="og:image"][content^="http"]');
+		if(metaImg)
+			_src = metaImg.getAttribute("content");
 }
 if(_iid)
 	_img = $(_iid);
