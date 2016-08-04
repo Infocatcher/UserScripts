@@ -328,7 +328,7 @@ function clearDoc(src) {
 
 	var html = document.createElementNS(ns, "html");
 
-	var head = document.createElementNS(ns, "body");
+	var head = document.createElementNS(ns, "head");
 	var title = document.createElementNS(ns, "title");
 	var imgName = src.match(/[^\/]*$/)[0];
 	try {
