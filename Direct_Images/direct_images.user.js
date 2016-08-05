@@ -391,6 +391,7 @@ function clearDoc(src) {
 				var persent = Math.min(ww/iw, wh/ih);
 				img.style.width = iw*persent + "px";
 				img.style.height = ih*persent + "px";
+				img.style.marginTop = null;
 				persent = Math.floor(persent*100); // Inherit Firefox built-in resizer behavior...
 				document.title = imgName + " (" + size + ", " + persent + "%)" + " - Direct Images";
 			}
@@ -403,6 +404,8 @@ function clearDoc(src) {
 		function origSize() {
 			img.style.width = img.style.height = null;
 			document.title = imgName + " (" + size + ")" + " - Direct Images";
+			if(ih > window.innerHeight) // Override styles from resource://gre/res/TopLevelImageDocument.css
+				img.style.marginTop = 0;
 		}
 		function setCursor(canFit) {
 			if(canFit == undefined)
