@@ -325,11 +325,14 @@ function redirect(url) {
 }
 function clearDoc(src) {
 	var ns = "http://www.w3.org/1999/xhtml";
+	function _e(nn) {
+		return document.createElementNS(ns, nn);
+	}
 
-	var html = document.createElementNS(ns, "html");
+	var html = _e("html");
 
-	var head = document.createElementNS(ns, "head");
-	var title = document.createElementNS(ns, "title");
+	var head = _e("head");
+	var title = _e("title");
 	var imgName = src.match(/[^\/]*$/)[0];
 	try {
 		imgName = decodeURIComponent(imgName);
@@ -338,11 +341,11 @@ function clearDoc(src) {
 	}
 	title.appendChild(document.createTextNode(imgName + " - Direct Images"));
 	head.appendChild(title);
-	var link = document.createElementNS(ns, "link");
+	var link = _e("link");
 	link.rel = "shortcut icon";
 	link.href = src;
 	head.appendChild(link);
-	var style = document.createElementNS(ns, "style");
+	var style = _e("style");
 	style.type = "text/css";
 	style.appendChild(document.createTextNode("\
 		html, html > body {\n\
@@ -354,12 +357,12 @@ function clearDoc(src) {
 	));
 	head.appendChild(style);
 
-	var meta = document.createElementNS(ns, "meta");
+	var meta = _e("meta");
 	meta.name = "viewport";
 	meta.content = "width=device-width; height=device-height;";
 	head.appendChild(meta);
 
-	link = document.createElementNS(ns, "link");
+	link = _e("link");
 	link.rel = "stylesheet";
 	link.href = "resource://gre/res/TopLevelImageDocument.css";
 	head.appendChild(link);
@@ -370,8 +373,8 @@ function clearDoc(src) {
 	link.href = "chrome://global/skin/media/TopLevelImageDocument.css"; // Firefox 19.0a1
 	head.appendChild(link);
 
-	var body = document.createElementNS(ns, "body");
-	var img = document.createElementNS(ns, "img");
+	var body = _e("body");
+	var img = _e("img");
 	img.style.maxWidth = window.innerWidth + "px";
 	img.style.maxHeight = window.innerHeight + "px";
 	img.addEventListener("load", function initResizer(e) {
