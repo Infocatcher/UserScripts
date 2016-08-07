@@ -375,11 +375,12 @@ function clearDoc(src) {
 
 	var body = _e("body");
 	var img = _e("img");
-	img.style.maxWidth = window.innerWidth + "px";
-	img.style.maxHeight = window.innerHeight + "px";
+	var stl = img.style;
+	stl.maxWidth = window.innerWidth + "px";
+	stl.maxHeight = window.innerHeight + "px";
 	img.addEventListener("load", function initResizer(e) {
 		img.removeEventListener(e.type, initResizer, false);
-		img.style.maxWidth = img.style.maxHeight = null;
+		stl.maxWidth = stl.maxHeight = null;
 		var originalSize = false;
 		var iw = img.width;
 		var ih = img.height;
@@ -392,9 +393,9 @@ function clearDoc(src) {
 				return canFit;
 			if(canFit) {
 				var persent = Math.min(ww/iw, wh/ih);
-				img.style.width = iw*persent + "px";
-				img.style.height = ih*persent + "px";
-				img.style.marginTop = null;
+				stl.width = iw*persent + "px";
+				stl.height = ih*persent + "px";
+				stl.marginTop = null;
 				persent = Math.floor(persent*100); // Inherit Firefox built-in resizer behavior...
 				document.title = imgName + " (" + size + ", " + persent + "%)" + " - Direct Images";
 			}
@@ -405,10 +406,10 @@ function clearDoc(src) {
 			return canFit;
 		}
 		function origSize() {
-			img.style.width = img.style.height = null;
+			stl.width = stl.height = null;
 			document.title = imgName + " (" + size + ")" + " - Direct Images";
 			if(ih > window.innerHeight) // Override styles from resource://gre/res/TopLevelImageDocument.css
-				img.style.marginTop = 0;
+				stl.marginTop = 0;
 		}
 		function setCursor(canFit) {
 			if(canFit == undefined)
