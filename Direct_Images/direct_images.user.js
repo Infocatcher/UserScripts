@@ -324,6 +324,8 @@ function redirect(url) {
 		location.replace(url);
 }
 function clearDoc(src) {
+	window.stop();
+
 	var ns = "http://www.w3.org/1999/xhtml";
 	function _e(nn) {
 		return document.createElementNS(ns, nn);
