@@ -380,10 +380,29 @@ function clearDoc(src) {
 	var stl = img.style;
 	stl.maxWidth = window.innerWidth + "px";
 	stl.maxHeight = window.innerHeight + "px";
+
+	var originalSize = false;
+
+	var simpleZoom, destroySimpleZoom;
+	img.addEventListener("click", simpleZoom = function(e) {
+		if(e.button != 0)
+			return;
+		originalSize = true;
+		stl.maxWidth = stl.maxHeight = null;
+		scrollToClicked(e, img.width, img.height);
+	}, false);
+	window.addEventListener("unload", destroySimpleZoom = function() {
+		window.removeEventListener("unload", destroySimpleZoom, false);
+		img.removeEventListener("click", simpleZoom, false);
+	}, false);
+
 	img.addEventListener("load", function initResizer(e) {
 		img.removeEventListener(e.type, initResizer, false);
+
+		window.removeEventListener("unload", destroySimpleZoom, false);
+		img.removeEventListener("click", simpleZoom, false);
+
 		stl.maxWidth = stl.maxHeight = null;
-		var originalSize = false;
 		var iw = img.width;
 		var ih = img.height;
 		var size = iw + " × " + ih;
@@ -431,16 +450,8 @@ function clearDoc(src) {
 			}
 			originalSize = !originalSize;
 			if(originalSize) {
-				// Zoom and scroll to clicked position
-				var ww = window.innerWidth;
-				var wh = window.innerHeight;
-				var dx = e.clientX/ww;
-				var dy = e.clientY/wh;
 				origSize();
-				window.scrollTo(
-					Math.max(0, dx*iw - ww/2),
-					Math.max(0, dy*ih - wh/2)
-				);
+				scrollToClicked(e, iw, ih);
 			}
 			else
 				fitSize();
@@ -458,9 +469,27 @@ function clearDoc(src) {
 			img.removeEventListener("click", toggleFitSize, false);
 			window.removeEventListener("resize", onResize, false);
 		}, false);
-		if(!originalSize)
+		if(originalSize) {
+			origSize();
+			setCursor();
+		}
+		else {
 			fitSize();
+		}
 	}, false);
+	function scrollToClicked(e, iw, ih) {
+		if(!iw || !ih)
+			return;
+		var ww = window.innerWidth;
+		var wh = window.innerHeight;
+		var dx = e.clientX/ww;
+		var dy = e.clientY/wh;
+		window.scrollTo(
+			Math.max(0, dx*iw - ww/2),
+			Math.max(0, dy*ih - wh/2)
+		);
+	}
+
 	img.src = img.alt = src;
 	body.appendChild(img);
 
