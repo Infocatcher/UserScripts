@@ -387,9 +387,15 @@ function clearDoc(src) {
 	img.addEventListener("click", simpleZoom = function(e) {
 		if(e.button != 0)
 			return;
-		originalSize = true;
-		stl.maxWidth = stl.maxHeight = null;
-		scrollToClicked(e, img.width, img.height);
+		originalSize = !originalSize;
+		if(originalSize) {
+			stl.maxWidth = stl.maxHeight = null;
+			scrollToClicked(e, img.width, img.height);
+		}
+		else {
+			stl.maxWidth = window.innerWidth + "px";
+			stl.maxHeight = window.innerHeight + "px";
+		}
 	}, false);
 	window.addEventListener("unload", destroySimpleZoom = function() {
 		window.removeEventListener("unload", destroySimpleZoom, false);
