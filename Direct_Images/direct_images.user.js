@@ -1,6 +1,6 @@
 ﻿// ==UserScript==
 // @name           Direct Images
-// @version        0.6.11 - 2016-08-01
+// @version        0.6.12 - 2016-08-27
 // @description    Redirect from preview pages to images directly
 // @author         Infocatcher
 // @namespace      dev/null
@@ -79,6 +79,7 @@
 // @match          *://imgdepo.com/show/*
 // @include        http://stick.kz/?v=*
 // @include        http://imagestun.com/hosting/?v=*
+// @include        http://picua.org/?v=*
 
 // Get image by src:
 // @include        http://*imagepix.org/image/*.html
@@ -626,6 +627,11 @@ switch(host) {
 	break;
 	case "imagestun.com":
 		_src = loc.replace("/?v=", "/kartinki/");
+	break;
+	case "picua.org":
+		// picua.org/?v=2016-08-06_foo.png
+		// picua.org/img/2016-08/06/foo.png
+		_src = loc.replace(/\/\?v=(\d{4}-\d\d)-(\d\d)_/, "/img/$1/$2/");
 	break;
 
 	// Get image by src:
