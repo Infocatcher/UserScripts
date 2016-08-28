@@ -1,6 +1,6 @@
 ﻿// ==UserScript==
 // @name           Direct Images
-// @version        0.6.12 - 2016-08-27
+// @version        0.6.13 - 2016-08-28
 // @description    Redirect from preview pages to images directly
 // @author         Infocatcher
 // @namespace      dev/null
@@ -122,6 +122,7 @@
 // @include        http://imgchilibum.ru/*.php?id=*
 // @include        http://imglink.ru/show-image.php?id=*
 // @include        http://www.fotolink.su/v.php?id=*
+// @include        http://netpics.org/image/*
 
 // Other:
 // @include        http://img*.imageshack.us/*
@@ -739,6 +740,9 @@ switch(host) {
 	case "fotolink.su":
 		_src = $i(/^https?:\/\/(?:\w+\.)?fotolink\.su\/pic_b\/[^?&#]*[\da-f]{32,}\.\w+$/);
 		_clearDoc = true;
+	break;
+	case "netpics.org":
+		_src = $i(/^https?:\/\/netpics\.org\/images\/[^?&#]+\/\w+\.\w+$/);
 	break;
 
 	// Other:
