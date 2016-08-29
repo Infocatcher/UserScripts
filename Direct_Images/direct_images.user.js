@@ -192,6 +192,7 @@
 // @match          *://cl.ly/*
 // @include        http://*.riotpixels.com/games/*/screenshots/*/
 // @include        http://prnt.sc/*
+// @include        http://payforpic.ru/*
 // ==/UserScript==
 
 (function di(event) {
@@ -1122,6 +1123,19 @@ switch(host) {
 		var metaImg = document.querySelector && document.querySelector('meta[property="og:image"][content^="http"]');
 		if(metaImg)
 			_src = metaImg.getAttribute("content");
+	break;
+	case "payforpic.ru":
+		_src = $i(/^https?:\/\/(?:\w+\.)?payforpic\.ru\/allimage\/[^?&#]+\/\d+\.\w+$/);
+		if(_src)
+			break;
+		// Let's try URL-based redirect from thumbnail to original
+		// http://payforpic.ru/allimage/*/NNN-thumb.jpeg
+		// http://payforpic.ru/allimage/*/NNN.jpeg
+		var th = $i(/^https?:\/\/(?:\w+\.)?payforpic\.ru\/allimage\/[^?&#]+\/\d+-thumb\.\w+$/);
+		if(th) {
+			_src = th
+				.replace("-thumb.", ".");
+		}
 }
 if(_iid)
 	_img = $(_iid);
