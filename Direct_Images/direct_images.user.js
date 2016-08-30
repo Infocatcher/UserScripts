@@ -1,6 +1,6 @@
 ﻿// ==UserScript==
 // @name           Direct Images
-// @version        0.6.13 - 2016-08-28
+// @version        0.6.14 - 2016-08-30
 // @description    Redirect from preview pages to images directly
 // @author         Infocatcher
 // @namespace      dev/null
@@ -193,6 +193,7 @@
 // @include        http://*.riotpixels.com/games/*/screenshots/*/
 // @include        http://prnt.sc/*
 // @include        http://payforpic.ru/*
+// @include        http://pix-x.net/*
 // ==/UserScript==
 
 (function di(event) {
@@ -1134,6 +1135,23 @@ switch(host) {
 		var th = $i(/^https?:\/\/(?:\w+\.)?payforpic\.ru\/allimage\/[^?&#]+\/\d+-thumb\.\w+$/);
 		if(th) {
 			_src = th
+				.replace("-thumb.", ".");
+		}
+	break;
+	case "pix-x.net":
+		_src = $i(/^https?:\/\/(?:\w+\.)?pix-x\.net\/allimage\/[^?&#]+\/\d+\.\w+$/);
+		if(_src)
+			break;
+		var more = $c("more_images"); // Blocks with "similar images"
+		while(more.length)
+			more[0].parentNode.removeChild(more[0]);
+		// Let's try URL-based redirect from thumbnail to original
+		// http://pix-x.net/allimage/*/img_thumb/NNN-thumb.jpeg
+		// http://pix-x.net/allimage/*/img_full/NNN.jpeg
+		var th = $i(/^https?:\/\/(?:\w+\.)?pix-x\.net\/allimage\/[^?&#]+\/\d+-thumb\.\w+$/);
+		if(th) {
+			_src = th
+				.replace("/img_thumb/", "/img_full/")
 				.replace("-thumb.", ".");
 		}
 }
