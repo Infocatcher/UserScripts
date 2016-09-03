@@ -311,6 +311,15 @@ function $a(mask, node) {
 	}
 	return null;
 }
+function $th(imgRe, thumbRe, replacements) {
+	var src = $i(imgRe);
+	if(src)
+		return src;
+	src = $i(thumbRe);
+	if(src) for(var find in replacements)
+		src = src.replace(find, replacements[find]);
+	return src;
+}
 function $u(node) {
 	if(node && node.nodeName.toLowerCase() == "input")
 		return $url(node.value);
@@ -1063,31 +1072,21 @@ switch(host) {
 		_src = $inp(/^https?:\/\/cardse\.net\/[^?&#]+\.\w+$/);
 	break;
 	case "piccash.net":
-		_src = $i(/^https?:\/\/piccash\.net\/[^?&#]+\/img_full\/\w+\.\w+$/);
-		if(_src)
-			break;
-		// Let's try URL-based redirect from thumbnail to original
-		// http://piccash.net/allimage/*/img_thumb/*-thumb.jpeg
-		// http://piccash.net/allimage/*/img_full/*.jpeg
-		var th = $i(/^https?:\/\/piccash\.net\/[^?&#]+\/img_thumb\/\w+-thumb\.\w+$/);
-		if(th) {
-			_src = th
-				.replace("/img_thumb/", "/img_full/")
-				.replace("-thumb.", ".");
-		}
+		_src = $th(
+			/^https?:\/\/piccash\.net\/[^?&#]+\/img_full\/\w+\.\w+$/,
+			/^https?:\/\/piccash\.net\/[^?&#]+\/img_thumb\/\w+-thumb\.\w+$/,
+			{
+				"/img_thumb/": "/img_full/",
+				"-thumb.":     "."
+			}
+		);
 	break;
 	case "pic4you.ru":
-		_src = $i(/^https?:\/\/(?:\w+\.)?pic4you\.ru\/[^?&#]+\/\d+\.\w+$/);
-		if(_src)
-			break;
-		// Let's try URL-based redirect from thumbnail to original
-		// http://s4.pic4you.ru/*/NNN-thumb.jpeg
-		// http://s4.pic4you.ru/*/NNN.jpeg
-		var th = $i(/^https?:\/\/(?:\w+\.)?pic4you\.ru\/[^?&#]+\/\d+-thumb\.\w+$/);
-		if(th) {
-			_src = th
-				.replace("-thumb.", ".");
-		}
+		_src = $th(
+			/^https?:\/\/(?:\w+\.)?pic4you\.ru\/[^?&#]+\/\d+\.\w+$/,
+			/^https?:\/\/(?:\w+\.)?pic4you\.ru\/[^?&#]+\/\d+-thumb\.\w+$/,
+			{ "-thumb.": "." }
+		);
 	break;
 	case "image2you.ru":
 		var btn = $("_confirm");
@@ -1097,17 +1096,11 @@ switch(host) {
 			_src = $i(/^https?:\/\/image2you\.ru\/allimages\/[^?&#]+\.\w+$/);
 	break;
 	case "picforall.ru":
-		_src = $i(/^https?:\/\/picforall\.ru\/allimage\/[^?&#]+\/\d+\.\w+$/);
-		if(_src)
-			break;
-		// Let's try URL-based redirect from thumbnail to original
-		// http://picforall.ru/allimage/*/NNN-thumb.jpeg
-		// http://picforall.ru/allimage/*/NNN.jpeg
-		var th = $i(/^https?:\/\/picforall\.ru\/allimage\/[^?&#]+\/\d+-thumb\.\w+$/);
-		if(th) {
-			_src = th
-				.replace("-thumb.", ".");
-		}
+		_src = $th(
+			/^https?:\/\/picforall\.ru\/allimage\/[^?&#]+\/\d+\.\w+$/,
+			/^https?:\/\/picforall\.ru\/allimage\/[^?&#]+\/\d+-thumb\.\w+$/,
+			{ "-thumb.": "." }
+		);
 	break;
 	case "cl.ly":
 		var metaImg = document.querySelector && document.querySelector('meta[property="og:image"][content^="http"]');
@@ -1126,34 +1119,24 @@ switch(host) {
 			_src = metaImg.getAttribute("content");
 	break;
 	case "payforpic.ru":
-		_src = $i(/^https?:\/\/(?:\w+\.)?payforpic\.ru\/allimage\/[^?&#]+\/\d+\.\w+$/);
-		if(_src)
-			break;
-		// Let's try URL-based redirect from thumbnail to original
-		// http://payforpic.ru/allimage/*/NNN-thumb.jpeg
-		// http://payforpic.ru/allimage/*/NNN.jpeg
-		var th = $i(/^https?:\/\/(?:\w+\.)?payforpic\.ru\/allimage\/[^?&#]+\/\d+-thumb\.\w+$/);
-		if(th) {
-			_src = th
-				.replace("-thumb.", ".");
-		}
+		_src = $th(
+			/^https?:\/\/(?:\w+\.)?payforpic\.ru\/allimage\/[^?&#]+\/\d+\.\w+$/,
+			/^https?:\/\/(?:\w+\.)?payforpic\.ru\/allimage\/[^?&#]+\/\d+-thumb\.\w+$/,
+			{ "-thumb.": "." }
+		);
 	break;
 	case "pix-x.net":
-		_src = $i(/^https?:\/\/(?:\w+\.)?pix-x\.net\/allimage\/[^?&#]+\/\d+\.\w+$/);
-		if(_src)
-			break;
 		var more = $c("more_images"); // Blocks with "similar images"
 		while(more.length)
 			more[0].parentNode.removeChild(more[0]);
-		// Let's try URL-based redirect from thumbnail to original
-		// http://pix-x.net/allimage/*/img_thumb/NNN-thumb.jpeg
-		// http://pix-x.net/allimage/*/img_full/NNN.jpeg
-		var th = $i(/^https?:\/\/(?:\w+\.)?pix-x\.net\/allimage\/[^?&#]+\/\d+-thumb\.\w+$/);
-		if(th) {
-			_src = th
-				.replace("/img_thumb/", "/img_full/")
-				.replace("-thumb.", ".");
-		}
+		_src = $th(
+			/^https?:\/\/(?:\w+\.)?pix-x\.net\/allimage\/[^?&#]+\/\d+\.\w+$/,
+			/^https?:\/\/(?:\w+\.)?pix-x\.net\/allimage\/[^?&#]+\/\d+-thumb\.\w+$/,
+			{
+				"/img_thumb/": "/img_full/",
+				"-thumb.":     "."
+			}
+		);
 }
 if(_iid)
 	_img = $(_iid);
