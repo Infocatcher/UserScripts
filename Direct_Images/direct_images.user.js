@@ -124,6 +124,13 @@
 // @include        http://www.fotolink.su/v.php?id=*
 // @include        http://netpics.org/image/*
 
+// Get image from thumbnail:
+// @include        http://piccash.net/*/
+// @include        http://pic4you.ru/*/
+// @include        http://picforall.ru/*/
+// @include        http://payforpic.ru/*
+// @include        http://pix-x.net/*
+
 // Other:
 // @include        http://img*.imageshack.us/*
 // @include        http://imageshack.us/photo/*
@@ -185,15 +192,10 @@
 // @include        http://lostpic.net/image/*
 // @include        http://pic.lg.ua/*
 // @include        https://cardse.net/image/*
-// @include        http://piccash.net/*/
-// @include        http://pic4you.ru/*/
 // @include        http://image2you.ru/*/
-// @include        http://picforall.ru/*/
 // @match          *://cl.ly/*
 // @include        http://*.riotpixels.com/games/*/screenshots/*/
 // @include        http://prnt.sc/*
-// @include        http://payforpic.ru/*
-// @include        http://pix-x.net/*
 // ==/UserScript==
 
 (function di(event) {
@@ -756,6 +758,52 @@ switch(host) {
 		_src = $i(/^https?:\/\/netpics\.org\/images\/[^?&#]+\/\w+\.\w+$/);
 	break;
 
+	// Get image from thumbnail:
+	case "piccash.net":
+		_src = $th(
+			/^https?:\/\/piccash\.net\/[^?&#]+\/img_full\/\w+\.\w+$/,
+			/^https?:\/\/piccash\.net\/[^?&#]+\/img_thumb\/\w+-thumb\.\w+$/,
+			{
+				"/img_thumb/": "/img_full/",
+				"-thumb.":     "."
+			}
+		);
+	break;
+	case "pic4you.ru":
+		_src = $th(
+			/^https?:\/\/(?:\w+\.)?pic4you\.ru\/[^?&#]+\/\d+\.\w+$/,
+			/^https?:\/\/(?:\w+\.)?pic4you\.ru\/[^?&#]+\/\d+-thumb\.\w+$/,
+			{ "-thumb.": "." }
+		);
+	break;
+	case "picforall.ru":
+		_src = $th(
+			/^https?:\/\/picforall\.ru\/allimage\/[^?&#]+\/\d+\.\w+$/,
+			/^https?:\/\/picforall\.ru\/allimage\/[^?&#]+\/\d+-thumb\.\w+$/,
+			{ "-thumb.": "." }
+		);
+	break;
+	case "payforpic.ru":
+		_src = $th(
+			/^https?:\/\/(?:\w+\.)?payforpic\.ru\/allimage\/[^?&#]+\/\d+\.\w+$/,
+			/^https?:\/\/(?:\w+\.)?payforpic\.ru\/allimage\/[^?&#]+\/\d+-thumb\.\w+$/,
+			{ "-thumb.": "." }
+		);
+	break;
+	case "pix-x.net":
+		var more = $c("more_images"); // Blocks with "similar images"
+		while(more.length)
+			more[0].parentNode.removeChild(more[0]);
+		_src = $th(
+			/^https?:\/\/(?:\w+\.)?pix-x\.net\/allimage\/[^?&#]+\/\d+\.\w+$/,
+			/^https?:\/\/(?:\w+\.)?pix-x\.net\/allimage\/[^?&#]+\/\d+-thumb\.\w+$/,
+			{
+				"/img_thumb/": "/img_full/",
+				"-thumb.":     "."
+			}
+		);
+	break;
+
 	// Other:
 	case "imageshack.us":
 	case "imageshack.com":
@@ -1071,36 +1119,12 @@ switch(host) {
 	case "cardse.net":
 		_src = $inp(/^https?:\/\/cardse\.net\/[^?&#]+\.\w+$/);
 	break;
-	case "piccash.net":
-		_src = $th(
-			/^https?:\/\/piccash\.net\/[^?&#]+\/img_full\/\w+\.\w+$/,
-			/^https?:\/\/piccash\.net\/[^?&#]+\/img_thumb\/\w+-thumb\.\w+$/,
-			{
-				"/img_thumb/": "/img_full/",
-				"-thumb.":     "."
-			}
-		);
-	break;
-	case "pic4you.ru":
-		_src = $th(
-			/^https?:\/\/(?:\w+\.)?pic4you\.ru\/[^?&#]+\/\d+\.\w+$/,
-			/^https?:\/\/(?:\w+\.)?pic4you\.ru\/[^?&#]+\/\d+-thumb\.\w+$/,
-			{ "-thumb.": "." }
-		);
-	break;
 	case "image2you.ru":
 		var btn = $("_confirm");
 		if(btn)
 			btn.click();
 		else
 			_src = $i(/^https?:\/\/image2you\.ru\/allimages\/[^?&#]+\.\w+$/);
-	break;
-	case "picforall.ru":
-		_src = $th(
-			/^https?:\/\/picforall\.ru\/allimage\/[^?&#]+\/\d+\.\w+$/,
-			/^https?:\/\/picforall\.ru\/allimage\/[^?&#]+\/\d+-thumb\.\w+$/,
-			{ "-thumb.": "." }
-		);
 	break;
 	case "cl.ly":
 		var metaImg = document.querySelector && document.querySelector('meta[property="og:image"][content^="http"]');
@@ -1117,26 +1141,6 @@ switch(host) {
 		var metaImg = document.querySelector && document.querySelector('meta[property="og:image"][content^="http"]');
 		if(metaImg)
 			_src = metaImg.getAttribute("content");
-	break;
-	case "payforpic.ru":
-		_src = $th(
-			/^https?:\/\/(?:\w+\.)?payforpic\.ru\/allimage\/[^?&#]+\/\d+\.\w+$/,
-			/^https?:\/\/(?:\w+\.)?payforpic\.ru\/allimage\/[^?&#]+\/\d+-thumb\.\w+$/,
-			{ "-thumb.": "." }
-		);
-	break;
-	case "pix-x.net":
-		var more = $c("more_images"); // Blocks with "similar images"
-		while(more.length)
-			more[0].parentNode.removeChild(more[0]);
-		_src = $th(
-			/^https?:\/\/(?:\w+\.)?pix-x\.net\/allimage\/[^?&#]+\/\d+\.\w+$/,
-			/^https?:\/\/(?:\w+\.)?pix-x\.net\/allimage\/[^?&#]+\/\d+-thumb\.\w+$/,
-			{
-				"/img_thumb/": "/img_full/",
-				"-thumb.":     "."
-			}
-		);
 }
 if(_iid)
 	_img = $(_iid);
