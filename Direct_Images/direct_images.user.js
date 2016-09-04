@@ -1,6 +1,6 @@
 ﻿// ==UserScript==
 // @name           Direct Images
-// @version        0.6.14 - 2016-08-30
+// @version        0.6.15 - 2016-09-05
 // @description    Redirect from preview pages to images directly
 // @author         Infocatcher
 // @namespace      dev/null
@@ -130,6 +130,7 @@
 // @include        http://picforall.ru/*/
 // @include        http://payforpic.ru/*
 // @include        http://pix-x.net/*
+// @include        http://picclick.ru/*
 
 // Other:
 // @include        http://img*.imageshack.us/*
@@ -801,6 +802,13 @@ switch(host) {
 				"/img_thumb/": "/img_full/",
 				"-thumb.":     "."
 			}
+		);
+	break;
+	case "picclick.ru":
+		_src = $th(
+			/^https?:\/\/(?:\w+\.)?picclick\.ru\/allimage\/[^?&#]+\/\d+\.\w+$/,
+			/^https?:\/\/(?:\w+\.)?picclick\.ru\/allimage\/[^?&#]+\/\d+-thumb\.\w+$/,
+			{ "-thumb.": "." }
 		);
 	break;
 
