@@ -521,6 +521,10 @@ function clearDoc(src) {
 	while(document.hasChildNodes())
 		document.removeChild(document.lastChild);
 	document.appendChild(html);
+
+	// Prevent modifications, used new Function() to bypass unsafeWindow things in GreaseMonkey
+	if(window.Node && Node.prototype)
+		new window.Function("var p = Node.prototype; p.appendChild = p.insertBefore = function() {};")();
 }
 hostLoop:
 switch(host) {
