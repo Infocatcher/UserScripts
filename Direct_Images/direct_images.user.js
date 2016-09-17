@@ -518,8 +518,8 @@ function clearDoc(src) {
 	html.appendChild(head);
 	html.appendChild(body);
 
-	while(document.hasChildNodes())
-		document.removeChild(document.lastChild);
+	for(var lc; lc = document.lastChild; )
+		document.removeChild(lc);
 	document.appendChild(html);
 
 	// Prevent modifications, used new Function() to bypass unsafeWindow things in GreaseMonkey
