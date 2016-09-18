@@ -217,9 +217,9 @@ if(
 ) {
 	document.title = "Direct Images Options";
 	var body = document.body || document.documentElement;
-	var label = document.createElementNS("http://www.w3.org/1999/xhtml", "label");
+	var label = _e("label");
 	label.htmlFor = "allowBack";
-	var input = document.createElementNS("http://www.w3.org/1999/xhtml", "input");
+	var input = _e("input");
 	input.id = "allowBack";
 	input.type = "checkbox";
 	input.checked = allowBack;
@@ -244,6 +244,9 @@ var host = (function() { // a.example.com => example.com
 	return location.hostname.match(tldRe)[0];
 })();
 var _iid, _img, _src, _clearDoc;
+function _e(nn) {
+	return document.createElementNS("http://www.w3.org/1999/xhtml", nn);
+}
 function $(id) {
 	return document.getElementById(id);
 }
@@ -342,13 +345,7 @@ function redirect(url) {
 function clearDoc(src) {
 	window.stop();
 
-	var ns = "http://www.w3.org/1999/xhtml";
-	function _e(nn) {
-		return document.createElementNS(ns, nn);
-	}
-
 	var html = _e("html");
-
 	var head = _e("head");
 	var title = _e("title");
 	var imgName = src.match(/[^\/]*$/)[0];
@@ -1182,7 +1179,7 @@ else if(document.readyState == "loading") {
 		window.addEventListener("DOMContentLoaded", di, false);
 		window.addEventListener("load", di, false);
 	}
-	if(++di._count < 5*60*1000/10)
+	if(++di._count < 5*60e3/10)
 		di._timer = setTimeout(di, 10);
 }
 else if(event && event.type == "load")
