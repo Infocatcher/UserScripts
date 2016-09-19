@@ -251,9 +251,7 @@ function $(id) {
 	return document.getElementById(id);
 }
 function $t(tag, node) {
-	if(!node)
-		node = document;
-	return node.getElementsByTagName(tag);
+	return (node || document).getElementsByTagName(tag);
 }
 function $c(className, node) {
 	if(!node)
@@ -296,9 +294,7 @@ function $ie(mask, exclude, node) {
 	return $i(mask, node, exclude);
 }
 function $inp(mask, node) {
-	if(!node)
-		node = document;
-	var inps = node.getElementsByTagName("input");
+	var inps = (node || document).getElementsByTagName("input");
 	for(var i = 0, len = inps.length; i < len; ++i) {
 		var val = inps[i].value;
 		if(mask.test(val))
@@ -307,9 +303,7 @@ function $inp(mask, node) {
 	return "";
 }
 function $a(mask, node) {
-	if(!node)
-		node = document;
-	var links = node.getElementsByTagName("a");
+	var links = (node || document).getElementsByTagName("a");
 	for(var i = 0, len = links.length; i < len; ++i) {
 		var link = links[i];
 		if(mask.test(link.href))
