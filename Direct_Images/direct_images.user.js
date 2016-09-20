@@ -330,6 +330,14 @@ function $url(s) {
 		return s;
 	return "";
 }
+function $dec(url) {
+	try {
+		return decodeURIComponent(url);
+	}
+	catch(e) {
+	}
+	return url;
+}
 function redirect(url) {
 	if(allowBack)
 		location.href = url;
@@ -342,12 +350,7 @@ function clearDoc(src) {
 	var html = _e("html");
 	var head = _e("head");
 	var title = _e("title");
-	var imgName = src.match(/[^\/]*$/)[0];
-	try {
-		imgName = decodeURIComponent(imgName);
-	}
-	catch(e) {
-	}
+	var imgName = $dec(src.match(/[^\/]*$/)[0]);
 	title.appendChild(document.createTextNode(imgName + " - Direct Images"));
 	head.appendChild(title);
 	var link = _e("link");
@@ -706,7 +709,7 @@ switch(host) {
 		if(/^https?:\/\/(?:www\.)?radikal\.ru\/F\/(\w+\.radikal\.ru\/[\w\/\.]+)\.html#?$/.test(loc))
 			_src = "http://" + RegExp.$1;
 		else if(/[?&]u=(http[^?&#]+)/.test(loc))
-			_src = decodeURIComponent(RegExp.$1);
+			_src = $dec(RegExp.$1);
 		else if(/^https?:\/\/([\w-]+\.)+\w+\/l?fp\//.test(loc)) {
 			_src = $ie(
 				/^https?:\/\/(\w+\.)*radikal\.ru\/[\w\/]+\.\w+$/,
@@ -1064,11 +1067,8 @@ switch(host) {
 			var embed = block && $t("embed", block)[0];
 			if(embed) {
 				var fv = embed.getAttribute("flashvars");
-				if(/=(http[^\s&]+)/.test(fv)) try {
-					_src = $url(decodeURIComponent(RegExp.$1));
-				}
-				catch(e) {
-				}
+				if(/=(http[^\s&]+)/.test(fv))
+					_src = $url($dec(RegExp.$1));
 			}
 		}
 	break;
