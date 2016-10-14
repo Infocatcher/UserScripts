@@ -1,6 +1,6 @@
 ﻿// ==UserScript==
 // @name           Direct Images
-// @version        0.6.15 - 2016-09-05
+// @version        0.6.16 - 2016-10-14
 // @description    Redirect from preview pages to images directly
 // @author         Infocatcher
 // @namespace      dev/null
@@ -102,9 +102,10 @@
 // @include        http://www.narodpix.net/?v=*
 // @include        http://www.imagebam.com/image/*
 // @include        http://*radikal.ru/F/*.html*
+// @include        http://*radikal.ru/*fp/*
+// @include        http://radikal.ru/big/*
 // @include        http://radikal-foto.ru/F/*.html*
 // @include        http://radical-foto.ru/F/*.html*
-// @include        http://*radikal.ru/*fp/*
 // @include        http://radikal-foto.ru/*fp/*
 // @include        http://radical-foto.ru/*fp/*
 // @include        http://f-page.ru/*fp/*
@@ -710,7 +711,7 @@ switch(host) {
 			_src = "http://" + RegExp.$1;
 		else if(/[?&]u=(http[^?&#]+)/.test(loc))
 			_src = $dec(RegExp.$1);
-		else if(/^https?:\/\/([\w-]+\.)+\w+\/l?fp\//.test(loc)) {
+		else if(/^https?:\/\/([\w-]+\.)+\w+\/(?:l?fp|big)\//.test(loc)) {
 			_src = $ie(
 				/^https?:\/\/(\w+\.)*radikal\.ru\/[\w\/]+\.\w+$/,
 				/^https?:\/\/[^\/]+\/content\/images\//i
