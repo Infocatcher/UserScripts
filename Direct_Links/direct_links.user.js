@@ -12,7 +12,9 @@
 // @include     about:blank?UserScripts/options/Direct_Links
 
 // @include     http://sourceforge.net/projects/*/download
+// @include     https://sourceforge.net/projects/*/download
 // @include     http://sourceforge.net/projects/*/download?*
+// @include     https://sourceforge.net/projects/*/download?*
 // @include     http://systemexplorer.net/downloadi.php
 // @include     http://systemexplorer.net/downloadp.php
 // @include     http://systemexplorer.net/download-archive/*/SystemExplorer*
