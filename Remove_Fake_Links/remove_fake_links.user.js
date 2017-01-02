@@ -47,6 +47,7 @@
 // @include     http://steamcommunity.com/*
 // @include     https://steamcommunity.com/*
 // @include     http://store.steampowered.com/*
+// @include     https://www.reddit.com/*
 // @grant       none
 // ==/UserScript==
 
@@ -114,6 +115,8 @@ function clearLink(e) {
 	renameAttr(a, "onmousedown");
 	renameAttr(a, "data-vdir-href"); // mail.yandex.ru
 	renameAttr(a, "data-orig-href"); // mail.yandex.ru
+	renameAttr(a, "data-outbound-url"); // reddit.com
+	renameAttr(a, "data-href-url"); // reddit.com
 
 	var h = a.href;
 	var nh = h;
