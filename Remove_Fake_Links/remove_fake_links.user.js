@@ -139,9 +139,9 @@ function clearLink(e) {
 			setTimeout(function() { throw e; }, 0);
 		}
 	}
-	if(host == "www.facebook.com") // See https://github.com/Infocatcher/UserScripts/issues/6
+	else if(host == "www.facebook.com") // See https://github.com/Infocatcher/UserScripts/issues/6
 		renameAttr(a, "onclick", "=http") && renameAttr(a, "onmouseover");
-	if(host == "duckduckgo.com") {
+	else if(host == "duckduckgo.com") {
 		var DDG = window.DDG
 			|| typeof unsafeWindow != "undefined" && unsafeWindow.DDG
 			|| null;
@@ -156,12 +156,14 @@ function clearLink(e) {
 			};
 		}
 	}
+
 	if(
 		exclude.some(function(re) {
 			return re.test(h)
 		})
 	)
 		return;
+
 	if(/^https?:\/\/(?:\w+\.)?google\.[\w.]+\/.*=(https?(?::|%3A)[^?&#]+)/.test(h)) {
 		var _h = RegExp.$1;
 		if(!/^https?:\/\/(?:\w+\.)?google\.[\w.]+\/(?:search|imgres)\?/.test(h))
