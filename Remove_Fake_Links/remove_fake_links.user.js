@@ -116,8 +116,10 @@ function clearLink(e) {
 	renameAttr(a, "onmousedown");
 	renameAttr(a, "data-vdir-href"); // mail.yandex.ru
 	renameAttr(a, "data-orig-href"); // mail.yandex.ru
-	renameAttr(a, "data-outbound-url"); // reddit.com
-	renameAttr(a, "data-href-url"); // reddit.com
+	// https://www.reddit.com/
+	renameAttr(a, "data-outbound-url");
+	renameAttr(a, "data-inbound-url");
+	renameAttr(a, "data-href-url");
 
 	var h = a.href;
 	var nh = h;
