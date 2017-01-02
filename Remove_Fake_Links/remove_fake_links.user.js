@@ -48,6 +48,7 @@
 // @include     https://steamcommunity.com/*
 // @include     http://store.steampowered.com/*
 // @include     https://www.reddit.com/*
+// @include     https://twitter.com/*
 // @grant       none
 // ==/UserScript==
 
@@ -154,6 +155,20 @@ function clearLink(e) {
 			DDG.get_http_redirect = function(a) {
 				return a.href;
 			};
+		}
+	}
+	else if(host == "twitter.com") {
+		var url = a.getAttribute("data-expanded-url");
+		if(url && url != h && url == a.getAttribute("title")) {
+			//renameAttr(a, "data-expanded-url");
+			h = a.href = url;
+			// Force fix .href
+			Object.defineProperty && Object.defineProperty(a, "href", {
+				value: url,
+				enumerable: true,
+				configurable: false,
+				writable: false
+			});
 		}
 	}
 
