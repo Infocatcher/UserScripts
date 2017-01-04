@@ -163,14 +163,7 @@ function clearLink(e) {
 		var url = a.getAttribute("data-expanded-url");
 		if(url && url != h && url == a.getAttribute("title")) {
 			//renameAttr(a, "data-expanded-url");
-			h = a.href = url;
-			// Force fix .href
-			Object.defineProperty && Object.defineProperty(a, "href", {
-				value: url,
-				enumerable: true,
-				configurable: false,
-				writable: false
-			});
+			nh = url;
 		}
 	}
 
@@ -211,8 +204,17 @@ function clearLink(e) {
 		nh = RegExp.$1;
 	if(nh == h)
 		return;
+
 	_log("Override link:\n" + h + "\n=> " + nh);
 	a.href = nh;
+	// Force fix .href
+	Object.defineProperty && Object.defineProperty(a, "href", {
+		value: url,
+		enumerable: true,
+		configurable: false,
+		writable: false
+	});
+
 	// Force update link in status bar
 	if(e.type == "focus") {
 		a.ownerDocument.documentElement.focus();
