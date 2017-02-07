@@ -700,7 +700,7 @@ switch(host) {
 	break;
 	case "imagebam.com":
 		_src = $i(/^https?:\/\/(?:\w+\.)?imagebam\.com\/download\/[^?&#]+$/);
-		//_clearDoc = true;
+		_clearDoc = true;
 	break;
 	case "radikal.ru":
 	case "radikal-foto.ru":
