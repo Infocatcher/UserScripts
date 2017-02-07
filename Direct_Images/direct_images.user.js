@@ -1,6 +1,6 @@
 ﻿// ==UserScript==
 // @name           Direct Images
-// @version        0.6.16.1 - 2017-01-03
+// @version        0.6.17 - 2017-02-07
 // @description    Redirect from preview pages to images directly
 // @author         Infocatcher
 // @namespace      dev/null
@@ -125,6 +125,7 @@
 // @include        http://www.fotolink.su/v.php?id=*
 // @include        http://netpics.org/image/*
 // @include        http://*ximage.ru/index.php?id=*
+// @include        http://*ii4.ru/image-*.html*
 
 // Get image from thumbnail:
 // @include        http://piccash.net/*/
@@ -760,6 +761,9 @@ switch(host) {
 	break;
 	case "ximage.ru":
 		_src = $i(/^https?:\/\/(?:\w+\.)*ximage\.ru\/data\/imgs\/[^?&#]+\.\w+$/);
+	break;
+	case "ii4.ru":
+		_src = $i(/^https?:\/\/(?:\w+\.)*ii4\.ru\/images\/[^?&#]+\.\w+$/);
 	break;
 
 	// Get image from thumbnail:
