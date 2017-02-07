@@ -124,6 +124,7 @@
 // @include        http://imglink.ru/show-image.php?id=*
 // @include        http://www.fotolink.su/v.php?id=*
 // @include        http://netpics.org/image/*
+// @include        http://*ximage.ru/index.php?id=*
 
 // Get image from thumbnail:
 // @include        http://piccash.net/*/
@@ -756,6 +757,9 @@ switch(host) {
 	break;
 	case "netpics.org":
 		_src = $i(/^https?:\/\/netpics\.org\/images\/[^?&#]+\/\w+\.\w+$/);
+	break;
+	case "ximage.ru":
+		_src = $i(/^https?:\/\/(?:\w+\.)*ximage\.ru\/data\/imgs\/[^?&#]+\.\w+$/);
 	break;
 
 	// Get image from thumbnail:
