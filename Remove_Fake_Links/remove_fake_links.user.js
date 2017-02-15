@@ -2,7 +2,7 @@
 // @name        Remove fake links
 // @description Remove tracking redirects like http://www.google.com/url?... and http://clck.yandex.ru/redir/...
 // @author      Infocatcher
-// @version     0.2.0pre16 - 2016-02-09
+// @version     0.2.0pre17 - 2017-02-15
 // @run-at      document-start
 // @namespace   dev/null
 // @include     http://www.google.*/search?*
@@ -59,7 +59,7 @@ var isNoScript = window.getComputedStyle(document.createElement("noscript"), nul
 var exclude = [
 	// "Warning - visiting this web site may harm your computer!"
 	// /^https?:\/\/(?:www\.)google\.[\w.]+\/interstitial\?url=http\S+$/,
-	/^https?:\/\/accounts\.google(?:\.\w+){1,2}\/ServiceLogin\?/,
+	/^https?:\/\/accounts\.google(?:\.\w+){1,2}\/(?:ServiceLogin|AccountChooser)\?/,
 	/^https?:\/\/translate\.google(?:\.\w+){1,2}\/translate\?/,
 	/^https?:\/\/news\.yandex\.\w+\/yandsearch.*[?&]cl4url=/
 ];
