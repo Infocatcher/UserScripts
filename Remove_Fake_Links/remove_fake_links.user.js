@@ -2,7 +2,7 @@
 // @name        Remove fake links
 // @description Remove tracking redirects like http://www.google.com/url?... and http://clck.yandex.ru/redir/...
 // @author      Infocatcher
-// @version     0.2.0pre18 - 2017-02-22
+// @version     0.2.0pre19 - 2017-03-01
 // @run-at      document-start
 // @namespace   dev/null
 // @include     http://www.google.*/search?*
@@ -49,6 +49,7 @@
 // @include     http://store.steampowered.com/*
 // @include     https://www.reddit.com/*
 // @include     https://twitter.com/*
+// @include     http://*reactor.cc/*
 // @grant       none
 // ==/UserScript==
 
@@ -202,6 +203,9 @@ function clearLink(e) {
 		nh = decode(RegExp.$1);
 	else if(/^https?:\/\/steamcommunity\.com\/linkfilter\/\?url=(\S+)$/.test(h))
 		nh = RegExp.$1;
+	else if(/^https?:\/\/(?:\w+\.?)?reactor\.cc\/redirect\?url=(http[^?&#\/]+)/.test(h))
+		nh = decode(RegExp.$1);
+
 	if(nh == h)
 		return;
 
