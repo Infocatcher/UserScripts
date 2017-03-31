@@ -1,6 +1,6 @@
 ﻿// ==UserScript==
 // @name           Direct Images
-// @version        0.6.18 - 2017-02-23
+// @version        0.6.18.1 - 2017-03-31
 // @description    Redirect from preview pages to images directly
 // @author         Infocatcher
 // @namespace      dev/null
@@ -188,6 +188,7 @@
 // @include        http://*fotohost.by/show/*
 // @include        http://fastpic.ru/view/*.html*
 // @include        http://joxi.ru/*
+// @include        http://joxi.net/*
 // @match          *://postimg.org/image/*
 // @include        http://i-fotki.info/*.html
 // @include        http://4put.ru/*.php?*
@@ -1100,6 +1101,7 @@ switch(host) {
 		_clearDoc = true;
 	break;
 	case "joxi.ru":
+	case "joxi.net":
 		var links = $c("js-tile-link-zoom");
 		if(links.length)
 			_src = links[0].href;
