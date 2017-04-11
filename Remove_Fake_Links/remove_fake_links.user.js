@@ -50,6 +50,8 @@
 // @include     https://www.reddit.com/*
 // @include     https://twitter.com/*
 // @include     http://*reactor.cc/*
+// @include     http://*.tumblr.com/*
+// @include     https://*.tumblr.com/*
 // @grant       none
 // ==/UserScript==
 
@@ -204,6 +206,8 @@ function clearLink(e) {
 	else if(/^https?:\/\/steamcommunity\.com\/linkfilter\/\?url=(\S+)$/.test(h))
 		nh = RegExp.$1;
 	else if(/^https?:\/\/(?:\w+\.?)?reactor\.cc\/redirect\?url=(http[^?&#\/]+)/.test(h))
+		nh = decode(RegExp.$1);
+	else if(/^https?:\/\/t\.umblr\.com\/redirect\?z=(http[^?&#\/]+)/.test(h))
 		nh = decode(RegExp.$1);
 
 	if(nh == h)
