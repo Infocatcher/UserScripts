@@ -1,6 +1,6 @@
 ﻿// ==UserScript==
 // @name           Direct Images
-// @version        0.6.18.1 - 2017-03-31
+// @version        0.6.19 - 2017-05-14
 // @description    Redirect from preview pages to images directly
 // @author         Infocatcher
 // @namespace      dev/null
@@ -80,6 +80,7 @@
 // @include        http://stick.kz/?v=*
 // @include        http://imagestun.com/hosting/?v=*
 // @include        http://picua.org/?v=*
+// @match          *://*.giphy.com/media/*
 
 // Get image by src:
 // @include        http://*imagepix.org/image/*.html
@@ -650,6 +651,13 @@ switch(host) {
 		// picua.org/?v=2016-08-06_foo.png
 		// picua.org/img/2016-08/06/foo.png
 		_src = loc.replace(/\/\?v=(\d{4}-\d\d)-(\d\d)_/, "/img/$1/$2/");
+	break;
+	case "giphy.com":
+		// http://media1.giphy.com/media/yr7n0u3qzO9nG/giphy.gif
+		// http://i.giphy.com/yr7n0u3qzO9nG.gif
+		_src = loc
+			.replace(/^https?:\/\/\w+\.giphy\.com\/media\//, "https://i.giphy.com/")
+			.replace(/\/\w+(\.\w+)$/, "$1");
 	break;
 
 	// Get image by src:
