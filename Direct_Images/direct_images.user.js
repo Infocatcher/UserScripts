@@ -1,6 +1,6 @@
 ﻿// ==UserScript==
 // @name           Direct Images
-// @version        0.6.19 - 2017-05-14
+// @version        0.6.19.1 - 2017-05-24
 // @description    Redirect from preview pages to images directly
 // @author         Infocatcher
 // @namespace      dev/null
@@ -202,7 +202,7 @@
 // @include        http://image2you.ru/*/
 // @match          *://cl.ly/*
 // @include        http://*.riotpixels.com/games/*/screenshots/*/
-// @include        http://prnt.sc/*
+// @match          *://prnt.sc/*
 // ==/UserScript==
 
 (function di(event) {
