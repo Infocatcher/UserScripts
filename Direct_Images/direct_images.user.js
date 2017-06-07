@@ -1,6 +1,6 @@
 ﻿// ==UserScript==
 // @name           Direct Images
-// @version        0.6.19.1 - 2017-05-24
+// @version        0.6.19.2 - 2017-06-07
 // @description    Redirect from preview pages to images directly
 // @author         Infocatcher
 // @namespace      dev/null
@@ -96,7 +96,7 @@
 // @include        http://*imagepost.ru/?v=*
 // @include        http://imgtheif.com/show-image.php?id=*
 // @include        http://imgtheif.com/image/*.html
-// @include        http://hostingkartinok.com/show-image.php?*
+// @match          *://hostingkartinok.com/show-image.php?*
 // @include        http://image.kz/*
 // @include        http://imm.io/*
 // @include        http://narodpix.net/?v=*
