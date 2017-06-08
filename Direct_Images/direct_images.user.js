@@ -1,6 +1,6 @@
 ﻿// ==UserScript==
 // @name           Direct Images
-// @version        0.6.19.2 - 2017-06-07
+// @version        0.6.20 - 2017-06-08
 // @description    Redirect from preview pages to images directly
 // @author         Infocatcher
 // @namespace      dev/null
@@ -132,7 +132,7 @@
 // Get image from thumbnail:
 // @include        http://piccash.net/*/
 // @include        http://pic4you.ru/*/
-// @include        http://picforall.ru/*/
+// @include        http://picforall.ru/*
 // @include        http://payforpic.ru/*
 // @include        http://pix-x.net/*
 // @include        http://picclick.ru/*
@@ -800,45 +800,21 @@ switch(host) {
 		);
 	break;
 	case "picforall.ru":
-		_src = $th(
-			/^https?:\/\/picforall\.ru\/allimage\/[^?&#]+\/\d+\.\w+$/,
-			/^https?:\/\/picforall\.ru\/allimage\/[^?&#]+\/\d+-thumb\.\w+$/,
-			{ "-thumb.": "." }
-		);
-	break;
 	case "payforpic.ru":
-		_src = $th(
-			/^https?:\/\/(?:\w+\.)?payforpic\.ru\/allimage\/[^?&#]+\/\d+\.\w+$/,
-			/^https?:\/\/(?:\w+\.)?payforpic\.ru\/allimage\/[^?&#]+\/\d+-thumb\.\w+$/,
-			{ "-thumb.": "." }
-		);
-	break;
 	case "pix-x.net":
-		var more = $c("more_images"); // Blocks with "similar images"
+	case "picclick.ru":
+	case "imgclick.ru":
+	case "imgbase.ru":
+		var more = $c("more_images"); // Blocks with "similar images" (on pix-x.net)
 		while(more.length)
 			more[0].parentNode.removeChild(more[0]);
 		_src = $th(
-			/^https?:\/\/(?:\w+\.)?pix-x\.net\/allimage\/[^?&#]+\/\d+\.\w+$/,
-			/^https?:\/\/(?:\w+\.)?pix-x\.net\/allimage\/[^?&#]+\/\d+-thumb\.\w+$/,
+			/^https?:\/\/[^\/]+\/allimage\/[^?&#]+\/\d+\.\w+$/,
+			/^https?:\/\/[^\/]+\/allimage\/[^?&#]+\/\d+-thumb\.\w+$/,
 			{
 				"/img_thumb/": "/img_full/",
 				"-thumb.":     "."
 			}
-		);
-	break;
-	case "picclick.ru":
-		_src = $th(
-			/^https?:\/\/(?:\w+\.)?picclick\.ru\/allimage\/[^?&#]+\/\d+\.\w+$/,
-			/^https?:\/\/(?:\w+\.)?picclick\.ru\/allimage\/[^?&#]+\/\d+-thumb\.\w+$/,
-			{ "-thumb.": "." }
-		);
-	break;
-	case "imgclick.ru":
-	case "imgbase.ru":
-		_src = $th(
-			/^https?:\/\/[^\/]+\/allimage\/[^?&#]+\/\d+\.\w+$/,
-			/^https?:\/\/[^\/]+\/allimage\/[^?&#]+\/\d+-thumb\.\w+$/,
-			{ "-thumb.": "." }
 		);
 	break;
 
