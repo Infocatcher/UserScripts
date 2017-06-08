@@ -136,6 +136,8 @@
 // @include        http://payforpic.ru/*
 // @include        http://pix-x.net/*
 // @include        http://picclick.ru/*
+// @include        http://imgclick.ru/*
+// @include        http://imgbase.ru/*
 
 // Other:
 // @include        http://img*.imageshack.us/*
@@ -828,6 +830,14 @@ switch(host) {
 		_src = $th(
 			/^https?:\/\/(?:\w+\.)?picclick\.ru\/allimage\/[^?&#]+\/\d+\.\w+$/,
 			/^https?:\/\/(?:\w+\.)?picclick\.ru\/allimage\/[^?&#]+\/\d+-thumb\.\w+$/,
+			{ "-thumb.": "." }
+		);
+	break;
+	case "imgclick.ru":
+	case "imgbase.ru":
+		_src = $th(
+			/^https?:\/\/[^\/]+\/allimage\/[^?&#]+\/\d+\.\w+$/,
+			/^https?:\/\/[^\/]+\/allimage\/[^?&#]+\/\d+-thumb\.\w+$/,
 			{ "-thumb.": "." }
 		);
 	break;
