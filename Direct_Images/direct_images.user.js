@@ -1,6 +1,6 @@
 ﻿// ==UserScript==
 // @name           Direct Images
-// @version        0.6.20 - 2017-06-08
+// @version        0.6.20.1 - 2017-06-10
 // @description    Redirect from preview pages to images directly
 // @author         Infocatcher
 // @namespace      dev/null
@@ -1108,6 +1108,7 @@ switch(host) {
 			_src = location.protocol + img.getAttribute("data-full").replace(/^https?:/, "");
 		else
 			_img = img;
+		_clearDoc = true;
 	break;
 	case "i-fotki.info":
 		if($inp(/^\[URL=[^\[\]]+\]\[IMG\](https?:\/\/(?:\w+\.)*ifotki\.info\/org\/[^?&#]+\.\w+)\[\/IMG\]\[\/URL\]$/i))
