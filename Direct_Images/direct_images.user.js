@@ -1,6 +1,6 @@
 ﻿// ==UserScript==
 // @name           Direct Images
-// @version        0.6.20.1 - 2017-06-10
+// @version        0.6.21 - 2017-07-25
 // @description    Redirect from preview pages to images directly
 // @author         Infocatcher
 // @namespace      dev/null
