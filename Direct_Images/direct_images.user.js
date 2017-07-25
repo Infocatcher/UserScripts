@@ -138,6 +138,7 @@
 // @include        http://picclick.ru/*
 // @include        http://imgclick.ru/*
 // @include        http://imgbase.ru/*
+// @include        http://picpays.ru/*
 
 // Other:
 // @include        http://img*.imageshack.us/*
@@ -805,6 +806,7 @@ switch(host) {
 	case "picclick.ru":
 	case "imgclick.ru":
 	case "imgbase.ru":
+	case "picpays.ru":
 		var more = $c("more_images"); // Blocks with "similar images" (on pix-x.net)
 		while(more.length)
 			more[0].parentNode.removeChild(more[0]);
