@@ -205,7 +205,7 @@
 // @include        https://cardse.net/image/*
 // @include        http://image2you.ru/*/
 // @match          *://cl.ly/*
-// @include        http://*.riotpixels.com/games/*/screenshots/*/
+// @include        http://*.riotpixels.com/games/*/screenshots/*
 // @match          *://prnt.sc/*
 // ==/UserScript==
 
