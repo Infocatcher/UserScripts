@@ -46,6 +46,7 @@
 // @include        https://geekpics.net/view/*
 // @include        http://grab.by/*
 // @include        https://someimage.com/*
+// @include        http://skrinshoter.ru/*
 
 // URL-based redirect:
 // @include        http://smages.com/*.htm
@@ -564,6 +565,7 @@ switch(host) {
 	case "geekpics.net":     _iid = "full_image";       break;
 	case "grab.by":          _iid = "thegrab";          break;
 	case "someimage.com":    _iid = "viewimage";        break;
+	case "skrinshoter.ru":   _iid = "screenshot-image"; break;
 
 	// URL-based redirect:
 	case "smages.com":
