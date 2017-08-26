@@ -1,6 +1,6 @@
 ﻿// ==UserScript==
 // @name           Direct Images
-// @version        0.6.21 - 2017-07-25
+// @version        0.6.21.1 - 2017-08-26
 // @description    Redirect from preview pages to images directly
 // @author         Infocatcher
 // @namespace      dev/null
@@ -716,7 +716,10 @@ switch(host) {
 	break;
 	case "imagebam.com":
 		_src = $i(/^https?:\/\/(?:\w+\.)?imagebam\.com\/download\/[^?&#]+$/);
-		_clearDoc = true;
+		if(_src)
+			_clearDoc = true;
+		else
+			_src = $i(/^https?:\/\/images\.imagebam\.com\/[^?&#]+\/\w{10,}\.\w+$/);
 	break;
 	case "radikal.ru":
 	case "radikal-foto.ru":
