@@ -1,6 +1,6 @@
 ﻿// ==UserScript==
 // @name           Direct Images
-// @version        0.6.21.1 - 2017-08-26
+// @version        0.6.22 - 2017-08-29
 // @description    Redirect from preview pages to images directly
 // @author         Infocatcher
 // @namespace      dev/null
@@ -47,6 +47,7 @@
 // @include        http://grab.by/*
 // @include        https://someimage.com/*
 // @include        http://skrinshoter.ru/*
+// @include        http://*.imagetitan.com/img.php?image=*
 
 // URL-based redirect:
 // @include        http://smages.com/*.htm
@@ -566,6 +567,7 @@ switch(host) {
 	case "grab.by":          _iid = "thegrab";          break;
 	case "someimage.com":    _iid = "viewimage";        break;
 	case "skrinshoter.ru":   _iid = "screenshot-image"; break;
+	case "imagetitan.com":   _iid = "image";            break;
 
 	// URL-based redirect:
 	case "smages.com":
