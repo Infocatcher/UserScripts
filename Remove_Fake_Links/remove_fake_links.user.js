@@ -215,13 +215,7 @@ function clearLink(e) {
 
 	_log("Override link:\n" + h + "\n=> " + nh);
 	a.href = nh;
-	// Force fix .href
-	Object.defineProperty && Object.defineProperty(a, "href", {
-		value: url,
-		enumerable: true,
-		configurable: false,
-		writable: false
-	});
+	fixHref(a, nh, h);
 
 	// Force update link in status bar
 	if(e.type == "focus") {
@@ -274,6 +268,19 @@ function renameAttr(node, attr, check) {
 	node.setAttribute(deleted + attr, orig);
 	node.removeAttribute(attr);
 	return true;
+}
+function fixHref(a, newHref, origHref) {
+	Object.defineProperty && Object.defineProperty(a, "href", {
+		get: function() {
+			return newHref;
+		},
+		set: function(h) {
+			if(h == origHref) // Attempt to restore
+				return;
+			newHref = h;
+			a.setAttribute("href", h);
+		}
+	});
 }
 
 function _log(s) {
