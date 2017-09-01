@@ -1,6 +1,6 @@
 ﻿// ==UserScript==
 // @name           Direct Images
-// @version        0.6.22 - 2017-08-29
+// @version        0.6.22.1 - 2017-09-01
 // @description    Redirect from preview pages to images directly
 // @author         Infocatcher
 // @namespace      dev/null
@@ -202,6 +202,7 @@
 // @include        http://ixbt.photo/?id=photo:*
 // @include        http://lostpic.net/?*
 // @include        http://lostpic.net/image/*
+// @include        http://*.lostpic.net/image/*
 // @include        http://pic.lg.ua/*
 // @include        https://cardse.net/image/*
 // @include        http://image2you.ru/*/
