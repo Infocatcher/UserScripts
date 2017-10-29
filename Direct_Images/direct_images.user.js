@@ -529,8 +529,12 @@ function clearDoc(src) {
 	document.appendChild(html);
 
 	// Prevent modifications, used new Function() to bypass unsafeWindow things in GreaseMonkey
-	if(window.Node && Node.prototype)
-		new window.Function("var p = Node.prototype; p.appendChild = p.insertBefore = function() {};")();
+	if(Object.defineProperty)
+		new window.Function('var i = document.images[0]; Object.defineProperty(i, "src", { value: i.src });')();
+	if(window.Node && Node.prototype) {
+		var m = ["appendChild", "insertBefore", "removeChild", "replaceChild", "setAttribute", "removeAttribute"];
+		new window.Function("var p = Node.prototype; p." + m.join(" = p.") + " = function() {};")();
+	}
 }
 hostLoop:
 switch(host) {
