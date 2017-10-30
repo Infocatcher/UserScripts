@@ -535,6 +535,16 @@ function clearDoc(src) {
 		var m = ["appendChild", "insertBefore", "removeChild", "replaceChild", "setAttribute", "removeAttribute"];
 		new window.Function("var p = Node.prototype; p." + m.join(" = p.") + " = function() {};")();
 	}
+	setTimeout(function() {
+		if(window.getComputedStyle(img, null).textAlign == "center")
+			return; // Looks like all works fine
+		// Let's reload styles...
+		var links = document.getElementsByTagName("link");
+		for(var i = 0, l = links.length; i < l; ++i) {
+			var link = links[i];
+			link.href = link.href + "?";
+		}
+	}, 0);
 }
 hostLoop:
 switch(host) {
