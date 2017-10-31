@@ -532,7 +532,15 @@ function clearDoc(src) {
 	if(Object.defineProperty)
 		new window.Function('var i = document.images[0]; Object.defineProperty(i, "src", { value: i.src });')();
 	if(window.Node && Node.prototype) {
-		var m = ["appendChild", "insertBefore", "removeChild", "replaceChild", "setAttribute", "removeAttribute"];
+		var m = [
+			"appendChild",
+			"insertBefore",
+			"removeChild",
+			"replaceChild",
+			"setAttribute",
+			"removeAttribute",
+			"addEventListener"
+		];
 		new window.Function("var p = Node.prototype; p." + m.join(" = p.") + " = function() {};")();
 	}
 	setTimeout(function() {
