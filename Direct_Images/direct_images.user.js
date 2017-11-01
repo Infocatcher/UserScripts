@@ -744,7 +744,7 @@ switch(host) {
 		if(_src)
 			_clearDoc = true;
 		else
-			_src = $i(/^https?:\/\/images\.imagebam\.com\/[^?&#]+\/\w{10,}\.\w+$/);
+			_src = $i(/^https?:\/\/images\d*\.imagebam\.com\/[^?&#]+\/\w{10,}\.\w+$/);
 	break;
 	case "radikal.ru":
 	case "radikal-foto.ru":
