@@ -537,7 +537,7 @@ function clearDoc(src) {
 			"insertBefore",
 			"removeChild",
 			"replaceChild",
-			"setAttribute",
+			//"setAttribute",
 			"removeAttribute",
 			"addEventListener"
 		];
