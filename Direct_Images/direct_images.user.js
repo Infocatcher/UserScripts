@@ -209,6 +209,7 @@
 // @match          *://cl.ly/*
 // @include        http://*.riotpixels.com/games/*/screenshots/*
 // @match          *://prnt.sc/*
+// @include        https://snag.gy/*.*
 // ==/UserScript==
 
 (function di(event) {
@@ -1183,6 +1184,11 @@ switch(host) {
 		_src = $a(/^https?:\/\/(?:\w+\.)?riotpixels\.\w+\/data\/[^?&#]+\.\w+$/);
 	break;
 	case "prnt.sc":
+		var metaImg = document.querySelector && document.querySelector('meta[property="og:image"][content^="http"]');
+		if(metaImg)
+			_src = metaImg.getAttribute("content");
+	break;
+	case "snag.gy":
 		var metaImg = document.querySelector && document.querySelector('meta[property="og:image"][content^="http"]');
 		if(metaImg)
 			_src = metaImg.getAttribute("content");
