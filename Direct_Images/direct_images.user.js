@@ -760,7 +760,7 @@ switch(host) {
 		else if(/^https?:\/\/([\w-]+\.)+\w+\/(?:l?fp|big)\//.test(loc)) {
 			_src = $ie(
 				/^https?:\/\/(\w+\.)*radikal\.ru\/[\w\/]+\.\w+$/,
-				/^https?:\/\/[^\/]+\/content\/images\//i
+				/^https?:\/\/[^\/]+\/content\//i
 			);
 		}
 		_clearDoc = true;
