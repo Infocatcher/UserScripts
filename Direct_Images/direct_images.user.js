@@ -544,15 +544,26 @@ function clearDoc(src) {
 		];
 		new window.Function("var p = Node.prototype; p." + m.join(" = p.") + " = function() {};")();
 	}
-	setTimeout(function() {
+	setTimeout(function checkCSS(_stopTime) {
 		if(window.getComputedStyle(img, null).textAlign == "center")
 			return; // Looks like all works fine
 		// Let's reload styles...
 		var links = document.getElementsByTagName("link");
 		for(var i = 0, l = links.length; i < l; ++i) {
 			var link = links[i];
-			link.href = link.href + "?";
+			if(link.rel == "stylesheet")
+				link.href = link.href.replace(/\?.*$/, "") + "?" + new Date().getTime();
 		}
+		var styles = document.getElementsByTagName("style");
+		for(var i = 0, l = links.length; i < l; ++i) {
+			var style = styles[i];
+			if(style.type != "text/css")
+				continue;
+			style.type = "text/force-reload";
+			style.type = "text/css";
+		}
+		if(!_stopTime || _stopTime > new Date().getTime())
+			setTimeout(checkCSS, 100, _stopTime || new Date().getTime() + 2e3);
 	}, 0);
 }
 hostLoop:
