@@ -2,7 +2,7 @@
 // @name        Remove fake links
 // @description Remove tracking redirects like http://www.google.com/url?... and http://clck.yandex.ru/redir/...
 // @author      Infocatcher
-// @version     0.2.0pre20 - 2017-04-11
+// @version     0.2.0pre21 - 2017-11-25
 // @run-at      document-start
 // @namespace   dev/null
 // @include     http://www.google.*/search?*
@@ -119,6 +119,7 @@ function clearLink(e) {
 	renameAttr(a, "onmousedown");
 	renameAttr(a, "data-vdir-href"); // mail.yandex.ru
 	renameAttr(a, "data-orig-href"); // mail.yandex.ru
+	renameAttr(a, "data-counter"); // yandex.ru
 	// https://www.reddit.com/
 	renameAttr(a, "data-outbound-url");
 	renameAttr(a, "data-inbound-url");
