@@ -130,6 +130,7 @@
 // @include        http://*ximage.ru/index.php?id=*
 // @include        http://*ii4.ru/image-*.html*
 // @include        http://freescreens.ru/*/
+// @include        http://powerlogo.ru/show-image.php?id=*
 
 // Get image from thumbnail:
 // @include        http://piccash.net/*/
@@ -822,6 +823,9 @@ switch(host) {
 	break;
 	case "freescreens.ru":
 		_src = $i(/^https?:\/\/(?:\w+\.)*freescreens\.ru\/allimage\/[^?&#]+\.\w+$/);
+	break;
+	case "powerlogo.ru":
+		_src = $i(/^https?:\/\/(?:\w+\.)*powerlogo\.ru\/pictures\/[\da-f]{32,}\.\w+$/);
 	break;
 
 	// Get image from thumbnail:
