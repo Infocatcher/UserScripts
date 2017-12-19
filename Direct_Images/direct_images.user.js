@@ -1,6 +1,6 @@
 ﻿// ==UserScript==
 // @name           Direct Images
-// @version        0.6.22.1 - 2017-09-01
+// @version        0.6.23 - 2017-12-19
 // @description    Redirect from preview pages to images directly
 // @author         Infocatcher
 // @namespace      dev/null
@@ -83,6 +83,7 @@
 // @include        http://imagestun.com/hosting/?v=*
 // @include        http://picua.org/?v=*
 // @match          *://*.giphy.com/media/*
+// @include        http://scrin.org/?v=*
 
 // Get image by src:
 // @include        http://*imagepix.org/image/*.html
@@ -701,6 +702,11 @@ switch(host) {
 		_src = loc
 			.replace(/^https?:\/\/\w+\.giphy\.com\/media\//, "https://i.giphy.com/")
 			.replace(/\/\w+(\.\w+)$/, "$1");
+	break;
+	case "scrin.org":
+		_src = loc.replace(/\/\?v=(\w+\.\w+)/, function(s, name) {
+			return "/i/" + name.replace(/_/g, "/");
+		});
 	break;
 
 	// Get image by src:
