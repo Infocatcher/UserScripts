@@ -1,6 +1,6 @@
 ﻿// ==UserScript==
 // @name           Direct Images
-// @version        0.6.23 - 2017-12-19
+// @version        0.6.24 - 2017-12-20
 // @description    Redirect from preview pages to images directly
 // @author         Infocatcher
 // @namespace      dev/null
@@ -48,6 +48,7 @@
 // @include        https://someimage.com/*
 // @include        http://skrinshoter.ru/*
 // @include        http://*.imagetitan.com/img.php?image=*
+// @include        http://www.picshare.ru/view/*
 
 // URL-based redirect:
 // @include        http://smages.com/*.htm
@@ -605,6 +606,7 @@ switch(host) {
 	case "someimage.com":    _iid = "viewimage";        break;
 	case "skrinshoter.ru":   _iid = "screenshot-image"; break;
 	case "imagetitan.com":   _iid = "image";            break;
+	case "picshare.ru":      _iid = "image";            break;
 
 	// URL-based redirect:
 	case "smages.com":
