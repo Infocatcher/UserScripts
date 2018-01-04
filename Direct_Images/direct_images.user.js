@@ -1,6 +1,6 @@
 ﻿// ==UserScript==
 // @name           Direct Images
-// @version        0.6.24 - 2017-12-20
+// @version        0.6.24.1 - 2018-01-04
 // @description    Redirect from preview pages to images directly
 // @author         Infocatcher
 // @namespace      dev/null
@@ -121,7 +121,7 @@
 // @include        http://you-logo.ru/show-image.php?*
 // @include        http://uploadimagex.com/view.php?*
 // @include        http://toroff.net/?v=*
-// @include        http://clip2net.com/s/*
+// @match          *://clip2net.com/s/*
 // @include        http://screencast.com/*/*
 // @include        http://img.lastusja.ru/*
 // @match          *://gyazo.com/*
