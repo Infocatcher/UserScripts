@@ -1,6 +1,6 @@
 ﻿// ==UserScript==
 // @name           Direct Images
-// @version        0.6.24.1 - 2018-01-04
+// @version        0.6.25 - 2018-01-05
 // @description    Redirect from preview pages to images directly
 // @author         Infocatcher
 // @namespace      dev/null
@@ -133,6 +133,7 @@
 // @include        http://*ii4.ru/image-*.html*
 // @include        http://freescreens.ru/*/
 // @include        http://powerlogo.ru/show-image.php?id=*
+// @include        https://ibb.co/*
 
 // Get image from thumbnail:
 // @include        http://piccash.net/*/
@@ -834,6 +835,9 @@ switch(host) {
 	break;
 	case "powerlogo.ru":
 		_src = $i(/^https?:\/\/(?:\w+\.)*powerlogo\.ru\/pictures\/[\da-f]{32,}\.\w+$/);
+	break;
+	case "ibb.co":
+		_src = $i(/^https?:\/\/image\w*\.ibb\.co\/[^?&#]+\.\w+$/);
 	break;
 
 	// Get image from thumbnail:
