@@ -1,6 +1,6 @@
 ﻿// ==UserScript==
 // @name           Direct Images
-// @version        0.6.25.1 - 2018-01-09
+// @version        0.6.26 - 2018-02-16
 // @description    Redirect from preview pages to images directly
 // @author         Infocatcher
 // @namespace      dev/null
@@ -85,6 +85,7 @@
 // @include        http://picua.org/?v=*
 // @match          *://*.giphy.com/media/*
 // @include        http://scrin.org/?v=*
+// @include        http://lostpix.com/?v=*
 
 // Get image by src:
 // @include        http://*imagepix.org/image/*.html
@@ -710,6 +711,11 @@ switch(host) {
 		_src = loc.replace(/\/\?v=(\w+\.\w+)/, function(s, name) {
 			return "/i/" + name.replace(/_/g, "/");
 		});
+	break;
+	case "lostpix.com":
+		// lostpix.com/?v=2018-01-09_foo.png
+		// lostpix.com/img/2018-01/09/foo.png
+		_src = loc.replace(/\/\?v=(\d{4}-\d\d)-(\d\d)_/, "/img/$1/$2/");
 	break;
 
 	// Get image by src:
