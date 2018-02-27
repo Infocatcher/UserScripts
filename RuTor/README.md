@@ -1,0 +1,3 @@
+﻿Invert tab/window title on RuTor (& mirrors):
+<br>зеркало … :: полезный заголовок
+<br>=> полезный заголовок – зеркало …
