@@ -3,14 +3,19 @@
 // @namespace   dev/null
 // @include     http://rus-tor.com/*
 // @include     http://freedom-tor.org/*
-// @version     0.1 - 2017-11-12
+// @include     http://tor-bit.net/*
+// @version     0.2 - 2018-02-27
 // @run-at      document-start
 // @grant       none
 // ==/UserScript==
 
-setTimeout(function invertTitle(_stopTime) {
-	if(/^(зеркало rutor.info) :: /.test(document.title))
+var stopTime = new Date().getTime() + 5e3;
+var observer = new MutationObserver(function() {
+	if(/^(зеркало rutor.info) :: /.test(document.title)) {
+		observer.disconnect();
 		document.title = RegExp.rightContext + " – " + RegExp.$1;
-	else if(!_stopTime || new Date().getTime() < _stopTime)
-		setTimeout(invertTitle, 10, _stopTime || new Date().getTime() + 5e3);
-}, 0);
+	}
+	else if(new Date().getTime() > stopTime)
+		observer.disconnect();
+});
+observer.observe(document.documentElement, { childList: true });
