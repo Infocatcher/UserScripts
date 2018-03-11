@@ -1,6 +1,6 @@
 ﻿// ==UserScript==
 // @name           Direct Images
-// @version        0.6.27 - 2018-02-26
+// @version        0.6.28 - 2018-03-11
 // @description    Redirect from preview pages to images directly
 // @author         Infocatcher
 // @namespace      dev/null
@@ -136,6 +136,7 @@
 // @include        http://freescreens.ru/*/
 // @include        http://powerlogo.ru/show-image.php?id=*
 // @include        https://ibb.co/*
+// @include        https://savepice.ru/full/*.html*
 
 // Get image from thumbnail:
 // @include        http://piccash.net/*/
@@ -848,6 +849,9 @@ switch(host) {
 	break;
 	case "ibb.co":
 		_src = $i(/^https?:\/\/image\w*\.ibb\.co\/[^?&#]+\.\w+$/);
+	break;
+	case "savepice.ru":
+		_src = $i(/^https?:\/\/(?:\w+\.)*savepice\.ru\/uploads\/[^?&#]+\/[\da-f]{32,}[^?&#\/]+\.\w+$/);
 	break;
 
 	// Get image from thumbnail:
