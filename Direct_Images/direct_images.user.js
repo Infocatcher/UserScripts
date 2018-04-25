@@ -785,8 +785,8 @@ switch(host) {
 	case "f-page.ru":
 	case "f-lite.ru":
 	case "f-picture.net":
-		if(/^https?:\/\/(?:www\.)?radikal\.ru\/F\/(\w+\.radikal\.ru\/[\w\/\.]+)\.html#?$/.test(loc))
-			_src = "http://" + RegExp.$1;
+		if(/^(https?:\/\/)(?:www\.)?radikal\.ru\/F\/(\w+\.radikal\.ru\/[\w\/\.]+)\.html#?$/.test(loc))
+			_src = RegExp.$1 + RegExp.$2;
 		else if(/[?&]u=(http[^?&#]+)/.test(loc))
 			_src = $dec(RegExp.$1);
 		else if(/^https?:\/\/([\w-]+\.)+\w+\/(?:l?fp|big)\//.test(loc)) {
@@ -794,6 +794,20 @@ switch(host) {
 				/^https?:\/\/(\w+\.)*radikal\.ru\/[\w\/]+\.\w+$/,
 				/^https?:\/\/[^\/]+\/content\//i
 			);
+		}
+		if(!_src) {
+			GM_log("Will extract from scripts");
+			var ss = document.getElementsByTagName("script");
+			for(var i = 0, l = ss.length; i < l; ++i) {
+				var tc = ss[i].textContent || "";
+				if(
+					tc.indexOf('"PublicPrevUrl"') != -1
+					&& /"Url": "(https?:\/\/(\w+\.)*radikal\.ru\/[\w\/]+\.\w+)"/.test(tc)
+				) {
+					_src = RegExp.$1;
+					break;
+				}
+			}
 		}
 		_clearDoc = true;
 	break;
