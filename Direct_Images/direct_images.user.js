@@ -1,6 +1,6 @@
 ﻿// ==UserScript==
 // @name           Direct Images
-// @version        0.6.28 - 2018-03-11
+// @version        0.6.28.1 - 2018-04-26
 // @description    Redirect from preview pages to images directly
 // @author         Infocatcher
 // @namespace      dev/null
@@ -22,7 +22,6 @@
 // @include        http://*image-share.com/image.php?*
 // @include        http://*image-share.com/*.html
 // @include        http://*10pix.ru/view/*
-// @include        http://funkyimg.com/viewer.php?*
 // @include        http://xmages.net/show.php*.html
 // @include        http://opicture.ru/gallery/view/*.html
 // @include        http://picamigo.com/show.php/*.html
@@ -137,6 +136,8 @@
 // @include        http://powerlogo.ru/show-image.php?id=*
 // @include        https://ibb.co/*
 // @include        https://savepice.ru/full/*.html*
+// @include        http://funkyimg.com/viewer.php?*
+// @include        http://funkyimg.com/view/*
 
 // Get image from thumbnail:
 // @include        http://piccash.net/*/
@@ -584,7 +585,6 @@ switch(host) {
 	case "pixshock.net":     _iid = "mi";               break;
 	case "image-share.com":  _iid = "image";            break;
 	case "10pix.ru":         _iid = "image";            break;
-	case "funkyimg.com":     _iid = "image";            break;
 	case "xmages.net":       _iid = "img_obj";          break;
 	case "opicture.ru":      _iid = "newImg";           break;
 	case "picamigo.com":     _iid = "img_obj";          break;
@@ -866,6 +866,9 @@ switch(host) {
 	break;
 	case "savepice.ru":
 		_src = $i(/^https?:\/\/(?:\w+\.)*savepice\.ru\/uploads\/[^?&#]+\/[\da-f]{32,}[^?&#\/]+\.\w+$/);
+	break;
+	case "funkyimg.com":
+		_src = $i(/^https?:\/\/(?:\w+\.)*funkyimg\.com\/i\/[^?&#\/]+\.\w+$/);
 	break;
 
 	// Get image from thumbnail:
