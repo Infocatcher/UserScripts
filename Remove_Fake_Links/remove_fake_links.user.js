@@ -2,7 +2,7 @@
 // @name        Remove fake links
 // @description Remove tracking redirects like http://www.google.com/url?... and http://clck.yandex.ru/redir/...
 // @author      Infocatcher
-// @version     0.2.0pre21 - 2017-11-25
+// @version     0.2.0pre22 - 2018-06-01
 // @run-at      document-start
 // @namespace   dev/null
 // @include     http://www.google.*/search?*
@@ -52,6 +52,7 @@
 // @include     http://*reactor.cc/*
 // @include     http://*.tumblr.com/*
 // @include     https://*.tumblr.com/*
+// @include     https://www.youtube.com/*
 // @grant       none
 // ==/UserScript==
 
@@ -209,6 +210,8 @@ function clearLink(e) {
 	else if(/^https?:\/\/(?:\w+\.?)?reactor\.cc\/redirect\?url=(http[^?&#\/]+)/.test(h))
 		nh = decode(RegExp.$1);
 	else if(/^https?:\/\/t\.umblr\.com\/redirect\?z=(http[^?&#\/]+)/.test(h))
+		nh = decode(RegExp.$1);
+	else if(/^https?:\/\/(?:www\.)?youtube\.com\/redirect[^#]*?[?&]q=(http[^?&#\/]+)/.test(h))
 		nh = decode(RegExp.$1);
 
 	if(nh == h)
