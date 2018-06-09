@@ -1,6 +1,6 @@
 ﻿// ==UserScript==
 // @name           Direct Images
-// @version        0.6.28.1 - 2018-04-26
+// @version        0.6.28.2 - 2018-06-09
 // @description    Redirect from preview pages to images directly
 // @author         Infocatcher
 // @namespace      dev/null
@@ -25,7 +25,6 @@
 // @include        http://xmages.net/show.php*.html
 // @include        http://opicture.ru/gallery/view/*.html
 // @include        http://picamigo.com/show.php/*.html
-// @include        http://*.directupload.net/file/*.htm
 // @include        http://pikucha.ru/*
 // @include        http://keep4u.ru/full/*.html
 // @include        http://www.imagebanana.com/view/*
@@ -218,6 +217,7 @@
 // @include        http://*.riotpixels.com/games/*/screenshots/*
 // @match          *://prnt.sc/*
 // @include        https://snag.gy/*.*
+// @include        http://www.directupload.net/*.htm*
 // ==/UserScript==
 
 (function di(event) {
@@ -588,7 +588,6 @@ switch(host) {
 	case "xmages.net":       _iid = "img_obj";          break;
 	case "opicture.ru":      _iid = "newImg";           break;
 	case "picamigo.com":     _iid = "img_obj";          break;
-	case "directupload.net": _iid = "Bild";             break;
 	case "pikucha.ru":       _iid = "image";            break;
 	case "keep4u.ru":        _iid = "foto";             break;
 	case "imagebanana.com":  _iid = "image";            break;
@@ -1242,11 +1241,8 @@ switch(host) {
 		_src = $a(/^https?:\/\/(?:\w+\.)?riotpixels\.\w+\/data\/[^?&#]+\.\w+$/);
 	break;
 	case "prnt.sc":
-		var metaImg = document.querySelector && document.querySelector('meta[property="og:image"][content^="http"]');
-		if(metaImg)
-			_src = metaImg.getAttribute("content");
-	break;
 	case "snag.gy":
+	case "directupload.net":
 		var metaImg = document.querySelector && document.querySelector('meta[property="og:image"][content^="http"]');
 		if(metaImg)
 			_src = metaImg.getAttribute("content");
