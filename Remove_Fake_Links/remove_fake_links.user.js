@@ -2,7 +2,7 @@
 // @name        Remove fake links
 // @description Remove tracking redirects like http://www.google.com/url?... and http://clck.yandex.ru/redir/...
 // @author      Infocatcher
-// @version     0.2.0pre22 - 2018-06-01
+// @version     0.2.0pre23 - 2019-01-12
 // @run-at      document-start
 // @namespace   dev/null
 // @include     http://www.google.*/search?*
@@ -87,7 +87,7 @@ window.addEventListener("unload", function destroy(e) {
 }, false);
 
 // Based on code from https://github.com/Infocatcher/Bookmarklets/blob/master/showAnchors.js
-var setTimeout = window.setTimeout;
+var setTimeout = window.setTimeout.bind(window); // Used .bind() for Greasemonkey 4.7 (Firefox 64)
 if(isNoScript) {
 	if("postMessage" in window) {
 		setTimeout = function fakeTimeout(callback) {
