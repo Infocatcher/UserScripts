@@ -1,6 +1,6 @@
 ﻿// ==UserScript==
 // @name           Direct Images
-// @version        0.6.28.2 - 2018-06-09
+// @version        0.6.28.3 - 2019-01-17
 // @description    Redirect from preview pages to images directly
 // @author         Infocatcher
 // @namespace      dev/null
@@ -66,7 +66,7 @@
 // @include        http://*imget.ru/show/?img=*
 // @include        http://fastpic.msk.ru/?v=*
 // @include        http://youpic.su/view.php?id=*
-// @include        http://jpegshare.net/*.html
+// @include        https://jpegshare.net/*.html
 // @include        http://imagelike.org/?v=*
 // @include        http://rupix.org/viewer.php?*
 // @include        http://all-poster.ru/?v=*
