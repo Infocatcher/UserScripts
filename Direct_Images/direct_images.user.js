@@ -1,6 +1,6 @@
 ﻿// ==UserScript==
 // @name           Direct Images
-// @version        0.6.28.3 - 2019-01-17
+// @version        0.6.28.4 - 2019-03-24
 // @description    Redirect from preview pages to images directly
 // @author         Infocatcher
 // @namespace      dev/null
@@ -199,7 +199,7 @@
 // @include        http://*.photobucket.com/*.html*
 // @include        http://tinypic.com/view.php?pic=*
 // @include        http://*fotohost.by/show/*
-// @include        http://fastpic.ru/view/*.html*
+// @match          *://fastpic.ru/view/*.html*
 // @include        http://joxi.ru/*
 // @include        http://joxi.net/*
 // @match          *://postimg.org/image/*
