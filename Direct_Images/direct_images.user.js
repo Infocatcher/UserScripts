@@ -1,6 +1,6 @@
 ﻿// ==UserScript==
 // @name           Direct Images
-// @version        0.6.28.4 - 2019-03-24
+// @version        0.6.28.5 - 2019-04-01
 // @description    Redirect from preview pages to images directly
 // @author         Infocatcher
 // @namespace      dev/null
@@ -386,7 +386,19 @@ function clearDoc(src) {
 			width: auto !important; height: auto !important; /* for https://userstyles.org/styles/101141/ru-adlist-css-fixes */\n\
 		}\n\
 		.zoomIn { cursor: -moz-zoom-in; cursor: -webkit-zoom-in; cursor: zoom-in; }\n\
-		.zoomOut { cursor: -moz-zoom-out; cursor: -webkit-zoom-out; cursor: zoom-out; }"
+		.zoomOut { cursor: -moz-zoom-out; cursor: -webkit-zoom-out; cursor: zoom-out; }\n\
+		/* From resource://gre/res/TopLevelImageDocument.css */\n\
+		@media not print {\n\
+			img {\n\
+				text-align: center;\n\
+				position: absolute;\n\
+				margin: auto;\n\
+				top: 0;\n\
+				right: 0;\n\
+				bottom: 0;\n\
+				left: 0;\n\
+			}\n\
+		}"
 	));
 	head.appendChild(style);
 
