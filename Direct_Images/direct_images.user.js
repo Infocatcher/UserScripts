@@ -447,9 +447,7 @@ function clearDoc(src) {
 
 	img.addEventListener("load", function initResizer(e) {
 		img.removeEventListener(e.type, initResizer, false);
-
-		window.removeEventListener("unload", destroySimpleZoom, false);
-		window.removeEventListener("click", simpleZoom, true);
+		destroySimpleZoom();
 
 		stl.maxWidth = stl.maxHeight = null;
 		var iw = img.width;
