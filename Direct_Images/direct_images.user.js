@@ -427,8 +427,8 @@ function clearDoc(src) {
 	var originalSize = false;
 
 	var simpleZoom, destroySimpleZoom;
-	img.addEventListener("click", simpleZoom = function(e) {
-		if(e.button != 0)
+	window.addEventListener("click", simpleZoom = function(e) {
+		if(e.button != 0 || e.target != img)
 			return;
 		originalSize = !originalSize;
 		if(originalSize) {
@@ -439,17 +439,17 @@ function clearDoc(src) {
 			stl.maxWidth = window.innerWidth + "px";
 			stl.maxHeight = window.innerHeight + "px";
 		}
-	}, false);
+	}, true);
 	window.addEventListener("unload", destroySimpleZoom = function() {
 		window.removeEventListener("unload", destroySimpleZoom, false);
-		img.removeEventListener("click", simpleZoom, false);
+		window.removeEventListener("click", simpleZoom, true);
 	}, false);
 
 	img.addEventListener("load", function initResizer(e) {
 		img.removeEventListener(e.type, initResizer, false);
 
 		window.removeEventListener("unload", destroySimpleZoom, false);
-		img.removeEventListener("click", simpleZoom, false);
+		window.removeEventListener("click", simpleZoom, true);
 
 		stl.maxWidth = stl.maxHeight = null;
 		var iw = img.width;
@@ -491,7 +491,7 @@ function clearDoc(src) {
 				: "";
 		}
 		function toggleFitSize(e) {
-			if(e.button != 0)
+			if(e.button != 0 || e.target != img)
 				return;
 			if(!fitSize(true)) { // Nothing to toggle
 				setCursor(false);
@@ -511,11 +511,11 @@ function clearDoc(src) {
 				fitSize();
 			setCursor();
 		}
-		img.addEventListener("click", toggleFitSize, false);
+		window.addEventListener("click", toggleFitSize, true);
 		window.addEventListener("resize", onResize, false);
 		window.addEventListener("unload", function destroy(e) {
 			window.removeEventListener(e.type, destroy, false);
-			img.removeEventListener("click", toggleFitSize, false);
+			window.removeEventListener("click", toggleFitSize, true);
 			window.removeEventListener("resize", onResize, false);
 		}, false);
 		if(originalSize) {
