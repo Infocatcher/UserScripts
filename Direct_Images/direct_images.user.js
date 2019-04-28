@@ -1,6 +1,6 @@
 ﻿// ==UserScript==
 // @name           Direct Images
-// @version        0.6.28.6 - 2019-04-03
+// @version        0.6.28.7 - 2019-04-28
 // @description    Redirect from preview pages to images directly
 // @author         Infocatcher
 // @namespace      dev/null
@@ -871,7 +871,7 @@ switch(host) {
 		_src = $i(/^https?:\/\/(?:\w+\.)*powerlogo\.ru\/pictures\/[\da-f]{32,}\.\w+$/);
 	break;
 	case "ibb.co":
-		_src = $i(/^https?:\/\/image\w*\.ibb\.co\/[^?&#]+\.\w+$/);
+		_src = $i(/^https?:\/\/(?:image\w*|i)\.ibb\.co\/[^?&#]+\.\w+$/);
 	break;
 	case "savepice.ru":
 		_src = $i(/^https?:\/\/(?:\w+\.)*savepice\.ru\/uploads\/[^?&#]+\/[\da-f]{32,}[^?&#\/]+\.\w+$/);
