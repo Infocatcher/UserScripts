@@ -1,6 +1,6 @@
 ﻿// ==UserScript==
 // @name           Direct Images
-// @version        0.6.28.9 - 2019-05-13
+// @version        0.6.28.10 - 2019-05-14
 // @description    Redirect from preview pages to images directly
 // @author         Infocatcher
 // @namespace      dev/null
@@ -138,15 +138,15 @@
 // @include        http://funkyimg.com/view/*
 
 // Get image from thumbnail:
-// @include        http://piccash.net/*/
-// @include        http://pic4you.ru/*/
-// @include        http://picforall.ru/*
-// @include        http://payforpic.ru/*
-// @include        http://pix-x.net/*
-// @include        http://picclick.ru/*
-// @include        http://imgclick.ru/*
-// @include        http://imgbase.ru/*
-// @include        http://picpays.ru/*
+// @match          *://piccash.net/*/
+// @match          *://pic4you.ru/*/
+// @match          *://picforall.ru/*
+// @match          *://payforpic.ru/*
+// @match          *://pix-x.net/*
+// @match          *://picclick.ru/*
+// @match          *://imgclick.ru/*
+// @match          *://imgbase.ru/*
+// @match          *://picpays.ru/*
 
 // Other:
 // @include        http://img*.imageshack.us/*
