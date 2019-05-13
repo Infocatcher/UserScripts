@@ -1,6 +1,6 @@
 ﻿// ==UserScript==
 // @name           Direct Images
-// @version        0.6.28.8 - 2019-05-13
+// @version        0.6.28.9 - 2019-05-13
 // @description    Redirect from preview pages to images directly
 // @author         Infocatcher
 // @namespace      dev/null
@@ -133,7 +133,6 @@
 // @include        http://*ii4.ru/image-*.html*
 // @include        http://freescreens.ru/*/
 // @include        http://powerlogo.ru/show-image.php?id=*
-// @include        https://ibb.co/*
 // @include        https://savepice.ru/full/*.html*
 // @include        http://funkyimg.com/viewer.php?*
 // @include        http://funkyimg.com/view/*
@@ -218,6 +217,7 @@
 // @match          *://prnt.sc/*
 // @include        https://snag.gy/*.*
 // @include        http://www.directupload.net/*.htm*
+// @include        https://ibb.co/*
 // ==/UserScript==
 
 (function di(event) {
@@ -870,9 +870,6 @@ switch(host) {
 	case "powerlogo.ru":
 		_src = $i(/^https?:\/\/(?:\w+\.)*powerlogo\.ru\/pictures\/[\da-f]{32,}\.\w+$/);
 	break;
-	case "ibb.co":
-		_src = $i(/^https?:\/\/(?:image\w*|i)\.ibb\.co\/[^?&#]+\.\w+$/);
-	break;
 	case "savepice.ru":
 		_src = $i(/^https?:\/\/(?:\w+\.)*savepice\.ru\/uploads\/[^?&#]+\/[\da-f]{32,}[^?&#\/]+\.\w+$/);
 	break;
@@ -1253,6 +1250,7 @@ switch(host) {
 	case "prnt.sc":
 	case "snag.gy":
 	case "directupload.net":
+	case "ibb.co":
 		var metaImg = document.querySelector && document.querySelector('meta[property="og:image"][content^="http"]');
 		if(metaImg)
 			_src = metaImg.getAttribute("content");
