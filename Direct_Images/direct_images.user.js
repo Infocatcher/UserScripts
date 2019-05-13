@@ -1,6 +1,6 @@
 ﻿// ==UserScript==
 // @name           Direct Images
-// @version        0.6.28.7 - 2019-04-28
+// @version        0.6.28.8 - 2019-05-13
 // @description    Redirect from preview pages to images directly
 // @author         Infocatcher
 // @namespace      dev/null
@@ -165,7 +165,7 @@
 // @include        http://fotki.yandex.ru/users/*/view/*
 // @include        http://southwc.ru/*.htm
 // @include        http://www.pict.com/view/*
-// @include        http://imageban.ru/show/*
+// @match          *://imageban.ru/show/*
 // @include        http://habreffect.ru/*
 // @include        http://rghost.ru/*
 // @include        http://rghost.net/*
