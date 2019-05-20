@@ -259,6 +259,9 @@ if(
 	return;
 }
 
+var ael = di.ael || (di.ael = window.addEventListener);
+var rel = di.rel || (di.rel = window.removeEventListener);
+
 var host = (function() { // a.example.com => example.com
 	var tld = "msk.ru|org.ua"; // Only currently used TLD, for better performance
 	var tldRe = new RegExp("[^.]+\\.(?:" + tld.replace(/\./g, "\\.") + "|[^.]+)$");
@@ -425,9 +428,6 @@ function clearDoc(src) {
 	stl.maxHeight = window.innerHeight + "px";
 
 	var originalSize = false;
-
-	var ael = window.addEventListener;
-	var rel = window.removeEventListener;
 
 	var simpleZoom, destroySimpleZoom;
 	ael.call(window, "click", simpleZoom = function(e) {
@@ -1283,8 +1283,8 @@ else if(document.readyState == "loading") {
 	if(!("_count" in di)) {
 		di._count = 0;
 		// With disabled scripts setTimeout doesn't work
-		window.addEventListener("DOMContentLoaded", di, false);
-		window.addEventListener("load", di, false);
+		ael.call(window, "DOMContentLoaded", di, false);
+		ael.call(window, "load", di, false);
 	}
 	if(++di._count < 5*60e3/10)
 		di._timer = setTimeout(di, 10);
@@ -1293,7 +1293,7 @@ else if(event && event.type == "load")
 	destroy();
 function destroy() {
 	di._timer && clearTimeout(di._timer);
-	window.removeEventListener("DOMContentLoaded", di, false);
-	window.removeEventListener("load", di, false);
+	rel.call(window, "DOMContentLoaded", di, false);
+	rel.call(window, "load", di, false);
 }
 })();
