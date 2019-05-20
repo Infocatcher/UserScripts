@@ -565,6 +565,8 @@ function clearDoc(src) {
 		];
 		new window.Function("var p = Node.prototype; p." + m.join(" = p.") + " = function() {};")();
 	}
+	if(window.EventTarget && EventTarget.prototype)
+		new window.Function("EventTarget.prototype.addEventListener = function() {};")();
 	setTimeout(function checkCSS(_stopTime) {
 		if(window.getComputedStyle(img, null).textAlign == "center")
 			return; // Looks like all works fine
