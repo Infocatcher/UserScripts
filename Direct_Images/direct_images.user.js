@@ -426,8 +426,11 @@ function clearDoc(src) {
 
 	var originalSize = false;
 
+	var ael = window.addEventListener;
+	var rel = window.removeEventListener;
+
 	var simpleZoom, destroySimpleZoom;
-	window.addEventListener("click", simpleZoom = function(e) {
+	ael.call(window, "click", simpleZoom = function(e) {
 		if(e.button != 0 || e.target != img)
 			return;
 		originalSize = !originalSize;
@@ -440,13 +443,13 @@ function clearDoc(src) {
 			stl.maxHeight = window.innerHeight + "px";
 		}
 	}, true);
-	window.addEventListener("unload", destroySimpleZoom = function() {
-		window.removeEventListener("unload", destroySimpleZoom, false);
-		window.removeEventListener("click", simpleZoom, true);
+	ael.call(window, "unload", destroySimpleZoom = function() {
+		rel.call(window, "unload", destroySimpleZoom, false);
+		rel.call(window, "click", simpleZoom, true);
 	}, false);
 
-	img.addEventListener("load", function initResizer(e) {
-		img.removeEventListener(e.type, initResizer, false);
+	ael.call(img, "load", function initResizer(e) {
+		rel.call(img, e.type, initResizer, false);
 		destroySimpleZoom();
 
 		stl.maxWidth = stl.maxHeight = null;
@@ -509,12 +512,12 @@ function clearDoc(src) {
 				fitSize();
 			setCursor();
 		}
-		window.addEventListener("click", toggleFitSize, true);
-		window.addEventListener("resize", onResize, false);
-		window.addEventListener("unload", function destroy(e) {
-			window.removeEventListener(e.type, destroy, false);
-			window.removeEventListener("click", toggleFitSize, true);
-			window.removeEventListener("resize", onResize, false);
+		ael.call(window, "click", toggleFitSize, true);
+		ael.call(window, "resize", onResize, false);
+		ael.call(window, "unload", function destroy(e) {
+			rel.call(window, e.type, destroy, false);
+			rel.call(window, "click", toggleFitSize, true);
+			rel.call(window, "resize", onResize, false);
 		}, false);
 		if(originalSize) {
 			origSize();
