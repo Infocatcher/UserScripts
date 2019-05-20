@@ -573,7 +573,7 @@ function clearDoc(src) {
 				link.href = link.href.replace(/\?.*$/, "") + "?" + new Date().getTime();
 		}
 		var styles = document.getElementsByTagName("style");
-		for(var i = 0, l = links.length; i < l; ++i) {
+		for(var i = 0, l = styles.length; i < l; ++i) {
 			var style = styles[i];
 			if(style.type != "text/css")
 				continue;
