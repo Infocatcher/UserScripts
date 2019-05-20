@@ -567,10 +567,11 @@ function clearDoc(src) {
 	}
 	if(window.EventTarget && EventTarget.prototype)
 		new window.Function("EventTarget.prototype.addEventListener = function() {};")();
-	setTimeout(function checkCSS(_stopTime) {
+	var tmr = setTimeout(function checkCSS(_stopTime) {
 		if(window.getComputedStyle(img, null).textAlign == "center")
 			return; // Looks like all works fine
 		// Let's reload styles...
+		GM_log("Force reload styles");
 		var links = document.getElementsByTagName("link");
 		for(var i = 0, l = links.length; i < l; ++i) {
 			var link = links[i];
@@ -588,6 +589,9 @@ function clearDoc(src) {
 		if(!_stopTime || _stopTime > new Date().getTime())
 			setTimeout(checkCSS, 100, _stopTime || new Date().getTime() + 2e3);
 	}, 0);
+	GM_log("Remove timers: " + (tmr - 1));
+	while(--tmr)
+		clearTimeout(tmr);
 }
 hostLoop:
 switch(host) {
