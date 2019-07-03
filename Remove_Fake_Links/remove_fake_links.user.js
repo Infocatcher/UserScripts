@@ -40,6 +40,7 @@
 // @include     https://duckduckgo.com/?*
 // @include     http://www.mts.ru/*
 // @include     http://4pda.ru/*
+// @include     https://4pda.ru/*
 // @include     http://*.deviantart.com/*
 // @include     https://*.deviantart.com/*
 // @include     https://addons.mozilla.org/*
