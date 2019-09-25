@@ -4,7 +4,8 @@
 // @include     http://rus-tor.com/*
 // @include     http://freedom-tor.org/*
 // @include     http://tor-bit.net/*
-// @version     0.2 - 2018-02-27
+// @include     http://new-tor.net/*
+// @version     0.2.0.1 - 2019-09-25
 // @run-at      document-start
 // @grant       none
 // ==/UserScript==
