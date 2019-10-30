@@ -1,6 +1,6 @@
 ﻿// ==UserScript==
 // @name           Direct Images
-// @version        0.6.29 - 2019-08-31
+// @version        0.6.29.1 - 2019-10-30
 // @description    Redirect from preview pages to images directly
 // @author         Infocatcher
 // @namespace      dev/null
@@ -216,7 +216,8 @@
 // @include        http://*.riotpixels.com/games/*/screenshots/*
 // @match          *://prnt.sc/*
 // @include        https://snag.gy/*.*
-// @include        http://www.directupload.net/*.htm*
+// @match          *://www.directupload.net/*.htm*
+// @match          *://*.directupload.net/images/*
 // @include        https://ibb.co/*
 // ==/UserScript==
 
@@ -1259,6 +1260,13 @@ switch(host) {
 		var metaImg = document.querySelector && document.querySelector('meta[property="og:image"][content^="http"]');
 		if(metaImg)
 			_src = metaImg.getAttribute("content");
+		else {
+			var img = document.querySelector && document.querySelector('img[src="' + location.pathname + '"]');
+			if(img && img.src == loc && img.parentNode != document.body) {
+				_src = loc;
+				_clearDoc = true;
+			}
+		}
 }
 if(_iid)
 	_img = $(_iid);
@@ -1279,6 +1287,11 @@ if(_src && _src != loc) {
 	else {
 		redirect(_src);
 	}
+	destroy();
+}
+else if(_src) {
+	GM_log("Clear document (" + (event ? event.type : "delay") + "):\n" + loc);
+	clearDoc(_src);
 	destroy();
 }
 else if(document.readyState == "loading") {
