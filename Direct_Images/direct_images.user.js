@@ -1,6 +1,6 @@
 ﻿// ==UserScript==
 // @name           Direct Images
-// @version        0.6.29.1 - 2019-10-30
+// @version        0.6.29.2 - 2020-02-08
 // @description    Redirect from preview pages to images directly
 // @author         Infocatcher
 // @namespace      dev/null
@@ -17,7 +17,7 @@
 // @include        http://*.ipicture.ru/Gallery/Viewfull/*.html
 // @include        http://www.picamatic.com/view/*
 // @include        http://download.su/photo/*
-// @include        http://*imageup.ru/img*/*.html
+// @match          *://imageup.ru/img*/*.html
 // @include        http://*pixshock.net/*.html
 // @include        http://*image-share.com/image.php?*
 // @include        http://*image-share.com/*.html
