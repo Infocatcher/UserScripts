@@ -1,6 +1,6 @@
 ﻿// ==UserScript==
 // @name           Direct Images
-// @version        0.6.29.2 - 2020-02-08
+// @version        0.6.29.3 - 2020-02-13
 // @description    Redirect from preview pages to images directly
 // @author         Infocatcher
 // @namespace      dev/null
@@ -108,7 +108,7 @@
 // @include        http://www.imagebam.com/image/*
 // @include        http://*radikal.ru/F/*.html*
 // @match          *://*.radikal.ru/*fp/*
-// @include        http://radikal.ru/big/*
+// @match          *://radikal.ru/big/*
 // @include        http://radikal-foto.ru/F/*.html*
 // @include        http://radical-foto.ru/F/*.html*
 // @include        http://radikal-foto.ru/*fp/*
