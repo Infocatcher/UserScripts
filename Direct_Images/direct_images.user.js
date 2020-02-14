@@ -45,7 +45,7 @@
 // @match          *://grab.by/*
 // @include        https://someimage.com/*
 // @match          *://skrinshoter.ru/*
-// @include        http://*.imagetitan.com/img.php?image=*
+// @match          *://*.imagetitan.com/img.php?image=*
 // @match          *://www.picshare.ru/view/*
 
 // URL-based redirect:
@@ -53,7 +53,7 @@
 // @match          *://anub.ru/pic/*
 // @include        http://*onlinedisk.ru/image/*
 // @include        http://*onlinedisk.ru/view/*
-// @include        http://*.fotoupload.ru/viewer.php?file=*
+// @match          *://*.fotoupload.ru/viewer.php?file=*
 // @match          *://image.vanilla.su/viewer.php?file=*
 // @match          *://prostofotka.ru/viewer.php?file=*
 // @match          *://foto-screen.ru/viewer.php?file=*
@@ -61,8 +61,8 @@
 // @match          *://foto-boom.org/viewer.php?file=*
 // @match          *://pixmaster.net/viewer.php?file=*
 // @match          *://itrash.ru/idb/*.htm*
-// @include        http://*.itrash.ru/idb/*.htm*
-// @include        http://*.sendpic.ru/*.html
+// @match          *://*.itrash.ru/idb/*.htm*
+// @match          *://*.sendpic.ru/*.html
 // @include        http://*imget.ru/show/?img=*
 // @match          *://fastpic.msk.ru/?v=*
 // @match          *://youpic.su/view.php?id=*
@@ -183,17 +183,17 @@
 // @exclude        *://imgur.com/a/*
 // @exclude        *://imgur.com/gallery/*
 // @exclude        *://imgur.com/user/*
-// @include        http://*.goodfon.ru/download*
-// @include        http://*.goodfon.su/download*
-// @include        http://*.badfon.ru/download*
+// @match          *://*.goodfon.ru/download*
+// @match          *://*.goodfon.su/download*
+// @match          *://*.badfon.ru/download*
 // @include        http://*image-upload.net/*.html
 // @match          *://imageshost.ru/links/*
 // @match          *://imageshost.ru/photo/*.html
 // @match          *://screenshotuploader.com/s/*
 // @match          *://prntscr.com/*
 // @match          *://ifotki.info/*.html
-// @include        http://*.photobucket.com/*?action=view*
-// @include        http://*.photobucket.com/*.html*
+// @match          *://*.photobucket.com/*?action=view*
+// @match          *://*.photobucket.com/*.html*
 // @match          *://tinypic.com/view.php?pic=*
 // @include        http://*fotohost.by/show/*
 // @match          *://fastpic.ru/view/*.html*
@@ -206,12 +206,12 @@
 // @match          *://ixbt.photo/?id=photo:*
 // @match          *://lostpic.net/?*
 // @match          *://lostpic.net/image/*
-// @include        http://*.lostpic.net/image/*
+// @match          *://*.lostpic.net/image/*
 // @match          *://pic.lg.ua/*
 // @include        https://cardse.net/image/*
 // @match          *://image2you.ru/*/
 // @match          *://cl.ly/*
-// @include        http://*.riotpixels.com/games/*/screenshots/*
+// @match          *://*.riotpixels.com/games/*/screenshots/*
 // @match          *://prnt.sc/*
 // @include        https://snag.gy/*.*
 // @match          *://www.directupload.net/*.htm*
