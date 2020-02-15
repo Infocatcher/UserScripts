@@ -41,9 +41,9 @@
 // @match          *://owely.com/*
 // @match          *://uaimage.com/image/*
 // @match          *://vfl.ru/fotos/*.html*
-// @include        https://geekpics.net/view/*
+// @match          *://geekpics.net/view/*
 // @match          *://grab.by/*
-// @include        https://someimage.com/*
+// @match          *://someimage.com/*
 // @match          *://skrinshoter.ru/*
 // @match          *://*.imagetitan.com/img.php?image=*
 // @match          *://www.picshare.ru/view/*
@@ -66,7 +66,7 @@
 // @include        http://*imget.ru/show/?img=*
 // @match          *://fastpic.msk.ru/?v=*
 // @match          *://youpic.su/view.php?id=*
-// @include        https://jpegshare.net/*.html
+// @match          *://jpegshare.net/*.html
 // @match          *://imagelike.org/?v=*
 // @match          *://rupix.org/viewer.php?*
 // @match          *://all-poster.ru/?v=*
@@ -133,7 +133,7 @@
 // @include        http://*ii4.ru/image-*.html*
 // @match          *://freescreens.ru/*/
 // @match          *://powerlogo.ru/show-image.php?id=*
-// @include        https://savepice.ru/full/*.html*
+// @match          *://savepice.ru/full/*.html*
 // @match          *://funkyimg.com/viewer.php?*
 // @match          *://funkyimg.com/view/*
 
@@ -208,15 +208,15 @@
 // @match          *://lostpic.net/image/*
 // @match          *://*.lostpic.net/image/*
 // @match          *://pic.lg.ua/*
-// @include        https://cardse.net/image/*
+// @match          *://cardse.net/image/*
 // @match          *://image2you.ru/*/
 // @match          *://cl.ly/*
 // @match          *://*.riotpixels.com/games/*/screenshots/*
 // @match          *://prnt.sc/*
-// @include        https://snag.gy/*.*
+// @match          *://snag.gy/*.*
 // @match          *://www.directupload.net/*.htm*
 // @match          *://*.directupload.net/images/*
-// @include        https://ibb.co/*
+// @match          *://ibb.co/*
 // ==/UserScript==
 
 (function di(event) {
