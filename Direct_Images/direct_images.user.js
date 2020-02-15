@@ -12,16 +12,16 @@
 // @include        about:blank?UserScripts/options/Direct_Images
 
 // Get image by id:
-// @include        http://img*.imagevenue.com/img.php?image=*
+// @match          *://*.imagevenue.com/img.php?image=*
 // @match          *://ipicture.ru/Gallery/Viewfull/*.html
 // @match          *://*.ipicture.ru/Gallery/Viewfull/*.html
 // @match          *://www.picamatic.com/view/*
 // @match          *://download.su/photo/*
 // @match          *://imageup.ru/img*/*.html
-// @include        http://*pixshock.net/*.html
-// @include        http://*image-share.com/image.php?*
-// @include        http://*image-share.com/*.html
-// @include        http://*10pix.ru/view/*
+// @include        *://*pixshock.net/*.html
+// @include        *://*image-share.com/image.php?*
+// @include        *://*image-share.com/*.html
+// @include        *://*10pix.ru/view/*
 // @match          *://xmages.net/show.php*.html
 // @match          *://opicture.ru/gallery/view/*.html
 // @match          *://picamigo.com/show.php/*.html
@@ -31,12 +31,12 @@
 // @match          *://yfrog.com/*
 // @match          *://radikal.ua/full/*.html
 // @match          *://upyourpic.org/images/*.html
-// @include        http://*postimg.com/image/*
+// @include        *://*postimg.com/image/*
 // @match          *://www.bild.me/bild.php?file=*
 // @match          *://www.pictureshack.ru/view_*
 // @match          *://pixs.ru/showimage/*
 // @match          *://minus.com/*
-// @include        http://*overpic.net/viewer.php?file=*
+// @include        *://*overpic.net/viewer.php?file=*
 // @match          *://pictube.ru/?v=*
 // @match          *://owely.com/*
 // @match          *://uaimage.com/image/*
@@ -51,8 +51,8 @@
 // URL-based redirect:
 // @match          *://smages.com/*.htm
 // @match          *://anub.ru/pic/*
-// @include        http://*onlinedisk.ru/image/*
-// @include        http://*onlinedisk.ru/view/*
+// @include        *://*onlinedisk.ru/image/*
+// @include        *://*onlinedisk.ru/view/*
 // @match          *://*.fotoupload.ru/viewer.php?file=*
 // @match          *://image.vanilla.su/viewer.php?file=*
 // @match          *://prostofotka.ru/viewer.php?file=*
@@ -63,7 +63,7 @@
 // @match          *://itrash.ru/idb/*.htm*
 // @match          *://*.itrash.ru/idb/*.htm*
 // @match          *://*.sendpic.ru/*.html
-// @include        http://*imget.ru/show/?img=*
+// @include        *://*imget.ru/show/?img=*
 // @match          *://fastpic.msk.ru/?v=*
 // @match          *://youpic.su/view.php?id=*
 // @match          *://jpegshare.net/*.html
@@ -87,7 +87,7 @@
 // @match          *://picplus.ru/ful/*
 
 // Get image by src:
-// @include        http://*imagepix.org/image/*.html
+// @include        *://*imagepix.org/image/*.html
 // @match          *://saveimg.ru/show-image.php?id=*
 // @match          *://mediapix.ru/pic.php?id=*
 // @match          *://pixs.ru/showimage/*
@@ -97,7 +97,7 @@
 // @match          *://mepic.ru/view/?*
 // @match          *://simplest-image-hosting.net/*
 // @match          *://pics.kz/view/*
-// @include        http://*imagepost.ru/?v=*
+// @include        *://*imagepost.ru/?v=*
 // @match          *://imgtheif.com/show-image.php?id=*
 // @match          *://imgtheif.com/image/*.html
 // @match          *://hostingkartinok.com/show-image.php?*
@@ -106,7 +106,7 @@
 // @match          *://narodpix.net/?v=*
 // @match          *://www.narodpix.net/?v=*
 // @match          *://www.imagebam.com/image/*
-// @include        http://*radikal.ru/F/*.html*
+// @include        *://*radikal.ru/F/*.html*
 // @match          *://*.radikal.ru/*fp/*
 // @match          *://radikal.ru/big/*
 // @match          *://radikal-foto.ru/F/*.html*
@@ -129,8 +129,8 @@
 // @match          *://imglink.ru/show-image.php?id=*
 // @match          *://www.fotolink.su/v.php?id=*
 // @match          *://netpics.org/image/*
-// @include        http://*ximage.ru/index.php?id=*
-// @include        http://*ii4.ru/image-*.html*
+// @include        *://*ximage.ru/index.php?id=*
+// @include        *://*ii4.ru/image-*.html*
 // @match          *://freescreens.ru/*/
 // @match          *://powerlogo.ru/show-image.php?id=*
 // @match          *://savepice.ru/full/*.html*
@@ -149,7 +149,7 @@
 // @match          *://picpays.ru/*
 
 // Other:
-// @include        http://img*.imageshack.us/*
+// @match          *://*.imageshack.us/*
 // @match          *://imageshack.us/photo/*
 // @match          *://imageshack.us/f/*/
 // @match          *://imageshack.com/photo/*
@@ -158,9 +158,9 @@
 // @match          *://savepic.net/*.htm
 // @match          *://savepic.su/*.htm
 // @match          *://piccy.info/*view*/*
-// @include        http://*xtupload.com/*.html
-// @include        http://*picatom.com/*.html
-// @include        http://*fotosik.pl/pokaz_obrazek/*.html
+// @include        *://*xtupload.com/*.html
+// @include        *://*picatom.com/*.html
+// @include        *://*fotosik.pl/pokaz_obrazek/*.html
 // @match          *://fotki.yandex.ru/users/*/view/*
 // @match          *://southwc.ru/*.htm
 // @match          *://www.pict.com/view/*
@@ -171,11 +171,11 @@
 // @match          *://rgho.st/*
 // @match          *://itmages.ru/image/*
 // @match          *://itmages.com/image/*
-// @include        http://*floomby.ru/*/*
+// @include        *://*floomby.ru/*/*
 // @match          *://www.kinopoisk.ru/picture/*/or/1/
 // @match          *://tenpic.ru/view.php?*
 // @match          *://imghost.in/pt-*.html
-// @include        http://img*.binimage.org/*
+// @match          *://*.binimage.org/*
 // @match          *://forlazypeople.com/?v=*
 // @match          *://upit.biz/?v=*
 // @match          *://imgur.com/*
@@ -186,7 +186,7 @@
 // @match          *://*.goodfon.ru/download*
 // @match          *://*.goodfon.su/download*
 // @match          *://*.badfon.ru/download*
-// @include        http://*image-upload.net/*.html
+// @include        *://*image-upload.net/*.html
 // @match          *://imageshost.ru/links/*
 // @match          *://imageshost.ru/photo/*.html
 // @match          *://screenshotuploader.com/s/*
@@ -195,7 +195,7 @@
 // @match          *://*.photobucket.com/*?action=view*
 // @match          *://*.photobucket.com/*.html*
 // @match          *://tinypic.com/view.php?pic=*
-// @include        http://*fotohost.by/show/*
+// @include        *://*fotohost.by/show/*
 // @match          *://fastpic.ru/view/*.html*
 // @match          *://joxi.ru/*
 // @match          *://joxi.net/*
