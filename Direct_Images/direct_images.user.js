@@ -136,6 +136,7 @@
 // @match          *://savepice.ru/full/*.html*
 // @match          *://funkyimg.com/viewer.php?*
 // @match          *://funkyimg.com/view/*
+// @match          *://www.imagesnake.com/show*
 
 // Get image from thumbnail:
 // @match          *://piccash.net/*/
@@ -883,6 +884,9 @@ switch(host) {
 	break;
 	case "funkyimg.com":
 		_src = $i(/^https?:\/\/(?:\w+\.)*funkyimg\.com\/i\/[^?&#\/]+\.\w+$/);
+	break;
+	case "imagesnake.com":
+		_src = $i(/^https?:\/\/(?:\w+\.)*imagesnake\.com\/tn\/i\d+\/[^?&#\/]+\.\w+(?:\?id=\w+)?$/);
 	break;
 
 	// Get image from thumbnail:
