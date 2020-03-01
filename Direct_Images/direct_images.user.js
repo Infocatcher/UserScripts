@@ -915,8 +915,8 @@ switch(host) {
 	case "imgbase.ru":
 	case "picpays.ru":
 		var more = $c("more_images"); // Blocks with "similar images" (on pix-x.net)
-		while(more.length)
-			more[0].parentNode.removeChild(more[0]);
+		for(var i = more.length - 1; i >= 0; --i)
+			more[i].parentNode.removeChild(more[i]);
 		_src = $th(
 			/^https?:\/\/[^\/]+\/allimage\/[^?&#]+\/\d+\.\w+$/,
 			/^https?:\/\/[^\/]+\/allimage\/[^?&#]+\/\d+-thumb\.\w+$/,
