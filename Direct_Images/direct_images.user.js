@@ -1,6 +1,6 @@
 ﻿// ==UserScript==
 // @name           Direct Images
-// @version        0.7.0pre - 2020-02-29
+// @version        0.7.0pre2 - 2020-03-02
 // @description    Redirect from preview pages to images directly
 // @author         Infocatcher
 // @namespace      dev/null
@@ -148,6 +148,7 @@
 // @match          *://imgclick.ru/*
 // @match          *://imgbase.ru/*
 // @match          *://picpays.ru/*
+// @match          *://drlink.online/*
 
 // Other:
 // @match          *://*.imageshack.us/*
@@ -914,6 +915,7 @@ switch(host) {
 	case "imgclick.ru":
 	case "imgbase.ru":
 	case "picpays.ru":
+	case "drlink.online":
 		var more = $c("more_images"); // Blocks with "similar images" (on pix-x.net)
 		for(var i = more.length - 1; i >= 0; --i)
 			more[i].parentNode.removeChild(more[i]);
