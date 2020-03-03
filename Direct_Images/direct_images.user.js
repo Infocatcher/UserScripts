@@ -219,6 +219,7 @@
 // @match          *://www.directupload.net/*.htm*
 // @match          *://*.directupload.net/images/*
 // @match          *://ibb.co/*
+// @match          *://picturelol.com/*
 // ==/UserScript==
 
 (function di(event) {
@@ -1271,6 +1272,10 @@ switch(host) {
 				_clearDoc = true;
 			}
 		}
+	break;
+	case "picturelol.com":
+		_img = $c("pic")[0] || null;
+		_clearDoc = true;
 }
 if(_iid)
 	_img = $(_iid);
