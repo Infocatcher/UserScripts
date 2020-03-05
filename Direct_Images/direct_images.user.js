@@ -364,6 +364,10 @@ function $dec(url) {
 	}
 	return url;
 }
+function ogImage() {
+	var metaImg = document.querySelector && document.querySelector('meta[property="og:image"][content^="http"]');
+	return metaImg && metaImg.getAttribute("content");
+}
 function redirect(url) {
 	if(allowBack)
 		location.href = url;
@@ -1246,12 +1250,9 @@ switch(host) {
 			_src = $i(/^https?:\/\/image2you\.ru\/allimages\/[^?&#]+\.\w+$/);
 	break;
 	case "cl.ly":
-		var metaImg = document.querySelector && document.querySelector('meta[property="og:image"][content^="http"]');
-		if(metaImg) {
-			_src = metaImg.getAttribute("content");
-			if(location.protocol == "https:" && /^http:\/+/i.test(_src))
-				_src = "https://s3.amazonaws.com/" + RegExp.rightContext;
-		}
+		_src = ogImage();
+		if(_src && location.protocol == "https:" && /^http:\/+/i.test(_src))
+			_src = "https://s3.amazonaws.com/" + RegExp.rightContext;
 	break;
 	case "riotpixels.com":
 		_src = $a(/^https?:\/\/(?:\w+\.)?riotpixels\.\w+\/data\/[^?&#]+\.\w+$/);
@@ -1260,10 +1261,8 @@ switch(host) {
 	case "snag.gy":
 	case "directupload.net":
 	case "ibb.co":
-		var metaImg = document.querySelector && document.querySelector('meta[property="og:image"][content^="http"]');
-		if(metaImg)
-			_src = metaImg.getAttribute("content");
-		else {
+		_src = ogImage();
+		if(!_src) {
 			var img = document.querySelector && document.querySelector('img[src="' + location.pathname + '"]');
 			if(img && img.src == loc && img.parentNode != document.body) {
 				_src = loc;
