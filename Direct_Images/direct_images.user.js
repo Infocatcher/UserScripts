@@ -220,6 +220,7 @@
 // @match          *://*.directupload.net/images/*
 // @match          *://ibb.co/*
 // @match          *://picturelol.com/*
+// @match          *://imgdrive.net/img-*.html*
 // ==/UserScript==
 
 (function di(event) {
@@ -366,7 +367,7 @@ function $dec(url) {
 }
 function ogImage() {
 	var metaImg = document.querySelector && document.querySelector('meta[property="og:image"][content^="http"]');
-	return metaImg && metaImg.getAttribute("content");
+	return metaImg && metaImg.getAttribute("content") || "";
 }
 function redirect(url) {
 	if(allowBack)
@@ -1273,6 +1274,10 @@ switch(host) {
 	case "picturelol.com":
 		_img = $c("pic")[0] || null;
 		_clearDoc = true;
+	break;
+	case "imgdrive.net":
+		_src = ogImage()
+			.replace("/small/", "/big/");
 }
 if(_iid)
 	_img = $(_iid);
