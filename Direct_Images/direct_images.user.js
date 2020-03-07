@@ -239,7 +239,11 @@ if(
 	loc == "about:blank?UserScripts/options/Direct_Images"
 	&& typeof GM_getValue == "function"
 ) {
-	document.title = "Direct Images Options";
+	var t = "Direct Images Options";
+	document.title = t;
+	setTimeout(function() { // Or wait for "load" event?
+		document.title = t;
+	}, 0);
 	var body = document.body || document.documentElement;
 	var label = _e("label");
 	label.htmlFor = "allowBack";
