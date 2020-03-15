@@ -1,6 +1,6 @@
 ﻿// ==UserScript==
 // @name           Direct Images
-// @version        0.7.0pre3 - 2020-03-07
+// @version        0.7.0pre4 - 2020-03-15
 // @description    Redirect from preview pages to images directly
 // @author         Infocatcher
 // @namespace      dev/null
@@ -105,7 +105,6 @@
 // @match          *://imm.io/*
 // @match          *://narodpix.net/?v=*
 // @match          *://www.narodpix.net/?v=*
-// @match          *://www.imagebam.com/image/*
 // @include        *://*radikal.ru/F/*.html*
 // @match          *://*.radikal.ru/*fp/*
 // @match          *://radikal.ru/big/*
@@ -221,6 +220,7 @@
 // @match          *://ibb.co/*
 // @match          *://picturelol.com/*
 // @match          *://imgdrive.net/img-*.html*
+// @match          *://www.imagebam.com/image/*
 // ==/UserScript==
 
 (function di(event) {
@@ -801,13 +801,6 @@ switch(host) {
 	case "narodpix.net":
 		_src = $i(/^https?:\/\/(?:\w+\.)?narodpix\.net\/img\/[^?&#]+\.\w+$/);
 	break;
-	case "imagebam.com":
-		_src = $i(/^https?:\/\/(?:\w+\.)?imagebam\.com\/download\/[^?&#]+$/);
-		if(_src)
-			_clearDoc = true;
-		else
-			_src = $i(/^https?:\/\/images\d*\.imagebam\.com\/[^?&#]+\/\w{10,}\.\w+$/);
-	break;
 	case "radikal.ru":
 	case "radikal-foto.ru":
 	case "radical-foto.ru":
@@ -1282,6 +1275,9 @@ switch(host) {
 	case "imgdrive.net":
 		_src = ogImage()
 			.replace("/small/", "/big/");
+	break;
+	case "imagebam.com":
+		_src = ogImage();
 }
 if(_iid)
 	_img = $(_iid);
