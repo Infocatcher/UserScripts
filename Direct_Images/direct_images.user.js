@@ -1,6 +1,6 @@
 ﻿// ==UserScript==
 // @name           Direct Images
-// @version        0.7.0pre4 - 2020-03-15
+// @version        0.7.0pre5 - 2020-05-03
 // @description    Redirect from preview pages to images directly
 // @author         Infocatcher
 // @namespace      dev/null
@@ -1201,6 +1201,7 @@ switch(host) {
 	break;
 	case "fastpic.ru":
 		_img = $c("image")[0] || null;
+		_clearDoc = true;
 	break;
 	case "joxi.ru":
 	case "joxi.net":
