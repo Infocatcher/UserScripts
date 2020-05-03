@@ -1200,7 +1200,7 @@ switch(host) {
 			_img = imgs[0];
 	break;
 	case "fastpic.ru":
-		var imgs = $c("image")[0] || null;
+		_img = $c("image")[0] || null;
 	break;
 	case "joxi.ru":
 	case "joxi.net":
