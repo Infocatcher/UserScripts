@@ -47,6 +47,7 @@
 // @match          *://skrinshoter.ru/*
 // @match          *://*.imagetitan.com/img.php?image=*
 // @match          *://www.picshare.ru/view/*
+// @match          *://www.turboimagehost.com/*.html*
 
 // URL-based redirect:
 // @match          *://smages.com/*.htm
@@ -640,6 +641,7 @@ switch(host) {
 	case "skrinshoter.ru":   _iid = "screenshot-image"; break;
 	case "imagetitan.com":   _iid = "image";            break;
 	case "picshare.ru":      _iid = "image";            break;
+	case "turboimagehost.com": _iid = "uImage";           break;
 
 	// URL-based redirect:
 	case "smages.com":
