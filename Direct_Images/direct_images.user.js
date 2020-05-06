@@ -197,7 +197,7 @@
 // @match          *://*.photobucket.com/*.html*
 // @match          *://tinypic.com/view.php?pic=*
 // @include        *://*fotohost.by/show/*
-// @match          *://fastpic.ru/view/*.html*
+// @match          *://fastpic.ru/*view/*.html*
 // @match          *://joxi.ru/*
 // @match          *://joxi.net/*
 // @match          *://postimg.org/image/*
