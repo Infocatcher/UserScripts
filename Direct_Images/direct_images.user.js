@@ -1,6 +1,6 @@
 ﻿// ==UserScript==
 // @name           Direct Images
-// @version        0.7.0pre6 - 2020-05-07
+// @version        0.7.0pre7 - 2020-07-14
 // @description    Redirect from preview pages to images directly
 // @author         Infocatcher
 // @namespace      dev/null
@@ -30,6 +30,7 @@
 // @match          *://www.imagebanana.com/view/*
 // @match          *://yfrog.com/*
 // @match          *://radikal.ua/full/*.html
+// @match          *://radikalno.ru/full/*.html
 // @match          *://upyourpic.org/images/*.html
 // @include        *://*postimg.com/image/*
 // @match          *://www.bild.me/bild.php?file=*
@@ -624,6 +625,7 @@ switch(host) {
 	case "imagebanana.com":    _iid = "image";            break;
 	case "yfrog.com":          _iid = "main_image";       break;
 	case "radikal.ua":         _iid = "image";            break;
+	case "radikalno.ru":       _iid = "image";            break;
 	case "upyourpic.org":      _iid = "mainimage";        break;
 	case "postimg.com":        _iid = "image";            break;
 	case "bild.me":            _iid = "Bild";             break;
