@@ -168,7 +168,14 @@ function clearLink(e) {
 	}
 	else if(host == "twitter.com") {
 		var url = a.getAttribute("data-expanded-url");
-		if(url && url != h && url == a.getAttribute("title")) {
+		if(
+			!url && /^https?:\/\/t\.co\//i.test(h)
+			&& (url = a.title) && /^https?:\/\/\S+$/i.test(url)
+			&& url.startsWith(a.textContent.replace(/…$/, ""))
+		) {
+			nh = url;
+		}
+		else if(url && url != h && url == a.getAttribute("title")) {
 			//renameAttr(a, "data-expanded-url");
 			nh = url;
 		}
