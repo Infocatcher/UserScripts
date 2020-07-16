@@ -70,7 +70,7 @@ var exclude = [
 	/^https?:\/\/news\.yandex\.\w+\/yandsearch.*[?&]cl4url=/
 ];
 var removeOnTheFly = true;
-var deleted = "__deleted__"; // Prefix to rename attributes
+var deleted = "__rfl_deleted__"; // Prefix to rename attributes
 
 if(removeOnTheFly) {
 	window.addEventListener("mouseover", clearLink, true);
