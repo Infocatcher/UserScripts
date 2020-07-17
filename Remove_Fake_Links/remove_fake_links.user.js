@@ -255,8 +255,8 @@ function handleKeyDown(e) {
 		clearLink(e);
 }
 function getLink(e) {
-	for(var a = e.target; a && a.localName; a = a.parentNode)
-		if(a.localName.toLowerCase() == "a")
+	for(var a = e.target, ln; a && (ln = a.localName); a = a.parentNode)
+		if(ln.toLowerCase() == "a")
 			return a.href && a;
 	return null;
 }
