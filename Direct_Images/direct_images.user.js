@@ -1,6 +1,6 @@
 ﻿// ==UserScript==
 // @name           Direct Images
-// @version        0.7.0pre7 - 2020-07-14
+// @version        0.7.0pre8 - 2020-07-26
 // @description    Redirect from preview pages to images directly
 // @author         Infocatcher
 // @namespace      dev/null
@@ -150,6 +150,7 @@
 // @match          *://imgbase.ru/*
 // @match          *://picpays.ru/*
 // @match          *://drlink.online/*
+// @match          *://pronpic.org/*
 
 // Other:
 // @match          *://*.imageshack.us/*
@@ -934,6 +935,16 @@ switch(host) {
 				"-thumb.":     "."
 			}
 		);
+	break;
+	case "pronpic.org":
+		var img = $("full_img");
+		if(img) { // May be hidden in case of detected AdBlock!
+			_src = img.src;
+			break;
+		}
+		var th = $("small_img");
+		if(th)
+			_src = th.src.replace("/th_", "/");
 	break;
 
 	// Other:
