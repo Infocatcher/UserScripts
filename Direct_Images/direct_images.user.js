@@ -1113,6 +1113,10 @@ switch(host) {
 	case "imgur.com":
 		var src = ogImage()
 			.replace(/\?fb$/, "");
+		if(/\?fbplay$/.test(src)) { // Video?
+			destroy();
+			break;
+		}
 		if(loc.indexOf("/a/") == -1) { // Not a gallery?
 			_src = src;
 			break;
