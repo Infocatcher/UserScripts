@@ -184,8 +184,6 @@
 // @match          *://upit.biz/?v=*
 // @match          *://imgur.com/*
 // @exclude        *://imgur.com/
-// @exclude        *://imgur.com/a/*
-// @exclude        *://imgur.com/gallery/*
 // @exclude        *://imgur.com/user/*
 // @match          *://*.goodfon.ru/download*
 // @match          *://*.goodfon.su/download*
@@ -278,6 +276,7 @@ var host = (function() { // a.example.com => example.com
 	return location.hostname.match(tldRe)[0];
 })();
 var _iid, _img, _src, _clearDoc;
+var _wait;
 function _e(nn) {
 	return document.createElementNS("http://www.w3.org/1999/xhtml", nn);
 }
@@ -1112,27 +1111,22 @@ switch(host) {
 			_img = imgs[0];
 	break;
 	case "imgur.com":
-		if(/\w{4,},\w{4,}(?:#[^#]*)?$/.test(loc)) // After uploading of 2+ images
+		var src = ogImage()
+			.replace(/\?fb$/, "");
+		if(loc.indexOf("/a/") == -1) { // Not a gallery?
+			_src = src;
 			break;
-		var a = $("large-image");
-		if(a)
-			_src = a.href;
-		else {
-			var block = $("image")
-				|| $c("image textbox")[0]
-				|| $c("share-links")[0]
-				|| $c("post-image")[0];
-			if(block) {
-				var re = /^https?:\/\/(?:\w+\.)*imgur\.com\/\w+\.\w+(\?\d+)?$/;
-				_src = $inp(re, block) || $i(re, block);
-			}
 		}
-		if(
-			!_src
-			&& document.getElementsByTagName("video").length
-			&& /^(https?:\/\/imgur\.com\/)(?:[^?&#]+\/)?(\w+)$/.test(loc)
-		)
-			redirect(RegExp.$1 + RegExp.$2 + "?tags");
+		if(!di._src) // Will be changed, remember initial value...
+			di._src = src;
+		var imgCount = $c("Gallery-Content--mediaContainer").length;
+		if(!imgCount) { // Not yet lazy-loaded?
+			_wait = true;
+			break;
+		}
+		if(imgCount > 1) // Many images?
+			break;
+		_src = di._src || src;
 	break;
 	case "goodfon.ru":
 	case "goodfon.su":
@@ -1321,7 +1315,7 @@ else if(_src) {
 	clearDoc(_src);
 	destroy();
 }
-else if(document.readyState == "loading") {
+else if(document.readyState == "loading" || _wait) {
 	if(!("_count" in di)) {
 		di._count = 0;
 		// With disabled scripts setTimeout doesn't work
