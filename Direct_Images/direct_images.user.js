@@ -1,6 +1,6 @@
 ﻿// ==UserScript==
 // @name           Direct Images
-// @version        0.7.0pre9 - 2021-05-27
+// @version        0.7.0pre10 - 2021-05-28
 // @description    Redirect from preview pages to images directly
 // @author         Infocatcher
 // @namespace      dev/null
@@ -222,6 +222,7 @@
 // @match          *://picturelol.com/*
 // @match          *://imgdrive.net/img-*.html*
 // @match          *://www.imagebam.com/image/*
+// @match          *://postimg.cc/*
 // ==/UserScript==
 
 (function di(event) {
@@ -1292,6 +1293,10 @@ switch(host) {
 	break;
 	case "imagebam.com":
 		_src = ogImage();
+	break;
+	case "postimg.cc":
+		var dl = $("download");
+		_src = dl && dl.href && dl.href.replace(/\?dl=1$/, "");
 }
 if(_iid)
 	_img = $(_iid);
