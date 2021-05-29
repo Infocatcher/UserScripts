@@ -1,6 +1,6 @@
 ﻿// ==UserScript==
 // @name           Direct Images
-// @version        0.7.0pre10 - 2021-05-28
+// @version        0.7.0pre11 - 2021-05-29
 // @description    Redirect from preview pages to images directly
 // @author         Infocatcher
 // @namespace      dev/null
@@ -1297,6 +1297,7 @@ switch(host) {
 	case "postimg.cc":
 		var dl = $("download");
 		_src = dl && dl.href && dl.href.replace(/\?dl=1$/, "");
+		_clearDoc = !$("zoombtn");
 }
 if(_iid)
 	_img = $(_iid);
