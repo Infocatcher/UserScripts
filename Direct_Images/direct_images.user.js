@@ -1,6 +1,6 @@
 ﻿// ==UserScript==
 // @name           Direct Images
-// @version        0.7.0pre11 - 2021-05-29
+// @version        0.7.0pre12 - 2021-06-08
 // @description    Redirect from preview pages to images directly
 // @author         Infocatcher
 // @namespace      dev/null
@@ -1114,6 +1114,8 @@ switch(host) {
 	case "imgur.com":
 		var src = ogImage()
 			.replace(/\?fb$/, "");
+		if(/^https?:\/\/(?:\w+\.)*imgur\.com\/images\/logo-/.test(src)) // Logo is useless...
+			src = "";
 		if(/\?fbplay$/.test(src)) { // Video?
 			destroy();
 			break;
