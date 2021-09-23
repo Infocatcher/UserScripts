@@ -1,6 +1,6 @@
 ﻿// ==UserScript==
 // @name           Direct Images
-// @version        0.7.0pre12 - 2021-06-08
+// @version        0.7.0pre13 - 2021-09-23
 // @description    Redirect from preview pages to images directly
 // @author         Infocatcher
 // @namespace      dev/null
@@ -199,6 +199,7 @@
 // @match          *://tinypic.com/view.php?pic=*
 // @include        *://*fotohost.by/show/*
 // @match          *://fastpic.ru/*view/*.html*
+// @match          *://fastpic.org/*view/*.html*
 // @match          *://joxi.ru/*
 // @match          *://joxi.net/*
 // @match          *://postimg.org/image/*
@@ -1216,6 +1217,7 @@ switch(host) {
 			_img = imgs[0];
 	break;
 	case "fastpic.ru":
+	case "fastpic.org":
 		_img = $c("image")[0] || null;
 		_clearDoc = true;
 	break;
