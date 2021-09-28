@@ -1,6 +1,6 @@
 ﻿// ==UserScript==
 // @name           Direct Images
-// @version        0.7.0pre13 - 2021-09-23
+// @version        0.7.0pre14 - 2021-09-28
 // @description    Redirect from preview pages to images directly
 // @author         Infocatcher
 // @namespace      dev/null
@@ -12,7 +12,6 @@
 // @include        about:blank?UserScripts/options/Direct_Images
 
 // Get image by id:
-// @match          *://*.imagevenue.com/img.php?image=*
 // @match          *://ipicture.ru/Gallery/Viewfull/*.html
 // @match          *://*.ipicture.ru/Gallery/Viewfull/*.html
 // @match          *://www.picamatic.com/view/*
@@ -138,6 +137,7 @@
 // @match          *://funkyimg.com/viewer.php?*
 // @match          *://funkyimg.com/view/*
 // @match          *://www.imagesnake.com/show*
+// @match          *://*.imagevenue.com/*
 
 // Get image from thumbnail:
 // @match          *://piccash.net/*/
@@ -611,7 +611,6 @@ function clearDoc(src) {
 hostLoop:
 switch(host) {
 	// Get image by id:
-	case "imagevenue.com":     _iid = "thepic";           break;
 	case "ipicture.ru":        _iid = "newImg";           break;
 	case "picamatic.com":      _iid = "pic";              break;
 	case "download.su":        _iid = "thepic";           break;
@@ -897,6 +896,11 @@ switch(host) {
 	break;
 	case "imagesnake.com":
 		_src = $i(/^https?:\/\/(?:\w+\.)*imagesnake\.com\/tn\/i\d+\/[^?&#\/]+\.\w+(?:\?id=\w+)?$/);
+	break;
+	case "imagevenue.com":
+		_src = $i(/^https:\/\/cdn-images\.imagevenue\.com\/[^?&#]+\.\w+$/);
+		if(!_src)
+			_iid = "thepic";
 	break;
 
 	// Get image from thumbnail:
