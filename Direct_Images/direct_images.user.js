@@ -464,8 +464,9 @@ function clearDoc(src) {
 		rel.call(window, "click", simpleZoom, true);
 	}, false);
 
-	ael.call(img, "load", function initResizer(e) {
-		rel.call(img, e.type, initResizer, false);
+	var initResizer;
+	ael.call(img, "load", initResizer = function(e) {
+		rel.call(img, "load", initResizer, false);
 		destroySimpleZoom();
 
 		stl.maxWidth = stl.maxHeight = null;
@@ -543,6 +544,8 @@ function clearDoc(src) {
 			fitSize();
 		}
 	}, false);
+	img.addEventListener("load", initResizer, false); // At least for Firefox 93
+
 	function scrollToClicked(e, iw, ih) {
 		if(!iw || !ih)
 			return;
