@@ -271,6 +271,7 @@ if(
 
 var ael = di.ael || (di.ael = window.addEventListener);
 var rel = di.rel || (di.rel = window.removeEventListener);
+var setTimeout = window.setTimeout.bind(window);
 
 var host = (function() { // a.example.com => example.com
 	var tld = "msk.ru|org.ua"; // Only currently used TLD, for better performance
@@ -582,6 +583,7 @@ function clearDoc(src) {
 	}
 	if(window.EventTarget && EventTarget.prototype)
 		new window.Function("EventTarget.prototype.addEventListener = function() {};")();
+	new window.Function("window.setTimeout = window.setInterval = function() {};")();
 	var tmr = setTimeout(function checkCSS(_stopTime) {
 		if(window.getComputedStyle(img, null).textAlign == "center")
 			return; // Looks like all works fine
