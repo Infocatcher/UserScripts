@@ -445,7 +445,7 @@ function clearDoc(src) {
 
 	var originalSize = false;
 
-	var simpleZoom, destroySimpleZoom;
+	var simpleZoom, destroySimpleZoom, preventClickUnders;
 	ael.call(window, "click", simpleZoom = function(e) {
 		if(e.button != 0 || e.target != img)
 			return;
@@ -458,10 +458,18 @@ function clearDoc(src) {
 			stl.maxWidth = window.innerWidth + "px";
 			stl.maxHeight = window.innerHeight + "px";
 		}
+		e.preventDefault();
+		e.stopPropagation();
+		e.stopImmediatePropagation && e.stopImmediatePropagation();
+	}, true);
+	ael.call(window, "mouseup", preventClickUnders = function(e) {
+		e.stopPropagation();
+		e.stopImmediatePropagation && e.stopImmediatePropagation();
 	}, true);
 	ael.call(window, "unload", destroySimpleZoom = function() {
 		rel.call(window, "unload", destroySimpleZoom, false);
 		rel.call(window, "click", simpleZoom, true);
+		rel.call(window, "mouseup", preventClickUnders, true);
 	}, false);
 
 	var initResizer;
