@@ -9,12 +9,20 @@
 
 setTimeout(function updateStorage() {
 	try {
-		M.Storage._setItem("old", "1", 720, "/", window.location.hostname);
+		M.Storage._setItem('old', '1', 720);
 		M.Storage._setItem("droped_old", "1", 24 * 365);
+		location.reload();
+		return;
 	}
 	catch(e) {
 		console.error(e);
 		var link = document.querySelector(".js-old-site-link");
-		link && link.click();
+		if(link) {
+			link.click();
+			return;
+		}
 	}
-}, 5000);
+	var i = "__iteration" in updateStorage ? ++updateStorage.__iteration : (updateStorage.__iteration = 1);
+	if(i <= 20)
+		setTimeout(updateStorage, 250);
+}, 250);
