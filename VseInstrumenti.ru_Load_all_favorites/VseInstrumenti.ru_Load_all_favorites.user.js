@@ -8,14 +8,16 @@
 // ==/UserScript==
 
 (function iteration() {
-	var ttls = ["⏳ ", "⌛️ "];
+	var btnLoad = /Показать ещё/i;
+	var btnLoading = /Загружается/i;
+	var ttls = ["⏳ ", "⌛️ "]; // Clock/hourglass emoji
 	var msg = "[VSI loader]: ";
 	var btnNext = iteration.__btnNext || (iteration.__btnNext = (function() {
 		var btns = document.getElementsByTagName("button");
 		for(var i = 0, l = btns.length; i < l; ++i) {
 			var btn = btns[i];
 			//console.log(msg + btn.textContent);
-			if(/Показать ещё/i.test(btn.textContent))
+			if(btnLoad.test(btn.textContent))
 				return btn;
 		}
 		return null;
@@ -30,7 +32,7 @@
 		console.log(msg + "done!");
 		return;
 	}
-	if(/Загружается/i.test(btnNext.textContent)) {
+	if(btnLoading.test(btnNext.textContent)) {
 		console.log(msg + "loading, wait…");
 		setTimeout(iteration, 200);
 		return;
