@@ -3,7 +3,7 @@
 // @namespace   dev/null
 // @author      Infocatcher
 // @include     https://www.gismeteo.ru/*
-// @version     0.1.1 - 2022-01-05
+// @version     0.1.2 - 2022-06-23
 // @grant       none
 // ==/UserScript==
 
