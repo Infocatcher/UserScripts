@@ -1,0 +1,1 @@
+﻿Force switch GisMeteo.ru to old style
