@@ -1,0 +1,1 @@
+﻿Load all favorites on VseInstrumenti.ru
