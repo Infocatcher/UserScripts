@@ -3,7 +3,8 @@
 // @author      Infocatcher
 // @namespace   dev/null
 // @include     https://www.vseinstrumenti.ru/user/favorites
-// @version     0.1.0 - 2022-06-25
+// @include     https://www.vseinstrumenti.ru/user/favorites/
+// @version     0.1.0.1 - 2022-07-09
 // @grant       none
 // ==/UserScript==
 
