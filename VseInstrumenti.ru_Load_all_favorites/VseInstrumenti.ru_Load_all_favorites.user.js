@@ -9,17 +9,21 @@
 // ==/UserScript==
 
 (function iteration() {
-	var btnLoad = /Показать ещё/i;
+	var btnLoad = /Показать ещ[её]/i;
 	var btnLoading = /Загружается/i;
 	var ttls = ["⏳ ", "⌛️ "]; // Clock/hourglass emoji
 	var msg = "[VSI loader]: ";
 	var btnNext = iteration.__btnNext || (iteration.__btnNext = (function() {
 		var btns = document.getElementsByTagName("button");
-		for(var i = 0, l = btns.length; i < l; ++i) {
+		btnLoop: for(var i = 0, l = btns.length; i < l; ++i) {
 			var btn = btns[i];
 			//console.log(msg + btn.textContent);
-			if(btnLoad.test(btn.textContent))
+			if(btnLoad.test(btn.textContent)) {
+				for(var pn = btn; (pn = pn.parentNode); )
+					if(pn.nodeName == "ASIDE")
+						continue btnLoop;
 				return btn;
+			}
 		}
 		return null;
 	})());
