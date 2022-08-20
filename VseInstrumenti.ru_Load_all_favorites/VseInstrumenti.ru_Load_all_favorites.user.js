@@ -37,7 +37,7 @@
 		console.log(msg + "done!");
 		return;
 	}
-	if(btnLoading.test(btnNext.textContent)) {
+	if(btnLoading.test(btnNext.textContent) || btnNext.disabled) {
 		console.log(msg + "loading, wait…");
 		setTimeout(iteration, 200);
 		return;
