@@ -4,7 +4,7 @@
 // @namespace   dev/null
 // @include     https://www.vseinstrumenti.ru/user/favorites
 // @include     https://www.vseinstrumenti.ru/user/favorites/
-// @version     0.1.0.1 - 2022-07-09
+// @version     0.1.0.2 - 2022-08-22
 // @grant       none
 // ==/UserScript==
 
