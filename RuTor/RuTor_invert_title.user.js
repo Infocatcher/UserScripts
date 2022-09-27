@@ -6,7 +6,7 @@
 // @include     http://tor-bit.net/*
 // @include     http://new-tor.net/*
 // @include     http://rutor.info/*
-// @version     0.2.0.1 - 2019-09-25
+// @version     0.2.0.2 - 2022-09-28
 // @run-at      document-start
 // @grant       none
 // ==/UserScript==
