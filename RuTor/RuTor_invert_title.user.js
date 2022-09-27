@@ -13,7 +13,7 @@
 
 var stopTime = new Date().getTime() + 5e3;
 var observer = new MutationObserver(function() {
-	if(/^((?:зеркало )?rutor.info) :: /.test(document.title)) {
+	if(/^((?:зеркало )?rutor\.info) :: /i.test(document.title)) {
 		observer.disconnect();
 		document.title = RegExp.rightContext + " – " + RegExp.$1;
 	}
