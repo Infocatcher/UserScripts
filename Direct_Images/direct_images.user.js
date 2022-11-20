@@ -1,6 +1,6 @@
 ﻿// ==UserScript==
 // @name           Direct Images
-// @version        0.7.0pre16 - 2022-01-01
+// @version        0.7.0pre17 - 2022-11-20
 // @description    Redirect from preview pages to images directly
 // @author         Infocatcher
 // @namespace      dev/null
@@ -1050,6 +1050,7 @@ switch(host) {
 	break;
 	case "imageban.ru":
 		_src = $inp(/^https?:\/\/(?:\w+\.)*imageban\.ru\/out\//);
+		_clearDoc = true;
 	break;
 	case "habreffect.ru":
 		var node = $("image");
