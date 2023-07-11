@@ -1,6 +1,6 @@
 ﻿// ==UserScript==
 // @name           Direct Images
-// @version        0.7.0pre17 - 2022-11-20
+// @version        0.7.0pre18 - 2023-07-11
 // @description    Redirect from preview pages to images directly
 // @author         Infocatcher
 // @namespace      dev/null
@@ -224,6 +224,7 @@
 // @match          *://imgdrive.net/img-*.html*
 // @match          *://www.imagebam.com/image/*
 // @match          *://postimg.cc/*
+// @match          *://sasisa.org/foto/foto.php?*
 // ==/UserScript==
 
 (function di(event) {
@@ -1320,6 +1321,16 @@ switch(host) {
 		var dl = $("download");
 		_src = dl && dl.href && dl.href.replace(/\?dl=1$/, "");
 		_clearDoc = true;
+	break;
+	case "sasisa.org":
+		var links = $t("a");
+		for(var i = 0, l = links.length; i < l; ++i) {
+			var a = links[i];
+			if(a.textContent == "Скачать оригинал") {
+				_src = a.href;
+				break;
+			}
+		}
 }
 if(_iid)
 	_img = $(_iid);
