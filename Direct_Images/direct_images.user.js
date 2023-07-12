@@ -106,16 +106,6 @@
 // @match          *://imm.io/*
 // @match          *://narodpix.net/?v=*
 // @match          *://www.narodpix.net/?v=*
-// @include        *://*radikal.ru/F/*.html*
-// @match          *://*.radikal.ru/*fp/*
-// @match          *://radikal.ru/big/*
-// @match          *://radikal-foto.ru/F/*.html*
-// @match          *://radical-foto.ru/F/*.html*
-// @match          *://radikal-foto.ru/*fp/*
-// @match          *://radical-foto.ru/*fp/*
-// @match          *://f-page.ru/*fp/*
-// @match          *://f-lite.ru/*fp/*
-// @match          *://f-picture.net/*fp/*
 // @match          *://firepic.org/?v=*
 // @match          *://www.firepic.org/?v=*
 // @match          *://you-logo.ru/show-image.php?*
@@ -819,38 +809,6 @@ switch(host) {
 	break;
 	case "narodpix.net":
 		_src = $i(/^https?:\/\/(?:\w+\.)?narodpix\.net\/img\/[^?&#]+\.\w+$/);
-	break;
-	case "radikal.ru":
-	case "radikal-foto.ru":
-	case "radical-foto.ru":
-	case "f-page.ru":
-	case "f-lite.ru":
-	case "f-picture.net":
-		if(/^(https?:\/\/)(?:www\.)?radikal\.ru\/F\/(\w+\.radikal\.ru\/[\w\/\.]+)\.html#?$/.test(loc))
-			_src = RegExp.$1 + RegExp.$2;
-		else if(/[?&]u=(http[^?&#]+)/.test(loc))
-			_src = $dec(RegExp.$1);
-		else if(/^https?:\/\/([\w-]+\.)+\w+\/(?:l?fp|big)\//.test(loc)) {
-			_src = $ie(
-				/^https?:\/\/(\w+\.)*radikal\.ru\/[\w\/]+\.\w+$/,
-				/^https?:\/\/[^\/]+\/content\//i
-			);
-		}
-		if(!_src) {
-			GM_log("Will extract from scripts");
-			var ss = document.getElementsByTagName("script");
-			for(var i = 0, l = ss.length; i < l; ++i) {
-				var tc = ss[i].textContent || "";
-				if(
-					tc.indexOf('"PublicPrevUrl"') != -1
-					&& /"Url": "(https?:\/\/(\w+\.)*radikal\.ru\/[\w\/]+\.\w+)"/.test(tc)
-				) {
-					_src = RegExp.$1;
-					break;
-				}
-			}
-		}
-		_clearDoc = true;
 	break;
 	case "firepic.org":
 		_src = $i(/^https?:\/\/(?:\w+\.)*firepic\.org\/[^?&#]*images\/[^?&#]+\.\w+$/);
