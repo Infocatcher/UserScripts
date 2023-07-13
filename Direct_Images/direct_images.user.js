@@ -10,6 +10,7 @@
 // @grant          GM_log
 
 // @include        about:blank?UserScripts/options/Direct_Images
+// @include        data:,UserScripts/options/Direct_Images
 
 // Get image by id:
 // @match          *://ipicture.ru/Gallery/Viewfull/*.html
@@ -230,7 +231,10 @@ if(typeof GM_getValue == "function") {
 
 var loc = location.href;
 if(
-	loc == "about:blank?UserScripts/options/Direct_Images"
+	(
+		loc == "about:blank?UserScripts/options/Direct_Images"
+		|| loc == "data:,UserScripts/options/Direct_Images"
+	)
 	&& typeof GM_getValue == "function"
 ) {
 	var t = "Direct Images Options";
