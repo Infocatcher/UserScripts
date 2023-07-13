@@ -234,28 +234,33 @@ if(
 	&& typeof GM_getValue == "function"
 ) {
 	var t = "Direct Images Options";
-	document.title = t;
-	setTimeout(function() { // Or wait for "load" event?
+	var optionsUI = function() {
+		window.removeEventListener("load", optionsUI, false);
 		document.title = t;
-	}, 0);
-	var body = document.body || document.documentElement;
-	var label = _e("label");
-	label.htmlFor = "allowBack";
-	var input = _e("input");
-	input.id = "allowBack";
-	input.type = "checkbox";
-	input.checked = allowBack;
-	var handleClick = function() {
-		GM_setValue("allowBack", input.checked);
+		var body = document.body || document.documentElement;
+		body.textContent = "";
+		var label = _e("label");
+		label.htmlFor = "allowBack";
+		var input = _e("input");
+		input.id = "allowBack";
+		input.type = "checkbox";
+		input.checked = allowBack;
+		var handleClick = function() {
+			GM_setValue("allowBack", input.checked);
+		};
+		input.addEventListener("click", handleClick, false);
+		label.appendChild(input);
+		label.appendChild(document.createTextNode("Allow back (don't remove page from back/forward history)"));
+		body.appendChild(label);
+		window.addEventListener("unload", function destroy(e) {
+			window.removeEventListener("unload", destroy, false);
+			input.removeEventListener("click", handleClick, false);
+		}, false);
 	};
-	input.addEventListener("click", handleClick, false);
-	label.appendChild(input);
-	label.appendChild(document.createTextNode("Allow back (don't remove page from back/forward history)"));
-	body.appendChild(label);
-	window.addEventListener("unload", function destroy(e) {
-		window.removeEventListener("unload", destroy, false);
-		input.removeEventListener("click", handleClick, false);
-	}, false);
+	if(document.readyState == "loading")
+		window.addEventListener("load", optionsUI, false);
+	else
+		optionsUI();
 	destroy();
 	return;
 }
