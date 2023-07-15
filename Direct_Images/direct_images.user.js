@@ -255,6 +255,7 @@ if(
 		input.addEventListener("click", handleClick, false);
 		label.appendChild(input);
 		label.appendChild(document.createTextNode("Allow back (don't remove page from back/forward history)"));
+		label.style.fontFamily = "sans-serif";
 		body.appendChild(label);
 		window.addEventListener("unload", function destroy(e) {
 			window.removeEventListener("unload", destroy, false);
