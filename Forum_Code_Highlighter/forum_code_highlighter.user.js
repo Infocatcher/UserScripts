@@ -1,4 +1,4 @@
-// ==UserScript==
+﻿// ==UserScript==
 // @name        Forum Code Highlighter
 // @version     0.1.4.1 - 2016-07-02
 // @author      Infocatcher
@@ -369,8 +369,9 @@ function initBox(box) {
 
 	// Special "codes"
 	var tc = box.textContent;
+	var isCB = /^custombutton:\/\/\S+%3C\/custombutton%3E\s*$/.test(tc)
 	if(
-		/^custombutton:\/\/\S+%3C\/custombutton%3E\s*$/.test(tc)
+		isCB
 		|| /^data:[\w-]+\/[\w-]+;base64,\S+\s*$/.test(tc)
 	) {
 		tc = tc.replace(/\s+$/, "");
@@ -380,10 +381,7 @@ function initBox(box) {
 		var icon, maxSize;
 		if(/^data:image\//.test(tc))
 			icon = tc;
-		else if(
-			/^custombutton:\/\//.test(tc)
-			&& /%3Cimage%3E%3C%21%5BCDATA%5B(data%3A\S+)%5D%5D%3E%3C\/image%3E/.test(tc)
-		) {
+		else if(isCB && /%3Cimage%3E%3C%21%5BCDATA%5B(data%3A\S+)%5D%5D%3E%3C\/image%3E/.test(tc)) {
 			try {
 				icon = decodeURIComponent(RegExp.$1);
 				maxSize = "32px";
@@ -410,6 +408,14 @@ function initBox(box) {
 
 		box.innerHTML = "";
 		box.appendChild(a);
+
+		isCB && setTimeout(function() {
+			var pn = box.parentNode;
+			if(pn.style.height)
+				pn.style.height = "";
+			viewCustomButtonCode(tc, box);
+		}, 0);
+
 		return;
 	}
 
@@ -540,6 +546,77 @@ function backup(node) {
 function unhl(node) {
 	node.innerHTML = node.innerHTML.replace(/<\/?span[^<>]*>/ig, "");
 }
+
+//=== Custom Buttons parser: begin
+// https://github.com/Infocatcher/Custom_Buttons/blob/gh-pages/viewCustomButton.js
+// Parser for custombutton:// URIs https://addons.mozilla.org/addon/custom-buttons/
+// (c) Infocatcher 2013
+// version 0.1.0 - 2013-10-16
+function viewCustomButtonCode(cbURI, outBlock) {
+	var data = parseCustomButtonURI(cbURI);
+	var res = document.createElement("div");
+	res.className = "cbCodeView";
+	function appendSection(name, code, hl) {
+		var section = document.createElement("div");
+		section.className = "cbCodeView-section";
+		var header = document.createElement("h5");
+		header.appendChild(document.createTextNode(name));
+		header.className = "cbCodeView-section-header";
+		section.appendChild(header);
+		var value = document.createElement("pre");
+		value.style.fontSize = "1em"; // Force fix size
+		value.appendChild(document.createTextNode(code));
+		value.className = "cbCodeView-section-value";
+		section.appendChild(value);
+		res.appendChild(section);
+		if(hl) setTimeout(function() {
+			value.className += " " + codeClass;
+			highlight(value);
+		}, 0);
+	}
+	appendSection("Name", data.name);
+	if(data.accelkey) {
+		var disableDefault = data.mode & 2 /*CB_MODE_DISABLE_DEFAULT_KEY_BEHAVIOR*/;
+		appendSection("Hotkey", data.accelkey + (disableDefault ? " (disable default action)" : ""));
+	}
+	appendSection("Code", data.code, true);
+	appendSection("Initialization Code", data.initCode, true);
+	if(data.help)
+		appendSection("Help", data.help);
+	//~ loadHihglighterStyles();
+	if(!outBlock)
+		outBlock = document.body || document.documentElement;
+	outBlock.appendChild(res);
+}
+function parseCustomButtonURI(cbURI) {
+	var out = {};
+	if(cbURI.substr(0, 15) != "custombutton://")
+		throw new Error("Not a custombutton:// URI");
+	var data = unescape(cbURI.substr(15));
+	if(data.substr(0, 6) != "<?xml ")
+		throw new Error("Malformed custombutton:// URI");
+	var doc = new DOMParser().parseFromString(data, "application/xml");
+	// See components/CustomButtonsService.js
+	function getText(nodeName) {
+		var result = "";
+		var node = doc.getElementsByTagName(nodeName)[0];
+		if(!node)
+			return result;
+		if(!node.firstChild || (node.firstChild && (node.firstChild.nodeType == node.TEXT_NODE)))
+			result = node.textContent;
+		else // CDATA
+			result = node.firstChild.textContent;
+		return result;
+	}
+	var fields = ["name", "code", "initCode", "accelkey", "mode", "help"];
+	for(var i = 0, l = fields.length; i < l; ++i) {
+		var field = fields[i];
+		out[field] = getText(field.toLowerCase());
+	}
+	return out;
+}
+//=== Custom Buttons parser: end
+
 function destroy(e) {
 	removeEventListener(window, "unload", destroy);
 	removeEventListener(document, "change", switchTypeHandler);
