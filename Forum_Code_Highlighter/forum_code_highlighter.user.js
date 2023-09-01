@@ -3,22 +3,17 @@
 // @version     0.1.4.1 - 2016-07-02
 // @author      Infocatcher
 // @namespace   dev/null
-// @include     http://custombuttons.sourceforge.net/forum/viewtopic.php?*
-// @include     http://custombuttons.sourceforge.net/forum/posting.php*
-// @include     http://custombuttons.sourceforge.net/forum/ucp.php*mode=compose*
-// @include     http://forum.mozilla-russia.org/viewtopic.php?*
-// @include     https://forum.mozilla-russia.org/viewtopic.php?*
-// @include     http://forum.mozilla-russia.org/post.php*
-// @include     https://forum.mozilla-russia.org/post.php*
-// @include     http://forum.mozilla-russia.org/message_list.php?*
-// @include     https://forum.mozilla-russia.org/message_list.php?*
-// @include     http://forum.mozilla-russia.org/message_send.php?*
-// @include     https://forum.mozilla-russia.org/message_send.php?*
-// @include     http://forum.mozilla-russia.org/edit.php?*
-// @include     https://forum.mozilla-russia.org/edit.php?*
-// @include     http://akelpad.sourceforge.net/forum/viewtopic.php?*
-// @include     http://akelpad.sourceforge.net/forum/posting.php*
-// @include     http://akelpad.sourceforge.net/forum/privmsg.php*
+// @match       *://custombuttons.sourceforge.net/forum/viewtopic.php?*
+// @match       *://custombuttons.sourceforge.net/forum/posting.php*
+// @match       *://custombuttons.sourceforge.net/forum/ucp.php*mode=compose*
+// @match       *://forum.mozilla-russia.org/viewtopic.php?*
+// @match       *://forum.mozilla-russia.org/post.php*
+// @match       *://forum.mozilla-russia.org/message_list.php?*
+// @match       *://forum.mozilla-russia.org/message_send.php?*
+// @match       *://forum.mozilla-russia.org/edit.php?*
+// @match       *://akelpad.sourceforge.net/forum/viewtopic.php?*
+// @match       *://akelpad.sourceforge.net/forum/posting.php*
+// @match       *://akelpad.sourceforge.net/forum/privmsg.php*
 // ==/UserScript==
 
 // Highlighter and styles: highlight.js http://softwaremaniacs.org/soft/highlight/download/
