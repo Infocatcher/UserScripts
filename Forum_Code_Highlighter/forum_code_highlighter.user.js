@@ -49,7 +49,7 @@ var styleSelect;
 
 var host = location.hostname;
 if(host == "akelpad.sourceforge.net") {
-	codeSelector = ".code." + codeClass;
+	codeSelector = "code." + codeClass;
 	types = {
 		javascript: "JavaScript",
 		cpp: "C++",
@@ -63,23 +63,10 @@ if(host == "akelpad.sourceforge.net") {
 		"+diff": "+Diff"
 	};
 	getBoxes = function() {
-		var boxes;
-		if(document.getElementsByClassName)
-			boxes = document.getElementsByClassName("code");
-		else {
-			boxes = [];
-			var re = ClassList.prototype._re("code");
-			var tds = document.getElementsByTagName("td");
-			for(var i = 0, l = tds.length; i < l; ++i) {
-				var td = tds[i];
-				if(re.test(td.className))
-					boxes.push(td);
-			}
-		}
-		return boxes;
+		return document.getElementsByTagName("code");
 	};
 	getHeader = function(box) {
-		return box.parentNode.parentNode.getElementsByTagName("td")[0];
+		return box.parentNode.parentNode.getElementsByTagName("p")[0];
 	};
 	styleSelect = function(s) {
 		s.marginBottom = "-5px";
@@ -495,7 +482,7 @@ function switchTypeHandler(e) {
 	var nn = container.nodeName.toLowerCase();
 	if(nn == "td") // td -> tr -> tbody
 		container = container.parentNode.parentNode;
-	else if(nn == "dt") // dt -> dl
+	else if(nn == "dt" || nn == "p") // dt -> dl, p -> div
 		container = container.parentNode;
 	var box;
 	if(container.querySelector)
