@@ -182,6 +182,13 @@ var style = isDarkTheme
   display: block;\n\
   color: #eaeaea;\n\
   padding: 0.5em;\n\
+}\n\
+/* Tweaks for parsed custombutton://… */\n\
+.cbCodeView .cbCodeView-section-header {\n\
+  margin: 1.6em 0 0.2em !important;\n\
+}\n\
+.cbCodeView .cbCodeView-section-value%code% {\n\
+  border: 1px solid #555 !important;\n\
 }'
 	: '\
 /*\n\
@@ -314,9 +321,18 @@ Modified by Infocatcher\n\
 \n\
 %pre%.tex .formula {\n\
   opacity: 0.5;\n\
+}\n\
+/* Tweaks for parsed custombutton://… */\n\
+.cbCodeView .cbCodeView-section-header {\n\
+  margin: 1.6em 0 0.2em !important;\n\
+}\n\
+.cbCodeView .cbCodeView-section-value%code% {\n\
+  border: 1px solid #ccc !important;\n\
 }';
 
-style = style.replace(/%pre%/g, codeSelector);
+style = style
+	.replace(/%pre%/g, codeSelector)
+	.replace(/%code%/g, "." + codeClass);
 
 var s = document.createElement("style");
 s.id = "highlight-js-styles";
