@@ -46,6 +46,11 @@ var defaultType = "javascript"; // If autodetection fails
 var getBoxes;
 var getHeader;
 var styleSelect;
+function getCodeHeader(box) {
+	if(new ClassList(box).contains("cbCodeView-section-value"))
+		return box.parentNode.firstChild;
+	return getHeader(box);
+}
 
 var host = location.hostname;
 if(host == "akelpad.sourceforge.net") {
@@ -187,6 +192,9 @@ var style = isDarkTheme
 .cbCodeView .cbCodeView-section-header {\n\
   margin: 1.6em 0 0.2em !important;\n\
 }\n\
+.cbCodeView .cbCodeView-section-header > .highlight-js-typeSwitcher {\n\
+  margin-top: -0.5em !important;\n\
+}\n\
 .cbCodeView .cbCodeView-section-value%code% {\n\
   border: 1px solid #555 !important;\n\
 }'
@@ -326,6 +334,9 @@ Modified by Infocatcher\n\
 .cbCodeView .cbCodeView-section-header {\n\
   margin: 1.6em 0 0.2em !important;\n\
 }\n\
+.cbCodeView .cbCodeView-section-header > .highlight-js-typeSwitcher {\n\
+  margin-top: -0.5em !important;\n\
+}\n\
 .cbCodeView .cbCodeView-section-value%code% {\n\
   border: 1px solid #ccc !important;\n\
 }';
@@ -443,7 +454,7 @@ function updProxy() {
 	}, dt);
 }
 function addTypeSwitcher(box) {
-	var header = getHeader(box);
+	var header = getCodeHeader(box);
 	var select = document.createElement("select");
 	select.className = switcherClass;
 
@@ -498,7 +509,7 @@ function switchTypeHandler(e) {
 	var nn = container.nodeName.toLowerCase();
 	if(nn == "td") // td -> tr -> tbody
 		container = container.parentNode.parentNode;
-	else if(nn == "dt" || nn == "p") // dt -> dl, p -> div
+	else if(nn == "dt" || nn == "p" || nn == "h5") // dt -> dl, p -> div, h5 -> div
 		container = container.parentNode;
 	var box;
 	if(container.querySelector)
@@ -570,6 +581,9 @@ function viewCustomButtonCode(cbURI, outBlock) {
 		if(hl) setTimeout(function() {
 			value.className += " " + codeClass;
 			highlight(value);
+			value.setAttribute("data-highlight-js-parsed", "true");
+			if(name != "Name")
+				addTypeSwitcher(value);
 		}, 0);
 	}
 	appendSection("Name", data.name);
