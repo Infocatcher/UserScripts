@@ -197,6 +197,8 @@ var style = isDarkTheme
 }\n\
 .cbCodeView .cbCodeView-section-value%code% {\n\
   border: 1px solid #555 !important;\n\
+  max-height: 35em !important;\n\
+  overflow: auto !important;\n\
 }'
 	: '\
 /*\n\
@@ -339,6 +341,8 @@ Modified by Infocatcher\n\
 }\n\
 .cbCodeView .cbCodeView-section-value%code% {\n\
   border: 1px solid #ccc !important;\n\
+  max-height: 35em !important;\n\
+  overflow: auto !important;\n\
 }';
 
 style = style
