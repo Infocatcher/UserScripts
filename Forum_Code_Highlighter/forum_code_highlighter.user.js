@@ -498,7 +498,7 @@ function addTypeSwitcher(box) {
 	else {
 		var cl = new ClassList(box);
 		for(var type in types) {
-			if(cl.contains(type)) {
+			if(cl.contains("language-" + type)) {
 				selectedType = type;
 				break;
 			}
@@ -506,8 +506,8 @@ function addTypeSwitcher(box) {
 		if(!selectedType) {
 			selectedType = defaultType;
 			backup(box);
-			cl.remove("undefined");
-			cl.add(defaultType);
+			cl.remove("language-undefined");
+			cl.add("language-" + defaultType);
 			highlight(box);
 		}
 	}
@@ -555,13 +555,13 @@ function switchType(select, box) {
 	var cl = new ClassList(box);
 	for(var type in types)
 		if(type != newType)
-			cl.remove(type);
-	cl.remove("undefined");
+			cl.remove("language-" + type);
+	cl.remove("language-undefined");
 	if(newType == "__original__")
 		box.innerHTML = box.getAttribute("data-highlight-js-original");
 	else {
 		backup(box);
-		cl.add(newType.replace(/^\+/, ""));
+		cl.add("language-" + newType.replace(/^\+/, ""));
 		if(newType.charAt(0) != "+")
 			unhl(box);
 		highlight(box);
