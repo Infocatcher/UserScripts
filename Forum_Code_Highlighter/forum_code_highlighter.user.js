@@ -166,6 +166,14 @@ var style = isDarkTheme
 /* Original theme - https://github.com/chriskempson/tomorrow-theme */
 /* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
 /* Modified by Infocatcher */
+.hljs-keyword,
+.hljs-literal {
+	font-weight: bold;
+}
+.hljs-comment,
+.hljs-string {
+	font-style: italic;
+}
 pre code.hljs {
 	display: block;
 	overflow-x: auto;
@@ -248,6 +256,14 @@ code.hljs {
   Current colors taken from GitHub's CSS
   Modified by Infocatcher
 */
+.hljs-keyword,
+.hljs-literal {
+	font-weight: bold;
+}
+.hljs-comment,
+.hljs-string {
+	font-style: italic;
+}
 pre code.hljs {
 	display: block;
 	overflow-x: auto;
