@@ -562,9 +562,21 @@ function switchType(select, box) {
 	else {
 		backup(box);
 		cl.add("language-" + newType.replace(/^\+/, ""));
-		if(newType.charAt(0) != "+")
-			unhl(box);
-		highlight(box);
+		//if(newType.charAt(0) != "+")
+		//	unhl(box);
+		if(newType.charAt(0) == "+") {
+			box.innerHTML = hljs.highlight(
+					box.innerHTML,
+					{ language: newType.substr(1) }
+				).value
+				.replace(/&lt;/g, "<") // Is there some better way?
+				.replace(/&gt;/g, ">")
+				.replace(/&quot;/g, '"')
+				.replace(/&amp;/g, "&");
+		}
+		else {
+			highlight(box);
+		}
 	}
 	_updLock = false;
 }
