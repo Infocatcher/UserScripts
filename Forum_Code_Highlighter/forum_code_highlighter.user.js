@@ -561,13 +561,16 @@ function switchType(select, box) {
 		box.innerHTML = box.getAttribute("data-highlight-js-original");
 	else {
 		backup(box);
-		cl.add("language-" + newType.replace(/^\+/, ""));
+		var append = newType.charAt(0) == "+";
+		if(append)
+			newType = newType.substr(1);
+		cl.add("language-" + newType);
 		//if(newType.charAt(0) != "+")
 		//	unhl(box);
-		if(newType.charAt(0) == "+") {
+		if(append) {
 			box.innerHTML = hljs.highlight(
 					box.innerHTML,
-					{ language: newType.substr(1) }
+					{ language: newType }
 				).value
 				.replace(/&lt;/g, "<") // Is there some better way?
 				.replace(/&gt;/g, ">")
