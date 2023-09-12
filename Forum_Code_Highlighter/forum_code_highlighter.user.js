@@ -88,10 +88,6 @@ if(host == "akelpad.sourceforge.net") {
 	};
 }
 else {
-	//delete hljs.LANGUAGES.cpp;
-	//delete hljs.LANGUAGES.ini;
-	//delete hljs.LANGUAGES.dos;
-	//delete hljs.LANGUAGES.vbscript;
 	hljs.unregisterLanguage("cpp");
 	hljs.unregisterLanguage("ini");
 	hljs.unregisterLanguage("dos");
@@ -376,8 +372,6 @@ document.getElementsByTagName("head")[0].appendChild(s);
 
 /*** Main functions ***/
 function highlight(box) {
-	var useBR = box.getElementsByTagName("br").length > 0;
-	//hljs.highlightBlock(box, null, useBR);
 	hljs.highlightElement(box);
 }
 function higlightAll() {
@@ -565,8 +559,6 @@ function switchType(select, box) {
 		if(append)
 			newType = newType.substr(1);
 		cl.add("language-" + newType);
-		//if(newType.charAt(0) != "+")
-		//	unhl(box);
 		if(append) {
 			box.innerHTML = hljs.highlight(
 					box.innerHTML,
