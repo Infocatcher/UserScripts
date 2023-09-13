@@ -263,15 +263,13 @@ code.hljs {
 pre code.hljs {
 	display: block;
 	overflow-x: auto;
-	padding: 1em
-}
-code.hljs {
-	padding: 3px 5px
-}
-.hljs {
+	padding: 1em;
 	color: #24292e;
 	/*background: #fff*/
 	background: #f8f8ff;
+}
+code.hljs {
+	padding: 3px 5px
 }
 .hljs-doctag,
 .hljs-keyword,
