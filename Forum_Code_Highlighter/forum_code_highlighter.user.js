@@ -369,8 +369,19 @@ document.getElementsByTagName("head")[0].appendChild(s);
 
 
 /*** Main functions ***/
-function highlight(box) {
-	hljs.highlightElement(box);
+function highlight(box, newType, append) {
+	if(!append) {
+		hljs.highlightElement(box);
+		return;
+	}
+	box.innerHTML = hljs.highlight(
+			box.innerHTML,
+			{ language: newType }
+		).value
+		.replace(/&lt;/g, "<") // Is there some better way?
+		.replace(/&gt;/g, ">")
+		.replace(/&quot;/g, '"')
+		.replace(/&amp;/g, "&");
 }
 function higlightAll() {
 	var boxes = getBoxes();
@@ -557,19 +568,7 @@ function switchType(select, box) {
 		if(append)
 			newType = newType.substr(1);
 		cl.add("language-" + newType);
-		if(append) {
-			box.innerHTML = hljs.highlight(
-					box.innerHTML,
-					{ language: newType }
-				).value
-				.replace(/&lt;/g, "<") // Is there some better way?
-				.replace(/&gt;/g, ">")
-				.replace(/&quot;/g, '"')
-				.replace(/&amp;/g, "&");
-		}
-		else {
-			highlight(box);
-		}
+		highlight(box, newType, append);
 	}
 	_updLock = false;
 }
