@@ -162,70 +162,67 @@ var style = isDarkTheme
 /* Original theme - https://github.com/chriskempson/tomorrow-theme */
 /* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
 /* Modified by Infocatcher */
-.hljs-keyword,
-.hljs-literal {
+%pre% .hljs-keyword,
+%pre% .hljs-literal {
 	font-weight: bold;
 }
-.hljs-comment,
-.hljs-string {
+%pre% .hljs-comment,
+%pre% .hljs-string {
 	font-style: italic;
 }
-pre code.hljs {
+%pre% code.hljs {
 	display: block;
 	overflow-x: auto;
-	padding: 1em
-}
-code.hljs {
 	padding: 3px 5px
 }
-.hljs-comment,
-.hljs-quote {
+%pre% .hljs-comment,
+%pre% .hljs-quote {
 	color: #969896
 }
-.hljs-deletion,
-.hljs-name,
-.hljs-regexp,
-.hljs-selector-class,
-.hljs-selector-id,
-.hljs-tag,
-.hljs-template-variable,
-.hljs-variable {
+%pre% .hljs-deletion,
+%pre% .hljs-name,
+%pre% .hljs-regexp,
+%pre% .hljs-selector-class,
+%pre% .hljs-selector-id,
+%pre% .hljs-tag,
+%pre% .hljs-template-variable,
+%pre% .hljs-variable {
 	color: #d54e53
 }
-.hljs-built_in,
-.hljs-link,
-.hljs-literal,
-.hljs-meta,
-.hljs-number,
-.hljs-params,
-.hljs-type {
+%pre% .hljs-built_in,
+%pre% .hljs-link,
+%pre% .hljs-literal,
+%pre% .hljs-meta,
+%pre% .hljs-number,
+%pre% .hljs-params,
+%pre% .hljs-type {
 	color: #e78c45
 }
-.hljs-attribute {
+%pre% .hljs-attribute {
 	color: #e7c547
 }
-.hljs-addition,
-.hljs-bullet,
-.hljs-string,
-.hljs-symbol {
+%pre% .hljs-addition,
+%pre% .hljs-bullet,
+%pre% .hljs-string,
+%pre% .hljs-symbol {
 	color: #b9ca4a
 }
-.hljs-section,
-.hljs-title {
+%pre% .hljs-section,
+%pre% .hljs-title {
 	color: #7aa6da
 }
-.hljs-keyword,
-.hljs-selector-tag {
+%pre% .hljs-keyword,
+%pre% .hljs-selector-tag {
 	color: #c397d8
 }
-.hljs {
+%pre%.hljs {
 	background: #000;
 	color: #eaeaea
 }
-.hljs-emphasis {
+%pre% .hljs-emphasis {
 	font-style: italic
 }
-.hljs-strong {
+%pre% .hljs-strong {
 	font-weight: 700
 }
 /* Tweaks for parsed custombutton://… */
@@ -252,94 +249,91 @@ code.hljs {
   Current colors taken from GitHub's CSS
   Modified by Infocatcher
 */
-.hljs-keyword,
-.hljs-literal {
+%pre% .hljs-keyword,
+%pre% .hljs-literal {
 	font-weight: bold;
 }
-.hljs-comment,
-.hljs-string {
+%pre% .hljs-comment,
+%pre% .hljs-string {
 	font-style: italic;
 }
-pre code.hljs {
+%pre%.hljs {
 	display: block;
 	overflow-x: auto;
-	padding: 1em;
 	color: #000;
 	background: #f8f8ff;
-}
-code.hljs {
 	padding: 3px 5px
 }
-.hljs-doctag,
-.hljs-keyword,
-.hljs-meta .hljs-keyword,
-.hljs-template-tag,
-.hljs-template-variable,
-.hljs-type,
-.hljs-variable.language_ {
+%pre% .hljs-doctag,
+%pre% .hljs-keyword,
+%pre% .hljs-meta .hljs-keyword,
+%pre% .hljs-template-tag,
+%pre% .hljs-template-variable,
+%pre% .hljs-type,
+%pre% .hljs-variable.language_ {
 	color: #d73a49
 }
-.hljs-title,
-.hljs-title.class_,
-.hljs-title.class_.inherited__,
-.hljs-title.function_ {
+%pre% .hljs-title,
+%pre% .hljs-title.class_,
+%pre% .hljs-title.class_.inherited__,
+%pre% .hljs-title.function_ {
 	color: #6f42c1
 }
-.hljs-attr,
-.hljs-attribute,
-.hljs-literal,
-.hljs-meta,
-.hljs-number,
-.hljs-operator,
-.hljs-selector-attr,
-.hljs-selector-class,
-.hljs-selector-id,
-.hljs-variable {
+%pre% .hljs-attr,
+%pre% .hljs-attribute,
+%pre% .hljs-literal,
+%pre% .hljs-meta,
+%pre% .hljs-number,
+%pre% .hljs-operator,
+%pre% .hljs-selector-attr,
+%pre% .hljs-selector-class,
+%pre% .hljs-selector-id,
+%pre% .hljs-variable {
 	color: #005cc5
 }
-.hljs-meta .hljs-string,
-.hljs-regexp,
-.hljs-string {
+%pre% .hljs-meta .hljs-string,
+%pre% .hljs-regexp,
+%pre% .hljs-string {
 	color: #032f62
 }
-.hljs-built_in,
-.hljs-symbol {
+%pre% .hljs-built_in,
+%pre% .hljs-symbol {
 	color: #e36209
 }
-.hljs-code,
-.hljs-comment,
-.hljs-formula {
+%pre% .hljs-code,
+%pre% .hljs-comment,
+%pre% .hljs-formula {
 	color: #6a737d
 }
-.hljs-name,
-.hljs-quote,
-.hljs-selector-pseudo,
-.hljs-selector-tag {
+%pre% .hljs-name,
+%pre% .hljs-quote,
+%pre% .hljs-selector-pseudo,
+%pre% .hljs-selector-tag {
 	color: #22863a
 }
-.hljs-subst {
+%pre% .hljs-subst {
 	color: #24292e
 }
-.hljs-section {
+%pre% .hljs-section {
 	color: #005cc5;
 	font-weight: 700
 }
-.hljs-bullet {
+%pre% .hljs-bullet {
 	color: #735c0f
 }
-.hljs-emphasis {
+%pre% .hljs-emphasis {
 	color: #24292e;
 	font-style: italic
 }
-.hljs-strong {
+%pre% .hljs-strong {
 	color: #24292e;
 	font-weight: 700
 }
-.hljs-addition {
+%pre% .hljs-addition {
 	color: #22863a;
 	background-color: #f0fff4
 }
-.hljs-deletion {
+%pre% .hljs-deletion {
 	color: #b31d28;
 	background-color: #ffeef0
 }
