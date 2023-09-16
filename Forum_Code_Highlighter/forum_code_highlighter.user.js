@@ -264,8 +264,7 @@ pre code.hljs {
 	display: block;
 	overflow-x: auto;
 	padding: 1em;
-	color: #24292e;
-	/*background: #fff*/
+	color: #000;
 	background: #f8f8ff;
 }
 code.hljs {
