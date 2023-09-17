@@ -21,6 +21,7 @@
 (function() {
 var codeClass = "highlight-js-code";
 var switcherClass = "highlight-js-typeSwitcher";
+var cbClass = "highlight-js-cbCodeView";
 
 
 /*!
@@ -57,7 +58,7 @@ var getBoxes;
 var getHeader;
 var styleSelect;
 function getCodeHeader(box) {
-	if(new ClassList(box).contains("cbCodeView-section-value"))
+	if(new ClassList(box).contains(cbClass + "-section-value"))
 		return box.parentNode.firstChild;
 	return getHeader(box);
 }
@@ -352,7 +353,8 @@ var style = isDarkTheme
 
 style = style
 	.replace(/%pre%/g, codeSelector)
-	.replace(/%code%/g, "." + codeClass);
+	.replace(/%code%/g, "." + codeClass)
+	.replace(/\.cbCodeView/g, "." + cbClass);
 
 var s = document.createElement("style");
 s.id = "highlight-js-styles";
@@ -580,22 +582,22 @@ function unhl(node) {
 // https://github.com/Infocatcher/Custom_Buttons/blob/gh-pages/viewCustomButton.js
 // Parser for custombutton:// URIs https://addons.mozilla.org/addon/custom-buttons/
 // (c) Infocatcher 2013
-// version 0.1.0 - 2013-10-16
+// version 0.1.0 - 2013-10-16 (modified)
 function viewCustomButtonCode(cbURI, outBlock) {
 	var data = parseCustomButtonURI(cbURI);
 	var res = document.createElement("div");
-	res.className = "cbCodeView";
+	res.className = cbClass;
 	function appendSection(name, code, hl) {
 		var section = document.createElement("div");
-		section.className = "cbCodeView-section";
+		section.className = cbClass + "-section";
 		var header = document.createElement("h5");
 		header.appendChild(document.createTextNode(name));
-		header.className = "cbCodeView-section-header";
+		header.className = cbClass + "-section-header";
 		section.appendChild(header);
 		var value = document.createElement("pre");
 		value.style.fontSize = "1em"; // Force fix size
 		value.appendChild(document.createTextNode(code));
-		value.className = "cbCodeView-section-value";
+		value.className = cbClass + "-section-value";
 		section.appendChild(value);
 		res.appendChild(section);
 		if(hl) setTimeout(function() {
