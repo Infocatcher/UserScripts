@@ -19,9 +19,10 @@
 // Highlighter and styles: highlight.js http://softwaremaniacs.org/soft/highlight/download/
 
 (function() {
-var codeClass = "highlight-js-code";
-var switcherClass = "highlight-js-typeSwitcher";
-var cbClass = "highlight-js-cbCodeView";
+var classPrefix = "forumCodeHighlighter";
+var codeClass     = classPrefix + "-code";
+var switcherClass = classPrefix + "-typeSwitcher";
+var cbClass       = classPrefix + "-cbCodeView";
 
 
 /*!
@@ -230,7 +231,7 @@ var style = isDarkTheme
 .cbCodeView .cbCodeView-section-header {
   margin: 1.6em 0 0.2em !important;
 }
-.cbCodeView .cbCodeView-section-header > .highlight-js-typeSwitcher {
+.cbCodeView .cbCodeView-section-header > .FCH-typeSwitcher {
   margin-top: -0.5em !important;
 }
 .cbCodeView .cbCodeView-section-value%code% {
@@ -342,7 +343,7 @@ var style = isDarkTheme
 .cbCodeView .cbCodeView-section-header {
   margin: 1.6em 0 0.2em !important;
 }
-.cbCodeView .cbCodeView-section-header > .highlight-js-typeSwitcher {
+.cbCodeView .cbCodeView-section-header > .FCH-typeSwitcher {
   margin-top: -0.5em !important;
 }
 .cbCodeView .cbCodeView-section-value%code% {
@@ -354,6 +355,7 @@ var style = isDarkTheme
 style = style
 	.replace(/%pre%/g, codeSelector)
 	.replace(/%code%/g, "." + codeClass)
+	.replace(/\.FCH/g, "." + classPrefix)
 	.replace(/\.cbCodeView/g, "." + cbClass);
 
 var s = document.createElement("style");
