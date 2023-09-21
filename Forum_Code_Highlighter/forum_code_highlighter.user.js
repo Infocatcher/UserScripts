@@ -16,7 +16,7 @@
 // @match       *://akelpad.sourceforge.net/forum/privmsg.php*
 // ==/UserScript==
 
-// Highlighter and styles: highlight.js http://softwaremaniacs.org/soft/highlight/download/
+// Highlighter and styles: highlight.js https://highlightjs.org/download
 
 (function() {
 var classPrefix = "forumCodeHighlighter";
