@@ -59,7 +59,7 @@ var getBoxes;
 var getHeader;
 var styleSelect;
 function getCodeHeader(box) {
-	if(new ClassList(box).contains(cbClass + "-section-value"))
+	if(box.classList.contains(cbClass + "-section-value"))
 		return box.parentNode.firstChild;
 	return getHeader(box);
 }
@@ -451,7 +451,7 @@ function initBox(box) {
 		return;
 	}
 
-	new ClassList(box).add(codeClass);
+	box.classList.add(codeClass);
 	if(box.parentNode.className == "scrollbox") // For forum.mozilla-russia.org
 		new ClassList(box.parentNode).add("highlight-js-forceBG");
 	if(box.getElementsByTagName("span").length) // Already highlighted
@@ -496,7 +496,7 @@ function addTypeSwitcher(box) {
 		select.appendChild(option);
 	}
 	else {
-		var cl = new ClassList(box);
+		var cl = box.classList;
 		for(var type in types) {
 			if(cl.contains("language-" + type)) {
 				selectedType = type;
@@ -552,7 +552,7 @@ function switchTypeHandler(e) {
 function switchType(select, box) {
 	_updLock = true;
 	var newType = select.value;
-	var cl = new ClassList(box);
+	var cl = box.classList;
 	for(var type in types)
 		if(type != newType)
 			cl.remove("language-" + type);
@@ -674,40 +674,6 @@ function removeEventListener(target, type, func) {
 	else
 		target.detachEvent("on" + type, func);
 }
-function ClassList(node) {
-	if("classList" in node)
-		return node.classList;
-	this.node = node;
-}
-ClassList.prototype = {
-	_re: function(s) {
-		return new RegExp(
-			"(^|\\s+)"
-			+ s.replace(/[\\\/.^$+*?|()\[\]{}]/g, "\\$&")
-			+ "(\\s|$)"
-		);
-	},
-	_trim: function(s) {
-		return (s || "").replace(/^\s+|\s+$/g, "");
-	},
-	add: function(clss) {
-		if(!this.contains(clss))
-			this.node.className = this._trim(this.node.className + " " + clss);
-	},
-	remove: function(clss) {
-		if(this.contains(clss))
-			this.node.className = this._trim(this.node.className.replace(this._re(clss), " "));
-	},
-	toggle: function(clss) {
-		if(this.contains(clss))
-			this.remove(clss);
-		else
-			this.add(clss);
-	},
-	contains: function(clss) {
-		return this._re(clss).test(this.node.className);
-	}
-};
 
 higlightAll();
 addEventListener(document, "change", switchTypeHandler);
