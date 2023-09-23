@@ -534,19 +534,7 @@ function switchTypeHandler(e) {
 		container = container.parentNode.parentNode;
 	else if(nn == "dt" || nn == "p" || nn == "h5") // dt -> dl, p -> div, h5 -> div
 		container = container.parentNode;
-	var box;
-	if(container.querySelector)
-		box = container.querySelector("[data-highlight-js-parsed]");
-	else {
-		var nodes = container.getElementsByTagName("*");
-		for(var i = 0, l = nodes.length; i < l; ++i) {
-			var node = nodes[i];
-			if(node.hasAttribute("data-highlight-js-parsed")) {
-				box = node;
-				break;
-			}
-		}
-	}
+	var box = container.querySelector("[data-highlight-js-parsed]");
 	box && switchType(select, box);
 }
 function switchType(select, box) {
