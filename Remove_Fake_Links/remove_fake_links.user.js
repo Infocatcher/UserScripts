@@ -2,7 +2,7 @@
 // @name        Remove fake links
 // @description Remove tracking redirects like http://www.google.com/url?... and http://clck.yandex.ru/redir/...
 // @author      Infocatcher
-// @version     0.2.0pre26 - 2020-09-20
+// @version     0.2.1 - 2023-09-24
 // @run-at      document-start
 // @namespace   dev/null
 // @include     http://www.google.*/search?*
@@ -41,6 +41,7 @@
 // @include     http://www.mts.ru/*
 // @include     http://4pda.ru/*
 // @include     https://4pda.ru/*
+// @include     https://4pda.to/*
 // @include     http://*.deviantart.com/*
 // @include     https://*.deviantart.com/*
 // @include     https://addons.mozilla.org/*
@@ -208,6 +209,8 @@ function clearLink(e) {
 	else if(/^https?:\/\/ads\.adfox\.ru\/.*goLink\?.*@(http\S+)$/.test(h))
 		nh = RegExp.$1;
 	else if(/^https?:\/\/4pda\.ru\/pages\/go\/[^#]*?[?&]u=(http[^?&#\/]+)/.test(h))
+		nh = decode(RegExp.$1);
+	else if(/^https:\/\/4pda\.to\/stat\/go[^#]*?[?&]u=(http[^?&#\/]+)/.test(h))
 		nh = decode(RegExp.$1);
 	else if(/^https?:\/\/(?:\w+\.)*deviantart\.com\/.*\/outgoing\?(\S+)$/.test(h))
 		nh = RegExp.$1;
