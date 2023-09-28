@@ -453,7 +453,7 @@ function initBox(box) {
 
 	box.classList.add(codeClass);
 	if(box.parentNode.className == "scrollbox") // For forum.mozilla-russia.org
-		new ClassList(box.parentNode).add("highlight-js-forceBG");
+		box.parentNode.classList.add("highlight-js-forceBG");
 	if(box.getElementsByTagName("span").length) // Already highlighted
 		box.setAttribute("data-highlight-js-original", "");
 	else
