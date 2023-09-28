@@ -606,7 +606,7 @@ function viewCustomButtonCode(cbURI, outBlock) {
 	appendSection("Code", data.code, true);
 	appendSection("Initialization Code", data.initCode, true);
 	if(data.help)
-		appendSection("Help", data.help);
+		appendSection("Help", data.help, true);
 	//~ loadHihglighterStyles();
 	if(!outBlock)
 		outBlock = document.body || document.documentElement;
