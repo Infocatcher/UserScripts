@@ -524,8 +524,7 @@ function addTypeSwitcher(box) {
 	header.insertBefore(select, header.firstChild);
 }
 function switchTypeHandler(e) {
-	e = e || window.event;
-	var select = e.target || e.srcElement;
+	var select = e.target;
 	if(select.className != switcherClass)
 		return;
 	var container = select.parentNode;
@@ -642,29 +641,16 @@ function parseCustomButtonURI(cbURI) {
 //=== Custom Buttons parser: end
 
 function destroy(e) {
-	removeEventListener(window, "unload", destroy);
-	removeEventListener(document, "change", switchTypeHandler);
+	window.removeEventListener("unload", destroy, false);
+	document.removeEventListener("change", switchTypeHandler, false);
 	if(typeof mo != "undefined")
 		mo.disconnect();
 	else
-		removeEventListener(document, "DOMNodeInserted", updProxy);
-}
-
-function addEventListener(target, type, func) {
-	if(target.addEventListener)
-		target.addEventListener(type, func, false);
-	else
-		target.attachEvent("on" + type, func);
-}
-function removeEventListener(target, type, func) {
-	if(target.removeEventListener)
-		target.removeEventListener(type, func, false);
-	else
-		target.detachEvent("on" + type, func);
+		document.removeEventListener("DOMNodeInserted", updProxy, false);
 }
 
 higlightAll();
-addEventListener(document, "change", switchTypeHandler);
+document.addEventListener("change", switchTypeHandler, false);
 if(window.MutationObserver) {
 	var mo = new MutationObserver(updProxy);
 	mo.observe(document, {
@@ -673,8 +659,8 @@ if(window.MutationObserver) {
 	});
 }
 else {
-	addEventListener(document, "DOMNodeInserted", updProxy);
+	document.addEventListener("DOMNodeInserted", updProxy, false);
 }
-addEventListener(window, "unload", destroy);
+window.addEventListener("unload", destroy, false);
 
 })();
