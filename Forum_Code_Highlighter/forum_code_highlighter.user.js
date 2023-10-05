@@ -485,6 +485,7 @@ function addTypeSwitcher(box) {
 	s.cssFloat = s.styleFloat = "right";
 	s.textTransform = "none";
 	s.marginLeft = "6px";
+	s.cursor = "auto";
 	styleSelect(s);
 
 	var selectedType;
