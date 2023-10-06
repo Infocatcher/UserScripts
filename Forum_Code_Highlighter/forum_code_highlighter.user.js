@@ -581,8 +581,11 @@ function viewCustomButtonCode(cbURI, outBlock) {
 		var section = document.createElement("div");
 		section.className = cbClass + "-section";
 		var header = document.createElement("h5");
-		header.appendChild(document.createTextNode(name));
 		header.className = cbClass + "-section-header";
+		var a = document.createElement("a");
+		a.href = "javascript://Select code";
+		a.appendChild(document.createTextNode(name));
+		header.appendChild(a);
 		section.appendChild(header);
 		var value = document.createElement("pre");
 		value.style.fontSize = "1em"; // Force fix size
@@ -641,9 +644,37 @@ function parseCustomButtonURI(cbURI) {
 }
 //=== Custom Buttons parser: end
 
+function clickHandler(e) {
+	var a = e.target;
+	if(!a || a.nodeName != "A" || e.button != 0)
+		return;
+	var header = a.parentNode;
+	if(!header || header.className != cbClass + "-section-header")
+		return;
+	var value = header.parentNode.lastChild;
+	selectNode(value);
+	e.preventDefault();
+}
+function selectNode(node) {
+	if(document.selection) {
+		document.selection.empty();
+		var range = document.body.createTextRange();
+		range.moveToElementText(node);
+		range.select();
+	}
+	else if(window.getSelection) {
+		var sel = window.getSelection();
+		sel.removeAllRanges()
+		var range = document.createRange();
+		range.selectNode(node);
+		sel.addRange(range);
+	}
+}
+
 function destroy(e) {
 	window.removeEventListener("unload", destroy, false);
 	document.removeEventListener("change", switchTypeHandler, false);
+	document.removeEventListener("click", clickHandler, false);
 	if(typeof mo != "undefined")
 		mo.disconnect();
 	else
@@ -652,6 +683,7 @@ function destroy(e) {
 
 higlightAll();
 document.addEventListener("change", switchTypeHandler, false);
+document.addEventListener("click", clickHandler, false);
 if(window.MutationObserver) {
 	var mo = new MutationObserver(updProxy);
 	mo.observe(document, {
