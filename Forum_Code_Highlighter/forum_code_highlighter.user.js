@@ -28,6 +28,7 @@ var attr = classPrefix.replace(/[A-Z]/g, function(s) {
 	return "-" + s.toLowerCase();
 });
 var parsedAttr = "data-" + attr + "-parsed";
+var origAttr   = "data-" + attr + "-original";
 
 
 /*!
@@ -460,7 +461,7 @@ function initBox(box) {
 	if(box.parentNode.className == "scrollbox") // For forum.mozilla-russia.org
 		box.parentNode.classList.add("highlight-js-forceBG");
 	if(box.getElementsByTagName("span").length) // Already highlighted
-		box.setAttribute("data-highlight-js-original", "");
+		box.setAttribute(origAttr, "");
 	else
 		highlight(box);
 	addTypeSwitcher(box);
@@ -494,7 +495,7 @@ function addTypeSwitcher(box) {
 	styleSelect(s);
 
 	var selectedType;
-	if(box.hasAttribute("data-highlight-js-original")) {
+	if(box.hasAttribute(origAttr)) {
 		var option = document.createElement("option");
 		option.value = "__original__";
 		option.appendChild(document.createTextNode("Original"));
@@ -551,7 +552,7 @@ function switchType(select, box) {
 			cl.remove("language-" + type);
 	cl.remove("language-undefined");
 	if(newType == "__original__")
-		box.innerHTML = box.getAttribute("data-highlight-js-original");
+		box.innerHTML = box.getAttribute(origAttr);
 	else {
 		backup(box);
 		var append = newType.charAt(0) == "+";
@@ -564,10 +565,10 @@ function switchType(select, box) {
 }
 function backup(node) {
 	if(
-		node.hasAttribute("data-highlight-js-original")
-		&& !node.getAttribute("data-highlight-js-original")
+		node.hasAttribute(origAttr)
+		&& !node.getAttribute(origAttr)
 	)
-		node.setAttribute("data-highlight-js-original", node.innerHTML);
+		node.setAttribute(origAttr, node.innerHTML);
 }
 function unhl(node) {
 	node.innerHTML = node.innerHTML.replace(/<\/?span[^<>]*>/ig, "");
