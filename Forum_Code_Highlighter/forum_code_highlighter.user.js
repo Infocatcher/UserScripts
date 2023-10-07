@@ -24,6 +24,11 @@ var codeClass     = classPrefix + "-code";
 var switcherClass = classPrefix + "-typeSwitcher";
 var cbClass       = classPrefix + "-cbCodeView";
 
+var attr = classPrefix.replace(/[A-Z]/g, function(s) {
+	return "-" + s.toLowerCase();
+});
+var parsedAttr = "data-" + attr + "-parsed";
+
 
 /*!
   Highlight.js v11.8.0 (git: 65687a907b)
@@ -395,9 +400,9 @@ function initBoxDelayed(box) {
 	}, 0);
 }
 function initBox(box) {
-	if(box.hasAttribute("data-highlight-js-parsed"))
+	if(box.hasAttribute(parsedAttr))
 		return;
-	box.setAttribute("data-highlight-js-parsed", "true");
+	box.setAttribute(parsedAttr, "true");
 
 	// Special "codes"
 	var tc = box.textContent;
@@ -534,7 +539,7 @@ function switchTypeHandler(e) {
 		container = container.parentNode.parentNode;
 	else if(nn == "dt" || nn == "p" || nn == "h5") // dt -> dl, p -> div, h5 -> div
 		container = container.parentNode;
-	var box = container.querySelector("[data-highlight-js-parsed]");
+	var box = container.querySelector("[" + parsedAttr + "]");
 	box && switchType(select, box);
 }
 function switchType(select, box) {
@@ -596,7 +601,7 @@ function viewCustomButtonCode(cbURI, outBlock) {
 		if(hl) setTimeout(function() {
 			value.className += " " + codeClass;
 			highlight(value);
-			value.setAttribute("data-highlight-js-parsed", "true");
+			value.setAttribute(parsedAttr, "true");
 			if(name != "Name")
 				addTypeSwitcher(value);
 		}, 0);
