@@ -589,6 +589,7 @@ function viewCustomButtonCode(cbURI, outBlock) {
 		var header = document.createElement("h5");
 		header.className = cbClass + "-section-header";
 		var a = document.createElement("a");
+		a.className = cbClass + "-section-toggler";
 		a.href = "javascript://Select code";
 		a.appendChild(document.createTextNode(name));
 		header.appendChild(a);
@@ -652,12 +653,9 @@ function parseCustomButtonURI(cbURI) {
 
 function clickHandler(e) {
 	var a = e.target;
-	if(!a || a.nodeName != "A" || e.button != 0)
+	if(!a || e.button != 0 || a.nodeName != "A" || a.className != cbClass + "-section-toggler")
 		return;
-	var header = a.parentNode;
-	if(!header || header.className != cbClass + "-section-header")
-		return;
-	var value = header.parentNode.lastChild;
+	var value = a.parentNode.parentNode.lastChild;
 	selectNode(value);
 	e.preventDefault();
 }
