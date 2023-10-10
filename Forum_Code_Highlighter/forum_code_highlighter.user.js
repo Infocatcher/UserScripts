@@ -234,6 +234,10 @@ var style = isDarkTheme
 	font-weight: 700
 }
 /* Tweaks for parsed custombutton://… */
+.cbCodeView-wrapper {
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+}
 .cbCodeView .cbCodeView-section-header {
   margin: 1.6em 0 0.2em !important;
 }
@@ -346,6 +350,10 @@ var style = isDarkTheme
 	background-color: #ffeef0
 }
 /* Tweaks for parsed custombutton://… */
+.cbCodeView-wrapper {
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+}
 .cbCodeView .cbCodeView-section-header {
   margin: 1.6em 0 0.2em !important;
 }
@@ -413,7 +421,9 @@ function initBox(box) {
 		|| /^data:[\w-]+\/[\w-]+;base64,\S+\s*$/.test(tc)
 	) {
 		tc = tc.replace(/\s+$/, "");
-		var a = document.createElement("a");
+		var wrapper = document.createElement("div");
+		wrapper.className = cbClass + "-wrapper";
+		var a = wrapper.appendChild(document.createElement("a"));
 		a.href = tc;
 
 		var icon, maxSize;
@@ -445,7 +455,7 @@ function initBox(box) {
 		s.margin = s.padding = 0;
 
 		box.innerHTML = "";
-		box.appendChild(a);
+		box.appendChild(wrapper);
 
 		isCB && setTimeout(function() {
 			var pn = box.parentNode;
