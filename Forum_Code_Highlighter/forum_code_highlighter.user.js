@@ -235,19 +235,19 @@ var style = isDarkTheme
 }
 /* Tweaks for parsed custombutton://… */
 .cbCodeView-wrapper {
-  overflow: hidden !important;
-  text-overflow: ellipsis !important;
+	overflow: hidden !important;
+	text-overflow: ellipsis !important;
 }
 .cbCodeView .cbCodeView-section-header {
-  margin: 1.6em 0 0.2em !important;
+	margin: 1.6em 0 0.2em !important;
 }
 .cbCodeView .cbCodeView-section-header > .FCH-typeSwitcher {
-  margin-top: -0.5em !important;
+	margin-top: -0.5em !important;
 }
 .cbCodeView .cbCodeView-section-value%code% {
-  border: 1px solid #555 !important;
-  max-height: 35em !important;
-  overflow: auto !important;
+	border: 1px solid #555 !important;
+	max-height: 35em !important;
+	overflow: auto !important;
 }`
 	: `
 /*!
@@ -351,19 +351,19 @@ var style = isDarkTheme
 }
 /* Tweaks for parsed custombutton://… */
 .cbCodeView-wrapper {
-  overflow: hidden !important;
-  text-overflow: ellipsis !important;
+	overflow: hidden !important;
+	text-overflow: ellipsis !important;
 }
 .cbCodeView .cbCodeView-section-header {
-  margin: 1.6em 0 0.2em !important;
+	margin: 1.6em 0 0.2em !important;
 }
 .cbCodeView .cbCodeView-section-header > .FCH-typeSwitcher {
-  margin-top: -0.5em !important;
+	margin-top: -0.5em !important;
 }
 .cbCodeView .cbCodeView-section-value%code% {
-  border: 1px solid #ccc !important;
-  max-height: 35em !important;
-  overflow: auto !important;
+	border: 1px solid #ccc !important;
+	max-height: 35em !important;
+	overflow: auto !important;
 }`;
 
 style = style
