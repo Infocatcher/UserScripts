@@ -225,7 +225,8 @@ var style = isDarkTheme
 }
 %pre%.hljs {
 	background: #000;
-	color: #eaeaea
+	color: #eaeaea;
+	tab-size: 4;
 }
 %pre% .hljs-emphasis {
 	font-style: italic
@@ -274,7 +275,8 @@ var style = isDarkTheme
 	overflow-x: auto;
 	color: #000;
 	background: #f8f8ff;
-	padding: 3px 5px
+	padding: 3px 5px;
+	tab-size: 4;
 }
 %pre% .hljs-doctag,
 %pre% .hljs-keyword,
