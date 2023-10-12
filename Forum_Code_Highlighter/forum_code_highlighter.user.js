@@ -375,7 +375,7 @@ style = style
 	.replace(/\.cbCodeView/g, "." + cbClass);
 
 var s = document.createElement("style");
-s.id = "highlight-js-styles";
+s.id = classPrefix + "-styles";
 s.type = "text/css";
 s.appendChild(document.createTextNode(style));
 document.getElementsByTagName("head")[0].appendChild(s);
