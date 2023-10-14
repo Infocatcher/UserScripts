@@ -378,7 +378,9 @@ var s = document.createElement("style");
 s.id = classPrefix + "-styles";
 s.type = "text/css";
 s.appendChild(document.createTextNode(style));
-document.getElementsByTagName("head")[0].appendChild(s);
+setTimeout(function() {
+	document.getElementsByTagName("head")[0].appendChild(s);
+}, 0);
 
 
 /*** Main functions ***/
