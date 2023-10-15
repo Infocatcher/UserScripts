@@ -235,17 +235,17 @@ var style = isDarkTheme
 	font-weight: 700
 }
 /* Tweaks for parsed custombutton://… */
-.cbCodeView-wrapper {
+._CB-wrapper {
 	overflow: hidden !important;
 	text-overflow: ellipsis !important;
 }
-.cbCodeView .cbCodeView-section-header {
+._CB ._CB-section-header {
 	margin: 1.6em 0 0.2em !important;
 }
-.cbCodeView .cbCodeView-section-header > .FCH-typeSwitcher {
+._CB ._CB-section-header > ._FCH-typeSwitcher {
 	margin-top: -0.5em !important;
 }
-.cbCodeView .cbCodeView-section-value%code% {
+._CB ._CB-section-value%code% {
 	border: 1px solid #555 !important;
 	max-height: 35em !important;
 	overflow: auto !important;
@@ -352,17 +352,17 @@ var style = isDarkTheme
 	background-color: #ffeef0
 }
 /* Tweaks for parsed custombutton://… */
-.cbCodeView-wrapper {
+._CB-wrapper {
 	overflow: hidden !important;
 	text-overflow: ellipsis !important;
 }
-.cbCodeView .cbCodeView-section-header {
+._CB ._CB-section-header {
 	margin: 1.6em 0 0.2em !important;
 }
-.cbCodeView .cbCodeView-section-header > .FCH-typeSwitcher {
+._CB ._CB-section-header > ._FCH-typeSwitcher {
 	margin-top: -0.5em !important;
 }
-.cbCodeView .cbCodeView-section-value%code% {
+._CB ._CB-section-value%code% {
 	border: 1px solid #ccc !important;
 	max-height: 35em !important;
 	overflow: auto !important;
@@ -371,8 +371,8 @@ var style = isDarkTheme
 style = style
 	.replace(/%pre%/g, codeSelector)
 	.replace(/%code%/g, "." + codeClass)
-	.replace(/\.FCH/g, "." + classPrefix)
-	.replace(/\.cbCodeView/g, "." + cbClass);
+	.replace(/\._FCH/g, "." + classPrefix)
+	.replace(/\._CB/g, "." + cbClass);
 
 var s = document.createElement("style");
 s.id = classPrefix + "-styles";
