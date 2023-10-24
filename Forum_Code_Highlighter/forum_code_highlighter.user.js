@@ -386,6 +386,7 @@ setTimeout(function() {
 /*** Main functions ***/
 function highlight(box, newType, append) {
 	if(!append) {
+		delete box.dataset.highlighted;
 		hljs.highlightElement(box);
 		return;
 	}
