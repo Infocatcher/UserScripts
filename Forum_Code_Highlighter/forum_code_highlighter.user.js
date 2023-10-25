@@ -92,7 +92,7 @@ if(host == "akelpad.sourceforge.net") {
 		return box.parentNode.parentNode.getElementsByTagName("p")[0];
 	};
 	styleSelect = function(s) {
-		s.marginBottom = "-5px";
+		s.marginTop = "-2px";
 	};
 }
 else {
