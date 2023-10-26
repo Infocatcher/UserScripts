@@ -125,14 +125,7 @@ else {
 	else if(host == "forum.mozilla-russia.org") {
 		codeSelector = ".pun pre." + codeClass;
 		getBoxes = function() {
-			var boxes = [];
-			var pres = document.getElementsByTagName("pre");
-			for(var i = 0, l = pres.length; i < l; ++i) {
-				var pre = pres[i];
-				if(pre.parentNode.parentNode.parentNode.className == "codebox")
-					boxes.push(pre);
-			}
-			return boxes;
+			return document.querySelectorAll(".codebox > * > * > pre");
 		};
 		getHeader = function(box) {
 			return box.parentNode.parentNode;
