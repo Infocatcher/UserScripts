@@ -163,68 +163,68 @@ var style = isDarkTheme
 /* Original theme - https://github.com/chriskempson/tomorrow-theme */
 /* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
 /* Modified by Infocatcher */
-%pre% .hljs-keyword,
-%pre% .hljs-literal {
+_PRE .hljs-keyword,
+_PRE .hljs-literal {
 	font-weight: bold;
 }
-%pre% .hljs-comment,
-%pre% .hljs-string {
+_PRE .hljs-comment,
+_PRE .hljs-string {
 	font-style: italic;
 }
-%pre% code.hljs {
+_PRE code.hljs {
 	display: block;
 	overflow-x: auto;
 	padding: 3px 5px
 }
-%pre% .hljs-comment,
-%pre% .hljs-quote {
+_PRE .hljs-comment,
+_PRE .hljs-quote {
 	color: #969896
 }
-%pre% .hljs-deletion,
-%pre% .hljs-name,
-%pre% .hljs-regexp,
-%pre% .hljs-selector-class,
-%pre% .hljs-selector-id,
-%pre% .hljs-tag,
-%pre% .hljs-template-variable,
-%pre% .hljs-variable {
+_PRE .hljs-deletion,
+_PRE .hljs-name,
+_PRE .hljs-regexp,
+_PRE .hljs-selector-class,
+_PRE .hljs-selector-id,
+_PRE .hljs-tag,
+_PRE .hljs-template-variable,
+_PRE .hljs-variable {
 	color: #d54e53
 }
-%pre% .hljs-built_in,
-%pre% .hljs-link,
-%pre% .hljs-literal,
-%pre% .hljs-meta,
-%pre% .hljs-number,
-%pre% .hljs-params,
-%pre% .hljs-type {
+_PRE .hljs-built_in,
+_PRE .hljs-link,
+_PRE .hljs-literal,
+_PRE .hljs-meta,
+_PRE .hljs-number,
+_PRE .hljs-params,
+_PRE .hljs-type {
 	color: #e78c45
 }
-%pre% .hljs-attribute {
+_PRE .hljs-attribute {
 	color: #e7c547
 }
-%pre% .hljs-addition,
-%pre% .hljs-bullet,
-%pre% .hljs-string,
-%pre% .hljs-symbol {
+_PRE .hljs-addition,
+_PRE .hljs-bullet,
+_PRE .hljs-string,
+_PRE .hljs-symbol {
 	color: #b9ca4a
 }
-%pre% .hljs-section,
-%pre% .hljs-title {
+_PRE .hljs-section,
+_PRE .hljs-title {
 	color: #7aa6da
 }
-%pre% .hljs-keyword,
-%pre% .hljs-selector-tag {
+_PRE .hljs-keyword,
+_PRE .hljs-selector-tag {
 	color: #c397d8
 }
-%pre%.hljs {
+_PRE.hljs {
 	background: #000;
 	color: #eaeaea;
 	tab-size: 4;
 }
-%pre% .hljs-emphasis {
+_PRE .hljs-emphasis {
 	font-style: italic
 }
-%pre% .hljs-strong {
+_PRE .hljs-strong {
 	font-weight: 700
 }
 /* Tweaks for parsed custombutton://… */
@@ -238,7 +238,7 @@ var style = isDarkTheme
 ._CB ._CB-section-header > ._FCH-typeSwitcher {
 	margin-top: -0.5em !important;
 }
-._CB ._CB-section-value%code% {
+._CB ._CB-section-value._CODE {
 	border: 1px solid #555 !important;
 	max-height: 35em !important;
 	overflow: auto !important;
@@ -255,15 +255,15 @@ var style = isDarkTheme
   Current colors taken from GitHub's CSS
   Modified by Infocatcher
 */
-%pre% .hljs-keyword,
-%pre% .hljs-literal {
+_PRE .hljs-keyword,
+_PRE .hljs-literal {
 	font-weight: bold;
 }
-%pre% .hljs-comment,
-%pre% .hljs-string {
+_PRE .hljs-comment,
+_PRE .hljs-string {
 	font-style: italic;
 }
-%pre%.hljs {
+_PRE.hljs {
 	display: block;
 	overflow-x: auto;
 	color: #000;
@@ -271,76 +271,76 @@ var style = isDarkTheme
 	padding: 3px 5px;
 	tab-size: 4;
 }
-%pre% .hljs-doctag,
-%pre% .hljs-keyword,
-%pre% .hljs-meta .hljs-keyword,
-%pre% .hljs-template-tag,
-%pre% .hljs-template-variable,
-%pre% .hljs-type,
-%pre% .hljs-variable.language_ {
+_PRE .hljs-doctag,
+_PRE .hljs-keyword,
+_PRE .hljs-meta .hljs-keyword,
+_PRE .hljs-template-tag,
+_PRE .hljs-template-variable,
+_PRE .hljs-type,
+_PRE .hljs-variable.language_ {
 	color: #d73a49
 }
-%pre% .hljs-title,
-%pre% .hljs-title.class_,
-%pre% .hljs-title.class_.inherited__,
-%pre% .hljs-title.function_ {
+_PRE .hljs-title,
+_PRE .hljs-title.class_,
+_PRE .hljs-title.class_.inherited__,
+_PRE .hljs-title.function_ {
 	color: #6f42c1
 }
-%pre% .hljs-attr,
-%pre% .hljs-attribute,
-%pre% .hljs-literal,
-%pre% .hljs-meta,
-%pre% .hljs-number,
-%pre% .hljs-operator,
-%pre% .hljs-selector-attr,
-%pre% .hljs-selector-class,
-%pre% .hljs-selector-id,
-%pre% .hljs-variable {
+_PRE .hljs-attr,
+_PRE .hljs-attribute,
+_PRE .hljs-literal,
+_PRE .hljs-meta,
+_PRE .hljs-number,
+_PRE .hljs-operator,
+_PRE .hljs-selector-attr,
+_PRE .hljs-selector-class,
+_PRE .hljs-selector-id,
+_PRE .hljs-variable {
 	color: #005cc5
 }
-%pre% .hljs-meta .hljs-string,
-%pre% .hljs-regexp,
-%pre% .hljs-string {
+_PRE .hljs-meta .hljs-string,
+_PRE .hljs-regexp,
+_PRE .hljs-string {
 	color: #032f62
 }
-%pre% .hljs-built_in,
-%pre% .hljs-symbol {
+_PRE .hljs-built_in,
+_PRE .hljs-symbol {
 	color: #e36209
 }
-%pre% .hljs-code,
-%pre% .hljs-comment,
-%pre% .hljs-formula {
+_PRE .hljs-code,
+_PRE .hljs-comment,
+_PRE .hljs-formula {
 	color: #6a737d
 }
-%pre% .hljs-name,
-%pre% .hljs-quote,
-%pre% .hljs-selector-pseudo,
-%pre% .hljs-selector-tag {
+_PRE .hljs-name,
+_PRE .hljs-quote,
+_PRE .hljs-selector-pseudo,
+_PRE .hljs-selector-tag {
 	color: #22863a
 }
-%pre% .hljs-subst {
+_PRE .hljs-subst {
 	color: #24292e
 }
-%pre% .hljs-section {
+_PRE .hljs-section {
 	color: #005cc5;
 	font-weight: 700
 }
-%pre% .hljs-bullet {
+_PRE .hljs-bullet {
 	color: #735c0f
 }
-%pre% .hljs-emphasis {
+_PRE .hljs-emphasis {
 	color: #24292e;
 	font-style: italic
 }
-%pre% .hljs-strong {
+_PRE .hljs-strong {
 	color: #24292e;
 	font-weight: 700
 }
-%pre% .hljs-addition {
+_PRE .hljs-addition {
 	color: #22863a;
 	background-color: #f0fff4
 }
-%pre% .hljs-deletion {
+_PRE .hljs-deletion {
 	color: #b31d28;
 	background-color: #ffeef0
 }
@@ -355,15 +355,15 @@ var style = isDarkTheme
 ._CB ._CB-section-header > ._FCH-typeSwitcher {
 	margin-top: -0.5em !important;
 }
-._CB ._CB-section-value%code% {
+._CB ._CB-section-value._CODE {
 	border: 1px solid #ccc !important;
 	max-height: 35em !important;
 	overflow: auto !important;
 }`;
 
 style = style
-	.replace(/%pre%/g, codeSelector)
-	.replace(/%code%/g, "." + codeClass)
+	.replace(/_PRE/g, codeSelector)
+	.replace(/\._CODE/g, "." + codeClass)
 	.replace(/\._FCH/g, "." + classPrefix)
 	.replace(/\._CB/g, "." + cbClass);
 
