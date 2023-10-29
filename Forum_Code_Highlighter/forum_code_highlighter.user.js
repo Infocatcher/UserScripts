@@ -687,7 +687,7 @@ function destroy(e) {
 	window.removeEventListener("unload", destroy, false);
 	document.removeEventListener("change", switchTypeHandler, false);
 	document.removeEventListener("click", clickHandler, false);
-	if(typeof mo != "undefined")
+	if(mo)
 		mo.disconnect();
 	else
 		document.removeEventListener("DOMNodeInserted", updProxy, false);
