@@ -14,6 +14,7 @@
 // @match       *://akelpad.sourceforge.net/forum/viewtopic.php?*
 // @match       *://akelpad.sourceforge.net/forum/posting.php*
 // @match       *://akelpad.sourceforge.net/forum/privmsg.php*
+// @match       *://akelpad.sourceforge.net/forum/search.php?*
 // ==/UserScript==
 
 // Highlighter and styles: highlight.js https://highlightjs.org/download
@@ -216,7 +217,8 @@ _PRE .hljs-keyword,
 _PRE .hljs-selector-tag {
 	color: #c397d8
 }
-_PRE.hljs {
+_PRE.hljs,
+._FCH-forceBG {
 	background: #000;
 	color: #eaeaea;
 	tab-size: 4;
@@ -266,9 +268,12 @@ _PRE .hljs-string {
 _PRE.hljs {
 	display: block;
 	overflow-x: auto;
+	padding: 3px 5px;
+}
+_PRE.hljs,
+._FCH-forceBG {
 	color: #000;
 	background: #f8f8ff;
-	padding: 3px 5px;
 	tab-size: 4;
 }
 _PRE .hljs-doctag,
@@ -467,7 +472,8 @@ function initBox(box) {
 
 	box.classList.add(codeClass);
 	if(box.parentNode.className == "scrollbox") // For forum.mozilla-russia.org
-		box.parentNode.classList.add("highlight-js-forceBG");
+		box.parentNode.classList.add(classPrefix + "-forceBG");
+
 	if(box.getElementsByTagName("span").length) // Already highlighted
 		box.setAttribute(origAttr, "");
 	else
