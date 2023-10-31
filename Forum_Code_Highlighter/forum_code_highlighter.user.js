@@ -356,13 +356,21 @@ _PRE .hljs-deletion {
 ._CB ._CB-section-header > ._FCH-typeSwitcher {
 	margin-top: -0.5em !important;
 }
+/* Type switcher */
+._SWITCHER {
+	float: right !important;
+	text-transform: none !important;
+	margin-left: 6px !important;
+	cursor: auto !important;
+}
 `;
 
 style = style
 	.replace(/_PRE/g, codeSelector)
 	.replace(/\._CODE/g, "." + codeClass)
 	.replace(/\._FCH/g, "." + classPrefix)
-	.replace(/\._CB/g, "." + cbClass);
+	.replace(/\._CB/g, "." + cbClass)
+	.replace(/\._SWITCHER/g, "." + switcherClass);
 
 var s = document.createElement("style");
 s.id = classPrefix + "-styles";
@@ -492,13 +500,7 @@ function addTypeSwitcher(box) {
 	var header = getCodeHeader(box);
 	var select = document.createElement("select");
 	select.className = switcherClass;
-
-	var s = select.style;
-	s.cssFloat = s.styleFloat = "right";
-	s.textTransform = "none";
-	s.marginLeft = "6px";
-	s.cursor = "auto";
-	styleSelect(s);
+	styleSelect(select.style);
 
 	var selectedType;
 	if(box.hasAttribute(origAttr)) {
