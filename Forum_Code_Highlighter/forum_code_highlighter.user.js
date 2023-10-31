@@ -158,7 +158,7 @@ if(window.getComputedStyle) { // No autodetection in IE, sorry
 	}
 }
 
-var style = isDarkTheme
+var style = (isDarkTheme
 	? `
 /* Tomorrow Night Bright Theme */
 /* Original theme - https://github.com/chriskempson/tomorrow-theme */
@@ -230,16 +230,6 @@ _PRE .hljs-strong {
 	font-weight: 700
 }
 /* Tweaks for parsed custombutton://… */
-._CB-wrapper {
-	overflow: hidden !important;
-	text-overflow: ellipsis !important;
-}
-._CB ._CB-section-header {
-	margin: 1.6em 0 0.2em !important;
-}
-._CB ._CB-section-header > ._FCH-typeSwitcher {
-	margin-top: -0.5em !important;
-}
 ._CB ._CB-section-value._CODE {
 	border: 1px solid #555 !important;
 	max-height: 35em !important;
@@ -350,6 +340,12 @@ _PRE .hljs-deletion {
 	background-color: #ffeef0
 }
 /* Tweaks for parsed custombutton://… */
+._CB ._CB-section-value._CODE {
+	border: 1px solid #ccc !important;
+	max-height: 35em !important;
+	overflow: auto !important;
+}`
+) + `
 ._CB-wrapper {
 	overflow: hidden !important;
 	text-overflow: ellipsis !important;
@@ -360,11 +356,7 @@ _PRE .hljs-deletion {
 ._CB ._CB-section-header > ._FCH-typeSwitcher {
 	margin-top: -0.5em !important;
 }
-._CB ._CB-section-value._CODE {
-	border: 1px solid #ccc !important;
-	max-height: 35em !important;
-	overflow: auto !important;
-}`;
+`;
 
 style = style
 	.replace(/_PRE/g, codeSelector)
