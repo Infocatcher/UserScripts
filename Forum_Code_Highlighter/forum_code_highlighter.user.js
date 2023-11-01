@@ -60,11 +60,23 @@ var hljs=function(){"use strict";function e(t){return t instanceof Map?t.clear=t
 
 /*** Site-specific variables ***/
 var codeSelector;
-var types;
 var defaultType = "javascript"; // If autodetection fails
 var getBoxes;
 var getHeader;
 var styleSelect;
+var types = {
+	javascript: "JavaScript",
+	cpp: "C++",
+	vbscript: "VBScript",
+	dos: "Batch",
+	ini: "INI",
+	xml: "HTML, XML",
+	css: "CSS",
+	json: "JSON",
+	diff: "Diff",
+	"+diff": "+Diff"
+};
+
 function getCodeHeader(box) {
 	if(box.classList.contains(cbClass + "-section-value"))
 		return box.parentNode.firstChild;
@@ -74,18 +86,7 @@ function getCodeHeader(box) {
 var host = location.hostname;
 if(host == "akelpad.sourceforge.net") {
 	codeSelector = "code." + codeClass;
-	types = {
-		javascript: "JavaScript",
-		cpp: "C++",
-		vbscript: "VBScript",
-		dos: "Batch",
-		ini: "INI",
-		xml: "HTML, XML",
-		css: "CSS",
-		json: "JSON",
-		diff: "Diff",
-		"+diff": "+Diff"
-	};
+
 	getBoxes = function() {
 		return document.getElementsByTagName("code");
 	};
@@ -101,15 +102,10 @@ else {
 	hljs.unregisterLanguage("ini");
 	hljs.unregisterLanguage("dos");
 	hljs.unregisterLanguage("vbscript");
-
-	types = {
-		javascript: "JavaScript",
-		xml: "HTML, XML",
-		css: "CSS",
-		json: "JSON",
-		diff: "Diff",
-		"+diff": "+Diff"
-	};
+	delete types.cpp;
+	delete types.ini;
+	delete types.dos;
+	delete types.vbscript;
 
 	if(host == "custombuttons.sourceforge.net") {
 		codeSelector = "dl.codebox code." + codeClass;
