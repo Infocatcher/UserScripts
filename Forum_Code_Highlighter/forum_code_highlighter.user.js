@@ -361,21 +361,22 @@ _PRE .hljs-deletion {
 }
 `;
 
-style = style
-	.replace(/_PRE/g, codeSelector)
-	.replace(/\._CODE/g, "." + codeClass)
-	.replace(/\._FCH/g, "." + classPrefix)
-	.replace(/\._CB/g, "." + cbClass)
-	.replace(/\._SWITCHER/g, "." + switcherClass);
+function loadStylesOnce() {
+	loadStylesOnce = function() {};
 
-var s = document.createElement("style");
-s.id = classPrefix + "-styles";
-s.type = "text/css";
-s.appendChild(document.createTextNode(style));
-setTimeout(function() {
+	style = style
+		.replace(/_PRE/g, codeSelector)
+		.replace(/\._CODE/g, "." + codeClass)
+		.replace(/\._FCH/g, "." + classPrefix)
+		.replace(/\._CB/g, "." + cbClass)
+		.replace(/\._SWITCHER/g, "." + switcherClass);
+
+	var s = document.createElement("style");
+	s.id = classPrefix + "-styles";
+	s.type = "text/css";
+	s.appendChild(document.createTextNode(style));
 	document.getElementsByTagName("head")[0].appendChild(s);
-}, 0);
-
+}
 
 /*** Main functions ***/
 function highlight(box, newType, append) {
@@ -411,6 +412,7 @@ function initBox(box) {
 	if(box.hasAttribute(parsedAttr))
 		return;
 	box.setAttribute(parsedAttr, "true");
+	loadStylesOnce();
 
 	// Special "codes"
 	var tc = box.textContent;
