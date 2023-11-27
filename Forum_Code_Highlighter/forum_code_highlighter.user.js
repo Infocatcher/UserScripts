@@ -1,6 +1,6 @@
 ﻿// ==UserScript==
 // @name        Forum Code Highlighter
-// @version     0.2.0b2 - 2023-10-28
+// @version     0.2.0 - 2023-11-27
 // @author      Infocatcher
 // @namespace   dev/null
 // @match       *://custombuttons.sourceforge.net/forum/viewtopic.php?*
