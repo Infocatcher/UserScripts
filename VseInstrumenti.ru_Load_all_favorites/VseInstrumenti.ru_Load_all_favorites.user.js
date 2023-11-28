@@ -12,6 +12,7 @@
 	var btnLoad = /Показать ещ[её]/i;
 	var btnLoading = /Загружается/i;
 	var ttls = ["⏳ ", "⌛️ "]; // Clock/hourglass emoji
+	var useScroller = true;
 	var msg = "[VSI loader]: ";
 	var btnNext = iteration.__btnNext || (iteration.__btnNext = (function() {
 		var btns = document.getElementsByTagName("button");
@@ -51,6 +52,20 @@
 	console.log(msg + "load next");
 	btnNext.click();
 	setTimeout(iteration, 300);
+	if(useScroller && !iteration.__scroller) {
+		var step = Math.round(window.innerHeight/2);
+		scrollTo(0, 0);
+		iteration.__scroller = setInterval(function() {
+			var y = window.scrollY;
+			scrollBy(0, step);
+			if(window.scrollY - y <= 20) {
+				clearInterval(iteration.__scroller);
+				delete iteration.__scroller;
+				scrollTo(0, 0);
+				console.log(msg + "scroll loading done!");
+			}
+		}, 100);
+	}
 
 	function unprefix() {
 		var t = document.title;
