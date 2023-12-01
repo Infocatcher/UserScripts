@@ -61,6 +61,7 @@
 	if(useScroller && !iteration.__scroller) {
 		var step = Math.round(window.innerHeight/2);
 		scrollTo(0, 0);
+		iteration.__scrollUpdate = 0;
 		iteration.__scroller = setInterval(function() {
 			var y = window.scrollY;
 			scrollBy(0, step);
@@ -73,7 +74,11 @@
 					document.title = unprefix();
 			}
 			else if(iteration.__done || false) {
-				document.title = prefix();
+				var t = new Date().getTime();
+				if(t - iteration.__scrollUpdate > 650) {
+					iteration.__scrollUpdate = t;
+					document.title = prefix();
+				}
 			}
 		}, 100);
 	}
