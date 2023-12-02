@@ -12,7 +12,7 @@
 	var btnLoad = /Показать ещ[её]/i;
 	var btnLoading = /Загружается/i;
 	var ttls = ["⏳ ", "⌛️ "]; // Clock/hourglass emoji
-	var ttlsScroll = ["🔁 ", "⏬ "]; // Reload + down arrows
+	var ttlsScroll = ["🔽 ", "⏬ "]; // Down arrows
 	var useScroller = true;
 	var msg = "[VSI loader]: ";
 	iteration.__titles = ttls;
