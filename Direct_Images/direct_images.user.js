@@ -1,6 +1,6 @@
 ﻿// ==UserScript==
 // @name           Direct Images
-// @version        0.7.0pre19 - 2023-07-15
+// @version        0.7.0pre20 - 2024-04-21
 // @description    Redirect from preview pages to images directly
 // @author         Infocatcher
 // @namespace      dev/null
@@ -1104,12 +1104,13 @@ switch(host) {
 			.replace(/\?fb$/, "");
 		if(/^https?:\/\/(?:\w+\.)*imgur\.com\/images\/logo-/.test(src)) // Logo is useless...
 			src = "";
-		if(/\?fbplay$/.test(src)) { // Video?
+		else if(/\?fbplay$/.test(src)) { // Video?
 			destroy();
 			break;
 		}
-		if(loc.indexOf("/a/") == -1) { // Not a gallery?
+		if(src && loc.indexOf("/a/") == -1) { // Not a gallery?
 			_src = src;
+			_clearDoc = true;
 			break;
 		}
 		if(!di._src) // Will be changed, remember initial value...
