@@ -1,6 +1,6 @@
 ﻿// ==UserScript==
 // @name           Direct Images
-// @version        0.7.0pre20 - 2024-04-21
+// @version        0.7.0pre21 - 2025-02-17
 // @description    Redirect from preview pages to images directly
 // @author         Infocatcher
 // @namespace      dev/null
@@ -216,6 +216,7 @@
 // @match          *://www.imagebam.com/image/*
 // @match          *://postimg.cc/*
 // @match          *://sasisa.org/foto/foto.php?*
+// @match          *://radikal.host/i/*.*
 // ==/UserScript==
 
 (function di(event) {
@@ -1300,6 +1301,9 @@ switch(host) {
 				break;
 			}
 		}
+	break;
+	case "radikal.host":
+		_src = ogImage();
 }
 if(_iid)
 	_img = $(_iid);
