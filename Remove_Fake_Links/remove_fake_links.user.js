@@ -58,6 +58,7 @@
 // @include     https://mysku.ru/*
 // @include     https://soundcloud.com/*
 // @grant       none
+// @icon        https://i.gyazo.com/15f555c6336b9b1f7f42c83ce9b505b7.png
 // ==/UserScript==
 
 (function() {
