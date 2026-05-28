@@ -49,7 +49,7 @@
 // @include     http://steamcommunity.com/*
 // @include     https://steamcommunity.com/*
 // @include     http://store.steampowered.com/*
-// @include     https://www.reddit.com/*
+// @include     https://*.reddit.com/*
 // @include     https://twitter.com/*
 // @include     http://*reactor.cc/*
 // @include     http://*.tumblr.com/*
